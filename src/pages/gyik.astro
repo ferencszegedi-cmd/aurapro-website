@@ -1,0 +1,92 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+const categories = [
+  {
+    title: 'Munkavédelem',
+    items: [
+      { question: 'Mikor kötelező munkavédelmi szakembert alkalmazni?', answer: 'Minden munkáltató köteles munkavédelmi feladatokról gondoskodni, ha legalább egy munkavállalót foglalkoztat. Ezt megbízott külső szakértőn keresztül is elláthatja.' },
+      { question: 'Milyen gyakran kell munkavédelmi oktatást tartani?', answer: 'Legalább évente egyszer, valamint munkakör-változás, új technológia bevezetése vagy munkabaleset esetén soron kívüli oktatás is szükséges.' },
+      { question: 'Mi történik munkavédelmi ellenőrzéskor?', answer: 'A hatóság ellenőrzi a dokumentációt (szabályzatok, oktatási naplók, kockázatértékelés), a munkakörülményeket, az egyéni védőeszközöket és a munkaeszközök állapotát.' },
+      { question: 'Mekkora bírságot kaphat munkavédelmi hiányosságért?', answer: 'A munkavédelmi bírság 50.000 Ft-tól akár 10 millió Ft-ig terjedhet, súlyos vagy ismétlődő szabálytalanság esetén.' },
+      { question: 'Mikor kell kockázatértékelést készíteni?', answer: 'Minden munkakörre, új munkaeszköz vagy technológia bevezetésekor, munkabaleset után, és legalább 3 évente felül kell vizsgálni.' },
+    ],
+  },
+  {
+    title: 'Tűzvédelem',
+    items: [
+      { question: 'Mikor kötelező a tűzvédelmi szabályzat?', answer: 'Ha a létesítményben egyidejűleg 5 főnél többen tartózkodnak, vagy ha fokozottan tűz- vagy robbanásveszélyes anyagokat használnak.' },
+      { question: 'Milyen gyakran kell tűzoltó készüléket felülvizsgálni?', answer: 'Alapfelülvizsgálat évente, középfelülvizsgálat 5 évente, teljes felülvizsgálat (csere/próbanyomás) 10 évente szükséges.' },
+      { question: 'Kell-e tűzriadó gyakorlatot tartani?', answer: 'Igen, évente legalább egyszer kötelező tűzriadó (kiürítési) gyakorlatot tartani, és azt dokumentálni.' },
+      { question: 'Ki tarthat tűzvédelmi oktatást?', answer: 'Tűzvédelmi oktatást a tűzvédelmi szabályzatban kijelölt, megfelelő képesítéssel rendelkező személy tarthat – ez lehet külső megbízott szakértő.' },
+    ],
+  },
+  {
+    title: 'Környezetvédelem',
+    items: [
+      { question: 'Mikor kell hulladékgazdálkodási tervet készíteni?', answer: 'Ha a vállalkozás évi 200 tonnánál több nem veszélyes, vagy bármennyi veszélyes hulladékot termel.' },
+      { question: 'Mi az a HIR adatszolgáltatás?', answer: 'A Hulladékgazdálkodási Információs Rendszeren keresztül kötelező éves adatszolgáltatás (január 1-ig a tárgyévet megelőző évről).' },
+      { question: 'Kell-e környezetvédelmi megbízott?', answer: 'Környezetvédelmi megbízott kijelölése kötelező, ha a vállalkozás környezethasználata engedélyköteles, vagy jogszabály előírja.' },
+    ],
+  },
+  {
+    title: 'Árak és együttműködés',
+    items: [
+      { question: 'Mennyibe kerül a munkavédelem?', answer: 'Az ár a cég méretétől, tevékenységétől és telephelyeinek számától függ. Kérjen ingyenes felmérést, és 24 órán belül személyre szabott ajánlatot küldünk – kötelezettségmentesen.' },
+      { question: 'Van minimális szerződési időszak?', answer: 'Nem kötünk ki minimális időszakot. Havi vagy éves szerződés egyaránt választható, bármikor felmondható.' },
+      { question: 'Mi az a 10 millió Ft bírsággarancia?', answer: 'Ha partnerünket munkavédelmi bírság éri a mi mulasztásunk miatt, a bírság összegét megtérítjük – 10 millió Ft-ig. Ez egyedülálló vállalás a piacon.' },
+      { question: 'Hogyan zajlik az együttműködés megkezdése?', answer: '1. Ingyenes felmérés (személyesen vagy online). 2. Ajánlat 24 órán belül. 3. Szerződéskötés. 4. Azonnali megkezdés – a meglévő dokumentáció felülvizsgálatával.' },
+    ],
+  },
+];
+---
+
+<PageLayout
+  title="GYIK – Aurapro | Gyakran ismételt kérdések"
+  description="Munkavédelmi, tűzvédelmi és környezetvédelmi kérdések és válaszok. Mikor kötelező? Mekkora a bírság? Mennyibe kerül?"
+  canonical="/gyik/"
+>
+  <!-- Page hero -->
+  <section class="py-16 lg:py-24 bg-gradient-to-br from-teal-light to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="font-heading font-bold text-4xl lg:text-5xl text-heading">Gyakran ismételt kérdések</h1>
+        <p class="mt-4 text-lg text-body leading-relaxed">
+          Összegyűjtöttük a leggyakoribb kérdéseket a munka-, tűz- és környezetvédelemről.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ categories -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto space-y-12">
+        {categories.map((cat) => (
+          <div>
+            <h2 class="font-heading font-bold text-2xl text-heading mb-6">{cat.title}</h2>
+            <FaqAccordion items={cat.items} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 lg:py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-heading font-bold text-3xl text-heading">Nem találta a választ?</h2>
+      <p class="mt-3 text-body text-lg">Hívjon minket, vagy kérjen ingyenes konzultációt!</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/kapcsolat/" class="inline-flex items-center px-8 py-4 bg-orange text-white font-heading font-bold rounded-lg hover:bg-orange-dark transition-colors">
+          Kapcsolatfelvétel
+        </a>
+        <a href="tel:+3612345678" class="inline-flex items-center px-8 py-4 border-2 border-teal text-teal font-heading font-bold rounded-lg hover:bg-teal hover:text-white transition-colors">
+          +36 1 234 5678
+        </a>
+      </div>
+    </div>
+  </section>
+</PageLayout>

@@ -1,0 +1,91 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+
+const services = [
+  { title: 'Tűzvédelmi szabályzat', desc: 'Jogszabálynak megfelelő tűzvédelmi szabályzat készítése és naprakészen tartása.' },
+  { title: 'Tűzriadó terv', desc: 'Kiürítési terv készítése, menekülési útvonalak kijelölése, tűzriadó gyakorlat szervezése.' },
+  { title: 'Tűzvédelmi oktatás', desc: 'Általános és munkaköri tűzvédelmi oktatások – éves rendszerességgel, dokumentáltan.' },
+  { title: 'Tűzvédelmi felülvizsgálatok', desc: 'Tűzoltó készülékek, beépített jelző- és oltórendszerek, villamos hálózat felülvizsgálata.' },
+  { title: 'Tervezés és engedélyeztetés', desc: 'Tűzvédelmi tervdokumentáció, hatósági engedélyeztetés új épületeknél és átalakításoknál.' },
+  { title: 'Hatósági képviselet', desc: 'Katasztrófavédelmi ellenőrzéseknél teljes körű képviselet és ügyintézés.' },
+];
+
+const faqItems = [
+  { question: 'Mikor kötelező a tűzvédelmi szabályzat?', answer: 'Ha a létesítményben egyidejűleg 5 főnél többen tartózkodnak, vagy fokozottan tűz-/robbanásveszélyes anyagokat használnak.' },
+  { question: 'Milyen gyakran kell tűzoltó készüléket felülvizsgálni?', answer: 'Alapfelülvizsgálat évente, középfelülvizsgálat 5 évente, teljes felülvizsgálat (csere/próbanyomás) 10 évente szükséges.' },
+  { question: 'Ki tarthat tűzvédelmi oktatást?', answer: 'Tűzvédelmi oktatást a tűzvédelmi szabályzatban kijelölt személy tarthat – ez lehet megbízott külső szakértő is.' },
+];
+---
+
+<PageLayout
+  title="Tűzvédelem – Aurapro | Szabályzat, oktatás, felülvizsgálat"
+  description="Tűzvédelmi szolgáltatás: szabályzat, tűzriadó terv, felülvizsgálat, oktatás, tervezés. Katasztrófavédelmi ellenőrzésre felkészítjük."
+  canonical="/tuzvedelem/"
+>
+  <!-- Page hero -->
+  <section class="py-16 lg:py-24 bg-gradient-to-br from-orange-light to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="font-heading font-bold text-4xl lg:text-5xl text-heading">Tűzvédelem</h1>
+        <p class="mt-4 text-lg text-body leading-relaxed">
+          A tűzvédelmi szabályzattól a felülvizsgálatokig és hatósági engedélyeztetésig –
+          minden egy kézből, katasztrófavédelmi ellenőrzésre felkészítve.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="/kapcsolat/" class="inline-flex items-center px-8 py-4 bg-orange text-white font-heading font-bold rounded-lg hover:bg-orange-dark transition-colors">
+            Ingyenes ajánlat kérése
+          </a>
+          <a href="tel:+3612345678" class="inline-flex items-center px-8 py-4 border-2 border-teal text-teal font-heading font-bold rounded-lg hover:bg-teal hover:text-white transition-colors">
+            Hívjon most
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services grid -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading text-center mb-12">Tűzvédelmi szolgáltatásaink</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services.map((s) => (
+          <div class="bg-surface rounded-xl p-6 border border-border">
+            <div class="w-10 h-10 rounded-lg bg-orange-light flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 text-orange-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/>
+              </svg>
+            </div>
+            <h3 class="font-heading font-semibold text-heading">{s.title}</h3>
+            <p class="mt-2 text-body text-sm leading-relaxed">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Warning band -->
+  <section class="py-12 lg:py-16 bg-teal-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-heading font-bold text-2xl lg:text-3xl text-white">A katasztrófavédelem bármikor jöhet</h2>
+      <p class="mt-3 text-white/80 text-lg max-w-2xl mx-auto">
+        Tűzvédelmi hiányosságért akár azonnali bezáratás és több milliós bírság is járhat.
+        Partnereinknek nem kell ettől tartaniuk.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading font-bold text-3xl text-heading text-center mb-10">Gyakori kérdések a tűzvédelemről</h2>
+      <div class="max-w-3xl mx-auto">
+        <FaqAccordion items={faqItems} />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <ContactForm inline />
+</PageLayout>
