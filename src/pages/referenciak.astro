@@ -1,0 +1,148 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+const categories = [
+  {
+    title: 'Építőipar & Kivitelezés',
+    companies: [
+      { name: 'Audi', img: '/referenciak/audi.jpg' },
+      { name: 'Egis', img: '/referenciak/egis.jpg' },
+      { name: 'Euro Aszfalt', img: '/referenciak/euroaszfalt.jpg' },
+      { name: 'Fejér-Bál Zrt.', img: '/referenciak/fejer-bal.jpg' },
+      { name: 'Greencells', img: '/referenciak/greencells.jpg' },
+      { name: 'Richter Gedeon', img: '/referenciak/richter.jpg' },
+      { name: 'Trigranit', img: '/referenciak/trigranit.jpg' },
+    ],
+  },
+  {
+    title: 'Gyártás & Ipar',
+    companies: [
+      { name: 'ACIS', img: '/referenciak/acis.jpg' },
+      { name: 'Ferropatent', img: '/referenciak/ferropatent.jpg' },
+      { name: 'Güntner', img: '/referenciak/guntner.jpg' },
+      { name: 'STX', img: '/referenciak/stx.jpg' },
+      { name: 'Mikropakk', img: '/referenciak/mikropakk.jpg' },
+      { name: 'Siemens', img: '/referenciak/siemens.jpg' },
+      { name: 'WPW', img: '/referenciak/wpw.jpg' },
+    ],
+  },
+  {
+    title: 'Kereskedelem & Szolgáltatás',
+    companies: [
+      { name: 'Bravophone', img: '/referenciak/bravophone.jpg' },
+      { name: 'CCC', img: '/referenciak/ccc.jpg' },
+      { name: 'DM', img: '/referenciak/dm.jpg' },
+      { name: 'Pizza Forte', img: '/referenciak/forte.jpg' },
+      { name: 'LKQ', img: '/referenciak/lkq.jpg' },
+      { name: 'Láng', img: '/referenciak/lang.png' },
+      { name: 'Libri', img: '/referenciak/libri.jpg' },
+      { name: 'Pepco', img: '/referenciak/pepco.jpg' },
+      { name: 'Primark', img: '/referenciak/primark.jpg' },
+      { name: 'Sió', img: '/referenciak/sio.png' },
+    ],
+  },
+  {
+    title: 'Szolgáltatás & Közszféra',
+    companies: [
+      { name: 'Adecco', img: '/referenciak/adecco.jpg' },
+      { name: 'BMU', img: '/referenciak/bmu.jpg' },
+      { name: 'BNP Paribas', img: '/referenciak/bnp.jpg' },
+      { name: 'Budapest Közút', img: '/referenciak/budapest-kozut.jpg' },
+      { name: 'Multi Alarm', img: '/referenciak/multi-alarm.jpg' },
+      { name: 'Nemzeti Örökség Intézete', img: '/referenciak/noi.jpg' },
+      { name: 'NSU', img: '/referenciak/nsu.jpg' },
+      { name: 'Porsche', img: '/referenciak/porsche.jpg' },
+      { name: 'SysItNetwork Zrt.', img: '/referenciak/sysit.jpg' },
+      { name: 'TATA', img: '/referenciak/tata.jpg' },
+    ],
+  },
+];
+
+const totalCount = categories.reduce((sum, cat) => sum + cat.companies.length, 0);
+---
+
+<PageLayout
+  title="Referenciák – Aurapro | 34+ nagyvállalati partner"
+  description="Ismert cégek bíznak bennünk: Audi, Siemens, Richter, DM, Primark és még sokan mások. Tekintse meg referenciáinkat iparág szerint."
+  canonical="/referenciak/"
+>
+  <!-- Page hero -->
+  <section class="py-16 lg:py-24 bg-gradient-to-br from-teal-light to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="font-heading font-bold text-4xl lg:text-5xl text-heading">Referenciáink</h1>
+        <p class="mt-4 text-lg text-body leading-relaxed">
+          {totalCount}+ cég bízza ránk munka-, tűz- és környezetvédelmét – a kisvállalkozásoktól a multinacionális nagyvállalatokig.
+          Egyetlen partnerünk sem kapott bírságot.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reference categories -->
+  {categories.map((cat, catIndex) => (
+    <section class:list={["py-14 lg:py-18", catIndex % 2 === 0 ? "bg-white" : "bg-surface"]}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading font-bold text-2xl lg:text-3xl text-heading mb-10">{cat.title}</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+          {cat.companies.map((company) => (
+            <div class="group bg-white rounded-xl border border-border p-5 flex flex-col items-center justify-center hover:shadow-lg hover:border-teal/30 transition-all" data-animate>
+              <div class="w-full h-20 flex items-center justify-center">
+                <img
+                  src={company.img}
+                  alt={company.name}
+                  class="max-h-16 max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                  loading="lazy"
+                />
+              </div>
+              <p class="mt-3 text-sm text-muted font-medium text-center">{company.name}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- Stats band -->
+  <section class="py-12 lg:py-16 bg-teal-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="font-heading font-bold text-4xl text-white">{totalCount}+</div>
+          <div class="mt-1 text-white/70 text-sm">referencia partner</div>
+        </div>
+        <div>
+          <div class="font-heading font-bold text-4xl text-white">0</div>
+          <div class="mt-1 text-white/70 text-sm">bírság partnereinknek</div>
+        </div>
+        <div>
+          <div class="font-heading font-bold text-4xl text-white">4</div>
+          <div class="mt-1 text-white/70 text-sm">iparág</div>
+        </div>
+        <div>
+          <div class="font-heading font-bold text-4xl text-white">13+</div>
+          <div class="mt-1 text-white/70 text-sm">év tapasztalat</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-heading font-bold text-3xl text-heading">Csatlakozzon Ön is referenciáinkhoz</h2>
+      <p class="mt-3 text-body text-lg max-w-2xl mx-auto">
+        Kérjen ingyenes felmérést, és derítse ki, hogyan biztosíthatjuk cége teljes munkavédelmi megfelelését.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/kapcsolat/" class="inline-flex items-center px-8 py-4 bg-orange text-white font-heading font-bold rounded-lg hover:bg-orange-dark transition-colors">
+          Ingyenes ajánlat kérése
+        </a>
+        <a href="tel:+3612345678" class="inline-flex items-center px-8 py-4 border-2 border-teal text-teal font-heading font-bold rounded-lg hover:bg-teal hover:text-white transition-colors">
+          +36 1 234 5678
+        </a>
+      </div>
+    </div>
+  </section>
+</PageLayout>
