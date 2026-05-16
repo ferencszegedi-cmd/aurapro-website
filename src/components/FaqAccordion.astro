@@ -1,0 +1,60 @@
+---
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: FaqItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="space-y-3">
+  {items.map((item, i) => (
+    <div class="border border-border rounded-lg overflow-hidden faq-item">
+      <button
+        class="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-surface transition-colors"
+        aria-expanded="false"
+        data-faq-btn
+      >
+        <span class="font-heading font-semibold text-heading pr-4">{item.question}</span>
+        <svg class="w-5 h-5 text-muted shrink-0 transition-transform faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div class="hidden px-6 pb-4 text-body text-sm leading-relaxed" data-faq-content>
+        {item.answer}
+      </div>
+    </div>
+  ))}
+</div>
+
+<!-- Schema.org FAQPage markup -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": items.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+})} />
+
+<script>
+  document.querySelectorAll('[data-faq-btn]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const content = btn.nextElementSibling as HTMLElement;
+      const chevron = btn.querySelector('.faq-chevron') as HTMLElement;
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      content.classList.toggle('hidden');
+      chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
+    });
+  });
+</script>

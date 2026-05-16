@@ -1,0 +1,31 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+}
+
+const { title, description, canonical } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} noIndex={true}>
+  <!-- Minimal header: logo + phone only, no navigation -->
+  <header class="bg-white py-4 px-6 flex items-center justify-between">
+    <a href="/">
+      <img src="/logo.svg" alt="Aurapro" class="h-10" />
+    </a>
+    <a href="tel:+3612345678" class="flex items-center gap-2 text-teal font-heading font-semibold hover:text-teal-dark">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+      +36 1 234 5678
+    </a>
+  </header>
+  <main>
+    <slot />
+  </main>
+  <!-- Minimal footer -->
+  <footer class="bg-surface py-6 text-center text-sm text-muted">
+    &copy; {new Date().getFullYear()} Aurapro Kft. Minden jog fenntartva.
+  </footer>
+</BaseLayout>

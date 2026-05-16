@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  /* Márka színek */
+  --color-teal: #1a8a8a;
+  --color-teal-dark: #146e6e;
+  --color-teal-light: #e6f5f5;
+  --color-orange: #f5a623;
+  --color-orange-dark: #d48c0e;
+  --color-orange-light: #fef5e0;
+
+  /* Semleges színek */
+  --color-heading: #1a1a2e;
+  --color-body: #374151;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --color-surface: #f7f8fa;
+
+  /* Font family */
+  --font-heading: "Montserrat", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+/* Base stílusok */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-body);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-heading);
+  line-height: 1.2;
+}

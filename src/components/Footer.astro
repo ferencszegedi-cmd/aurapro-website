@@ -1,0 +1,68 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-teal-dark text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      <!-- Logo + tagline -->
+      <div>
+        <img src="/logo-white.svg" alt="Aurapro" class="h-10 mb-4" />
+        <p class="text-white/70 text-sm leading-relaxed">
+          Munkavédelem, tűzvédelem és környezetvédelem – egy kézből, 10 millió Ft bírsággaranciával.
+        </p>
+      </div>
+
+      <!-- Szolgáltatások -->
+      <div>
+        <h3 class="font-heading font-semibold text-sm uppercase tracking-wide mb-4">Szolgáltatások</h3>
+        <ul class="space-y-2">
+          <li><a href="/munkavedelem/" class="text-white/70 hover:text-white transition-colors text-sm">Munkavédelem</a></li>
+          <li><a href="/tuzvedelem/" class="text-white/70 hover:text-white transition-colors text-sm">Tűzvédelem</a></li>
+          <li><a href="/kornyezetvedelem/" class="text-white/70 hover:text-white transition-colors text-sm">Környezetvédelem</a></li>
+        </ul>
+      </div>
+
+      <!-- Cég -->
+      <div>
+        <h3 class="font-heading font-semibold text-sm uppercase tracking-wide mb-4">Cég</h3>
+        <ul class="space-y-2">
+          <li><a href="/rolunk/" class="text-white/70 hover:text-white transition-colors text-sm">Rólunk</a></li>
+          <li><a href="/referenciak/" class="text-white/70 hover:text-white transition-colors text-sm">Referenciák</a></li>
+          <li><a href="/blog/" class="text-white/70 hover:text-white transition-colors text-sm">Blog</a></li>
+          <li><a href="/gyik/" class="text-white/70 hover:text-white transition-colors text-sm">GYIK</a></li>
+          <li><a href="/adatvedelem/" class="text-white/70 hover:text-white transition-colors text-sm">Adatvédelem</a></li>
+        </ul>
+      </div>
+
+      <!-- Kapcsolat -->
+      <div>
+        <h3 class="font-heading font-semibold text-sm uppercase tracking-wide mb-4">Kapcsolat</h3>
+        <ul class="space-y-2 text-sm text-white/70">
+          <li>
+            <a href="tel:+3612345678" class="hover:text-white transition-colors">+36 1 234 5678</a>
+          </li>
+          <li>
+            <a href="mailto:info@aurapro.hu" class="hover:text-white transition-colors">info@aurapro.hu</a>
+          </li>
+          <li>Budapest</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-12 pt-8 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-white/50">
+        &copy; {currentYear} Aurapro Kft. Minden jog fenntartva.
+      </p>
+      <div class="flex items-center gap-4">
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="text-white/50 hover:text-white transition-colors" aria-label="Facebook">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" class="text-white/50 hover:text-white transition-colors" aria-label="LinkedIn">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

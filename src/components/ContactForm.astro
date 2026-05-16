@@ -1,0 +1,73 @@
+---
+interface Props {
+  inline?: boolean;
+  darkBg?: boolean;
+}
+
+const { inline = false, darkBg = false } = Astro.props;
+---
+
+{inline ? (
+  <!-- Inline CTA band form -->
+  <section class="py-12 lg:py-16 bg-orange">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-heading font-bold text-2xl lg:text-3xl text-white">
+        Kérjen ingyenes felmérést és ajánlatot
+      </h2>
+      <p class="mt-2 text-white/80 text-lg">24 órán belül visszahívjuk!</p>
+
+      <form action="https://formspree.io/f/XXXXXX" method="POST" class="mt-8 max-w-3xl mx-auto">
+        <div class="flex flex-col sm:flex-row gap-3">
+          <input type="text" name="name" placeholder="Név" required
+            class="flex-1 px-4 py-3 rounded-lg text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:outline-none" />
+          <input type="tel" name="phone" placeholder="Telefonszám" required
+            class="flex-1 px-4 py-3 rounded-lg text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:outline-none" />
+          <input type="email" name="email" placeholder="Email" required
+            class="flex-1 px-4 py-3 rounded-lg text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:outline-none" />
+          <button type="submit"
+            class="px-8 py-3 bg-teal-dark text-white font-heading font-semibold rounded-lg hover:bg-teal transition-colors whitespace-nowrap">
+            Küldés
+          </button>
+        </div>
+      </form>
+
+      <div class="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-white/80 text-sm">
+        <span>&#10003; Ingyenes</span>
+        <span>&#10003; Kötelezettségmentes</span>
+        <span>&#10003; 10M Ft bírsággarancia</span>
+      </div>
+    </div>
+  </section>
+) : (
+  <!-- Full contact form -->
+  <form action="https://formspree.io/f/XXXXXX" method="POST" class="space-y-4">
+    <div>
+      <label for="name" class:list={["block text-sm font-medium mb-1", darkBg ? "text-white" : "text-heading"]}>Név *</label>
+      <input type="text" id="name" name="name" required
+        class="w-full px-4 py-3 rounded-lg border border-border text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:border-teal focus:outline-none" />
+    </div>
+    <div>
+      <label for="phone" class:list={["block text-sm font-medium mb-1", darkBg ? "text-white" : "text-heading"]}>Telefonszám *</label>
+      <input type="tel" id="phone" name="phone" required
+        class="w-full px-4 py-3 rounded-lg border border-border text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:border-teal focus:outline-none" />
+    </div>
+    <div>
+      <label for="email" class:list={["block text-sm font-medium mb-1", darkBg ? "text-white" : "text-heading"]}>Email *</label>
+      <input type="email" id="email" name="email" required
+        class="w-full px-4 py-3 rounded-lg border border-border text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:border-teal focus:outline-none" />
+    </div>
+    <div>
+      <label for="message" class:list={["block text-sm font-medium mb-1", darkBg ? "text-white" : "text-heading"]}>Üzenet (opcionális)</label>
+      <textarea id="message" name="message" rows="3"
+        class="w-full px-4 py-3 rounded-lg border border-border text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:border-teal focus:outline-none resize-y"></textarea>
+    </div>
+    <button type="submit"
+      class="w-full px-8 py-4 bg-orange text-white font-heading font-bold text-lg rounded-lg hover:bg-orange-dark transition-colors">
+      Ingyenes ajánlat kérése
+    </button>
+    <div class:list={["flex flex-wrap gap-x-4 gap-y-1 text-sm", darkBg ? "text-white/70" : "text-muted"]}>
+      <span>&#10003; 24 órán belül visszahívjuk</span>
+      <span>&#10003; Kötelezettségmentes</span>
+    </div>
+  </form>
+)}

@@ -1,0 +1,200 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Hero from '../components/Hero.astro';
+import StatCounter from '../components/StatCounter.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+const faqItems = [
+  {
+    question: 'Mennyibe kerül a munkavédelem?',
+    answer: 'Az ár a cég méretétől, tevékenységétől és telephelyeinek számától függ. Kérjen ingyenes felmérést, és 24 órán belül személyre szabott ajánlatot küldünk – kötelezettségmentesen.',
+  },
+  {
+    question: 'Milyen gyakran kell munkavédelmi oktatást tartani?',
+    answer: 'A munkavédelmi oktatást évente legalább egyszer meg kell ismételni, de munkakör-változás, új technológia bevezetése vagy munkabaleset esetén soron kívüli oktatás is szükséges.',
+  },
+  {
+    question: 'Mekkora bírságot kaphat munkavédelmi hiányosságért?',
+    answer: 'A munkavédelmi bírság 50.000 Ft-tól akár 10 millió Ft-ig terjedhet, súlyos vagy ismétlődő szabálytalanság esetén. Éppen ezért vállalunk 10 millió Ft bírsággaranciát – ügyfeleink biztonságban vannak.',
+  },
+  {
+    question: 'Mikor kötelező a tűzvédelmi szabályzat?',
+    answer: 'Tűzvédelmi szabályzatot kell készíteni, ha az adott létesítményben egyidejűleg 5 főnél többen tartózkodnak, vagy ha a tevékenység során fokozottan tűz- vagy robbanásveszélyes anyagokat használnak.',
+  },
+];
+---
+
+<PageLayout
+  title="Aurapro – Munkavédelem és tűzvédelem 10M Ft bírsággaranciával"
+  description="Munkavédelem, tűzvédelem, környezetvédelem egy kézből. 30 szakértő, 48+ nagyvállalati referencia, 13 év tapasztalat. Kérjen ingyenes ajánlatot 24 órán belül!"
+  canonical="/"
+>
+  <!-- Hero -->
+  <Hero
+    title="Munkavédelem és tűzvédelem – 10 millió Ft bírsággaranciával"
+    subtitle="30 szakértő · 48+ nagyvállalati referencia · 13 év tapasztalat"
+    ctaText="Ingyenes ajánlat 24 órán belül"
+    ctaHref="/kapcsolat/"
+    secondaryCtaText="Hívjon most"
+    secondaryCtaHref="tel:+3612345678"
+  />
+
+  <!-- Social proof numbers -->
+  <StatCounter />
+
+  <!-- Services -->
+  <section class="py-16 lg:py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading">Szolgáltatásaink</h2>
+        <p class="mt-3 text-muted text-lg">Komplex megoldás – egy partner a teljes MV+TV+KV-ra</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <ServiceCard
+          title="Munkavédelem"
+          description="Kockázatértékelés, munkavédelmi oktatás, munkavédelmi koordinátor, szabályzatok készítése, hatósági ügyintézés."
+          href="/munkavedelem/"
+          icon="shield"
+        />
+        <ServiceCard
+          title="Tűzvédelem"
+          description="Tűzvédelmi szabályzat, tűzriadó terv, felülvizsgálatok, tűzvédelmi oktatás, tervezés és engedélyeztetés."
+          href="/tuzvedelem/"
+          icon="fire"
+        />
+        <ServiceCard
+          title="Környezetvédelem"
+          description="Hulladékgazdálkodás, környezetvédelmi engedélyek, zajmérés, levegőtisztaság-védelmi jelentések."
+          href="/kornyezetvedelem/"
+          icon="leaf"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Aurapro -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading">Miért minket választanak ügyfeleink?</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
+        {[
+          { title: '10 millió Ft bírsággarancia', desc: 'Egyedülálló a piacon – vállaljuk a felelősséget a munkánkért.' },
+          { title: '48+ nagyvállalati referencia', desc: 'Audi, Siemens, Richter, DM, Primark – és még sokan mások.' },
+          { title: '1 partnerünk sem kapott bírságot', desc: 'Bizonyított eredmény, nem csak ígéret.' },
+          { title: 'Komplex szolgáltatás egy kézből', desc: 'MV + TV + KV – kevesebb koordináció, több hatékonyság.' },
+          { title: '30 szakértő országszerte', desc: 'Nem egyemberes vállalkozás – bármikor elérhető kapacitás.' },
+          { title: '13 év tapasztalat', desc: 'Stabil háttér, kipróbált módszertannal.' },
+        ].map((item) => (
+          <div class="flex gap-4">
+            <div class="shrink-0 w-10 h-10 rounded-full bg-teal-light flex items-center justify-center">
+              <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-heading font-semibold text-heading">{item.title}</h3>
+              <p class="mt-1 text-body text-sm">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="mt-12 text-center">
+        <a href="/kapcsolat/" class="inline-flex items-center px-8 py-4 bg-orange text-white font-heading font-bold rounded-lg hover:bg-orange-dark transition-colors">
+          Kérjen ingyenes ajánlatot
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reference logos -->
+  <section class="py-12 lg:py-16 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-center font-heading font-semibold text-xl text-muted mb-8">Akik már minket választottak</h2>
+      <div class="flex flex-wrap items-center justify-center gap-8 lg:gap-12 opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500">
+        <span class="text-2xl font-heading font-bold text-muted/50">Audi</span>
+        <span class="text-2xl font-heading font-bold text-muted/50">Siemens</span>
+        <span class="text-2xl font-heading font-bold text-muted/50">Richter</span>
+        <span class="text-2xl font-heading font-bold text-muted/50">DM</span>
+        <span class="text-2xl font-heading font-bold text-muted/50">Primark</span>
+        <span class="text-lg text-muted">+43 másik cég</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials placeholder -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading mb-8">Ügyfeleink mondták</h2>
+      <div class="max-w-2xl mx-auto bg-surface rounded-xl p-8 border border-border">
+        <p class="text-body text-lg italic leading-relaxed">
+          "Hamarosan ügyfélvélemények kerülnek ide."
+        </p>
+        <p class="mt-4 text-muted text-sm">– Ügyfélvélemények beszerzés alatt</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industry segments -->
+  <section class="py-16 lg:py-20 bg-teal-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-center font-heading font-bold text-3xl lg:text-4xl text-white mb-12">Minden iparágban otthon vagyunk</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        {[
+          { label: 'Építőipar', href: '/munkavedelem-epitoipar/' },
+          { label: 'Gyártás', href: '/munkavedelem-gyartas/' },
+          { label: 'Irodák', href: '/munkavedelem-iroda/' },
+          { label: 'Raktárak', href: '/tuzvedelem-raktar/' },
+          { label: 'Kisvállalkozások', href: '/munkavedelem-kisvallalat/' },
+        ].map((item) => (
+          <a href={item.href} class="group block bg-white/10 rounded-xl p-6 text-center hover:bg-white/20 transition-colors">
+            <span class="font-heading font-semibold text-white group-hover:text-orange transition-colors">{item.label}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ preview -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading">Gyakran ismételt kérdések</h2>
+      </div>
+      <div class="max-w-3xl mx-auto">
+        <FaqAccordion items={faqItems} />
+        <div class="mt-8 text-center">
+          <a href="/gyik/" class="text-teal font-medium hover:text-teal-dark transition-colors">
+            Összes kérdés megtekintése &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA band -->
+  <ContactForm inline />
+
+</PageLayout>
+
+<!-- Schema.org Organization -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Aurapro Kft.",
+  "url": "https://www.aurapro.hu",
+  "logo": "https://www.aurapro.hu/logo.svg",
+  "description": "Munkavédelem, tűzvédelem és környezetvédelem – egy kézből, 10 millió Ft bírsággaranciával.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Budapest",
+    "addressCountry": "HU"
+  },
+  "sameAs": []
+}
+</script>

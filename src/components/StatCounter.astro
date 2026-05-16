@@ -1,0 +1,21 @@
+---
+const stats = [
+  { number: '13+', label: 'év tapasztalat' },
+  { number: '30+', label: 'szakértő országszerte' },
+  { number: '48+', label: 'nagyvállalati referencia' },
+  { number: '0', label: 'bírság eddig' },
+];
+---
+
+<section class="py-12 lg:py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+      {stats.map((stat) => (
+        <div>
+          <div class="font-heading font-bold text-4xl lg:text-5xl text-teal">{stat.number}</div>
+          <div class="mt-2 text-muted text-sm lg:text-base">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

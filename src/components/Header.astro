@@ -1,0 +1,122 @@
+---
+const navItems = [
+  {
+    label: 'Szolgáltatások',
+    children: [
+      { label: 'Munkavédelem', href: '/munkavedelem/' },
+      { label: 'Tűzvédelem', href: '/tuzvedelem/' },
+      { label: 'Környezetvédelem', href: '/kornyezetvedelem/' },
+    ],
+  },
+  {
+    label: 'Iparágak',
+    children: [
+      { label: 'Építőipar', href: '/munkavedelem-epitoipar/' },
+      { label: 'Gyártás', href: '/munkavedelem-gyartas/' },
+      { label: 'Irodák', href: '/munkavedelem-iroda/' },
+      { label: 'Raktárak', href: '/tuzvedelem-raktar/' },
+      { label: 'Kisvállalkozások', href: '/munkavedelem-kisvallalat/' },
+    ],
+  },
+  { label: 'Referenciák', href: '/referenciak/' },
+  { label: 'GYIK', href: '/gyik/' },
+  { label: 'Blog', href: '/blog/' },
+];
+---
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border" id="site-header">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <a href="/" class="shrink-0">
+        <img src="/logo.svg" alt="Aurapro – safety first" class="h-10 lg:h-12" />
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden lg:flex items-center gap-1" aria-label="Fő navigáció">
+        {navItems.map((item) => (
+          item.children ? (
+            <div class="relative group">
+              <button class="px-3 py-2 text-[15px] font-medium text-body hover:text-teal transition-colors flex items-center gap-1">
+                {item.label}
+                <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+              <div class="absolute top-full left-0 pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                <div class="bg-white rounded-lg shadow-lg border border-border py-2 min-w-[200px]">
+                  {item.children.map((child) => (
+                    <a href={child.href} class="block px-4 py-2 text-sm text-body hover:bg-teal-light hover:text-teal transition-colors">
+                      {child.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <a href={item.href} class="px-3 py-2 text-[15px] font-medium text-body hover:text-teal transition-colors">
+              {item.label}
+            </a>
+          )
+        ))}
+      </nav>
+
+      <!-- CTA + phone -->
+      <div class="hidden lg:flex items-center gap-4">
+        <a href="tel:+3612345678" class="text-sm text-muted hover:text-teal transition-colors">
+          +36 1 234 5678
+        </a>
+        <a href="/kapcsolat/" class="inline-flex items-center px-5 py-2.5 bg-orange text-white font-heading font-semibold text-sm rounded-lg hover:bg-orange-dark transition-colors">
+          Ajánlatkérés
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button
+        class="lg:hidden p-2 text-body hover:text-teal"
+        aria-label="Menü megnyitása"
+        id="mobile-menu-btn"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="lg:hidden hidden" id="mobile-menu">
+    <div class="px-4 py-4 border-t border-border bg-white space-y-1">
+      {navItems.map((item) => (
+        item.children ? (
+          <div>
+            <div class="px-3 py-2 text-sm font-semibold text-muted uppercase tracking-wide">{item.label}</div>
+            {item.children.map((child) => (
+              <a href={child.href} class="block px-6 py-2 text-body hover:text-teal transition-colors">
+                {child.label}
+              </a>
+            ))}
+          </div>
+        ) : (
+          <a href={item.href} class="block px-3 py-2 text-body hover:text-teal transition-colors">
+            {item.label}
+          </a>
+        )
+      ))}
+      <div class="pt-4 space-y-3">
+        <a href="tel:+3612345678" class="block text-center text-teal font-semibold">
+          +36 1 234 5678
+        </a>
+        <a href="/kapcsolat/" class="block text-center px-5 py-3 bg-orange text-white font-heading font-semibold rounded-lg hover:bg-orange-dark transition-colors">
+          Ajánlatkérés
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+</script>

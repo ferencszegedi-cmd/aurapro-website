@@ -1,0 +1,55 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = '/og-image.png',
+  noIndex = false,
+} = Astro.props;
+
+const siteUrl = 'https://www.aurapro.hu';
+const fullCanonical = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
+---
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  {noIndex && <meta name="robots" content="noindex, nofollow" />}
+  <link rel="canonical" href={fullCanonical} />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+  <meta property="og:url" content={fullCanonical} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="hu_HU" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@600;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <slot name="head" />
+</head>
+<body class="bg-white antialiased">
+  <slot />
+</body>
+</html>
