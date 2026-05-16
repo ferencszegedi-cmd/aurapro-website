@@ -1,0 +1,125 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+const team = [
+  { name: 'Gaál Zoltán', role: 'Cégvezető', desc: 'Gépészmérnök, munkavédelmi technikus', img: '/csapat/gaal-zoltan.jpg' },
+  { name: 'Szegedi Ferenc', role: 'Ügyvezető', desc: '', img: '/csapat/szegedi-ferenc.png' },
+  { name: 'Bolla Ágnes', role: 'Irodavezető', desc: '', img: '/csapat/bolla-agnes.jpg' },
+  { name: 'Szabó Dóra', role: 'Irodavezető', desc: '', img: '/csapat/szabo-dora.jpg' },
+  { name: 'Balogh Csilla', role: 'Irodavezető-helyettes', desc: '', img: '/csapat/balogh-csilla.jpg' },
+  { name: 'Frank-Horváth Kincső', role: 'Irodai adminisztrátor', desc: '', img: '/csapat/frank-horvath-kincso.png' },
+  { name: 'Szegedi Lilla', role: 'Munkavédelmi szakember, tűzvédelmi előadó', desc: '', img: '/csapat/szegedi-lilla.jpg' },
+  { name: 'Dittrich Zoltán', role: 'Munkavédelmi technikus, Tűzvédelmi főelőadó', desc: 'Okleveles magasépítő technikus', img: '/csapat/dittrich-zoltan.jpg' },
+  { name: 'Szilágyi Bence', role: 'Munkavédelmi szakmérnök, Tűzvédelmi főelőadó', desc: '', img: '/csapat/szilagyi-bence.jpg' },
+  { name: 'Tóth István', role: 'Tűzvédelmi főelőadó, Munkavédelmi technikus', desc: 'Biztonság és egészségvédelmi koordinátor', img: '/csapat/toth-istvan.jpg' },
+  { name: 'Módes Péter', role: 'Munka- és tűzvédelmi megbízott', desc: 'Biztonság- és egészségvédelmi koordinátor', img: '/csapat/modes-peter.jpg' },
+  { name: 'Martincsekné Divinyi Krisztina', role: 'Környezetmérnök, Tűzvédelmi főelőadó', desc: 'Munkavédelmi szakmérnök', img: '/csapat/martincsekne-divinyi-krisztina.jpg' },
+  { name: 'Hegedűs Zoltán', role: 'Munka- és tűzvédelmi megbízott', desc: '', img: '/csapat/hegedus-zoltan.jpg' },
+  { name: 'Szűk Katalin', role: 'Tűzvédelmi mérnök, munkavédelmi megbízott', desc: '', img: '/csapat/szuk-katalin.png' },
+  { name: 'Dr. Pölöskei Ernő', role: 'Munkavédelmi szakmérnök, Tűzvédelmi technikus', desc: 'Szakjogász', img: '/csapat/dr-poloskei-erno.jpg' },
+  { name: 'Zahorán János', role: 'Munkavédelmi szakember', desc: 'Biztonság- és egészségvédelmi koordinátor', img: '/csapat/zahoran-janos.jpg' },
+  { name: 'Haba Ferenc', role: 'Emelőgép szakértő', desc: '', img: '/csapat/haba-ferenc.jpg' },
+  { name: 'Barta Ernő', role: 'Munka- és tűzvédelmi szakember', desc: 'Biztonság és egészségvédelmi koordinátor', img: '/csapat/barta-erno.jpg' },
+  { name: 'Kanizsai Csaba', role: 'Biztonság- és egészségvédelmi koordinátor', desc: 'Munkavédelmi technikus', img: '/csapat/kanizsai-csaba.jpg' },
+  { name: 'Gerentsér Gábor', role: 'Biztonság és egészségvédelmi koordinátor', desc: 'Mélyépítési szakértő', img: '/csapat/gerentser-gabor.jpg' },
+  { name: 'Dér Ákos Gábor', role: 'Munka- és tűzvédelmi megbízott', desc: '', img: '/csapat/der-akos-gabor.jpg' },
+  { name: 'Bankó Kitti', role: 'Okleveles környezetvédelmi mérnök', desc: 'Tűzvédelmi főelőadó, munkavédelmi szakmérnök', img: '/csapat/banko-kitti.jpg' },
+];
+
+const leadership = team.slice(0, 6);
+const specialists = team.slice(6);
+---
+
+<PageLayout
+  title="Munkatársaink – Aurapro | 22 szakértő országszerte"
+  description="Ismerje meg az Aurapro csapatát: 22 szakértő munkavédelmi, tűzvédelmi és környezetvédelmi szakemberek, mérnökök és koordinátorok."
+  canonical="/munkatarsaink/"
+>
+  <!-- Page hero -->
+  <section class="py-16 lg:py-24 bg-gradient-to-br from-teal-light to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="font-heading font-bold text-4xl lg:text-5xl text-heading">Munkatársaink</h1>
+        <p class="mt-4 text-lg text-body leading-relaxed">
+          22 szakértő, mérnökök, technikusok és koordinátorok – országszerte biztosítjuk partnereink biztonságát.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading font-bold text-3xl text-heading text-center mb-12">Vezetőség és iroda</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 lg:gap-8 max-w-4xl mx-auto">
+        {leadership.map((person) => (
+          <div class="text-center" data-animate>
+            <div class="relative w-36 h-36 mx-auto mb-4 rounded-full overflow-hidden bg-surface border-2 border-border">
+              <img
+                src={person.img}
+                alt={person.name}
+                class="w-full h-full object-cover object-top"
+                loading="lazy"
+              />
+            </div>
+            <h3 class="font-heading font-semibold text-heading">{person.name}</h3>
+            <p class="text-teal text-sm font-medium mt-1">{person.role}</p>
+            {person.desc && <p class="text-muted text-xs mt-1">{person.desc}</p>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Specialists -->
+  <section class="py-16 lg:py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading font-bold text-3xl text-heading text-center mb-12">Szakértőink</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6 lg:gap-8">
+        {specialists.map((person) => (
+          <div class="text-center" data-animate>
+            <div class="relative w-28 h-28 mx-auto mb-3 rounded-full overflow-hidden bg-white border-2 border-border">
+              <img
+                src={person.img}
+                alt={person.name}
+                class="w-full h-full object-cover object-top"
+                loading="lazy"
+              />
+            </div>
+            <h3 class="font-heading font-semibold text-sm text-heading">{person.name}</h3>
+            <p class="text-teal text-xs font-medium mt-1">{person.role}</p>
+            {person.desc && <p class="text-muted text-xs mt-0.5">{person.desc}</p>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats band -->
+  <section class="py-12 lg:py-16 bg-teal-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="font-heading font-bold text-4xl text-white">22</div>
+          <div class="mt-1 text-white/70 text-sm">szakértő</div>
+        </div>
+        <div>
+          <div class="font-heading font-bold text-4xl text-white">13+</div>
+          <div class="mt-1 text-white/70 text-sm">év tapasztalat</div>
+        </div>
+        <div>
+          <div class="font-heading font-bold text-4xl text-white">48+</div>
+          <div class="mt-1 text-white/70 text-sm">nagyvállalati referencia</div>
+        </div>
+        <div>
+          <div class="font-heading font-bold text-4xl text-white">0</div>
+          <div class="mt-1 text-white/70 text-sm">bírság eddig</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <ContactForm inline />
+</PageLayout>
