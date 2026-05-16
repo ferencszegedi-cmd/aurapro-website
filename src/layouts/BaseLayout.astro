@@ -51,5 +51,59 @@ const fullCanonical = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
 </head>
 <body class="bg-white antialiased">
   <slot />
+
+  <!-- Cookie banner -->
+  <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-50 hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+      <div class="bg-heading rounded-xl p-4 sm:p-6 flex flex-col sm:flex-row items-center gap-4 shadow-2xl">
+        <p class="text-white/90 text-sm flex-1">
+          Az oldal sütiket használ a jobb felhasználói élmény érdekében.
+          <a href="/adatvedelem/" class="underline hover:text-white">Részletek</a>
+        </p>
+        <div class="flex gap-3 shrink-0">
+          <button id="cookie-reject" class="px-4 py-2 text-sm text-white/70 hover:text-white transition-colors">
+            Elutasítom
+          </button>
+          <button id="cookie-accept" class="px-5 py-2 bg-teal text-white text-sm font-semibold rounded-lg hover:bg-teal-dark transition-colors">
+            Elfogadom
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll animations -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('[data-animate]').forEach((el) => observer.observe(el));
+  </script>
+
+  <!-- Cookie logic -->
+  <script>
+    const banner = document.getElementById('cookie-banner');
+    const consent = localStorage.getItem('cookie-consent');
+
+    if (!consent && banner) {
+      banner.classList.remove('hidden');
+    }
+
+    document.getElementById('cookie-accept')?.addEventListener('click', () => {
+      localStorage.setItem('cookie-consent', 'accepted');
+      banner?.classList.add('hidden');
+    });
+
+    document.getElementById('cookie-reject')?.addEventListener('click', () => {
+      localStorage.setItem('cookie-consent', 'rejected');
+      banner?.classList.add('hidden');
+    });
+  </script>
 </body>
 </html>
