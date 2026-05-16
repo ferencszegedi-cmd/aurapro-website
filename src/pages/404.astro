@@ -1,0 +1,30 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+---
+
+<PageLayout
+  title="404 – Az oldal nem található | Aurapro"
+  description="A keresett oldal nem található."
+  canonical="/404/"
+>
+  <section class="py-24 lg:py-40 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="font-heading font-bold text-8xl lg:text-9xl text-teal/20">404</div>
+      <h1 class="mt-4 font-heading font-bold text-3xl lg:text-4xl text-heading">Az oldal nem található</h1>
+      <p class="mt-4 text-body text-lg max-w-md mx-auto">
+        A keresett oldal nem létezik, vagy áthelyezésre került. Próbálja meg az alábbi linkek egyikét:
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/" class="inline-flex items-center px-6 py-3 bg-teal text-white font-heading font-semibold rounded-lg hover:bg-teal-dark transition-colors">
+          Főoldal
+        </a>
+        <a href="/kapcsolat/" class="inline-flex items-center px-6 py-3 border-2 border-teal text-teal font-heading font-semibold rounded-lg hover:bg-teal hover:text-white transition-colors">
+          Kapcsolat
+        </a>
+        <a href="/munkavedelem/" class="inline-flex items-center px-6 py-3 border-2 border-border text-body font-heading font-semibold rounded-lg hover:border-teal hover:text-teal transition-colors">
+          Munkavédelem
+        </a>
+      </div>
+    </div>
+  </section>
+</PageLayout>
