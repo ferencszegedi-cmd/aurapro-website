@@ -10,15 +10,20 @@ import ContactForm from '../components/ContactForm.astro';
 >
   <section class="py-16 lg:py-24 bg-gradient-to-br from-teal-light to-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl">
-        <h1 class="font-heading font-bold text-4xl lg:text-5xl text-heading">Munkavédelmi oktatás</h1>
-        <p class="mt-4 text-lg text-body leading-relaxed">
-          A munkavédelmi oktatás a munkáltató egyik legfontosabb kötelezettsége. Mi nemcsak megtartjuk,
-          hanem az összes kapcsolódó dokumentumot is elkészítjük – kockázatértékeléstől az egyéni védőeszköz juttatási rendig.
-        </p>
-        <div class="mt-8 flex flex-wrap gap-4">
-          <a href="/kapcsolat/" class="inline-flex items-center px-8 py-4 bg-orange text-white font-heading font-bold rounded-lg hover:bg-orange-dark transition-colors">Ingyenes ajánlat kérése</a>
-          <a href="tel:+36704098764" class="inline-flex items-center px-8 py-4 border-2 border-teal text-teal font-heading font-bold rounded-lg hover:bg-teal hover:text-white transition-colors">+36 70 409 8764</a>
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="font-heading font-bold text-4xl lg:text-5xl text-heading">Munkavédelmi oktatás</h1>
+          <p class="mt-4 text-lg text-body leading-relaxed">
+            A munkavédelmi oktatás a munkáltató egyik legfontosabb kötelezettsége. Mi nemcsak megtartjuk,
+            hanem az összes kapcsolódó dokumentumot is elkészítjük – kockázatértékeléstől az egyéni védőeszköz juttatási rendig.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="/kapcsolat/" class="inline-flex items-center px-8 py-4 bg-orange text-white font-heading font-bold rounded-lg hover:bg-orange-dark transition-colors">Ingyenes ajánlat kérése</a>
+            <a href="tel:+36704098764" class="inline-flex items-center px-8 py-4 border-2 border-teal text-teal font-heading font-bold rounded-lg hover:bg-teal hover:text-white transition-colors">+36 70 409 8764</a>
+          </div>
+        </div>
+        <div class="hidden lg:block">
+          <img src="/images/munkavedelmi-oktatas.jpg" alt="Munkavédelmi oktatás" class="rounded-2xl shadow-lg" loading="lazy" />
         </div>
       </div>
     </div>
