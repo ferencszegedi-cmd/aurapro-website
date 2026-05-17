@@ -53,24 +53,36 @@ const faqItems = [
         <p class="mt-3 text-muted text-lg">Komplex megoldás – egy partner a teljes MV+TV+KV-ra</p>
       </div>
       <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
-        <ServiceCard
-          title="Munkavédelem"
-          description="Kockázatértékelés, munkavédelmi oktatás, munkavédelmi koordinátor, szabályzatok készítése, hatósági ügyintézés."
-          href="/munkavedelem/"
-          icon="shield"
-        />
-        <ServiceCard
-          title="Tűzvédelem"
-          description="Tűzvédelmi szabályzat, tűzriadó terv, felülvizsgálatok, tűzvédelmi oktatás, tervezés és engedélyeztetés."
-          href="/tuzvedelem/"
-          icon="fire"
-        />
-        <ServiceCard
-          title="Környezetvédelem"
-          description="Hulladékgazdálkodás, környezetvédelmi engedélyek, zajmérés, levegőtisztaság-védelmi jelentések."
-          href="/kornyezetvedelem/"
-          icon="leaf"
-        />
+        <a href="/munkavedelem/" class="group block bg-white rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-teal/30 transition-all" data-animate>
+          <div class="h-40 overflow-hidden">
+            <img src="/images/bgr-box-2.png" alt="Munkavédelem" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-semibold text-xl text-heading group-hover:text-teal transition-colors">Munkavédelem</h3>
+            <p class="mt-3 text-body text-sm leading-relaxed">Kockázatértékelés, munkavédelmi oktatás, koordinátor, szabályzatok, hatósági ügyintézés.</p>
+            <span class="mt-4 inline-flex items-center text-teal font-medium text-sm">Részletek <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+          </div>
+        </a>
+        <a href="/tuzvedelem/" class="group block bg-white rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-teal/30 transition-all" data-animate>
+          <div class="h-40 overflow-hidden">
+            <img src="/images/bgr-box-3.png" alt="Tűzvédelem" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-semibold text-xl text-heading group-hover:text-teal transition-colors">Tűzvédelem</h3>
+            <p class="mt-3 text-body text-sm leading-relaxed">Tűzvédelmi szabályzat, tűzriadó terv, felülvizsgálatok, oktatás, tervezés és engedélyeztetés.</p>
+            <span class="mt-4 inline-flex items-center text-teal font-medium text-sm">Részletek <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+          </div>
+        </a>
+        <a href="/kornyezetvedelem/" class="group block bg-white rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-teal/30 transition-all" data-animate>
+          <div class="h-40 overflow-hidden">
+            <img src="/images/bgr-box-esg.jpg" alt="Környezetvédelem" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-semibold text-xl text-heading group-hover:text-teal transition-colors">Környezetvédelem</h3>
+            <p class="mt-3 text-body text-sm leading-relaxed">Hulladékgazdálkodás, környezetvédelmi engedélyek, zajmérés, levegőtisztaság-védelem.</p>
+            <span class="mt-4 inline-flex items-center text-teal font-medium text-sm">Részletek <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -122,26 +134,39 @@ const faqItems = [
   <section class="py-12 lg:py-16 bg-surface">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-center font-heading font-semibold text-xl text-muted mb-8">Akik már minket választottak</h2>
-      <div class="flex flex-wrap items-center justify-center gap-8 lg:gap-12 opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500">
-        <span class="text-2xl font-heading font-bold text-muted/50">Audi</span>
-        <span class="text-2xl font-heading font-bold text-muted/50">Siemens</span>
-        <span class="text-2xl font-heading font-bold text-muted/50">Richter</span>
-        <span class="text-2xl font-heading font-bold text-muted/50">DM</span>
-        <span class="text-2xl font-heading font-bold text-muted/50">Primark</span>
-        <span class="text-lg text-muted">+43 másik cég</span>
+      <div class="flex flex-wrap items-center justify-center gap-8 lg:gap-12 grayscale hover:grayscale-0 transition-all duration-500">
+        <img src="/referenciak/audi.jpg" alt="Audi" class="h-10 object-contain" loading="lazy" />
+        <img src="/referenciak/siemens.jpg" alt="Siemens" class="h-10 object-contain" loading="lazy" />
+        <img src="/referenciak/richter.jpg" alt="Richter Gedeon" class="h-10 object-contain" loading="lazy" />
+        <img src="/referenciak/dm.jpg" alt="DM" class="h-10 object-contain" loading="lazy" />
+        <img src="/referenciak/primark.jpg" alt="Primark" class="h-10 object-contain" loading="lazy" />
+        <img src="/referenciak/porsche.jpg" alt="Porsche" class="h-10 object-contain" loading="lazy" />
+        <a href="/referenciak/" class="text-teal font-heading font-semibold hover:text-teal-dark transition-colors">+28 másik cég &rarr;</a>
       </div>
     </div>
   </section>
 
-  <!-- Testimonials placeholder -->
-  <section class="py-16 lg:py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading mb-8">Ügyfeleink mondták</h2>
-      <div class="max-w-2xl mx-auto bg-surface rounded-xl p-8 border border-border">
-        <p class="text-body text-lg italic leading-relaxed">
-          "Hamarosan ügyfélvélemények kerülnek ide."
-        </p>
-        <p class="mt-4 text-muted text-sm">– Ügyfélvélemények beszerzés alatt</p>
+  <!-- Bírsággarancia -->
+  <section class="py-16 lg:py-20 bg-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading">20 millió Ft bírsággarancia</h2>
+          <p class="mt-4 text-body text-lg leading-relaxed">
+            Annyira bízunk a munkánkban, hogy egyedülálló garanciát vállalunk: ha partnerünket bírság éri a mi mulasztásunk miatt,
+            a bírság összegét megtérítjük – <strong>20 millió Ft-ig</strong>.
+          </p>
+          <p class="mt-3 text-body leading-relaxed">
+            Ez nem csupán ígéret – szakmai felelősségbiztosításunk fedezi. Egyetlen partnerünk sem kapott bírságot 13 év alatt.
+          </p>
+          <a href="/biztositasi-garancia.pdf" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center px-6 py-3 bg-orange text-white font-heading font-semibold rounded-lg hover:bg-orange-dark transition-colors">
+            Garancia megtekintése (PDF)
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </a>
+        </div>
+        <div class="hidden lg:block">
+          <img src="/images/bgr-orange.png" alt="Bírsággarancia" class="rounded-2xl shadow-lg" loading="lazy" />
+        </div>
       </div>
     </div>
   </section>
@@ -149,19 +174,24 @@ const faqItems = [
   <!-- Industry segments -->
   <section class="py-16 lg:py-20 bg-teal-dark">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-center font-heading font-bold text-3xl lg:text-4xl text-white mb-12">Minden iparágban otthon vagyunk</h2>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        {[
-          { label: 'Építőipar', href: '/munkavedelem-epitoipar/' },
-          { label: 'Gyártás', href: '/munkavedelem-gyartas/' },
-          { label: 'Irodák', href: '/munkavedelem-iroda/' },
-          { label: 'Raktárak', href: '/tuzvedelem-raktar/' },
-          { label: 'Kisvállalkozások', href: '/munkavedelem-kisvallalat/' },
-        ].map((item) => (
-          <a href={item.href} class="group block bg-white/10 rounded-xl p-6 text-center hover:bg-white/20 transition-colors">
-            <span class="font-heading font-semibold text-white group-hover:text-orange transition-colors">{item.label}</span>
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="font-heading font-bold text-3xl lg:text-4xl text-white mb-6">Minden iparágban otthon vagyunk</h2>
+          <p class="text-white/80 text-lg mb-8">Építőipartól a kereskedelemig, gyártástól az irodákig – 13 év tapasztalat minden szektorban.</p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {['Építőipar', 'Gyártás', 'Kereskedelem', 'Irodák', 'Raktárak', 'Közszféra'].map((label) => (
+              <div class="bg-white/10 rounded-xl p-4 text-center">
+                <span class="font-heading font-semibold text-white text-sm">{label}</span>
+              </div>
+            ))}
+          </div>
+          <a href="/referenciak/" class="mt-8 inline-flex items-center text-orange font-heading font-semibold hover:text-orange-light transition-colors">
+            Összes referencia megtekintése <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
-        ))}
+        </div>
+        <div class="hidden lg:block">
+          <img src="/images/bgr-box.png" alt="Munkavédelmi oktatás" class="rounded-2xl shadow-lg" loading="lazy" />
+        </div>
       </div>
     </div>
   </section>
