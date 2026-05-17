@@ -8,3 +8,6 @@ dist/
 
 # One-shot SVG/favicon generator scratch dir
 tmp-fonts/
+
+# Local dev tooling
+.claude/
