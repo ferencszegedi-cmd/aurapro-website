@@ -3,3 +3,8 @@ dist/
 .astro/
 .env
 .env.*
+
+.vercel
+
+# One-shot SVG/favicon generator scratch dir
+tmp-fonts/
