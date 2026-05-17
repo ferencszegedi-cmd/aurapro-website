@@ -32,10 +32,10 @@ const {
       <img
         src={heroImage}
         alt={heroImageAlt}
-        class="absolute inset-0 w-full h-full object-cover object-left mix-blend-multiply"
+        class="absolute inset-0 w-full h-full object-cover object-[75%_center]"
         loading="eager"
       />
-      <div class="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-teal-dark to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-teal-dark via-teal-dark/60 to-transparent"></div>
     </div>
   )}
   <div class:list={["relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", heroImage ? "" : "text-center"]}>
