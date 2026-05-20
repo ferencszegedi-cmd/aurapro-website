@@ -82,7 +82,7 @@ const totalCount = categories.reduce((sum, cat) => sum + cat.companies.length, 0
 
   <!-- Reference categories -->
   {categories.map((cat, catIndex) => (
-    <section class:list={["py-14 lg:py-18", catIndex % 2 === 0 ? "bg-white" : "bg-surface"]}>
+    <section id={cat.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')} class:list={["py-14 lg:py-18", catIndex % 2 === 0 ? "bg-white" : "bg-surface"]}>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="font-heading font-bold text-2xl lg:text-3xl text-heading mb-10">{cat.title}</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-6">
