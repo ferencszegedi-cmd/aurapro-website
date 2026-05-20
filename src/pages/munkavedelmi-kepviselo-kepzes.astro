@@ -1,0 +1,106 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+
+<PageLayout
+  title="Munkavédelmi képviselő képzés – Aurapro | Alapképzés és továbbképzés"
+  description="Akkreditált munkavédelmi képviselő képzés online és személyesen. 94,8%-os sikerességi ráta, jogszabályi megfelelés. 38.800 Ft + ÁFA/fő."
+  canonical="/munkavedelmi-kepviselo-kepzes/"
+>
+  <section class="py-16 lg:py-24 bg-gradient-to-br from-teal-light to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="font-heading font-bold text-4xl lg:text-5xl text-heading">Munkavédelmi képviselő képzés</h1>
+          <p class="mt-4 text-lg text-body leading-relaxed">
+            Cégünk gyorsan és rugalmasan segít Önnek az alapképzés és továbbképzés elvégzésében!
+            Több éves oktatói és napi szintű gyakorlati tapasztalattal rendelkező szakembereink
+            készítik fel a munkavédelmi képviselőket, hogy a munkavállalói érdekeket a lehető
+            leghatékonyabban tudják képviselni.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="/kapcsolat/" class="inline-flex items-center px-8 py-4 bg-orange text-white font-heading font-bold rounded-lg hover:bg-orange-dark transition-colors">Képzés szervezése</a>
+            <a href="tel:+36704098764" class="inline-flex items-center px-8 py-4 border-2 border-teal text-teal font-heading font-bold rounded-lg hover:bg-teal hover:text-white transition-colors">+36 70 409 8764</a>
+          </div>
+        </div>
+        <div class="hidden lg:block">
+          <img src="/images/munkavedelmi-kepviselo-kepzes.jpg" alt="Munkavédelmi képviselő képzés" class="rounded-2xl shadow-lg" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto space-y-8">
+        <div class="grid md:grid-cols-3 gap-6">
+          {[
+            { title: 'Alapképzés', value: '16 óra', desc: 'Megválasztást követő 1 éven belül' },
+            { title: 'Továbbképzés', value: '8 óra/év', desc: 'Évente kötelező' },
+            { title: 'Sikerességi ráta', value: '94,8%', desc: 'Első kitöltés alkalmával' },
+          ].map((item) => (
+            <div class="bg-surface rounded-xl p-6 border border-border text-center" data-animate>
+              <div class="font-heading font-bold text-2xl text-teal">{item.value}</div>
+              <h3 class="font-heading font-semibold text-heading mt-2">{item.title}</h3>
+              <p class="mt-1 text-muted text-sm">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <h2 class="font-heading font-bold text-2xl text-heading">Jogszabályi háttér</h2>
+        <p class="text-body leading-relaxed">
+          A munkavédelmi törvény 75.§ (1) bekezdés c) pontja alapján egy választási ciklusban
+          a munkavédelmi képviselő megválasztását követően egy éven belül legalább <strong>16 órás alapképzésben</strong>,
+          ezt követően évente legalább <strong>8 órás továbbképzésben</strong> való részvételi lehetőséget
+          kell a munkáltatónak biztosítania.
+        </p>
+
+        <h2 class="font-heading font-bold text-2xl text-heading">Akkreditált képzésünk jellemzői</h2>
+        <ul class="space-y-3">
+          {[
+            'Gyakorlatból vett példák alapján felépített tananyag',
+            'Munkavédelmi szakmérnökök által kidolgozott, jogszabályi követelményeknek megfelelő oktatási anyag',
+            'Könnyen érthető, logikailag felépített képzés',
+            '94,8%-os sikerességi ráta a tesztek első kitöltése alkalmával',
+            'Online és személyes formában is elérhető',
+          ].map((item) => (
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-teal shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span class="text-body">{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-surface rounded-xl p-6 border border-border" data-animate>
+            <h3 class="font-heading font-semibold text-heading">Online képzés</h3>
+            <p class="mt-2 text-body text-sm">
+              Innovatív vállalkozásként fontosnak tartjuk a digitalizációt, ezért képzésünk
+              online formában is elérhető – kényelmesen, bárhonnan elvégezhető.
+            </p>
+          </div>
+          <div class="bg-surface rounded-xl p-6 border border-border" data-animate>
+            <h3 class="font-heading font-semibold text-heading">Személyes képzés</h3>
+            <p class="mt-2 text-body text-sm">
+              Helyszíni képzés az Ön cégénél vagy Budaörsön, a BITEP Ipari Parkban.
+              A képzés elvégzéséről tanúsítványt állítunk ki.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-orange-light rounded-xl p-6 border border-orange/20">
+          <h3 class="font-heading font-semibold text-heading">Képzés ára: 38.800 Ft + ÁFA/fő</h3>
+          <p class="mt-2 text-body text-sm">
+            Jelentkezés és további információ: <a href="mailto:dora.szabo@aurapro.hu" class="text-teal font-medium hover:text-teal-dark">dora.szabo@aurapro.hu</a>
+          </p>
+          <p class="mt-1 text-body text-sm">
+            Akkreditációs engedélyszám: E-001910/2019
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ContactForm inline />
+</PageLayout>
