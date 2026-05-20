@@ -34,8 +34,8 @@ const {
         alt={heroImageAlt}
         class="absolute inset-0 w-full h-full object-cover object-[75%_center]"
         loading="eager"
+        style="mask-image: linear-gradient(to right, transparent, black 30%); -webkit-mask-image: linear-gradient(to right, transparent, black 30%);"
       />
-      <div class="absolute inset-0 bg-gradient-to-r from-[#919196] via-[#919196]/60 to-transparent"></div>
     </div>
   )}
   <div class:list={["relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", heroImage ? "" : "text-center"]}>
