@@ -206,6 +206,46 @@ const faqItems = [
     </div>
   </section>
 
+  <!-- Vélemények rólunk -->
+  <section class="py-16 lg:py-20 bg-[#919196]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-center font-heading font-bold text-3xl lg:text-4xl text-white mb-12">Vélemények rólunk</h2>
+      <div class="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+        {[
+          {
+            quote: 'Az egyedi igényeinkre szabott megoldások és a rugalmas hozzáállás tette igazán értékessé számunkra ezt az együttműködést. A munkavállalóink is pozitívan fogadták a változásokat.',
+            name: 'Nagy Eszter',
+            title: 'HR vezető',
+          },
+          {
+            quote: 'A bevezetett intézkedések nemcsak a biztonságot növelték, de pozitív hatással voltak a munkahelyi légkörre és a termelékenységre is. Win-win szituációt teremtettek.',
+            name: 'Tóth Mária',
+            title: 'Üzletág vezető',
+          },
+          {
+            quote: 'Lenyűgöző volt számunkra a cég gyorsasága és precizitása. Amikor sürgős munkavédelmi audit vált szükségessé egyik új üzletünkben, rekordidő alatt, mégis minden részletre kiterjedően végezték el a felmérést. Ez a fajta hatékonyság kulcsfontosságú volt számunkra a határidők betartásában, miközben egy pillanatig sem kellett aggódnunk a minőség miatt.',
+            name: 'Fehér Gábor',
+            title: 'Expanziós igazgató',
+          },
+          {
+            quote: 'A munkatársaimtól kapott visszajelzések alapján az oktatások valóban újszerűek és rendkívül érthetőek voltak. Külön kiemelték, hogy a hagyományosan száraz munkavédelmi tananyagot hogyan sikerült a trénereknek életszerű példákkal és interaktív gyakorlatokkal színesíteniük. Ez nem csak az információk jobb megértését és megjegyzését segítette elő, de a munkavállalók hozzáállását is pozitívan befolyásolta a munkavédelem fontosságával kapcsolatban.',
+            name: 'Dr. Németh Katalin',
+            title: 'Humánerőforrás igazgató',
+          },
+        ].map((item) => (
+          <div class="bg-white/10 rounded-xl p-6 lg:p-8">
+            <svg class="w-8 h-8 text-orange mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zm-14.017 0v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H0z"/></svg>
+            <p class="text-white/90 text-sm leading-relaxed italic mb-4">{item.quote}</p>
+            <div>
+              <p class="font-heading font-semibold text-orange">{item.name}</p>
+              <p class="text-white/60 text-sm">{item.title}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Bírsággarancia -->
   <section class="pt-4 pb-16 lg:pt-6 lg:pb-20 bg-white relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
