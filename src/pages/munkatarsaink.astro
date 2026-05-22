@@ -54,12 +54,12 @@ const specialists = team.slice(6);
       <h2 class="font-heading font-bold text-3xl text-heading text-center mb-12">Vezetőség és iroda</h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 lg:gap-8 max-w-4xl mx-auto">
         {leadership.map((person) => (
-          <div class="text-center" data-animate>
-            <div class="relative w-36 h-36 mx-auto mb-4 rounded-full overflow-hidden bg-surface border-2 border-border">
+          <div class="text-center group" data-animate>
+            <div class="relative w-36 h-36 mx-auto mb-4 rounded-full overflow-hidden bg-surface border-2 border-border shadow-md transition-shadow duration-300 group-hover:shadow-lg group-hover:border-teal">
               <img
                 src={person.img}
                 alt={person.name}
-                class="w-full h-full object-cover object-top"
+                class="w-full h-full object-cover object-top grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105"
                 loading="lazy"
               />
             </div>
@@ -78,12 +78,12 @@ const specialists = team.slice(6);
       <h2 class="font-heading font-bold text-3xl text-heading text-center mb-12">Szakértőink</h2>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6 lg:gap-8">
         {specialists.map((person) => (
-          <div class="text-center" data-animate>
-            <div class="relative w-28 h-28 mx-auto mb-3 rounded-full overflow-hidden bg-white border-2 border-border">
+          <div class="text-center group" data-animate>
+            <div class="relative w-28 h-28 mx-auto mb-3 rounded-full overflow-hidden bg-white border-2 border-border shadow-md transition-shadow duration-300 group-hover:shadow-lg group-hover:border-teal">
               <img
                 src={person.img}
                 alt={person.name}
-                class="w-full h-full object-cover object-top"
+                class="w-full h-full object-cover object-top grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105"
                 loading="lazy"
               />
             </div>
