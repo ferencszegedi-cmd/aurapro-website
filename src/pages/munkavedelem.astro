@@ -17,6 +17,26 @@ const faqItems = [
   { question: 'Milyen gyakran kell munkavédelmi oktatást tartani?', answer: 'Legalább évente egyszer, valamint munkakör-változás, új technológia bevezetése vagy munkabaleset esetén soron kívül.' },
   { question: 'Mi történik munkavédelmi ellenőrzésnél, ha nincs szabályzatunk?', answer: 'A hatóság bírságot szabhat ki 50.000 Ft-tól 10 millió Ft-ig, és azonnali intézkedéseket rendelhet el.' },
 ];
+
+// P0-4: Service + FAQPage JSON-LD
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Munkavédelmi szolgáltatás',
+  provider: { '@type': 'Organization', name: 'Aurapro Kft.', url: 'https://www.aurapro.hu' },
+  areaServed: { '@type': 'Country', name: 'Hungary' },
+  description: 'Komplex munkavédelmi szolgáltatás: kockázatértékelés, oktatás, szabályzatok, koordinátor, hatósági képviselet.',
+  url: 'https://www.aurapro.hu/munkavedelem/',
+};
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
 ---
 
 <PageLayout
@@ -24,6 +44,9 @@ const faqItems = [
   description="Komplex munkavédelmi szolgáltatás: kockázatértékelés, oktatás, szabályzatok, koordinátor, hatósági képviselet. 20M Ft bírsággarancia."
   canonical="/munkavedelem/"
 >
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />
+
   <!-- Page hero -->
   <section class="py-16 lg:py-24 bg-gradient-to-br from-teal-light to-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

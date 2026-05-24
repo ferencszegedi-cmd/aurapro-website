@@ -31,19 +31,7 @@ const { items } = Astro.props;
   ))}
 </div>
 
-<!-- Schema.org FAQPage markup -->
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": items.map(item => ({
-    "@type": "Question",
-    "name": item.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": item.answer
-    }
-  }))
-})} />
+<!-- FAQPage JSON-LD: a használó oldal felelős érte (slot="head"-en keresztül), hogy oldalanként egy egységes schema legyen -->
 
 <script>
   document.querySelectorAll('[data-faq-btn]').forEach(btn => {

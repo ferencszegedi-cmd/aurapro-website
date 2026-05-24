@@ -41,6 +41,19 @@ const categories = [
     ],
   },
 ];
+
+// P0-4: FAQPage JSON-LD a teljes GYIK-oldalra (minden kategória összes kérdése)
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: categories.flatMap((cat) =>
+    cat.items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    }))
+  ),
+};
 ---
 
 <PageLayout
@@ -48,6 +61,8 @@ const categories = [
   description="Munkavédelmi, tűzvédelmi és környezetvédelmi kérdések és válaszok. Mikor kötelező? Mekkora a bírság? Mennyibe kerül?"
   canonical="/gyik/"
 >
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />
+
   <!-- Page hero -->
   <section class="py-16 lg:py-24 bg-gradient-to-br from-teal-light to-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

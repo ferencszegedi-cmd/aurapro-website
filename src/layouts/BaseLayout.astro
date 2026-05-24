@@ -19,6 +19,44 @@ const {
 
 const siteUrl = 'https://www.aurapro.hu';
 const fullCanonical = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
+
+// P0-1: Vercel preview deploymentokon noindex (duplicate content védelem).
+// Vercel automatikusan beállítja a VERCEL_ENV-et: "production" | "preview" | "development".
+// Statikus build-nél ez build-időben dől el, ezért env-alapon kell vizsgálni.
+const vercelEnv = import.meta.env.VERCEL_ENV; // production | preview | development | undefined (lokál)
+const isPreviewBuild = vercelEnv === 'preview';
+const effectiveNoIndex = noIndex || isPreviewBuild;
+
+// P0-4: ProfessionalService schema – minden oldalra (override-olható lent a slot-tal)
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Aurapro Kft.',
+  url: siteUrl,
+  logo: `${siteUrl}/logo.svg`,
+  image: `${siteUrl}/logo.jpg`,
+  description: 'Munkavédelem, tűzvédelem és környezetvédelem – egy kézből, 20 millió Ft bírsággaranciával.',
+  telephone: '+36704098764',
+  email: 'iroda@aurapro.hu',
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Gyár utca 2.',
+    addressLocality: 'Budaörs',
+    postalCode: '2040',
+    addressCountry: 'HU',
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '08:00',
+      closes: '17:00',
+    },
+  ],
+  areaServed: { '@type': 'Country', name: 'Hungary' },
+  sameAs: [],
+};
 ---
 
 <!DOCTYPE html>
@@ -28,7 +66,7 @@ const fullCanonical = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  {noIndex && <meta name="robots" content="noindex, nofollow" />}
+  {effectiveNoIndex && <meta name="robots" content="noindex, nofollow" />}
   <link rel="canonical" href={fullCanonical} />
 
   <!-- Open Graph -->
@@ -39,14 +77,33 @@ const fullCanonical = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="hu_HU" />
 
-  <!-- Fonts -->
+  <!-- Fonts: P0-5 – preconnect + non-blocking preload (Google Fonts stays for now, self-host TODO) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link
+    rel="preload"
+    as="style"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@400;600;700&display=swap"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@400;600;700&display=swap"
+    media="print"
+    onload="this.media='all'"
+  />
+  <noscript>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@400;600;700&display=swap"
+    />
+  </noscript>
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+
+  <!-- P0-4: ProfessionalService JSON-LD (minden oldalon) -->
+  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
 
   <slot name="head" />
 </head>

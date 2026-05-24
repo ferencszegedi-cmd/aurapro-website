@@ -24,6 +24,17 @@ const faqItems = [
     answer: 'Tűzvédelmi szabályzatot kell készíteni, ha az adott létesítményben egyidejűleg 5 főnél többen tartózkodnak, vagy ha a tevékenység során fokozottan tűz- vagy robbanásveszélyes anyagokat használnak.',
   },
 ];
+
+// P0-4: FAQ JSON-LD a homepage FAQ blokkhoz
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
 ---
 
 <PageLayout
@@ -31,6 +42,9 @@ const faqItems = [
   description="Munkavédelem, tűzvédelem, környezetvédelem egy kézből. 30 szakértő, 48+ nagyvállalati referencia, 13 év tapasztalat. Kérjen ingyenes ajánlatot 24 órán belül!"
   canonical="/"
 >
+  <!-- P0-4: FAQ JSON-LD (a ProfessionalService schema a BaseLayout-ban van) -->
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />
+
   <!-- Hero -->
   <Hero
     title="Munkavédelem - Tűzvédelem - Környezetvédelem"
@@ -325,21 +339,3 @@ const faqItems = [
   <ContactForm inline />
 
 </PageLayout>
-
-<!-- Schema.org Organization -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Aurapro Kft.",
-  "url": "https://www.aurapro.hu",
-  "logo": "https://www.aurapro.hu/logo.svg",
-  "description": "Munkavédelem, tűzvédelem és környezetvédelem – egy kézből, 20 millió Ft bírsággaranciával.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Budapest",
-    "addressCountry": "HU"
-  },
-  "sameAs": []
-}
-</script>

@@ -1,6 +1,17 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
+
+// P0-4: Service JSON-LD
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Munkavédelmi kockázatértékelés',
+  provider: { '@type': 'Organization', name: 'Aurapro Kft.', url: 'https://www.aurapro.hu' },
+  areaServed: { '@type': 'Country', name: 'Hungary' },
+  description: 'Munkahelyi kockázatértékelés készítése munkakörönként, veszélyes anyagokra és munkaeszközökre, jogszabályi megfeleléshez.',
+  url: 'https://www.aurapro.hu/kockazatertekeles/',
+};
 ---
 
 <PageLayout
@@ -8,6 +19,8 @@ import ContactForm from '../components/ContactForm.astro';
   description="Kockázatértékelés készítése munkakörönként, veszélyes anyagokra és munkaeszközökre. Átalánydíjas szerződésnél nem kell külön fizetni."
   canonical="/kockazatertekeles/"
 >
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceSchema)} />
+
   <section class="py-16 lg:py-24 bg-gradient-to-br from-teal-light to-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
