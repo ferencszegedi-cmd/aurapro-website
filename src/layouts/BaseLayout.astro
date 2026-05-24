@@ -27,6 +27,12 @@ const vercelEnv = import.meta.env.VERCEL_ENV; // production | preview | developm
 const isPreviewBuild = vercelEnv === 'preview';
 const effectiveNoIndex = noIndex || isPreviewBuild;
 
+// P0-2: GA4 + Google Ads (csak ha az env változók be vannak állítva – addig stub-ban marad).
+// Vercel projektbe: PUBLIC_GA4_ID, PUBLIC_ADS_CONVERSION_ID
+const GA4_ID = import.meta.env.PUBLIC_GA4_ID;
+const ADS_ID = import.meta.env.PUBLIC_ADS_CONVERSION_ID;
+const trackingEnabled = !!GA4_ID;
+
 // P0-4: ProfessionalService schema – minden oldalra (override-olható lent a slot-tal)
 const orgSchema = {
   '@context': 'https://schema.org',
@@ -105,24 +111,45 @@ const orgSchema = {
   <!-- P0-4: ProfessionalService JSON-LD (minden oldalon) -->
   <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
 
+  {trackingEnabled && (
+    <Fragment>
+      {/* P0-2: gtag.js – Consent Mode v2 default DENIED, aurapro_applyConsent hív update-et */}
+      <script is:inline define:vars={{ GA4_ID, ADS_ID }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        window.gtag = gtag;
+        gtag('consent', 'default', {
+          ad_storage: 'denied',
+          analytics_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+        });
+        gtag('js', new Date());
+        gtag('config', GA4_ID, { anonymize_ip: true });
+        if (ADS_ID) gtag('config', ADS_ID);
+      </script>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}></script>
+    </Fragment>
+  )}
+
   <slot name="head" />
 </head>
 <body class="bg-white antialiased">
   <slot />
 
-  <!-- Cookie banner -->
-  <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-50 hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
-      <div class="bg-heading rounded-xl p-4 sm:p-6 flex flex-col sm:flex-row items-center gap-4 shadow-2xl">
+  <!-- Cookie banner – P1-3: keskeny, sticky bar fölé NEM kerül (z-50 helyett z-30, mobil sticky bar z-40) -->
+  <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-30 hidden lg:bottom-0 bottom-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-2 lg:pb-4">
+      <div class="bg-heading rounded-lg lg:rounded-xl px-4 py-3 sm:px-6 sm:py-4 flex flex-col sm:flex-row items-center gap-3 shadow-2xl">
         <p class="text-white/90 text-sm flex-1">
           Az oldal sütiket használ a jobb felhasználói élmény érdekében.
           <a href="/adatvedelem/" class="underline hover:text-white">Részletek</a>
         </p>
-        <div class="flex gap-3 shrink-0">
-          <button id="cookie-reject" class="px-4 py-2 text-sm text-white/70 hover:text-white transition-colors">
+        <div class="flex gap-2 shrink-0">
+          <button id="cookie-reject" class="px-3 py-1.5 text-sm text-white/70 hover:text-white transition-colors">
             Elutasítom
           </button>
-          <button id="cookie-accept" class="px-5 py-2 bg-teal text-white text-sm font-semibold rounded-lg hover:bg-teal-dark transition-colors">
+          <button id="cookie-accept" class="px-4 py-1.5 bg-teal text-white text-sm font-semibold rounded-md hover:bg-teal-dark transition-colors">
             Elfogadom
           </button>
         </div>
@@ -144,23 +171,39 @@ const orgSchema = {
     document.querySelectorAll('[data-animate]').forEach((el) => observer.observe(el));
   </script>
 
-  <!-- Cookie logic -->
+  <!-- Cookie logic + P0-2 consent hook (gtag placeholder, aktiválódik ha PUBLIC_GA4_ID megérkezik) -->
   <script>
     const banner = document.getElementById('cookie-banner');
     const consent = localStorage.getItem('cookie-consent');
 
+    // Globális hook – consent állapot változásnál hív
+    (window as any).aurapro_applyConsent = function (granted: boolean) {
+      if (typeof (window as any).gtag === 'function') {
+        (window as any).gtag('consent', 'update', {
+          ad_storage: granted ? 'granted' : 'denied',
+          analytics_storage: granted ? 'granted' : 'denied',
+          ad_user_data: granted ? 'granted' : 'denied',
+          ad_personalization: granted ? 'granted' : 'denied',
+        });
+      }
+    };
+
     if (!consent && banner) {
       banner.classList.remove('hidden');
+    } else if (consent === 'accepted') {
+      (window as any).aurapro_applyConsent?.(true);
     }
 
     document.getElementById('cookie-accept')?.addEventListener('click', () => {
       localStorage.setItem('cookie-consent', 'accepted');
       banner?.classList.add('hidden');
+      (window as any).aurapro_applyConsent?.(true);
     });
 
     document.getElementById('cookie-reject')?.addEventListener('click', () => {
       localStorage.setItem('cookie-consent', 'rejected');
       banner?.classList.add('hidden');
+      (window as any).aurapro_applyConsent?.(false);
     });
   </script>
 </body>
