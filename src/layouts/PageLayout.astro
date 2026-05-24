@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import MobileStickyBar from '../components/MobileStickyBar.astro';
 
 interface Props {
   title: string;
@@ -19,4 +20,5 @@ const { title, description, canonical } = Astro.props;
     <slot />
   </main>
   <Footer />
+  <MobileStickyBar />
 </BaseLayout>
