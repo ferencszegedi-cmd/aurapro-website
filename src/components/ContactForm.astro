@@ -16,7 +16,7 @@ const { inline = false, darkBg = false } = Astro.props;
       </h2>
       <p class="mt-2 text-white/80 text-lg">24 órán belül visszahívjuk!</p>
 
-      <form action="https://formspree.io/f/xwvzendq" method="POST" class="mt-8 max-w-3xl mx-auto" data-form="hero-inline">
+      <form action="/api/lead" method="POST" class="mt-8 max-w-3xl mx-auto" data-form="hero-inline">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <input type="text" name="name" placeholder="Név *" required autocomplete="name"
             class="px-4 py-3 rounded-lg text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:outline-none" />
@@ -54,6 +54,8 @@ const { inline = false, darkBg = false } = Astro.props;
         {/* P0-3: honeypot – emberek nem látják, botok kitöltik */}
         <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"
           class="hidden" style="display:none !important" />
+
+        <p data-form-error class="hidden mt-3 text-sm text-white bg-red-700/80 rounded px-3 py-2"></p>
       </form>
 
       <div class="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-white/80 text-sm">
@@ -66,7 +68,7 @@ const { inline = false, darkBg = false } = Astro.props;
   </section>
 ) : (
   <!-- Full contact form -->
-  <form action="https://formspree.io/f/xwvzendq" method="POST" class="space-y-4" data-form="full-contact">
+  <form action="/api/lead" method="POST" class="space-y-4" data-form="full-contact">
     <div>
       <label for="name" class:list={["block text-sm font-medium mb-1", darkBg ? "text-white" : "text-heading"]}>Név *</label>
       <input type="text" id="name" name="name" required autocomplete="name"
@@ -123,9 +125,102 @@ const { inline = false, darkBg = false } = Astro.props;
       class="w-full px-8 py-4 bg-orange text-white font-heading font-bold text-lg rounded-lg hover:bg-orange-dark transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
       Ingyenes ajánlat kérése
     </button>
+    <p data-form-error class="hidden text-sm text-red-600"></p>
     <div class:list={["flex flex-wrap gap-x-4 gap-y-1 text-sm", darkBg ? "text-white/70" : "text-muted"]}>
       <span>&#10003; 24 órán belül visszahívjuk</span>
       <span>&#10003; Kötelezettségmentes</span>
     </div>
   </form>
 )}
+
+<!--
+  P0-3: client-side form submission - JSON fetch /api/lead-re, redirect /koszonjuk/-re.
+  Az Astro deduplikálja a scripts tag-eket akkor is, ha a komponens többször van renderelve.
+-->
+<script>
+  function handleAuraproForm(form: HTMLFormElement) {
+    if (form.dataset.bound === '1') return;
+    form.dataset.bound = '1';
+
+    const errorEl = form.querySelector<HTMLElement>('[data-form-error]');
+    const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const originalBtnText = submitBtn?.textContent ?? 'Küldés';
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Honeypot azonnali kliens-oldali kiszűrés (a botnak sem érdekes a UX)
+      const honeypot = form.querySelector<HTMLInputElement>('input[name="website"]');
+      if (honeypot && honeypot.value.length > 0) {
+        window.location.assign('/koszonjuk/');
+        return;
+      }
+
+      if (errorEl) {
+        errorEl.classList.add('hidden');
+        errorEl.textContent = '';
+      }
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Küldés…';
+      }
+
+      const formData = new FormData(form);
+      const payload: Record<string, string> = {};
+      formData.forEach((value, key) => {
+        payload[key] = typeof value === 'string' ? value : '';
+      });
+      payload.source = form.dataset.form ?? 'unknown';
+
+      try {
+        const res = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        if (res.ok) {
+          // Sikeres lead – analytics + redirect
+          if (typeof (window as any).gtag === 'function') {
+            (window as any).gtag('event', 'generate_lead', {
+              form_id: payload.source,
+              service: payload.service,
+            });
+          }
+          window.location.assign('/koszonjuk/');
+          return;
+        }
+
+        // Validációs vagy szerver hiba – feliratot mutatunk
+        let errMsg = 'Hiba történt a küldéskor. Próbálja újra, vagy hívjon: +36 70 409 8764';
+        try {
+          const data = await res.json();
+          if (data?.error === 'validation_failed' && Array.isArray(data.fields)) {
+            errMsg = `Ellenőrizze a mezőket: ${data.fields.join(', ')}`;
+          }
+        } catch {
+          /* ignored */
+        }
+        if (errorEl) {
+          errorEl.textContent = errMsg;
+          errorEl.classList.remove('hidden');
+        }
+      } catch (err) {
+        if (errorEl) {
+          errorEl.textContent =
+            'Hálózati hiba. Kérjük, hívjon közvetlenül: +36 70 409 8764';
+          errorEl.classList.remove('hidden');
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        }
+      }
+    });
+  }
+
+  document
+    .querySelectorAll<HTMLFormElement>('form[data-form]')
+    .forEach((f) => handleAuraproForm(f));
+</script>
