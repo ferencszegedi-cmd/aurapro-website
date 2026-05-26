@@ -6,17 +6,17 @@ import ContactForm from '../components/ContactForm.astro';
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  serviceType: 'EHS bírsággarancia (20 millió Ft)',
+  serviceType: 'EHS bírsággarancia (40 millió Ft)',
   provider: { '@type': 'Organization', name: 'Aurapro Kft.', url: 'https://www.aurapro.hu' },
   areaServed: { '@type': 'Country', name: 'Hungary' },
-  description: 'Az Aurapro vállalja, hogy ha az általunk gondozott területen bírság éri partnerünket, 20 millió forintig megtérítjük. Szakmai felelősségbiztosítás fedezi.',
+  description: 'Az Aurapro vállalja, hogy ha az általunk gondozott területen bírság éri partnerünket, 40 millió forintig megtérítjük. Szakmai felelősségbiztosítás fedezi.',
   url: 'https://www.aurapro.hu/birsaggarancia/',
 };
 ---
 
 <PageLayout
-  title="20 millió Ft bírsággarancia – Aurapro | Egyedülálló a piacon"
-  description="Az Aurapro 20 millió Ft-ig megtéríti a bírságot, ha az általunk gondozott területen ér partnerünket szankció. 13 év – 48 ügyfél – 0 bírság."
+  title="40 millió Ft bírsággarancia – Aurapro | Egyedülálló a piacon"
+  description="Az Aurapro 40 millió Ft-ig megtéríti a bírságot, ha az általunk gondozott területen ér partnerünket szankció. 13 év – 48 ügyfél – 0 bírság."
   canonical="/birsaggarancia/"
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceSchema)} />
@@ -27,12 +27,12 @@ const serviceSchema = {
       <div class="max-w-3xl">
         <p class="font-heading text-orange font-semibold uppercase tracking-wider text-sm">Egyedülálló a magyar EHS piacon</p>
         <h1 class="mt-3 font-heading font-bold text-4xl lg:text-5xl leading-tight">
-          20 millió Ft bírsággarancia<br />
+          40 millió Ft bírsággarancia<br />
           <span class="text-orange">– feketén-fehéren</span>
         </h1>
         <p class="mt-6 text-lg lg:text-xl text-white/85 leading-relaxed">
           Ha az általunk vezetett munka-, tűz- vagy környezetvédelmi feladatok miatt bírság éri Önt,
-          <strong>20 millió forintig mi álljuk.</strong> Ez nem marketing – biztosítói fedezet áll mögötte.
+          <strong>40 millió forintig mi álljuk.</strong> Ez nem marketing – biztosítói fedezet áll mögötte.
         </p>
         <div class="mt-8 flex flex-col sm:flex-row gap-4">
           <a href="/kapcsolat/" class="inline-flex items-center justify-center px-8 py-4 bg-orange text-white font-heading font-bold text-lg rounded-lg hover:bg-orange-dark transition-colors shadow-lg">
@@ -63,7 +63,7 @@ const serviceSchema = {
           <div class="mt-2 text-muted text-sm lg:text-base">kifizetett bírság eddig</div>
         </div>
         <div>
-          <div class="font-heading font-bold text-4xl lg:text-5xl text-orange">20M Ft</div>
+          <div class="font-heading font-bold text-4xl lg:text-5xl text-orange">40M Ft</div>
           <div class="mt-2 text-muted text-sm lg:text-base">garancia-limit</div>
         </div>
       </div>
@@ -86,7 +86,7 @@ const serviceSchema = {
           <div class="mx-auto w-14 h-14 rounded-full bg-teal text-white font-heading font-bold text-xl flex items-center justify-center">2</div>
           <h3 class="mt-4 font-heading font-semibold text-xl text-heading">Garancia életbe lép</h3>
           <p class="mt-2 text-body leading-relaxed">
-            A szerződés napjától kezdve a gondozott területeken jár a 20M Ft-os fedezet.
+            A szerződés napjától kezdve a gondozott területeken jár a 40M Ft-os fedezet.
             Külön díj nincs – része a szolgáltatásunknak.
           </p>
         </div>
@@ -146,7 +146,7 @@ const serviceSchema = {
             bárki, aki tárgyal velünk, megnézheti a tényleges biztosítási feltételeket.
           </p>
           <p class="mt-3 text-body leading-relaxed">
-            <strong>Ez nem marketing-ígéret.</strong> Ha egy EHS-cég 20 millió Ft-os garanciát ígér, de nem mutat
+            <strong>Ez nem marketing-ígéret.</strong> Ha egy EHS-cég 40 millió Ft-os garanciát ígér, de nem mutat
             biztosítói hátteret – kérdezzen vissza. Mi mutatjuk.
           </p>
           <a href="/biztositasi-garancia.pdf" target="_blank" rel="noopener" class="mt-6 inline-flex items-center px-6 py-3 bg-orange text-white font-heading font-semibold rounded-lg hover:bg-orange-dark transition-colors">
@@ -161,7 +161,7 @@ const serviceSchema = {
             </svg>
             <p class="mt-4 font-heading font-bold text-2xl text-heading">Biztosítási garancia</p>
             <p class="mt-2 text-muted text-sm">Aurapro Kft. szakmai felelősségbiztosítás</p>
-            <p class="mt-6 font-heading font-bold text-4xl text-orange">20 000 000 Ft</p>
+            <p class="mt-6 font-heading font-bold text-4xl text-orange">40 000 000 Ft</p>
             <p class="text-muted text-sm">eseményenkénti limit</p>
           </div>
         </div>
