@@ -19,13 +19,13 @@ const { inline = false, darkBg = false } = Astro.props;
       <form action="/api/lead" method="POST" class="mt-8 max-w-3xl mx-auto" data-form="hero-inline">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <input type="text" name="name" placeholder="Név *" required autocomplete="name"
-            class="px-4 py-3 rounded-lg text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:outline-none" />
+            class="px-4 py-3 rounded-lg bg-white text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:outline-none" />
           <input type="text" name="company" placeholder="Cég neve *" required autocomplete="organization"
-            class="px-4 py-3 rounded-lg text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:outline-none" />
+            class="px-4 py-3 rounded-lg bg-white text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:outline-none" />
           <input type="tel" name="phone" placeholder="Telefonszám *" required autocomplete="tel"
-            class="px-4 py-3 rounded-lg text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:outline-none" />
+            class="px-4 py-3 rounded-lg bg-white text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:outline-none" />
           <input type="email" name="email" placeholder="Email (opcionális)" autocomplete="email"
-            class="px-4 py-3 rounded-lg text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:outline-none" />
+            class="px-4 py-3 rounded-lg bg-white text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:outline-none" />
         </div>
         <select name="service" required
           class="mt-3 w-full px-4 py-3 rounded-lg text-heading bg-white focus:ring-2 focus:ring-teal focus:outline-none">
