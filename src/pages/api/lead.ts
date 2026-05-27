@@ -105,7 +105,9 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
   // 4. Email küldés Resend-en keresztül (degraded mode, ha kulcs hiányzik)
   const RESEND_API_KEY = import.meta.env.RESEND_API_KEY || process.env.RESEND_API_KEY;
-  const LEAD_TO = import.meta.env.LEAD_TO_EMAIL || process.env.LEAD_TO_EMAIL || 'iroda@aurapro.hu';
+  // LEAD_TO_EMAIL támogat több címet, vesszővel elválasztva (pl. "a@x.hu,b@y.hu")
+  const LEAD_TO_RAW = import.meta.env.LEAD_TO_EMAIL || process.env.LEAD_TO_EMAIL || 'iroda@aurapro.hu';
+  const LEAD_TO = LEAD_TO_RAW.split(',').map((s) => s.trim()).filter(Boolean);
   const LEAD_FROM =
     import.meta.env.LEAD_FROM_EMAIL || process.env.LEAD_FROM_EMAIL || 'Aurapro Lead <noreply@aurapro.hu>';
 
@@ -144,7 +146,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   try {
     const adminEmail = resend.emails.send({
       from: LEAD_FROM,
-      to: [LEAD_TO],
+      to: LEAD_TO,
       subject: serviceLabel
         ? `Új ajánlatkérés – ${data.company} (${serviceLabel})`
         : `Új ajánlatkérés – ${data.company}`,
