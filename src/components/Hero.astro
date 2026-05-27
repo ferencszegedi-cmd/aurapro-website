@@ -7,6 +7,7 @@ interface Props {
   ctaHref?: string;
   secondaryCtaText?: string;
   secondaryCtaHref?: string;
+  secondaryCtaSubtext?: string;
   compact?: boolean;
   heroImage?: string;
   heroImageAlt?: string;
@@ -20,6 +21,7 @@ const {
   ctaHref = '/kapcsolat/',
   secondaryCtaText,
   secondaryCtaHref,
+  secondaryCtaSubtext,
   compact = false,
   heroImage,
   heroImageAlt = '',
@@ -59,10 +61,18 @@ const {
           {ctaText}
           <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
-        {secondaryCtaText && secondaryCtaHref && (
-          <a href={secondaryCtaHref} class="inline-flex items-center px-8 py-4 border-2 border-white/30 text-white font-heading font-semibold text-lg rounded-lg hover:bg-white/10 transition-colors">
-            {secondaryCtaText}
-          </a>
+        {secondaryCtaText && (
+          secondaryCtaHref ? (
+            <a href={secondaryCtaHref} class="inline-flex flex-col items-center px-8 py-4 border-2 border-white/30 text-white font-heading font-semibold text-lg rounded-lg hover:bg-white/10 transition-colors">
+              <span>{secondaryCtaText}</span>
+              {secondaryCtaSubtext && <span class="text-sm font-normal text-white/80 mt-1">{secondaryCtaSubtext}</span>}
+            </a>
+          ) : (
+            <div class="inline-flex flex-col items-center px-8 py-4 border-2 border-white/30 text-white font-heading font-semibold text-lg rounded-lg">
+              <span>{secondaryCtaText}</span>
+              {secondaryCtaSubtext && <span class="text-sm font-normal text-white/80 mt-1">{secondaryCtaSubtext}</span>}
+            </div>
+          )
         )}
       </div>
     </div>
