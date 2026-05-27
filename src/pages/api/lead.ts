@@ -18,8 +18,9 @@ const LeadSchema = z.object({
     .min(6, 'Telefonszám túl rövid')
     .max(30)
     .regex(/^[0-9+\-()\s]+$/, 'Telefonszám érvénytelen karaktereket tartalmaz'),
-  email: z.string().trim().email('Érvénytelen email').max(255).optional().or(z.literal('')),
-  service: z.enum(['munkavedelem', 'tuzvedelem', 'kornyezetvedelem', 'komplex', 'egyeb']),
+  email: z.string().trim().email('Érvénytelen email').max(255),
+  // service mező opcionális – a frontend-en már nincs select, de ha valami más kliens küldené, elfogadjuk
+  service: z.enum(['munkavedelem', 'tuzvedelem', 'kornyezetvedelem', 'komplex', 'egyeb']).optional(),
   message: z.string().trim().max(2000).optional().or(z.literal('')),
   gdpr_consent: z.literal('1', { message: 'GDPR hozzájárulás kötelező' }),
   // Honnan jött (analytics) – nem kötelező
@@ -108,7 +109,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   const LEAD_FROM =
     import.meta.env.LEAD_FROM_EMAIL || process.env.LEAD_FROM_EMAIL || 'Aurapro Lead <noreply@aurapro.hu>';
 
-  const serviceLabel = serviceLabels[data.service] ?? data.service;
+  const serviceLabel = data.service ? (serviceLabels[data.service] ?? data.service) : '';
   const safeMessage = data.message ? escapeHtml(data.message).replace(/\n/g, '<br>') : '';
   const adminBody = `
     <h2>Új lead – ${escapeHtml(data.company)}</h2>
@@ -116,8 +117,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       <tr><td><strong>Név</strong></td><td>${escapeHtml(data.name)}</td></tr>
       <tr><td><strong>Cég</strong></td><td>${escapeHtml(data.company)}</td></tr>
       <tr><td><strong>Telefon</strong></td><td><a href="tel:${encodeURIComponent(data.phone)}">${escapeHtml(data.phone)}</a></td></tr>
-      ${data.email ? `<tr><td><strong>Email</strong></td><td><a href="mailto:${encodeURIComponent(data.email)}">${escapeHtml(data.email)}</a></td></tr>` : ''}
-      <tr><td><strong>Érdeklődés</strong></td><td>${escapeHtml(serviceLabel)}</td></tr>
+      <tr><td><strong>Email</strong></td><td><a href="mailto:${encodeURIComponent(data.email)}">${escapeHtml(data.email)}</a></td></tr>
+      ${serviceLabel ? `<tr><td><strong>Érdeklődés</strong></td><td>${escapeHtml(serviceLabel)}</td></tr>` : ''}
       ${safeMessage ? `<tr><td valign="top"><strong>Üzenet</strong></td><td>${safeMessage}</td></tr>` : ''}
       <tr><td><strong>Forrás</strong></td><td>${escapeHtml(data.source ?? 'unknown')}</td></tr>
       <tr><td><strong>IP</strong></td><td>${escapeHtml(clientAddress ?? 'n/a')}</td></tr>
@@ -144,7 +145,9 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     const adminEmail = resend.emails.send({
       from: LEAD_FROM,
       to: [LEAD_TO],
-      subject: `Új ajánlatkérés – ${data.company} (${serviceLabel})`,
+      subject: serviceLabel
+        ? `Új ajánlatkérés – ${data.company} (${serviceLabel})`
+        : `Új ajánlatkérés – ${data.company}`,
       html: adminBody,
       reply_to: data.email || undefined,
     });
@@ -159,7 +162,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
             <p>Köszönjük, hogy felvette velünk a kapcsolatot.
             Egy Aurapro szakértő <strong>24 órán belül</strong> visszahívja Önt a megadott telefonszámon
             (${escapeHtml(data.phone)}).</p>
-            <p>Érdeklődés tárgya: <strong>${escapeHtml(serviceLabel)}</strong></p>
+            ${serviceLabel ? `<p>Érdeklődés tárgya: <strong>${escapeHtml(serviceLabel)}</strong></p>` : ''}
             <p>Ha sürgős, hívjon: <a href="tel:+36704098764">+36 70 409 8764</a></p>
             <p>Üdvözlettel,<br>Aurapro csapata</p>
             <hr>
