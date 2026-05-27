@@ -74,6 +74,43 @@ import ContactForm from '../components/ContactForm.astro';
     </div>
   </section>
 
+  <!-- Biztosítási garancia (Allianz kötvény) -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-10">
+          <h2 class="font-heading font-bold text-3xl text-heading">Biztosítási garancia – feketén-fehéren</h2>
+          <p class="mt-3 text-body text-lg">
+            Az alábbi hivatalos Allianz kötvény fedezi a 40 millió Ft-os bírsággaranciánkat.
+            Kattints a képre a teljes 3 oldalas dokumentum megtekintéséhez.
+          </p>
+        </div>
+        <div class="flex justify-center">
+          <a href="/biztositasi-garancia.pdf" target="_blank" rel="noopener noreferrer"
+            class="group relative block max-w-md mx-auto rounded-xl overflow-hidden shadow-lg hover:shadow-2xl border border-border transition-all duration-300 hover:scale-[1.02]"
+            aria-label="Biztosítási kötvény megtekintése (PDF, 3 oldal)">
+            <img src="/images/kotveny-elso-oldal.jpg" alt="Allianz biztosítási kötvény (324750636) – első oldal"
+              class="w-full h-auto" loading="lazy" />
+            <!-- Overlay hover-on -->
+            <div class="absolute inset-0 bg-teal/0 group-hover:bg-teal/20 transition-colors duration-300 flex items-center justify-center">
+              <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white rounded-lg shadow-lg px-6 py-3 flex items-center gap-2">
+                <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+                <span class="font-heading font-semibold text-heading text-sm">Teljes kötvény megtekintése</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <p class="mt-4 text-center text-muted text-sm">
+          Kötvényszám: <strong>324750636</strong> · Allianz Hungária Zrt. ·
+          Limit/esemény: 20 000 000 Ft · Limit/időszak: 40 000 000 Ft
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- Értékeink -->
   <section class="py-16 lg:py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
