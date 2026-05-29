@@ -19,6 +19,9 @@ const {
 
 const siteUrl = 'https://www.aurapro.hu';
 const fullCanonical = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
+
+// Build-jelölő: a Vercel build-időben beállítja a commit SHA-t (deploy-ellenőrzéshez).
+const buildCommit = process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? 'dev';
 ---
 
 <!DOCTYPE html>
@@ -26,6 +29,7 @@ const fullCanonical = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="x-build-commit" content={buildCommit} />
   <title>{title}</title>
   <meta name="description" content={description} />
   {noIndex && <meta name="robots" content="noindex, nofollow" />}
