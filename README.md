@@ -1,43 +1,54 @@
-# Astro Starter Kit: Minimal
+# Aurapro Kft. – weboldal
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Az [Aurapro Kft.](https://www.aurapro.hu) hivatalos weboldala. Tevékenység:
+munkavédelem, tűzvédelem, környezetvédelem.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Tech-stack
 
-## 🚀 Project Structure
+| Komponens | Választás |
+| :-------- | :-------- |
+| Framework | Astro 6 (statikus generálás) |
+| Styling   | Tailwind CSS 4 |
+| Hosting   | Vercel (CDN, automatikus SSL) |
+| Form      | Vercel Function (`/api/lead`) + Resend |
+| Tartalom  | `.astro` oldalak + Markdown blog |
 
-Inside of your Astro project, you'll see the following folders and files:
+## Deploy
+
+A Vercel **Git-integráción** keresztül automatikus:
+
+- push a `master` branch-re → **production** deploy
+- push bármely más branch-re → **preview** URL (nem érinti az éles oldalt)
+
+Production (jelenleg teszt domain): https://aurapro-website.vercel.app
+Végleges domain: https://www.aurapro.hu
+
+## Parancsok
+
+A projekt gyökeréből, terminálból:
+
+| Parancs            | Mit csinál                                  |
+| :----------------- | :------------------------------------------ |
+| `npm install`      | Függőségek telepítése                        |
+| `npm run dev`      | Lokális dev szerver: `localhost:4321`        |
+| `npm run build`    | Production build a `./dist/` mappába         |
+| `npm run preview`  | A build helyi előnézete deploy előtt         |
+
+## Struktúra
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+├── layouts/      # BaseLayout, PageLayout, LandingPageLayout
+├── components/   # Header, Footer, Hero, ContactForm, FaqAccordion, ...
+├── pages/        # .astro oldalak (route = fájlnév)
+│   └── api/      # lead.ts – Vercel Function (form backend)
+├── content/      # Markdown blog
+├── styles/       # global.css (Tailwind + custom)
+└── assets/       # logó, képek
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Környezeti változók (Vercel projekt-beállításnál)
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+A teljes form- és tracking-funkcióhoz (l. `fejlesztes/statusz-*` a Béla-rendszerben):
+`RESEND_API_KEY`, `LEAD_TO_EMAIL`, `LEAD_FROM_EMAIL`, `PUBLIC_GA4_ID`,
+`PUBLIC_ADS_CONVERSION_ID`, `PUBLIC_ADS_LEAD_LABEL`.
