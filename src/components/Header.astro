@@ -10,12 +10,14 @@ const navItems = [
       { label: 'Kockázatértékelés', href: '/kockazatertekeles/' },
       { label: 'Munkavédelmi oktatás', href: '/munkavedelmi-oktatas/' },
       { label: 'Tűzvédelmi oktatás', href: '/tuzvedelmi-oktatas/' },
+      { label: 'Munkavédelmi képviselő képzés', href: '/munkavedelmi-kepviselo-kepzes/' },
       { label: 'Elsősegélynyújtó tanfolyam', href: '/elsosegelynyujto-tanfolyam/' },
     ],
   },
   { label: 'Referenciák', href: '/referenciak/' },
   { label: 'Munkatársaink', href: '/munkatarsaink/' },
   { label: 'GYIK', href: '/gyik/' },
+  { label: 'Karrier', href: '/karrier/' },
   { label: 'Kapcsolat', href: '/kapcsolat/' },
 ];
 ---
@@ -23,9 +25,9 @@ const navItems = [
 <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border" id="site-header">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-36 lg:h-44">
-      <!-- Logo -->
+      <!-- Logo – logo.jpg (a designer eredetije, jó arányokkal) mix-blend-multiply-val -->
       <a href="/" class="shrink-0">
-        <img src="/logo.jpg" alt="Aurapro – safety first" class="h-32 lg:h-[9.5rem]" />
+        <img src="/logo.jpg" alt="Aurapro – safety first" class="h-32 lg:h-[9.5rem] mix-blend-multiply" />
       </a>
 
       <!-- Desktop nav -->
@@ -55,14 +57,23 @@ const navItems = [
         ))}
       </nav>
 
-      <!-- CTA + phone -->
+      <!-- CTA + nyelv (telefonszám eltávolítva a desktop header-ből – kompaktabb elrendezés) -->
       <div class="hidden lg:flex items-center gap-4">
-        <a href="tel:+36704098764" class="text-sm text-muted hover:text-teal transition-colors">
-          +36 70 409 8764
-        </a>
         <a href="/kapcsolat/" class="inline-flex items-center px-5 py-2.5 bg-orange text-white font-heading font-semibold text-sm rounded-lg hover:bg-orange-dark transition-colors">
           Ajánlatkérés
         </a>
+
+        {/* Nyelv-választó – HU aktív, EN egyelőre disabled (jön, ha kész a fordítás) */}
+        <div class="flex items-center gap-1.5 pl-2 border-l border-border">
+          <span aria-label="Magyar nyelv (aktuális)"
+            class="inline-block w-7 h-5 rounded overflow-hidden ring-2 ring-teal shadow-sm">
+            <img src="/images/flags/hu.svg" alt="Magyar" class="w-full h-full block" />
+          </span>
+          <button type="button" aria-label="English (hamarosan)" title="Hamarosan / Coming soon" disabled
+            class="inline-block w-7 h-5 rounded overflow-hidden ring-1 ring-border shadow-sm opacity-40 grayscale cursor-not-allowed">
+            <img src="/images/flags/gb.svg" alt="English" class="w-full h-full block" />
+          </button>
+        </div>
       </div>
 
       <!-- Mobile menu button -->
@@ -104,6 +115,19 @@ const navItems = [
         <a href="/kapcsolat/" class="block text-center px-5 py-3 bg-orange text-white font-heading font-semibold rounded-lg hover:bg-orange-dark transition-colors">
           Ajánlatkérés
         </a>
+
+        {/* Nyelv-választó mobilon */}
+        <div class="flex items-center justify-center gap-2 pt-2 border-t border-border">
+          <span class="text-xs text-muted mr-1">Nyelv:</span>
+          <span aria-label="Magyar nyelv (aktuális)"
+            class="inline-block w-8 h-6 rounded overflow-hidden ring-2 ring-teal shadow-sm">
+            <img src="/images/flags/hu.svg" alt="Magyar" class="w-full h-full block" />
+          </span>
+          <button type="button" aria-label="English (hamarosan)" title="Hamarosan / Coming soon" disabled
+            class="inline-block w-8 h-6 rounded overflow-hidden ring-1 ring-border shadow-sm opacity-40 grayscale cursor-not-allowed">
+            <img src="/images/flags/gb.svg" alt="English" class="w-full h-full block" />
+          </button>
+        </div>
       </div>
     </div>
   </div>

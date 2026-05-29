@@ -59,12 +59,15 @@ const categories = [
   },
 ];
 
-const totalCount = categories.reduce((sum, cat) => sum + cat.companies.length, 0);
+// Megjegyzés: a homepage és a többi oldal '48+ referenciát' kommunikál (ez a valós ügyfél-portfolió mérete).
+// Az alábbi `categories` tömb 34 céget listáz név szerint – a többit nem mutatjuk vizuálisan (vagy bővítendő később).
+const listedCount = categories.reduce((sum, cat) => sum + cat.companies.length, 0);
+const totalCount = 48;
 ---
 
 <PageLayout
-  title="Referenciák – Aurapro | 34+ nagyvállalati partner"
-  description="Ismert cégek bíznak bennünk: Audi, Siemens, Richter, DM, Primark és még sokan mások. Tekintse meg referenciáinkat iparág szerint."
+  title="Referenciák – Aurapro | 48+ nagyvállalati partner"
+  description="Audi, Siemens, Richter, DM, Primark, Porsche – 48+ nagyvállalati ügyfél bízik bennünk 13 éve. Tekintse meg referenciáinkat iparág szerint."
   canonical="/referenciak/"
 >
   <!-- Page hero -->
@@ -139,9 +142,10 @@ const totalCount = categories.reduce((sum, cat) => sum + cat.companies.length, 0
         <a href="/kapcsolat/" class="inline-flex items-center px-8 py-4 bg-orange text-white font-heading font-bold rounded-lg hover:bg-orange-dark transition-colors">
           Ingyenes ajánlat kérése
         </a>
-        <a href="tel:+36704098764" class="inline-flex items-center px-8 py-4 border-2 border-teal text-teal font-heading font-bold rounded-lg hover:bg-teal hover:text-white transition-colors">
-          +36 70 409 8764
-        </a>
+        <div class="inline-flex flex-col items-center px-8 py-4 border-2 border-teal text-teal font-heading font-bold rounded-lg">
+            <span>Hívjon most</span>
+            <span class="text-[1.1rem] font-normal text-teal/80 mt-1">+36 70 409 8764</span>
+          </div>
       </div>
     </div>
   </section>

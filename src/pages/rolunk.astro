@@ -5,7 +5,7 @@ import ContactForm from '../components/ContactForm.astro';
 
 <PageLayout
   title="Rólunk – Aurapro | Munka-, tűz- és környezetvédelmi szolgáltató"
-  description="Az Aurapro Kft. 13 éve biztosítja partnerei munkavédelmi megfelelését. 30 szakértő, 15.000+ munkavállaló biztonsága, 20M Ft bírsággarancia."
+  description="Az Aurapro Kft. 13 éve biztosítja partnerei munkavédelmi megfelelését. 30 szakértő, 15.000+ munkavállaló biztonsága, 40M Ft bírsággarancia."
   canonical="/rolunk/"
 >
   <!-- Hero -->
@@ -15,7 +15,7 @@ import ContactForm from '../components/ContactForm.astro';
         <h1 class="font-heading font-bold text-4xl lg:text-5xl text-heading">Rólunk</h1>
         <p class="mt-4 text-lg text-body leading-relaxed">
           Az Aurapro Kft. Magyarország egyik vezető munka-, tűz- és környezetvédelmi szolgáltatója.
-          13 éve segítjük partnereinket a jogszabályi megfelelésben – egyetlen ügyfelünk sem kapott bírságot.
+          közel 20 éve segítjük partnereinket a jogszabályi megfelelésben – egyetlen ügyfelünk sem kapott bírságot.
         </p>
       </div>
     </div>
@@ -26,7 +26,7 @@ import ContactForm from '../components/ContactForm.astro';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-2 lg:grid-cols-5 gap-8 text-center">
         {[
-          { number: '13+', label: 'év tapasztalat' },
+          { number: '~20', label: 'év tapasztalat' },
           { number: '30', label: 'szakértő országszerte' },
           { number: '15.000+', label: 'munkavállaló biztonsága' },
           { number: '48+', label: 'nagyvállalati partner' },
@@ -45,14 +45,7 @@ import ContactForm from '../components/ContactForm.astro';
   <section class="py-16 lg:py-20 bg-surface">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-4xl mx-auto">
-        <div class="grid lg:grid-cols-5 gap-10 items-start mb-12">
-          <div class="lg:col-span-3">
-            <h2 class="font-heading font-bold text-3xl text-heading mb-8">Miért az Aurapro?</h2>
-          </div>
-          <div class="lg:col-span-2 hidden lg:block">
-            <img src="/images/aurapro-bemutato.jpg" alt="Aurapro Kft. bemutató" class="rounded-xl shadow-lg border border-border" loading="lazy" />
-          </div>
-        </div>
+        <h2 class="font-heading font-bold text-3xl text-heading mb-8">Miért az Aurapro?</h2>
         <div class="space-y-6 text-body leading-relaxed">
           <p>
             Cégünket azzal a meggyőződéssel alapítottuk, hogy a munkavédelem nem csupán bürokratikus
@@ -66,10 +59,47 @@ import ContactForm from '../components/ContactForm.astro';
           </p>
           <p>
             Annyira bízunk a munkánkban, hogy egyedülálló garanciát vállalunk:
-            <strong>20 millió Ft bírsággaranciát</strong> adunk minden partnerünknek.
+            <strong>40 millió Ft bírsággaranciát</strong> adunk minden partnerünknek.
             Ez nem csupán ígéret – szakmai felelősségbiztosításunk fedezi.
           </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Biztosítási garancia (Allianz kötvény) -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-10">
+          <h2 class="font-heading font-bold text-3xl text-heading">Biztosítási garancia – feketén-fehéren</h2>
+          <p class="mt-3 text-body text-lg">
+            Az alábbi hivatalos Allianz kötvény fedezi a 40 millió Ft-os bírsággaranciánkat.
+            Kattints a képre a teljes 3 oldalas dokumentum megtekintéséhez.
+          </p>
+        </div>
+        <div class="flex justify-center">
+          <a href="/biztositasi-garancia.pdf" target="_blank" rel="noopener noreferrer"
+            class="group relative block max-w-md mx-auto rounded-xl overflow-hidden shadow-lg hover:shadow-2xl border border-border transition-all duration-300 hover:scale-[1.02]"
+            aria-label="Biztosítási kötvény megtekintése (PDF, 3 oldal)">
+            <img src="/images/kotveny-elso-oldal.jpg" alt="Allianz biztosítási kötvény (324750636) – első oldal"
+              class="w-full h-auto" loading="lazy" />
+            <!-- Overlay hover-on -->
+            <div class="absolute inset-0 bg-teal/0 group-hover:bg-teal/20 transition-colors duration-300 flex items-center justify-center">
+              <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white rounded-lg shadow-lg px-6 py-3 flex items-center gap-2">
+                <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+                <span class="font-heading font-semibold text-heading text-sm">Teljes kötvény megtekintése</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <p class="mt-4 text-center text-muted text-sm">
+          Kötvényszám: <strong>324750636</strong> · Allianz Hungária Zrt. ·
+          Limit/esemény: 20 000 000 Ft · Limit/időszak: 40 000 000 Ft
+        </p>
       </div>
     </div>
   </section>
@@ -106,7 +136,7 @@ import ContactForm from '../components/ContactForm.astro';
             icon: 'M13 10V3L4 14h7v7l9-11h-7z',
           },
           {
-            title: '20M Ft bírsággarancia',
+            title: '40M Ft bírsággarancia',
             desc: 'Ha partnerünket bírság éri a mi mulasztásunk miatt, a bírság összegét megtérítjük – biztosítással fedezve.',
             icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
           },

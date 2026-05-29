@@ -1,0 +1,174 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+// P0-4: Service JSON-LD a bírsággarancia mint Aurapro-USP-re
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'EHS bírsággarancia (40 millió Ft)',
+  provider: { '@type': 'Organization', name: 'Aurapro Kft.', url: 'https://www.aurapro.hu' },
+  areaServed: { '@type': 'Country', name: 'Hungary' },
+  description: 'Az Aurapro vállalja, hogy ha az általunk gondozott területen bírság éri partnerünket, 40 millió forintig megtérítjük. Szakmai felelősségbiztosítás fedezi.',
+  url: 'https://www.aurapro.hu/birsaggarancia/',
+};
+---
+
+<PageLayout
+  title="40 millió Ft bírsággarancia – Aurapro | Egyedülálló a piacon"
+  description="Az Aurapro 40 millió Ft-ig megtéríti a bírságot, ha az általunk gondozott területen ér partnerünket szankció. 13 év – 48 ügyfél – 0 bírság."
+  canonical="/birsaggarancia/"
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceSchema)} />
+
+  <!-- Hero -->
+  <section class="bg-[#919196] text-white py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="font-heading text-orange font-semibold uppercase tracking-wider text-sm">Egyedülálló a magyar EHS piacon</p>
+        <h1 class="mt-3 font-heading font-bold text-4xl lg:text-5xl leading-tight">
+          40 millió Ft bírsággarancia<br />
+          <span class="text-orange">– feketén-fehéren</span>
+        </h1>
+        <p class="mt-6 text-lg lg:text-xl text-white/85 leading-relaxed">
+          Ha az általunk vezetett munka-, tűz- vagy környezetvédelmi feladatok miatt bírság éri Önt,
+          <strong>40 millió forintig mi álljuk.</strong> Ez nem marketing – biztosítói fedezet áll mögötte.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          <a href="/kapcsolat/" class="inline-flex items-center justify-center px-8 py-4 bg-orange text-white font-heading font-bold text-lg rounded-lg hover:bg-orange-dark transition-colors shadow-lg">
+            Kérek ingyenes ajánlatot
+          </a>
+          <a href="/biztositasi-garancia.pdf" target="_blank" rel="noopener" class="inline-flex items-center justify-center px-8 py-4 border-2 border-white/30 text-white font-heading font-semibold text-lg rounded-lg hover:bg-white/10 transition-colors">
+            Kötvény letöltése (PDF)
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust numbers -->
+  <section class="py-12 lg:py-16 bg-white border-b border-border">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="font-heading font-bold text-4xl lg:text-5xl text-teal">~20</div>
+          <div class="mt-2 text-muted text-sm lg:text-base">év tapasztalat</div>
+        </div>
+        <div>
+          <div class="font-heading font-bold text-4xl lg:text-5xl text-teal">48+</div>
+          <div class="mt-2 text-muted text-sm lg:text-base">nagyvállalati ügyfél</div>
+        </div>
+        <div>
+          <div class="font-heading font-bold text-4xl lg:text-5xl text-teal">0 Ft</div>
+          <div class="mt-2 text-muted text-sm lg:text-base">kifizetett bírság eddig</div>
+        </div>
+        <div>
+          <div class="font-heading font-bold text-4xl lg:text-5xl text-orange">40M Ft</div>
+          <div class="mt-2 text-muted text-sm lg:text-base">garancia-limit</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hogyan működik -->
+  <section class="py-16 lg:py-20 bg-surface">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading text-center">Hogyan működik?</h2>
+      <div class="mt-12 grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="mx-auto w-14 h-14 rounded-full bg-teal text-white font-heading font-bold text-xl flex items-center justify-center">1</div>
+          <h3 class="mt-4 font-heading font-semibold text-xl text-heading">Audit + szabályozás</h3>
+          <p class="mt-2 text-body leading-relaxed">
+            Az Aurapro szakértő teljes körű felmérést végez, kockázatértékelést készít, szabályzatokat aktualizál.
+          </p>
+        </div>
+        <div class="text-center">
+          <div class="mx-auto w-14 h-14 rounded-full bg-teal text-white font-heading font-bold text-xl flex items-center justify-center">2</div>
+          <h3 class="mt-4 font-heading font-semibold text-xl text-heading">Garancia életbe lép</h3>
+          <p class="mt-2 text-body leading-relaxed">
+            A szerződés napjától kezdve a gondozott területeken jár a 40M Ft-os fedezet.
+            Külön díj nincs – része a szolgáltatásunknak.
+          </p>
+        </div>
+        <div class="text-center">
+          <div class="mx-auto w-14 h-14 rounded-full bg-orange text-white font-heading font-bold text-xl flex items-center justify-center">3</div>
+          <h3 class="mt-4 font-heading font-semibold text-xl text-heading">Bírság esetén kifizetés</h3>
+          <p class="mt-2 text-body leading-relaxed">
+            Ha bírság érné Önt, és az általunk lefedett területet érinti, a kifizetést azonnal indítjuk.
+            <strong>13 év alatt erre még nem volt szükség.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mit fed le, mit nem -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading text-center">Mit fed le a garancia?</h2>
+      <div class="mt-12 grid md:grid-cols-2 gap-8">
+        <div class="rounded-xl border border-teal/30 bg-teal-light/40 p-6">
+          <h3 class="font-heading font-semibold text-xl text-heading flex items-center gap-2">
+            <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Lefedi
+          </h3>
+          <ul class="mt-4 space-y-2 text-body">
+            <li>• Munkavédelmi hatósági bírság (hiányos kockázatértékelés, oktatás-hiány, dokumentáció-hiány)</li>
+            <li>• Tűzvédelmi hatósági bírság (szabályzat-hiány, kiürítési terv hiánya, oktatás-hiány)</li>
+            <li>• Környezetvédelmi adminisztratív bírság (HIR, adatszolgáltatás, engedélyek)</li>
+            <li>• Az általunk készített / felülvizsgált dokumentáció hiányosságaiból eredő bírság</li>
+          </ul>
+        </div>
+        <div class="rounded-xl border border-border bg-surface p-6">
+          <h3 class="font-heading font-semibold text-xl text-heading flex items-center gap-2">
+            <svg class="w-6 h-6 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg>
+            Nem fedi le
+          </h3>
+          <ul class="mt-4 space-y-2 text-body">
+            <li>• Szándékos szabálysértés vagy ügyfél által tudatosan elhallgatott információ</li>
+            <li>• Olyan területen kapott bírság, amelyet nem mi gondozunk</li>
+            <li>• Munkabaleset-okozta személyi sérülésből származó kártérítés (külön felelősségbiztosítás)</li>
+            <li>• Részletek a kötvényben (letölthető PDF)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- A kötvény -->
+  <section class="py-16 lg:py-20 bg-surface">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading">A kötvény, amely fedezi</h2>
+          <p class="mt-4 text-body text-lg leading-relaxed">
+            Szakmai felelősségbiztosítás áll a garancia mögött. A teljes kötvény-szöveg PDF formátumban letölthető –
+            bárki, aki tárgyal velünk, megnézheti a tényleges biztosítási feltételeket.
+          </p>
+          <p class="mt-3 text-body leading-relaxed">
+            <strong>Ez nem marketing-ígéret.</strong> Ha egy EHS-cég 40 millió Ft-os garanciát ígér, de nem mutat
+            biztosítói hátteret – kérdezzen vissza. Mi mutatjuk.
+          </p>
+          <a href="/biztositasi-garancia.pdf" target="_blank" rel="noopener" class="mt-6 inline-flex items-center px-6 py-3 bg-orange text-white font-heading font-semibold rounded-lg hover:bg-orange-dark transition-colors">
+            Kötvény letöltése (PDF)
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </a>
+        </div>
+        <div class="bg-white rounded-2xl shadow-lg p-8 border border-border">
+          <div class="text-center">
+            <svg class="w-20 h-20 text-orange mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            <p class="mt-4 font-heading font-bold text-2xl text-heading">Biztosítási garancia</p>
+            <p class="mt-2 text-muted text-sm">Aurapro Kft. szakmai felelősségbiztosítás</p>
+            <p class="mt-6 font-heading font-bold text-4xl text-orange">40 000 000 Ft</p>
+            <p class="text-muted text-sm">eseményenkénti limit</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA band -->
+  <ContactForm inline />
+</PageLayout>

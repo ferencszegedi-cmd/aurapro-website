@@ -17,13 +17,36 @@ const faqItems = [
   { question: 'Milyen gyakran kell tűzoltó készüléket felülvizsgálni?', answer: 'Alapfelülvizsgálat évente, középfelülvizsgálat 5 évente, teljes felülvizsgálat (csere/próbanyomás) 10 évente szükséges.' },
   { question: 'Ki tarthat tűzvédelmi oktatást?', answer: 'Tűzvédelmi oktatást a tűzvédelmi szabályzatban kijelölt személy tarthat – ez lehet megbízott külső szakértő is.' },
 ];
+
+// P0-4: Service + FAQPage JSON-LD
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Tűzvédelmi szolgáltatás',
+  provider: { '@type': 'Organization', name: 'Aurapro Kft.', url: 'https://www.aurapro.hu' },
+  areaServed: { '@type': 'Country', name: 'Hungary' },
+  description: 'Tűzvédelmi szolgáltatás: szabályzat, tűzriadó terv, felülvizsgálat, oktatás, tervezés, katasztrófavédelmi képviselet.',
+  url: 'https://www.aurapro.hu/tuzvedelem/',
+};
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
 ---
 
 <PageLayout
-  title="Tűzvédelem – Aurapro | Szabályzat, oktatás, felülvizsgálat"
-  description="Tűzvédelmi szolgáltatás: szabályzat, tűzriadó terv, felülvizsgálat, oktatás, tervezés. Katasztrófavédelmi ellenőrzésre felkészítjük."
+  title="Tűzvédelem cégeknek – szabályzat, oktatás | Aurapro"
+  description="Tűzvédelmi szabályzat, tűzriadó terv, felülvizsgálatok, oktatás egy kézből. Katasztrófavédelmi ellenőrzésre felkészítünk. Tudjon meg többet."
   canonical="/tuzvedelem/"
 >
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />
+
   <!-- Page hero -->
   <section class="py-16 lg:py-24 bg-gradient-to-br from-orange-light to-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,9 +60,10 @@ const faqItems = [
           <a href="/kapcsolat/" class="inline-flex items-center px-8 py-4 bg-orange text-white font-heading font-bold rounded-lg hover:bg-orange-dark transition-colors">
             Ingyenes ajánlat kérése
           </a>
-          <a href="tel:+36704098764" class="inline-flex items-center px-8 py-4 border-2 border-teal text-teal font-heading font-bold rounded-lg hover:bg-teal hover:text-white transition-colors">
-            Hívjon most
-          </a>
+          <div class="inline-flex flex-col items-center px-8 py-4 border-2 border-teal text-teal font-heading font-bold rounded-lg">
+            <span>Hívjon most</span>
+            <span class="text-[1.1rem] font-normal text-teal/80 mt-1">+36 70 409 8764</span>
+          </div>
         </div>
       </div>
     </div>

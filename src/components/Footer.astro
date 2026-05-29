@@ -5,23 +5,11 @@ const currentYear = new Date().getFullYear();
 <footer class="bg-[#919196] text-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-      <!-- Logo + tagline -->
+      <!-- Logo + tagline – ugyanaz a logo.jpg mint a header, mix-blend-multiply hogy a fehér háttér összeolvadjon a footer szürkéjével -->
       <div>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 120" fill="none" class="h-10 mb-4" role="img" aria-label="Aurapro – safety first">
-          <!-- Outer arc - white top -->
-          <path d="M60 8 A52 52 0 0 1 108 52" stroke="#ffffff" stroke-width="14" fill="none"/>
-          <!-- Outer arc - orange segment -->
-          <path d="M60 8 A52 52 0 0 0 8 60" stroke="#f5a623" stroke-width="14" fill="none"/>
-          <!-- Outer arc - white bottom -->
-          <path d="M8 60 A52 52 0 0 0 52 108" stroke="#ffffff" stroke-width="14" fill="none"/>
-          <!-- Inner circle of 'a' -->
-          <circle cx="68" cy="64" r="20" stroke="#ffffff" stroke-width="7" fill="none"/>
-          <text x="102" y="82" fill="#ffffff" font-family="Montserrat, sans-serif" font-size="48" font-weight="400">ura</text>
-          <text x="218" y="82" fill="#f5a623" font-family="Montserrat, sans-serif" font-size="48" font-weight="600">pro</text>
-          <text x="190" y="108" fill="rgba(255,255,255,0.7)" font-family="Montserrat, sans-serif" font-size="17" font-weight="400">safety first</text>
-        </svg>
+        <img src="/logo.jpg" alt="Aurapro – safety first" class="h-36 w-auto mb-4 mix-blend-multiply" />
         <p class="text-white/70 text-sm leading-relaxed">
-          Munkavédelem, tűzvédelem és környezetvédelem – egy kézből, 20 millió Ft bírsággaranciával.
+          Munkavédelem, tűzvédelem és környezetvédelem – egy kézből, 40 millió Ft bírsággaranciával.
         </p>
       </div>
 

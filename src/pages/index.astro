@@ -17,29 +17,43 @@ const faqItems = [
   },
   {
     question: 'Mekkora bírságot kaphat munkavédelmi hiányosságért?',
-    answer: 'A munkavédelmi bírság 50.000 Ft-tól akár 10 millió Ft-ig terjedhet, súlyos vagy ismétlődő szabálytalanság esetén. Éppen ezért vállalunk 20 millió Ft bírsággaranciát – ügyfeleink biztonságban vannak.',
+    answer: 'A munkavédelmi bírság 50.000 Ft-tól akár 10 millió Ft-ig terjedhet, súlyos vagy ismétlődő szabálytalanság esetén. Éppen ezért vállalunk 40 millió Ft bírsággaranciát – ügyfeleink biztonságban vannak.',
   },
   {
     question: 'Mikor kötelező a tűzvédelmi szabályzat?',
     answer: 'Tűzvédelmi szabályzatot kell készíteni, ha az adott létesítményben egyidejűleg 5 főnél többen tartózkodnak, vagy ha a tevékenység során fokozottan tűz- vagy robbanásveszélyes anyagokat használnak.',
   },
 ];
+
+// P0-4: FAQ JSON-LD a homepage FAQ blokkhoz
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
 ---
 
 <PageLayout
-  title="Aurapro – Munkavédelem és tűzvédelem 20M Ft bírsággaranciával"
-  description="Munkavédelem, tűzvédelem, környezetvédelem egy kézből. 30 szakértő, 48+ nagyvállalati referencia, 13 év tapasztalat. Kérjen ingyenes ajánlatot 24 órán belül!"
+  title="Aurapro – Munkavédelem és tűzvédelem 40M Ft bírsággaranciával"
+  description="Munkavédelem, tűzvédelem, környezetvédelem egy kézből. 30 szakértő, 48+ nagyvállalati referencia, közel 20 év tapasztalat. Kérjen ingyenes ajánlatot 24 órán belül!"
   canonical="/"
 >
+  <!-- P0-4: FAQ JSON-LD (a ProfessionalService schema a BaseLayout-ban van) -->
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />
+
   <!-- Hero -->
   <Hero
     title="Munkavédelem - Tűzvédelem - Környezetvédelem"
-    titleLine2="20 millió Ft bírsággaranciával"
-    subtitle="30 szakértő · 48+ nagyvállalati referencia · 13 év tapasztalat"
+    titleLine2="40 millió Ft bírsággaranciával"
+    subtitle="30 szakértő · 48+ nagyvállalati referencia · közel 20 év tapasztalat"
     ctaText="Ingyenes ajánlat 24 órán belül"
     ctaHref="/kapcsolat/"
     secondaryCtaText="Hívjon most"
-    secondaryCtaHref="tel:+36704098764"
+    secondaryCtaSubtext="+36 70 409 8764"
     heroImage="/images/hero-slideshow.png"
     heroImageAlt="Munkavédelmi szakember sárga sisakkal"
   />
@@ -155,12 +169,12 @@ const faqItems = [
       </div>
       <div class="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
         {[
-          { title: '20 millió Ft bírsággarancia', desc: 'Egyedülálló a piacon – vállaljuk a felelősséget a munkánkért.', link: '/biztositasi-garancia.pdf' },
+          { title: '40 millió Ft bírsággarancia', desc: 'Egyedülálló a piacon – vállaljuk a felelősséget a munkánkért.', link: '/birsaggarancia/', linkLabel: 'Részletek' },
           { title: '48+ nagyvállalati referencia', desc: 'Audi, Siemens, Richter, DM, Primark – és még sokan mások.' },
           { title: '1 partnerünk sem kapott bírságot', desc: 'Bizonyított eredmény, nem csak ígéret.' },
           { title: 'Komplex szolgáltatás egy kézből', desc: 'MV + TV + KV – kevesebb koordináció, több hatékonyság.' },
           { title: '30 szakértő országszerte', desc: 'Nem egyemberes vállalkozás – bármikor elérhető kapacitás.' },
-          { title: '13 év tapasztalat', desc: 'Stabil háttér, kipróbált módszertannal.' },
+          { title: 'közel 20 év tapasztalat', desc: 'Stabil háttér, kipróbált módszertannal.' },
         ].map((item) => (
           <div class="flex gap-4">
             <div class="shrink-0 w-10 h-10 rounded-full bg-teal-light flex items-center justify-center">
@@ -172,9 +186,9 @@ const faqItems = [
               <h3 class="font-heading font-semibold text-heading">{item.title}</h3>
               <p class="mt-1 text-body text-sm">{item.desc}</p>
               {item.link && (
-                <a href={item.link} target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center text-teal text-sm font-medium hover:text-teal-dark transition-colors">
-                  Garancia megtekintése (PDF)
-                  <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                <a href={item.link} class="mt-1 inline-flex items-center text-teal text-sm font-medium hover:text-teal-dark transition-colors">
+                  {item.linkLabel ?? 'Részletek'}
+                  <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                 </a>
               )}
             </div>
@@ -194,14 +208,22 @@ const faqItems = [
   <section class="pt-4 pb-12 lg:pt-6 lg:pb-16 bg-surface">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-center font-heading font-bold text-3xl lg:text-4xl text-heading mb-12">Akik már minket választottak</h2>
-      <div class="flex flex-wrap items-center justify-center gap-12 lg:gap-20 grayscale hover:grayscale-0 transition-all duration-500">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12 items-center justify-items-center grayscale hover:grayscale-0 transition-all duration-500">
         <a href="/referenciak/#epitoipar-kivitelezes"><img src="/referenciak/audi.jpg" alt="Audi" class="h-24 object-contain" loading="lazy" /></a>
         <a href="/referenciak/#gyartas-ipar"><img src="/referenciak/siemens.jpg" alt="Siemens" class="h-24 object-contain" loading="lazy" /></a>
         <a href="/referenciak/#epitoipar-kivitelezes"><img src="/referenciak/richter.jpg" alt="Richter Gedeon" class="h-24 object-contain" loading="lazy" /></a>
         <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/dm.jpg" alt="DM" class="h-24 object-contain" loading="lazy" /></a>
         <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/primark.jpg" alt="Primark" class="h-24 object-contain" loading="lazy" /></a>
         <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/porsche.jpg" alt="Porsche" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/" class="text-teal font-heading text-xl font-semibold hover:text-teal-dark transition-colors">+28 másik cég &rarr;</a>
+        <a href="/referenciak/#epitoipar-kivitelezes"><img src="/referenciak/egis.jpg" alt="Egis" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/bnp.jpg" alt="BNP Paribas" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/libri.jpg" alt="Libri" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/adecco.jpg" alt="Adecco" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/pepco.jpg" alt="Pepco" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/budapest-kozut.jpg" alt="Budapest Közút" class="h-24 object-contain" loading="lazy" /></a>
+      </div>
+      <div class="mt-10 text-center">
+        <a href="/referenciak/" class="text-teal font-heading text-xl font-semibold hover:text-teal-dark transition-colors">+36 másik cég &rarr;</a>
       </div>
     </div>
   </section>
@@ -251,18 +273,23 @@ const faqItems = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading">20 millió Ft bírsággarancia</h2>
+          <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading">40 millió Ft bírsággarancia</h2>
           <p class="mt-4 text-body text-lg leading-relaxed">
             Annyira bízunk a munkánkban, hogy egyedülálló garanciát vállalunk: ha partnerünket bírság éri a mi mulasztásunk miatt,
-            a bírság összegét megtérítjük – <strong>20 millió Ft-ig</strong>.
+            a bírság összegét megtérítjük – <strong>40 millió Ft-ig</strong>.
           </p>
           <p class="mt-3 text-body leading-relaxed">
-            Ez nem csupán ígéret – szakmai felelősségbiztosításunk fedezi. Egyetlen partnerünk sem kapott bírságot 13 év alatt.
+            Ez nem csupán ígéret – szakmai felelősségbiztosításunk fedezi. Egyetlen partnerünk sem kapott bírságot közel 20 év alatt.
           </p>
-          <a href="/biztositasi-garancia.pdf" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center px-6 py-3 bg-orange text-white font-heading font-semibold rounded-lg hover:bg-orange-dark transition-colors">
-            Garancia megtekintése (PDF)
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-          </a>
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a href="/birsaggarancia/" class="inline-flex items-center px-6 py-3 bg-orange text-white font-heading font-semibold rounded-lg hover:bg-orange-dark transition-colors">
+              Hogyan működik a garancia?
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="/biztositasi-garancia.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 py-3 border-2 border-orange text-orange-dark font-heading font-semibold rounded-lg hover:bg-orange-light transition-colors">
+              Kötvény (PDF)
+            </a>
+          </div>
         </div>
         <div class="hidden lg:block">
           <img src="/images/bgr-orange.png" alt="Bírsággarancia" class="rounded-2xl shadow-lg" loading="lazy" />
@@ -325,21 +352,3 @@ const faqItems = [
   <ContactForm inline />
 
 </PageLayout>
-
-<!-- Schema.org Organization -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Aurapro Kft.",
-  "url": "https://www.aurapro.hu",
-  "logo": "https://www.aurapro.hu/logo.svg",
-  "description": "Munkavédelem, tűzvédelem és környezetvédelem – egy kézből, 20 millió Ft bírsággaranciával.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Budapest",
-    "addressCountry": "HU"
-  },
-  "sameAs": []
-}
-</script>
