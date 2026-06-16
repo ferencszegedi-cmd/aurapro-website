@@ -14,7 +14,12 @@ export default defineConfig({
   adapter: vercel({
     webAnalytics: { enabled: false },
   }),
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // P1-4: a /lp/ Google Ads landing oldalak noindex-ek, ne kerüljenek a sitemapbe.
+      filter: (page) => !page.includes('/lp/'),
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

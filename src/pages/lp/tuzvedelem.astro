@@ -1,0 +1,35 @@
+---
+// P1-4: Google Ads landing – Tűzvédelem fókusz. noindex (LandingPageLayout).
+import LandingPageLayout from '../../layouts/LandingPageLayout.astro';
+import LandingContent from '../../components/LandingContent.astro';
+
+const bullets = [
+  '<strong>40 millió Ft bírsággarancia</strong> – ha a mi mulasztásunk miatt érné bírság, megtérítjük',
+  '<strong>30 szakértő</strong>, köztük tűzvédelmi szakvizsgával rendelkező kollégák',
+  '<strong>Közel 20 év</strong> tapasztalat, 48+ elégedett vállalati partner',
+  'Tűzvédelmi szabályzat, oktatás, kockázatértékelés és hatósági képviselet egy helyen',
+];
+
+const steps = [
+  { title: 'Ingyenes helyszíni felmérés', desc: 'Felmérjük létesítménye tűzvédelmi állapotát és a hiányosságokat.' },
+  { title: 'Személyre szabott ajánlat', desc: '24 órán belül átlátható ajánlatot kap – kötelezettség nélkül.' },
+  { title: 'Tűzvédelmi szabályzat + oktatás', desc: 'Elkészítjük a kötelező dokumentációt és megtartjuk a tűzvédelmi oktatást.' },
+  { title: 'Folyamatos jogszabálykövetés', desc: 'Naprakészen tartjuk dokumentációját a változó OTSZ-előírások szerint.' },
+];
+---
+
+<LandingPageLayout
+  title="Tűzvédelmi szolgáltatás – 40M Ft bírsággaranciával | Aurapro"
+  description="Komplex tűzvédelem cégeknek: tűzvédelmi szabályzat, oktatás, kockázatértékelés, hatósági képviselet. 40 millió Ft bírsággarancia, 30 szakértő. Kérjen ingyenes ajánlatot!"
+>
+  <LandingContent
+    headline="Tűzvédelmi szolgáltatás 40 millió Ft bírsággaranciával"
+    subhead="Teljes körű tűzvédelem egy kézből – szabályzattól az oktatásig és a hatósági képviseletig, hogy cége megfeleljen az OTSZ minden előírásának."
+    bullets={bullets}
+    steps={steps}
+    quote="Egy tűzoltósági ellenőrzés előtt kerestük meg az Auraprót. Rendbe tették a teljes tűzvédelmi dokumentációnkat, az ellenőrzés hibátlanul zárult."
+    quoteAuthor="Gyártó vállalat műszaki vezetője"
+    formSource="lp-tuzvedelem-hero"
+    service="tuzvedelem"
+  />
+</LandingPageLayout>

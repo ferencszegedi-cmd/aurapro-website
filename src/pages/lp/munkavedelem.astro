@@ -1,0 +1,35 @@
+---
+// P1-4: Google Ads landing – Munkavédelem fókusz. noindex (LandingPageLayout).
+import LandingPageLayout from '../../layouts/LandingPageLayout.astro';
+import LandingContent from '../../components/LandingContent.astro';
+
+const bullets = [
+  '<strong>40 millió Ft bírsággarancia</strong> – ha a mi mulasztásunk miatt érné bírság, megtérítjük',
+  '<strong>30 munkavédelmi szakértő</strong> országos lefedettséggel',
+  '<strong>Közel 20 év</strong> tapasztalat, 48+ elégedett vállalati partner',
+  'Teljes körű ügyintézés: kockázatértékelés, oktatás, szabályzat, hatósági képviselet',
+];
+
+const steps = [
+  { title: 'Ingyenes helyszíni felmérés', desc: 'Szakértőnk feltérképezi cége munkavédelmi helyzetét és a kockázatokat.' },
+  { title: 'Személyre szabott ajánlat', desc: '24 órán belül konkrét, átlátható ajánlatot kap – kötelezettség nélkül.' },
+  { title: 'Komplett dokumentáció + oktatás', desc: 'Kockázatértékelés, szabályzatok, munkavédelmi oktatás – minden egy helyen.' },
+  { title: 'Folyamatos jogszabálykövetés', desc: 'Figyeljük a változó előírásokat, így cége végig megfelelő marad.' },
+];
+---
+
+<LandingPageLayout
+  title="Munkavédelmi szolgáltatás – 40M Ft bírsággaranciával | Aurapro"
+  description="Komplex munkavédelem cégeknek: kockázatértékelés, oktatás, szabályzatok, hatósági képviselet. 40 millió Ft bírsággarancia, 30 szakértő. Kérjen ingyenes ajánlatot 24 órán belül!"
+>
+  <LandingContent
+    headline="Munkavédelmi szolgáltatás 40 millió Ft bírsággaranciával"
+    subhead="Teljes körű munkavédelem egy kézből – hogy cége minden hatósági ellenőrzésen simán átmenjen, Önnek pedig egy gonddal kevesebb legyen."
+    bullets={bullets}
+    steps={steps}
+    quote="Az Aurapro mind a 3 telephelyünkön rendbe tette a munkavédelmet. Azóta minden hatósági ellenőrzésen gond nélkül átmegyünk."
+    quoteAuthor="Logisztikai cég ügyvezetője, Budapest"
+    formSource="lp-munkavedelem-hero"
+    service="munkavedelem"
+  />
+</LandingPageLayout>

@@ -1,0 +1,35 @@
+---
+// P1-4: Google Ads landing – Komplex (MV + TV + KV) csomag. noindex (LandingPageLayout).
+import LandingPageLayout from '../../layouts/LandingPageLayout.astro';
+import LandingContent from '../../components/LandingContent.astro';
+
+const bullets = [
+  '<strong>Munka-, tűz- és környezetvédelem egy szerződésben</strong> – egy partner, egy kapcsolattartó',
+  '<strong>40 millió Ft bírsággarancia</strong> mindhárom területre',
+  '<strong>30 szakértő</strong>, közel 20 év tapasztalat, 48+ vállalati partner',
+  '0 bírság cégünk fennállása alatt – kiszámítható, teljes megfelelőség',
+];
+
+const steps = [
+  { title: 'Ingyenes komplex felmérés', desc: 'Egyszerre térképezzük fel cége munka-, tűz- és környezetvédelmi helyzetét.' },
+  { title: 'Egységes ajánlat 24 órán belül', desc: 'Egy átlátható csomagajánlat mindhárom területre – kötelezettség nélkül.' },
+  { title: 'Teljes dokumentáció + oktatás', desc: 'Szabályzatok, kockázatértékelések és oktatások – mind a három szakterületen.' },
+  { title: 'Egy kézből, folyamatosan', desc: 'Egy kapcsolattartó, folyamatos jogszabálykövetés, kevesebb adminisztráció.' },
+];
+---
+
+<LandingPageLayout
+  title="Komplex MV + TV + KV szolgáltatás egy kézből | Aurapro"
+  description="Munkavédelem, tűzvédelem és környezetvédelem egy szerződésben, egy kapcsolattartóval. 40 millió Ft bírsággarancia, 30 szakértő. Kérjen ingyenes komplex ajánlatot!"
+>
+  <LandingContent
+    headline="Munka-, tűz- és környezetvédelem egy kézből"
+    subhead="Komplex MV + TV + KV csomag egy szerződésben, egy kapcsolattartóval és 40 millió Ft bírsággaranciával. Kevesebb adminisztráció, teljes megfelelőség."
+    bullets={bullets}
+    steps={steps}
+    quote="A három területet korábban három cég vitte. Az Auraprónál mindent egy kézbe kaptunk – egyszerűbb lett, és olcsóbb is."
+    quoteAuthor="Kereskedelmi cég pénzügyi vezetője"
+    formSource="lp-komplex-hero"
+    service="komplex"
+  />
+</LandingPageLayout>

@@ -2,9 +2,15 @@
 interface Props {
   inline?: boolean;
   darkBg?: boolean;
+  /** data-form forrás-azonosító (analytics). Default: 'full-contact' / 'hero-inline'. */
+  formSource?: string;
+  /** Előre kitöltött service enum a lead.ts-hez (rejtett mező). Pl. landing oldalakon. */
+  service?: 'munkavedelem' | 'tuzvedelem' | 'kornyezetvedelem' | 'komplex' | 'egyeb';
+  /** Opcionális id a form köré (mobil "ugrás a formhoz" anchorhoz). */
+  anchorId?: string;
 }
 
-const { inline = false, darkBg = false } = Astro.props;
+const { inline = false, darkBg = false, formSource, service, anchorId } = Astro.props;
 ---
 
 {inline ? (
@@ -61,7 +67,8 @@ const { inline = false, darkBg = false } = Astro.props;
   </section>
 ) : (
   <!-- Full contact form -->
-  <form action="/api/lead" method="POST" class="space-y-4" data-form="full-contact">
+  <form id={anchorId} action="/api/lead" method="POST" class="space-y-4" data-form={formSource ?? "full-contact"}>
+    {service && <input type="hidden" name="service" value={service} />}
     <div>
       <label for="name" class:list={["block text-sm font-medium mb-1", darkBg ? "text-white" : "text-heading"]}>Név *</label>
       <input type="text" id="name" name="name" required autocomplete="name"
