@@ -52,9 +52,9 @@ const specialists = team.slice(7);
   <section class="py-16 lg:py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="font-heading font-bold text-3xl text-heading text-center mb-12">Vezetőség és iroda</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6 lg:gap-8 max-w-5xl mx-auto">
+      <div class="flex flex-wrap justify-center gap-6 lg:gap-8 max-w-5xl mx-auto">
         {leadership.map((person) => (
-          <div class="text-center group" data-animate>
+          <div class="text-center group basis-[42%] sm:basis-[28%] lg:basis-[21%]" data-animate>
             <div class="relative w-36 h-36 mx-auto mb-4 rounded-full overflow-hidden bg-surface border-2 border-border shadow-md transition-shadow duration-300 group-hover:shadow-lg group-hover:border-teal">
               <img
                 src={person.img}
