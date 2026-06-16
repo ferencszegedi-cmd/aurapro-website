@@ -5,8 +5,9 @@ import ContactForm from '../components/ContactForm.astro';
 const team = [
   { name: 'Gaál Zoltán', role: 'Cégvezető', desc: 'Gépészmérnök, munkavédelmi technikus', phone: '+36203403992', email: 'zoltan.gaal@aurapro.hu', img: '/csapat/gaal-zoltan.jpg' },
   { name: 'Szegedi Ferenc', role: 'Ügyvezető', desc: 'Munkavédelmi szakmérnök, tűzvédelmi előadó, építészmérnök', phone: '+36306872456', email: 'ferenc.szegedi@aurapro.hu', img: '/csapat/szegedi-ferenc.png' },
-  { name: 'Bolla Ágnes', role: 'Irodavezető / Budapest', desc: '', phone: '+36205940070', email: 'agnes.bolla@aurapro.hu', img: '/csapat/bolla-agnes.jpg' },
+  { name: 'Szűk Katalin', role: 'Szakmai vezető', desc: 'Tűzvédelmi mérnök, munkavédelmi megbízott', phone: '+36704098764', email: 'katalin.szuk@aurapro.hu', img: '/csapat/szuk-katalin.png' },
   { name: 'Szabó Dóra', role: 'Irodavezető / Szekszárd', desc: '', phone: '+36707797655', email: 'dora.szabo@aurapro.hu', img: '/csapat/szabo-dora.jpg' },
+  { name: 'Palotás Andrea', role: 'Iroda / Budaörs', desc: '', phone: '+36306872456', email: 'andrea.palotas@aurapro.hu', img: '/csapat/palotas-andrea.jpg' },
   { name: 'Frank-Horváth Kincső', role: 'Irodai adminisztrátor', desc: '', phone: '', email: 'kincso.horvath@aurapro.hu', img: '/csapat/frank-horvath-kincso.png' },
   { name: 'Szabó Bernadett', role: 'Pénzügy', desc: '', phone: '', email: 'bernadett.szabo@aurapro.hu', img: '/csapat/szabo-bernadett.jpg' },
   { name: 'Szegedi Lilla', role: 'Munkavédelmi szakmérnök, tűzvédelmi előadó', desc: '', phone: '+36302053041', email: 'lilla.szegedi@aurapro.hu', img: '/csapat/szegedi-lilla.jpg' },
@@ -16,7 +17,6 @@ const team = [
   { name: 'Módes Péter', role: 'Munka- és tűzvédelmi megbízott', desc: 'Biztonság- és egészségvédelmi koordinátor', phone: '+36203724479', email: 'peter.modes@aurapro.hu', img: '/csapat/modes-peter.jpg' },
   { name: 'Martincsekné Divinyi Krisztina', role: 'Környezetmérnök, Tűzvédelmi főelőadó', desc: 'Munkavédelmi szakmérnök', phone: '+36703681461', email: 'krisztina.divinyi@aurapro.hu', img: '/csapat/martincsekne-divinyi-krisztina.jpg' },
   { name: 'Hegedűs Zoltán', role: 'Munka- és tűzvédelmi megbízott', desc: '', phone: '+36209582120', email: 'zoltan.hegedus@aurapro.hu', img: '/csapat/hegedus-zoltan.jpg' },
-  { name: 'Szűk Katalin', role: 'Tűzvédelmi mérnök, munkavédelmi megbízott', desc: '', phone: '+36704098764', email: 'katalin.szuk@aurapro.hu', img: '/csapat/szuk-katalin.png' },
   { name: 'Dr. Pölöskei Ernő', role: 'Munkavédelmi szakmérnök, Tűzvédelmi technikus', desc: 'Szakjogász', phone: '+36205483733', email: 'erno.poloskei@aurapro.hu', img: '/csapat/dr-poloskei-erno.jpg' },
   { name: 'Zahorán János', role: 'Munkavédelmi szakember', desc: 'Biztonság- és egészségvédelmi koordinátor', phone: '+36303280292', email: 'zahoran@aurapro.hu', img: '/csapat/zahoran-janos.jpg' },
   { name: 'Haba Ferenc', role: 'Emelőgép szakértő', desc: '', phone: '+36306067757', email: 'beszerzes@aurapro.hu', img: '/csapat/haba-ferenc.jpg' },
@@ -27,8 +27,8 @@ const team = [
   { name: 'Bankó Kitti', role: 'Okleveles környezetvédelmi mérnök', desc: 'Tűzvédelmi főelőadó, munkavédelmi szakmérnök', phone: '+36308207416', email: 'kitti.csere@aurapro.hu', img: '/csapat/banko-kitti.jpg' },
 ];
 
-const leadership = team.slice(0, 6);
-const specialists = team.slice(6);
+const leadership = team.slice(0, 7);
+const specialists = team.slice(7);
 ---
 
 <PageLayout
