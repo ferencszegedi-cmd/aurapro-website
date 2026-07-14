@@ -60,7 +60,7 @@
 
 /* Hero: sötét teal gradiens + finom technikai rács-mintázat (a lapos szürke helyett) */
 .hero-gradient {
-  background: linear-gradient(135deg, #0e3a3a 0%, #146e6e 55%, #1a8a8a 100%);
+  background: linear-gradient(135deg, #124c4c 0%, #187f7f 55%, #21a0a0 100%);
 }
 
 .hero-pattern {
