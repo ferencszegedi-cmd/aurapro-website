@@ -1,10 +1,16 @@
 ---
+import { Image } from 'astro:assets';
 import PageLayout from '../layouts/PageLayout.astro';
 import Hero from '../components/Hero.astro';
 import StatCounter from '../components/StatCounter.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
 import QuoteBand from '../components/QuoteBand.astro';
+import heroSafety from '../assets/images/hero-safety.jpg';
+import serviceMv from '../assets/images/service-munkavedelem.jpg';
+import serviceTv from '../assets/images/service-tuzvedelem.jpg';
+import serviceKv from '../assets/images/service-kornyezetvedelem.jpg';
+import serviceOktatas from '../assets/images/service-oktatas.jpg';
 
 const faqItems = [
   {
@@ -54,8 +60,8 @@ const faqSchema = {
     ctaHref="/kapcsolat/"
     secondaryCtaText="Hívjon most"
     secondaryCtaSubtext="+36 70 409 8764"
-    heroImage="/images/hero-slideshow.png"
-    heroImageAlt="Munkavédelmi szakember sárga sisakkal"
+    heroImage={heroSafety}
+    heroImageAlt="Munkavédelmi szakértő és üzemvezető modern gyártócsarnokban"
   />
 
   <!-- Social proof numbers -->
@@ -71,7 +77,7 @@ const faqSchema = {
       <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
         <a href="/munkavedelem/" class="group block bg-white rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-teal/30 transition-all" data-animate>
           <div class="h-40 overflow-hidden">
-            <img src="/images/bgr-box-2.png" alt="Munkavédelem" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <Image src={serviceMv} alt="Munkavédelmi szakértő gépátvizsgálás közben" widths={[480, 800]} sizes="(min-width: 768px) 33vw, 100vw" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
           </div>
           <div class="p-6">
             <h3 class="font-heading font-semibold text-xl text-heading group-hover:text-teal transition-colors">Munkavédelem</h3>
@@ -81,7 +87,7 @@ const faqSchema = {
         </a>
         <a href="/tuzvedelem/" class="group block bg-white rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-teal/30 transition-all" data-animate>
           <div class="h-40 overflow-hidden">
-            <img src="/images/bgr-box-3.png" alt="Tűzvédelem" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <Image src={serviceTv} alt="Tűzvédelmi szakember tűzoltókészülék-ellenőrzés közben" widths={[480, 800]} sizes="(min-width: 768px) 33vw, 100vw" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
           </div>
           <div class="p-6">
             <h3 class="font-heading font-semibold text-xl text-heading group-hover:text-teal transition-colors">Tűzvédelem</h3>
@@ -91,7 +97,7 @@ const faqSchema = {
         </a>
         <a href="/kornyezetvedelem/" class="group block bg-white rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-teal/30 transition-all" data-animate>
           <div class="h-40 overflow-hidden">
-            <img src="/images/bgr-box-esg.jpg" alt="Környezetvédelem" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <Image src={serviceKv} alt="Környezetvédelmi mérnök mintavétel közben" widths={[480, 800]} sizes="(min-width: 768px) 33vw, 100vw" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
           </div>
           <div class="p-6">
             <h3 class="font-heading font-semibold text-xl text-heading group-hover:text-teal transition-colors">Környezetvédelem</h3>
@@ -139,7 +145,7 @@ const faqSchema = {
       <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
         <a href="/munkavedelmi-kepviselo-kepzes/" class="group block bg-white rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-teal/30 transition-all">
           <div class="h-48 overflow-hidden">
-            <img src="/images/munkavedelmi-oktatas.jpg" alt="Munkavédelmi képviselő képzés" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <Image src={serviceOktatas} alt="Munkavédelmi képviselő képzés tréningteremben" widths={[480, 800]} sizes="(min-width: 768px) 50vw, 100vw" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
           </div>
           <div class="p-6">
             <h3 class="font-heading font-semibold text-xl text-heading group-hover:text-teal transition-colors">Munkavédelmi képviselő képzés</h3>

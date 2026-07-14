@@ -1,5 +1,42 @@
 @import "tailwindcss";
 
+/* Self-hosted fontok (latin + latin-ext – magyar ő/ű) – Google Fonts kivezetve (P0-5) */
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/montserrat-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/montserrat-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/montserrat-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/inter-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/inter-500.woff2") format("woff2");
+}
+
 @theme {
   /* Márka színek */
   --color-teal: #1a8a8a;
@@ -19,6 +56,20 @@
   /* Font family */
   --font-heading: "Montserrat", sans-serif;
   --font-body: "Inter", sans-serif;
+}
+
+/* Hero: sötét teal gradiens + finom technikai rács-mintázat (a lapos szürke helyett) */
+.hero-gradient {
+  background: linear-gradient(135deg, #0e3a3a 0%, #146e6e 55%, #1a8a8a 100%);
+}
+
+.hero-pattern {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse at 30% 40%, black 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at 30% 40%, black 0%, transparent 75%);
 }
 
 /* Base stílusok */

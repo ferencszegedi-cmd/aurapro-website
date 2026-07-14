@@ -1,6 +1,8 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import QuoteBand from '../components/QuoteBand.astro';
+import { Image } from 'astro:assets';
+import serviceOktatas from '../assets/images/service-oktatas.jpg';
 ---
 
 <PageLayout
@@ -28,7 +30,7 @@ import QuoteBand from '../components/QuoteBand.astro';
           </div>
         </div>
         <div class="hidden lg:block">
-          <img src="/images/munkavedelmi-oktatas.jpg" alt="Munkavédelmi képviselő képzés" class="rounded-2xl shadow-lg" loading="lazy" />
+          <Image src={serviceOktatas} alt="Munkavédelmi képviselő képzés tréningteremben" widths={[640, 1024]} sizes="(min-width: 1024px) 50vw, 100vw" class="rounded-2xl shadow-lg" loading="lazy" />
         </div>
       </div>
     </div>

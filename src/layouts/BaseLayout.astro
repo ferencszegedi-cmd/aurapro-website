@@ -13,7 +13,7 @@ const {
   title,
   description,
   canonical,
-  ogImage = '/og-image.png',
+  ogImage = '/og-image.jpg',
   noIndex = false,
 } = Astro.props;
 
@@ -87,26 +87,10 @@ const orgSchema = {
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="hu_HU" />
 
-  <!-- Fonts: P0-5 – preconnect + non-blocking preload (Google Fonts stays for now, self-host TODO) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    rel="preload"
-    as="style"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@400;600;700&display=swap"
-  />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@400;600;700&display=swap"
-    media="print"
-    onload="this.media='all'"
-  />
-  <noscript>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@400;600;700&display=swap"
-    />
-  </noscript>
+  <!-- Fonts: P0-5 KÉSZ – self-hosted woff2 (latin+latin-ext), @font-face a global.css-ben.
+       Preload csak az above-the-fold súlyokra (heading 700 + body 400). -->
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/montserrat-700.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-400.woff2" crossorigin />
 
   <!-- Favicon – ?v=2 cache-bust hogy a böngészők az új ikont töltsék be -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
