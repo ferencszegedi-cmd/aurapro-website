@@ -37,11 +37,15 @@ const {
       <QuoteWizard formSource={formSource} services={services} />
     </div>
 
-    <div class="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-white/80 text-sm">
-      <span>&#10003; Ingyenes</span>
-      <span>&#10003; Kötelezettségmentes</span>
-      <span>&#10003; 24 órán belüli válasz</span>
-      <span>&#10003; 40M Ft bírsággarancia</span>
+    <div class="mt-6 flex flex-wrap items-center justify-center gap-2.5">
+      {['Ingyenes', 'Kötelezettségmentes', '24 órán belüli válasz', '40M Ft bírsággarancia'].map((item) => (
+        <span class="inline-flex items-center gap-2 rounded-full bg-white/15 border border-white/30 px-4 py-2 text-white font-semibold text-sm lg:text-base">
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+          </svg>
+          {item}
+        </span>
+      ))}
     </div>
   </div>
 </section>
