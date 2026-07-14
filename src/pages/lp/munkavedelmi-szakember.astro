@@ -1,0 +1,64 @@
+---
+// CRO Fázis 2: Google Ads landing – "külső munkavédelmi szakember" kulcsszó-fókusz. noindex.
+import LandingPageLayout from '../../layouts/LandingPageLayout.astro';
+import LandingContent from '../../components/LandingContent.astro';
+
+const bullets = [
+  '<strong>Névvel, jogosultsággal rendelkező szakember</strong> – a jogszabályban előírt szakmai képesítéssel',
+  '<strong>Nem egyemberes vállalkozás:</strong> 30 szakértő áll mögötte – szabadság, betegség esetén is folyamatos a lefedettség',
+  '<strong>Országos jelenlét</strong> – több telephelyes cégeknél is egyetlen partner',
+  '<strong>40 millió Ft bírsággarancia</strong> – a felelősséget mi visszük',
+];
+
+const steps = [
+  { title: 'Ingyenes helyszíni felmérés', desc: 'Felmérjük a céget: létszám, veszélyességi osztály, jelenlegi dokumentációs állapot.' },
+  { title: 'Személyre szabott ajánlat', desc: '24 órán belül konkrét ajánlatot kap a jogszabály szerinti óraszámmal – kötelezettség nélkül.' },
+  { title: 'Dedikált szakember + csapat', desc: 'Állandó kapcsolattartó szakembert kap, mögötte 30 fős szakértői háttérrel.' },
+  { title: 'Folyamatos jelenlét és jogszabálykövetés', desc: 'Rendszeres bejárás, oktatások, dokumentáció-karbantartás, hatósági képviselet.' },
+];
+
+const faqItems = [
+  {
+    question: 'Kötelező külső munkavédelmi szakembert foglalkoztatni?',
+    answer:
+      'A munkavédelmi törvény előírja, hogy minden munkáltatónak biztosítania kell a munkavédelmi szaktevékenység ellátását – a létszámtól és veszélyességi osztálytól függő képesítéssel és óraszámban. Ez megoldható külső szolgáltatóval is, ami jellemzően költséghatékonyabb, mint saját munkatársat képezni és foglalkoztatni.',
+  },
+  {
+    question: 'Miben más ez, mint egy egyéni munkavédelmis?',
+    answer:
+      'Az egyéni szakember szabadsága, betegsége vagy leterheltsége alatt a cég ellátatlan marad. Nálunk 30 szakértő dolgozik országszerte: mindig van helyettesítés, minden szakterületre (MV, TV, KV) van specialista, és a felelősséget 40 millió Ft-ig szerződésben vállaljuk.',
+  },
+  {
+    question: 'Mennyibe kerül a szolgáltatás?',
+    answer:
+      'A jogszabály szerinti kötelező óraszám a létszámtól és a veszélyességi osztálytól függ – ez határozza meg az árat. Ingyenes felmérés után 24 órán belül személyre szabott ajánlatot adunk.',
+  },
+  {
+    question: 'Több telephelyünk van, megoldható?',
+    answer:
+      'Igen – ez az egyik erősségünk. Országos szakértői hálózatunkkal minden telephelyet egységes színvonalon látunk el, egyetlen szerződéssel és kapcsolattartóval.',
+  },
+  {
+    question: 'Mi történik hatósági ellenőrzésnél?',
+    answer:
+      'Szakemberünk részt vesz az ellenőrzésen és képviseli a céget. Ha az általunk gondozott területen mégis bírság születne, azt 40 millió Ft-ig megtérítjük – közel 20 év alatt erre még nem volt szükség.',
+  },
+];
+---
+
+<LandingPageLayout
+  title="Külső munkavédelmi szakember cégeknek – 40M Ft bírsággaranciával | Aurapro"
+  description="Külső munkavédelmi szakember jogszabály szerinti óraszámban, 30 fős szakértői háttérrel, országos lefedettséggel. 40M Ft bírsággarancia. Kérjen ingyenes ajánlatot 24 órán belül!"
+>
+  <LandingContent
+    headline="Külső munkavédelmi szakember – 30 fős szakértői háttérrel"
+    subhead="Jogszabály szerinti munkavédelmi szaktevékenység egy megbízható partnertől – helyettesítéssel, országos lefedettséggel és 40 millió Ft bírsággaranciával."
+    bullets={bullets}
+    steps={steps}
+    quote="Korábban egyéni vállalkozó látta el a munkavédelmet, de a növekedésünkkel már nem bírta a tempót. Az Aurapro csapata mindhárom telephelyünket egységesen viszi – érezhetően professzionálisabb lett minden."
+    quoteAuthor="Logisztikai cég ügyvezetője, Budapest"
+    formSource="lp-mv-szakember-hero"
+    services={['munkavedelem']}
+    faqItems={faqItems}
+  />
+</LandingPageLayout>

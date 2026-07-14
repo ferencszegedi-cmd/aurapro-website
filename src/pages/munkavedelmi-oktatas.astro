@@ -1,6 +1,8 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
-import ContactForm from '../components/ContactForm.astro';
+import QuoteBand from '../components/QuoteBand.astro';
+import { Image } from 'astro:assets';
+import serviceOktatas from '../assets/images/service-oktatas.jpg';
 
 const serviceSchema = {
   '@context': 'https://schema.org',
@@ -38,7 +40,7 @@ const serviceSchema = {
           </div>
         </div>
         <div class="hidden lg:block">
-          <img src="/images/munkavedelmi-oktatas.jpg" alt="Munkavédelmi oktatás" class="rounded-2xl shadow-lg" loading="lazy" />
+          <Image src={serviceOktatas} alt="Munkavédelmi oktatás tréningteremben" widths={[640, 1024]} sizes="(min-width: 1024px) 50vw, 100vw" class="rounded-2xl shadow-lg" loading="lazy" />
         </div>
       </div>
     </div>
@@ -89,5 +91,5 @@ const serviceSchema = {
     </div>
   </section>
 
-  <ContactForm inline />
+  <QuoteBand formSource="band-mv-oktatas" services={['munkavedelem']} />
 </PageLayout>

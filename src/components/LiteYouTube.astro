@@ -1,0 +1,100 @@
+---
+/**
+ * Lite YouTube embed – a videó HELYBEN indul, a lehető leggyorsabban:
+ * - kezdetben csak egy lokálisan optimalizált borítókép (0 third-party kérés)
+ * - egérrámutatásra / touchra preconnect a YouTube-hoz (TLS bemelegítés)
+ * - kattintásra a kép helyére autoplay iframe kerül (youtube-nocookie.com)
+ * Így nincs teljes YouTube-oldal betöltés, a videó ~1 mp alatt elindul.
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  videoId: string;
+  title: string;
+  thumb: ImageMetadata;
+}
+
+const { videoId, title, thumb } = Astro.props;
+---
+
+<div
+  class="lite-yt group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer"
+  data-lite-yt={videoId}
+  data-yt-title={title}
+  role="button"
+  tabindex="0"
+  aria-label={`Videó lejátszása: ${title}`}
+>
+  <Image
+    src={thumb}
+    alt={title}
+    widths={[480, 800, 1280]}
+    sizes="(min-width: 768px) 50vw, 100vw"
+    class="w-full aspect-video object-cover"
+    loading="lazy"
+  />
+  <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+    <div class="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+      <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    </div>
+  </div>
+</div>
+
+<script>
+  let warmed = false;
+
+  // TLS/DNS bemelegítés a YouTube-hoz – először akkor, amikor a user a videó felé indul
+  function warmConnections() {
+    if (warmed) return;
+    warmed = true;
+    for (const origin of [
+      'https://www.youtube-nocookie.com',
+      'https://www.google.com',
+      'https://i.ytimg.com',
+    ]) {
+      const link = document.createElement('link');
+      link.rel = 'preconnect';
+      link.href = origin;
+      link.crossOrigin = 'anonymous';
+      document.head.appendChild(link);
+    }
+  }
+
+  function activate(el: HTMLElement) {
+    const videoId = el.dataset.liteYt;
+    const title = el.dataset.ytTitle ?? 'Videó';
+    if (!videoId || el.dataset.activated === '1') return;
+    el.dataset.activated = '1';
+
+    const iframe = document.createElement('iframe');
+    iframe.className = 'absolute inset-0 w-full h-full';
+    iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0`;
+    iframe.title = title;
+    iframe.allow =
+      'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+
+    // Az aspect-video arányt egy wrapperrel tartjuk, a tartalom cserélődik
+    el.classList.remove('cursor-pointer');
+    el.style.aspectRatio = '16 / 9';
+    el.replaceChildren(iframe);
+
+    const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+    if (typeof w.gtag === 'function') w.gtag('event', 'video_play', { video_id: videoId });
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-lite-yt]').forEach((el) => {
+    if (el.dataset.bound === '1') return;
+    el.dataset.bound = '1';
+    el.addEventListener('pointerover', warmConnections, { once: true });
+    el.addEventListener('touchstart', warmConnections, { once: true, passive: true });
+    el.addEventListener('click', () => activate(el));
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        activate(el);
+      }
+    });
+  });
+</script>

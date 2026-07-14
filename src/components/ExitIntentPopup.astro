@@ -1,0 +1,205 @@
+---
+/**
+ * Exit-intent felugró: hírlevél-feliratkozás jogszabály-változás értesítőre
+ * (a régi weboldal popupjának megtartása Ferenc kérésére, 2026-07-15).
+ *
+ * Megjelenés: amikor a látogató egere elhagyja a viewport tetejét (el akar
+ * navigálni). Csak asztali nézetben, oldalbetöltés után legkorábban 5 mp-cel,
+ * és 30 naponta legfeljebb egyszer (localStorage). A /koszonjuk/ oldalon soha.
+ * Beküldés: /api/newsletter (NEM lead-konverzió, Ads-esemény nem sül el).
+ */
+import { Image } from 'astro:assets';
+import popupImage from '../assets/images/service-munkavedelem.jpg';
+---
+
+<div
+  id="exit-popup"
+  hidden
+  class="fixed inset-0 z-50 items-center justify-center p-4"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="exit-popup-title"
+>
+  <!-- Háttér -->
+  <div data-exit-backdrop class="absolute inset-0 bg-heading/60"></div>
+
+  <div class="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden grid sm:grid-cols-[2fr_3fr]">
+    <button
+      type="button"
+      data-exit-close
+      aria-label="Bezárás"
+      class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-orange text-white flex items-center justify-center hover:bg-orange-dark transition-colors"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <div class="hidden sm:block relative">
+      <Image
+        src={popupImage}
+        alt=""
+        widths={[480]}
+        sizes="320px"
+        class="absolute inset-0 w-full h-full object-cover"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="p-6 lg:p-8">
+      <p id="exit-popup-title" class="font-heading font-bold text-xl text-heading leading-snug">
+        Mielőtt elmenne…
+      </p>
+      <p class="mt-2 text-body text-sm leading-relaxed">
+        Iratkozzon fel, hogy értesüljön a legújabb jogszabály-változásokról!
+      </p>
+
+      <form data-newsletter-form action="/api/newsletter" method="POST" class="mt-4 space-y-3">
+        <div>
+          <label for="exit-name" class="block text-sm font-medium text-heading mb-1">Név *</label>
+          <input type="text" id="exit-name" name="name" required minlength="2" autocomplete="name"
+            class="w-full px-4 py-2.5 rounded-lg border border-border text-heading focus:ring-2 focus:ring-teal focus:border-teal focus:outline-none" />
+        </div>
+        <div>
+          <label for="exit-email" class="block text-sm font-medium text-heading mb-1">E-mail *</label>
+          <input type="email" id="exit-email" name="email" required autocomplete="email"
+            class="w-full px-4 py-2.5 rounded-lg border border-border text-heading focus:ring-2 focus:ring-teal focus:border-teal focus:outline-none" />
+        </div>
+        <label class="flex items-start gap-2 text-xs text-body">
+          <input type="checkbox" name="gdpr_consent" required value="1"
+            class="mt-0.5 h-4 w-4 rounded border-border text-teal focus:ring-teal" />
+          <span>
+            Elolvastam és elfogadom az
+            <a href="/adatvedelem/" target="_blank" class="underline hover:text-teal-dark">Adatkezelési tájékoztatót</a>. *
+          </span>
+        </label>
+
+        <!-- Honeypot -->
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"
+          class="hidden" style="display:none !important" />
+
+        <button type="submit"
+          class="w-full px-6 py-3 bg-orange text-white font-heading font-bold rounded-lg hover:bg-orange-dark transition-colors disabled:opacity-60">
+          Feliratkozom
+        </button>
+        <p data-newsletter-error class="hidden text-xs text-red-600"></p>
+      </form>
+
+      <p data-newsletter-success hidden class="mt-4 text-teal-dark font-semibold text-sm">
+        &#10003; Köszönjük! Feliratkozott a jogszabály-változás értesítőre.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { gtagEvent } from '../scripts/lead-submit';
+
+  (() => {
+    const popup = document.getElementById('exit-popup');
+    if (!popup) return;
+
+    // A köszönjük-oldalon nem zavarunk
+    if (window.location.pathname.startsWith('/koszonjuk')) return;
+
+    const STORAGE_KEY = 'aurapro-exit-popup-shown';
+    const COOLDOWN_MS = 30 * 24 * 60 * 60 * 1000; // 30 nap
+
+    const recentlyShown = () => {
+      try {
+        const ts = Number(localStorage.getItem(STORAGE_KEY) ?? 0);
+        return ts > 0 && Date.now() - ts < COOLDOWN_MS;
+      } catch {
+        return true; // localStorage tiltva → inkább nem zaklatunk
+      }
+    };
+
+    if (recentlyShown()) return;
+
+    let armed = false;
+    let shown = false;
+
+    // Oldalbetöltés után 5 mp-cel élesedik (azonnali kilépésre nem ugrik fel)
+    setTimeout(() => {
+      armed = true;
+    }, 5000);
+
+    function show() {
+      if (shown || !armed) return;
+      shown = true;
+      try {
+        localStorage.setItem(STORAGE_KEY, String(Date.now()));
+      } catch { /* ignored */ }
+      popup!.hidden = false;
+      popup!.classList.add('flex');
+      gtagEvent('exit_popup_shown', { page_path: window.location.pathname });
+    }
+
+    function hide() {
+      popup!.hidden = true;
+      popup!.classList.remove('flex');
+    }
+
+    // Exit-intent: az egér a viewport teteje felé hagyja el az oldalt (asztali)
+    document.addEventListener('mouseout', (e) => {
+      if (!e.relatedTarget && e.clientY <= 10) show();
+    });
+
+    popup.querySelector('[data-exit-close]')?.addEventListener('click', hide);
+    popup.querySelector('[data-exit-backdrop]')?.addEventListener('click', hide);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !popup!.hidden) hide();
+    });
+
+    // Feliratkozás beküldése
+    const form = popup.querySelector<HTMLFormElement>('[data-newsletter-form]');
+    const errorEl = popup.querySelector<HTMLElement>('[data-newsletter-error]');
+    const successEl = popup.querySelector<HTMLElement>('[data-newsletter-success]');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Küldés…';
+      }
+      if (errorEl) errorEl.classList.add('hidden');
+
+      const formData = new FormData(form);
+      const payload: Record<string, string> = {};
+      formData.forEach((v, k) => {
+        payload[k] = typeof v === 'string' ? v : '';
+      });
+      payload.source = 'exit-popup';
+
+      try {
+        const res = await fetch('/api/newsletter', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (res.ok) {
+          form.hidden = true;
+          if (successEl) successEl.hidden = false;
+          gtagEvent('newsletter_signup', { source: 'exit-popup' });
+          setTimeout(hide, 3500);
+          return;
+        }
+        if (errorEl) {
+          errorEl.textContent = 'Hiba történt. Kérjük, próbálja újra.';
+          errorEl.classList.remove('hidden');
+        }
+      } catch {
+        if (errorEl) {
+          errorEl.textContent = 'Hálózati hiba. Kérjük, próbálja újra.';
+          errorEl.classList.remove('hidden');
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Feliratkozom';
+        }
+      }
+    });
+  })();
+</script>

@@ -1,6 +1,6 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
-import ContactForm from '../components/ContactForm.astro';
+import QuoteBand from '../components/QuoteBand.astro';
 
 const team = [
   { name: 'Gaál Zoltán', role: 'Cégvezető', desc: 'Gépészmérnök, munkavédelmi technikus', phone: '+36203403992', email: 'zoltan.gaal@aurapro.hu', img: '/csapat/gaal-zoltan.jpg' },
@@ -149,5 +149,5 @@ const specialists = team.slice(7);
   </section>
 
   <!-- CTA -->
-  <ContactForm inline />
+  <QuoteBand formSource="band-munkatarsaink" />
 </PageLayout>

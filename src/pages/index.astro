@@ -1,10 +1,20 @@
 ---
+import { Image } from 'astro:assets';
 import PageLayout from '../layouts/PageLayout.astro';
 import Hero from '../components/Hero.astro';
 import StatCounter from '../components/StatCounter.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
-import ContactForm from '../components/ContactForm.astro';
+import QuoteBand from '../components/QuoteBand.astro';
+import LiteYouTube from '../components/LiteYouTube.astro';
+import heroSafety from '../assets/images/hero-safety.jpg';
+import ytOktatas from '../assets/images/yt-oktatas.jpg';
+import ytAdatbazis from '../assets/images/yt-adatbazis.jpg';
+import serviceMv from '../assets/images/service-munkavedelem.jpg';
+import serviceTv from '../assets/images/service-tuzvedelem.jpg';
+import serviceKv from '../assets/images/service-kornyezetvedelem.jpg';
+import serviceOktatas from '../assets/images/service-oktatas.jpg';
+import iparagak from '../assets/images/iparagak.jpg';
 
 const faqItems = [
   {
@@ -47,19 +57,46 @@ const faqSchema = {
 
   <!-- Hero -->
   <Hero
-    title="Munkavédelem - Tűzvédelem - Környezetvédelem"
-    titleLine2="40 millió Ft bírsággaranciával"
-    subtitle="30 szakértő · 48+ nagyvállalati referencia · közel 20 év tapasztalat"
+    title="Munkavédelem, tűzvédelem, környezetvédelem – egy kézből"
+    subtitle="Teljes körű szolgáltatás 100 fő feletti cégeknek – 40 millió Ft bírsággaranciával."
     ctaText="Ingyenes ajánlat 24 órán belül"
-    ctaHref="/kapcsolat/"
-    secondaryCtaText="Hívjon most"
-    secondaryCtaSubtext="+36 70 409 8764"
-    heroImage="/images/hero-slideshow.png"
-    heroImageAlt="Munkavédelmi szakember sárga sisakkal"
+    ctaHref="#ajanlat"
+    secondaryCtaText="+36 70 409 8764"
+    secondaryCtaSubtext="Hétfő–péntek 8:00–17:00"
+    heroImage={heroSafety}
+    heroImageAlt="Munkavédelmi szakértő és üzemvezető modern gyártócsarnokban"
   />
 
   <!-- Social proof numbers -->
   <StatCounter />
+
+  <!-- Referencia-logófal: a legerősebb bizalmi elem közvetlenül a hajtás után -->
+  <section class="py-12 lg:py-16 bg-white border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-center font-heading font-bold text-3xl lg:text-4xl text-heading">Akik már minket választottak</h2>
+      <p class="mt-3 mb-12 text-center text-body text-base lg:text-lg font-semibold uppercase tracking-[0.15em]">100+ fős vállalatok megbízható partnere</p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8 lg:gap-12 items-center justify-items-center grayscale hover:grayscale-0 transition-all duration-500">
+        <a href="/referenciak/#epitoipar-kivitelezes"><img src="/referenciak/audi.jpg" alt="Audi" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#gyartas-ipar"><img src="/referenciak/siemens.jpg" alt="Siemens" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#epitoipar-kivitelezes"><img src="/referenciak/richter.jpg" alt="Richter Gedeon" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/dm.jpg" alt="DM" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/primark.jpg" alt="Primark" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/porsche.jpg" alt="Porsche" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#epitoipar-kivitelezes"><img src="/referenciak/egis.jpg" alt="Egis" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/bnp.jpg" alt="BNP Paribas" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/libri.jpg" alt="Libri" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/adecco.jpg" alt="Adecco" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/pepco.jpg" alt="Pepco" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/budapest-kozut.jpg" alt="Budapest Közút" class="h-24 object-contain" loading="lazy" /></a>
+      </div>
+      <div class="mt-10 text-center">
+        <a href="/referenciak/" class="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-teal text-teal font-heading font-bold text-xl rounded-lg hover:bg-teal hover:text-white transition-colors">
+          +36 másik cég
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Services -->
   <section class="py-16 lg:py-20 bg-surface">
@@ -71,7 +108,7 @@ const faqSchema = {
       <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
         <a href="/munkavedelem/" class="group block bg-white rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-teal/30 transition-all" data-animate>
           <div class="h-40 overflow-hidden">
-            <img src="/images/bgr-box-2.png" alt="Munkavédelem" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <Image src={serviceMv} alt="Munkavédelmi szakértő gépátvizsgálás közben" widths={[480, 800]} sizes="(min-width: 768px) 33vw, 100vw" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
           </div>
           <div class="p-6">
             <h3 class="font-heading font-semibold text-xl text-heading group-hover:text-teal transition-colors">Munkavédelem</h3>
@@ -81,7 +118,7 @@ const faqSchema = {
         </a>
         <a href="/tuzvedelem/" class="group block bg-white rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-teal/30 transition-all" data-animate>
           <div class="h-40 overflow-hidden">
-            <img src="/images/bgr-box-3.png" alt="Tűzvédelem" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <Image src={serviceTv} alt="Tűzvédelmi szakember tűzoltókészülék-ellenőrzés közben" widths={[480, 800]} sizes="(min-width: 768px) 33vw, 100vw" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
           </div>
           <div class="p-6">
             <h3 class="font-heading font-semibold text-xl text-heading group-hover:text-teal transition-colors">Tűzvédelem</h3>
@@ -91,7 +128,7 @@ const faqSchema = {
         </a>
         <a href="/kornyezetvedelem/" class="group block bg-white rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-teal/30 transition-all" data-animate>
           <div class="h-40 overflow-hidden">
-            <img src="/images/bgr-box-esg.jpg" alt="Környezetvédelem" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <Image src={serviceKv} alt="Környezetvédelmi mérnök mintavétel közben" widths={[480, 800]} sizes="(min-width: 768px) 33vw, 100vw" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
           </div>
           <div class="p-6">
             <h3 class="font-heading font-semibold text-xl text-heading group-hover:text-teal transition-colors">Környezetvédelem</h3>
@@ -110,36 +147,18 @@ const faqSchema = {
       <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
         <div>
           <h3 class="font-heading font-semibold text-lg text-heading text-center mb-3">Online oktatási oldal</h3>
-          <a href="https://youtu.be/5_KcdPdQ2gY" target="_blank" rel="noopener noreferrer" class="group block rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-          <div class="relative">
-            <img src="https://img.youtube.com/vi/5_KcdPdQ2gY/maxresdefault.jpg" alt="Online oktatási oldal bemutató" class="w-full aspect-video object-cover" loading="lazy" />
-            <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
-              <div class="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </div>
-            </div>
-          </div>
-        </a>
+          <LiteYouTube videoId="5_KcdPdQ2gY" title="Online oktatási oldal bemutató" thumb={ytOktatas} />
         </div>
         <div>
           <h3 class="font-heading font-semibold text-lg text-heading text-center mb-3">Online adatbázis</h3>
-          <a href="https://youtu.be/uHyexWO8GSc" target="_blank" rel="noopener noreferrer" class="group block rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-          <div class="relative">
-            <img src="https://img.youtube.com/vi/uHyexWO8GSc/maxresdefault.jpg" alt="Online adatbázis bemutató" class="w-full aspect-video object-cover" loading="lazy" />
-            <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
-              <div class="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </div>
-            </div>
-          </div>
-        </a>
+          <LiteYouTube videoId="uHyexWO8GSc" title="Online adatbázis bemutató" thumb={ytAdatbazis} />
         </div>
       </div>
       <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading text-center mt-20 mb-8">Munkavédelmi képviselő képzés és Elsősegélynyújtó tanfolyam</h2>
       <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
         <a href="/munkavedelmi-kepviselo-kepzes/" class="group block bg-white rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-teal/30 transition-all">
           <div class="h-48 overflow-hidden">
-            <img src="/images/munkavedelmi-oktatas.jpg" alt="Munkavédelmi képviselő képzés" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <Image src={serviceOktatas} alt="Munkavédelmi képviselő képzés tréningteremben" widths={[480, 800]} sizes="(min-width: 768px) 50vw, 100vw" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
           </div>
           <div class="p-6">
             <h3 class="font-heading font-semibold text-xl text-heading group-hover:text-teal transition-colors">Munkavédelmi képviselő képzés</h3>
@@ -200,30 +219,6 @@ const faqSchema = {
           Kérjen ingyenes ajánlatot
           <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Reference logos -->
-  <section class="pt-4 pb-12 lg:pt-6 lg:pb-16 bg-surface">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-center font-heading font-bold text-3xl lg:text-4xl text-heading mb-12">Akik már minket választottak</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12 items-center justify-items-center grayscale hover:grayscale-0 transition-all duration-500">
-        <a href="/referenciak/#epitoipar-kivitelezes"><img src="/referenciak/audi.jpg" alt="Audi" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#gyartas-ipar"><img src="/referenciak/siemens.jpg" alt="Siemens" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#epitoipar-kivitelezes"><img src="/referenciak/richter.jpg" alt="Richter Gedeon" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/dm.jpg" alt="DM" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/primark.jpg" alt="Primark" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/porsche.jpg" alt="Porsche" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#epitoipar-kivitelezes"><img src="/referenciak/egis.jpg" alt="Egis" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/bnp.jpg" alt="BNP Paribas" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/libri.jpg" alt="Libri" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/adecco.jpg" alt="Adecco" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/pepco.jpg" alt="Pepco" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/budapest-kozut.jpg" alt="Budapest Közút" class="h-24 object-contain" loading="lazy" /></a>
-      </div>
-      <div class="mt-10 text-center">
-        <a href="/referenciak/" class="text-teal font-heading text-xl font-semibold hover:text-teal-dark transition-colors">+36 másik cég &rarr;</a>
       </div>
     </div>
   </section>
@@ -304,7 +299,7 @@ const faqSchema = {
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <h2 class="font-heading font-bold text-3xl lg:text-4xl text-white mb-6">Minden iparágban otthon vagyunk</h2>
-          <p class="text-white/80 text-lg mb-8">Építőipartól a kereskedelemig, gyártástól az irodákig – 13 év tapasztalat minden szektorban.</p>
+          <p class="text-white/80 text-lg mb-8">Építőipartól a kereskedelemig, gyártástól az irodákig – közel 20 év tapasztalat minden szektorban.</p>
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {[
               { label: 'Építőipar', href: '/referenciak/#epitoipar-kivitelezes', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2 20h20M6 20V10l6-6 6 6v10M9 20v-4a3 3 0 016 0v4"/>' },
@@ -320,12 +315,12 @@ const faqSchema = {
               </a>
             ))}
           </div>
-          <a href="/referenciak/" class="mt-8 inline-flex items-center text-orange font-heading font-semibold hover:text-orange-light transition-colors">
-            Összes referencia megtekintése <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          <a href="/referenciak/" class="mt-8 inline-flex items-center gap-2 px-7 py-3.5 bg-orange text-white font-heading font-bold text-lg rounded-lg hover:bg-orange-dark transition-colors shadow-lg">
+            Összes referencia megtekintése <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
         </div>
         <div class="hidden lg:block">
-          <img src="/images/bgr-box.png" alt="Munkavédelmi oktatás" class="rounded-2xl shadow-lg" loading="lazy" />
+          <Image src={iparagak} alt="Modern ipari park: gyártócsarnok, logisztikai raktár, irodaház és építkezés toronydaruval" widths={[640, 1024, 1600]} sizes="(min-width: 1024px) 50vw, 100vw" class="rounded-2xl shadow-lg" loading="lazy" />
         </div>
       </div>
     </div>
@@ -340,8 +335,9 @@ const faqSchema = {
       <div class="max-w-3xl mx-auto">
         <FaqAccordion items={faqItems} />
         <div class="mt-8 text-center">
-          <a href="/gyik/" class="text-teal font-medium hover:text-teal-dark transition-colors">
-            Összes kérdés megtekintése &rarr;
+          <a href="/gyik/" class="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-teal text-teal font-heading font-bold text-lg rounded-lg hover:bg-teal hover:text-white transition-colors">
+            Összes kérdés megtekintése
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
         </div>
       </div>
@@ -349,6 +345,6 @@ const faqSchema = {
   </section>
 
   <!-- CTA band -->
-  <ContactForm inline />
+  <QuoteBand formSource="home-band" anchorId="ajanlat" />
 
 </PageLayout>

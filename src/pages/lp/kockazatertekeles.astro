@@ -1,0 +1,64 @@
+---
+// CRO Fázis 2: Google Ads landing – Kockázatértékelés kulcsszó-fókusz. noindex (LandingPageLayout).
+import LandingPageLayout from '../../layouts/LandingPageLayout.astro';
+import LandingContent from '../../components/LandingContent.astro';
+
+const bullets = [
+  '<strong>Jogszabály-konform kockázatértékelés</strong> – Mvt. 54. § szerinti tartalommal, hatósági ellenőrzésre készen',
+  '<strong>Helyszíni bejárással</strong> készül – nem sablon, hanem a valós munkakörnyezet felmérése',
+  '<strong>30 szakértő</strong> országos lefedettséggel – több telephely, egy partner',
+  '<strong>40 millió Ft bírsággarancia</strong> – vállaljuk a felelősséget a munkánkért',
+];
+
+const steps = [
+  { title: 'Ingyenes helyszíni felmérés', desc: 'Szakértőnk bejárja a telephelyet, feltérképezi a munkaköröket és a kockázati tényezőket.' },
+  { title: 'Személyre szabott ajánlat', desc: '24 órán belül konkrét, átlátható ajánlatot kap – kötelezettség nélkül.' },
+  { title: 'Kockázatértékelés elkészítése', desc: 'Teljes dokumentáció intézkedési tervvel – hatósági ellenőrzésen megállja a helyét.' },
+  { title: 'Rendszeres felülvizsgálat', desc: 'Figyeljük a határidőket és a jogszabályváltozásokat – a dokumentum sosem évül el.' },
+];
+
+const faqItems = [
+  {
+    question: 'Kötelező a kockázatértékelés a cégünknek?',
+    answer:
+      'Igen – a munkavédelmi törvény (Mvt. 54. §) szerint minden munkáltatónak rendelkeznie kell kockázatértékeléssel, már egyetlen munkavállalótól. Hiánya vagy elavultsága az egyik leggyakoribb bírságolási ok hatósági ellenőrzésen.',
+  },
+  {
+    question: 'Milyen gyakran kell felülvizsgálni?',
+    answer:
+      'Legalább 5 évente, illetve minden lényeges változásnál (új technológia, új munkakör, munkabaleset). Veszélyes anyagoknál ennél gyakrabban is szükséges lehet. A határidőket mi tartjuk nyilván Ön helyett.',
+  },
+  {
+    question: 'Mennyibe kerül a kockázatértékelés?',
+    answer:
+      'A létszám, a telephelyek száma és a tevékenység kockázati szintje határozza meg. Ingyenes helyszíni felmérés után 24 órán belül konkrét ajánlatot adunk – kötelezettségmentesen.',
+  },
+  {
+    question: 'Mennyi idő alatt készül el?',
+    answer:
+      'A helyszíni bejárás után jellemzően 1–2 hét. Hatósági határidő vagy ellenőrzés előtt soron kívül is vállaljuk.',
+  },
+  {
+    question: 'Mi van, ha a hatóság mégis hibát talál?',
+    answer:
+      'Az általunk készített dokumentáció miatt kapott bírságot 40 millió Ft-ig megtérítjük. Közel 20 év alatt egyetlen partnerünk sem kapott bírságot.',
+  },
+];
+---
+
+<LandingPageLayout
+  title="Kockázatértékelés készítése cégeknek – 40M Ft bírsággaranciával | Aurapro"
+  description="Jogszabály-konform munkahelyi kockázatértékelés helyszíni felméréssel, intézkedési tervvel. 40 millió Ft bírsággarancia, 30 szakértő országszerte. Kérjen ingyenes ajánlatot!"
+>
+  <LandingContent
+    headline="Kockázatértékelés készítése 40 millió Ft bírsággaranciával"
+    subhead="Hatósági ellenőrzésre kész, helyszíni felmérésen alapuló kockázatértékelés – hogy a következő ellenőrzésen ne találjanak semmit."
+    bullets={bullets}
+    steps={steps}
+    quote="Az SZTFH-ellenőrzés előtt két héttel kerestük meg őket. Soron kívül elkészítették a teljes kockázatértékelést – az ellenőrzés hiányosság nélkül zárult."
+    quoteAuthor="Gyártó vállalat HR-vezetője, Pest megye"
+    formSource="lp-kockazatertekeles-hero"
+    services={['munkavedelem']}
+    faqItems={faqItems}
+  />
+</LandingPageLayout>

@@ -19,20 +19,51 @@ const LeadSchema = z.object({
     .max(30)
     .regex(/^[0-9+\-()\s]+$/, 'Telefonszám érvénytelen karaktereket tartalmaz'),
   email: z.string().trim().email('Érvénytelen email').max(255),
-  // service mező opcionális – a frontend-en már nincs select, de ha valami más kliens küldené, elfogadjuk
-  service: z.enum(['munkavedelem', 'tuzvedelem', 'kornyezetvedelem', 'komplex', 'egyeb']).optional(),
+  // service mező opcionális – legacy egyértékű mező, ha valami régi kliens küldené
+  service: z.enum(['munkavedelem', 'tuzvedelem', 'kornyezetvedelem', 'kepzes', 'komplex', 'egyeb']).optional(),
+  // services: a wizard többes választása, vesszővel fűzött slug-lista
+  services: z.string().trim().max(300).optional().or(z.literal('')),
   message: z.string().trim().max(2000).optional().or(z.literal('')),
   gdpr_consent: z.literal('1', { message: 'GDPR hozzájárulás kötelező' }),
   // Honnan jött (analytics) – nem kötelező
   source: z.string().max(100).optional(),
+  // QuoteWizard kvalifikáló mezők – mind opcionális (a régi egylépcsős form nem küldi)
+  headcount: z.enum(['1-49', '50-99', '100-249', '250-999', '1000+']).optional().or(z.literal('')),
+  sites: z.enum(['1', '2-5', '6+']).optional().or(z.literal('')),
+  priority: z.enum(['gyorsasag', 'szakertelem', 'komplex']).optional().or(z.literal('')),
 });
 
 const serviceLabels: Record<string, string> = {
   munkavedelem: 'Munkavédelem',
   tuzvedelem: 'Tűzvédelem',
   kornyezetvedelem: 'Környezetvédelem',
+  elsosegely: 'Elsősegélynyújtó képzés',
+  'mv-kepviselo': 'Munkavédelmi képviselő képzés',
+  gepvizsgalat: 'Elektromos mérés / gépvizsgálat',
+  // legacy értékek (régi kliensek)
+  kepzes: 'Képzés / oktatás',
   komplex: 'Komplex (MV + TV + KV)',
   egyeb: 'Egyéb / nem tudom',
+};
+
+const headcountLabels: Record<string, string> = {
+  '1-49': '50 fő alatt',
+  '50-99': '50–99 fő',
+  '100-249': '100–249 fő',
+  '250-999': '250–999 fő',
+  '1000+': '1000+ fő',
+};
+
+const sitesLabels: Record<string, string> = {
+  '1': '1 telephely',
+  '2-5': '2–5 telephely',
+  '6+': '6+ telephely',
+};
+
+const priorityLabels: Record<string, string> = {
+  gyorsasag: 'Gyors kezdés',
+  szakertelem: 'Maximális szakértelem',
+  komplex: 'Komplex szolgáltatás egy kézből',
 };
 
 const escapeHtml = (s: string) =>
@@ -46,7 +77,9 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     console.log(JSON.stringify({ level, requestId, msg, ...extra }));
 
   // 1. Body parse – fetch + JSON.stringify, vagy classic form-encoded
+  // No-JS fallback: natív form POST-nál (form-encoded) sikerkor 303 redirect jár JSON helyett.
   let raw: unknown;
+  let isNativeFormPost = false;
   try {
     const contentType = request.headers.get('content-type') ?? '';
     if (contentType.includes('application/json')) {
@@ -57,6 +90,12 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     ) {
       const form = await request.formData();
       raw = Object.fromEntries(form.entries());
+      // Többértékű checkbox-mező: az Object.fromEntries csak az utolsót tartaná meg
+      const allServices = form.getAll('services').filter((v) => typeof v === 'string');
+      if (allServices.length > 0) {
+        (raw as Record<string, unknown>).services = allServices.join(',');
+      }
+      isNativeFormPost = true;
     } else {
       log('warn', 'unsupported_content_type', { contentType });
       return new Response(JSON.stringify({ ok: false, error: 'unsupported_content_type' }), {
@@ -72,6 +111,15 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     });
   }
 
+  // Sikeres kimenet: JS-fetch kliensnek JSON, natív form POST-nak 303 → /koszonjuk/
+  const successResponse = (body: Record<string, unknown>) =>
+    isNativeFormPost
+      ? new Response(null, { status: 303, headers: { location: '/koszonjuk/' } })
+      : new Response(JSON.stringify(body), {
+          status: 200,
+          headers: { 'content-type': 'application/json' },
+        });
+
   // 2. Honeypot – ELŐSZÖR ellenőrizzük (még a Zod-validáció előtt),
   // hogy botoknak silent OK-t tudjunk adni anélkül, hogy bármi mezőnévre rávilágítanánk.
   const honeypotValue =
@@ -80,10 +128,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       : '';
   if (honeypotValue.length > 0) {
     log('info', 'honeypot_triggered', { ip: clientAddress });
-    return new Response(JSON.stringify({ ok: true }), {
-      status: 200,
-      headers: { 'content-type': 'application/json' },
-    });
+    return successResponse({ ok: true });
   }
 
   // 3. Zod validáció
@@ -111,7 +156,14 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   const LEAD_FROM =
     import.meta.env.LEAD_FROM_EMAIL || process.env.LEAD_FROM_EMAIL || 'Aurapro Lead <noreply@aurapro.hu>';
 
-  const serviceLabel = data.service ? (serviceLabels[data.service] ?? data.service) : '';
+  // services (többes, vesszős lista) elsőbbséget élvez a legacy service mezővel szemben
+  const servicesLabelList = (data.services ?? '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((s) => serviceLabels[s] ?? s)
+    .join(', ');
+  const serviceLabel = servicesLabelList || (data.service ? (serviceLabels[data.service] ?? data.service) : '');
   const safeMessage = data.message ? escapeHtml(data.message).replace(/\n/g, '<br>') : '';
   const adminBody = `
     <h2>Új lead – ${escapeHtml(data.company)}</h2>
@@ -121,6 +173,9 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       <tr><td><strong>Telefon</strong></td><td><a href="tel:${encodeURIComponent(data.phone)}">${escapeHtml(data.phone)}</a></td></tr>
       <tr><td><strong>Email</strong></td><td><a href="mailto:${encodeURIComponent(data.email)}">${escapeHtml(data.email)}</a></td></tr>
       ${serviceLabel ? `<tr><td><strong>Érdeklődés</strong></td><td>${escapeHtml(serviceLabel)}</td></tr>` : ''}
+      ${data.headcount ? `<tr><td><strong>Cégméret</strong></td><td>${escapeHtml(headcountLabels[data.headcount] ?? data.headcount)}</td></tr>` : ''}
+      ${data.sites ? `<tr><td><strong>Telephelyek</strong></td><td>${escapeHtml(sitesLabels[data.sites] ?? data.sites)}</td></tr>` : ''}
+      ${data.priority ? `<tr><td><strong>Prioritás</strong></td><td><strong>${escapeHtml(priorityLabels[data.priority] ?? data.priority)}</strong></td></tr>` : ''}
       ${safeMessage ? `<tr><td valign="top"><strong>Üzenet</strong></td><td>${safeMessage}</td></tr>` : ''}
       <tr><td><strong>Forrás</strong></td><td>${escapeHtml(data.source ?? 'unknown')}</td></tr>
       <tr><td><strong>IP</strong></td><td>${escapeHtml(clientAddress ?? 'n/a')}</td></tr>
@@ -131,14 +186,10 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
   if (!RESEND_API_KEY) {
     // Degraded mode: kulcs nincs, csak loggolunk és success-t adunk.
-    // (Ferenc bekapcsolja a Vercel env-ben + aurapro.hu domain-verifikáció után aktiválódik.)
-    log('warn', 'resend_disabled_no_key', {
-      lead: { name: data.name, company: data.company, phone: data.phone, service: data.service },
-    });
-    return new Response(JSON.stringify({ ok: true, mode: 'degraded' }), {
-      status: 200,
-      headers: { 'content-type': 'application/json' },
-    });
+    // A TELJES lead-payload megy a logba, hogy egyetlen lead se vesszen el
+    // (Vercel runtime logból visszanyerhető, amíg a Resend nincs élesítve).
+    log('warn', 'resend_disabled_no_key', { lead: data });
+    return successResponse({ ok: true, mode: 'degraded' });
   }
 
   const resend = new Resend(RESEND_API_KEY);
@@ -187,10 +238,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
     // Akkor is success, ha csak az admin notification ment ki (a confirm bónusz).
     if (adminResult.status === 'fulfilled') {
-      return new Response(JSON.stringify({ ok: true, requestId }), {
-        status: 200,
-        headers: { 'content-type': 'application/json' },
-      });
+      return successResponse({ ok: true, requestId });
     } else {
       return new Response(JSON.stringify({ ok: false, error: 'email_send_failed', requestId }), {
         status: 502,

@@ -1,5 +1,42 @@
 @import "tailwindcss";
 
+/* Self-hosted fontok (latin + latin-ext – magyar ő/ű) – Google Fonts kivezetve (P0-5) */
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/montserrat-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/montserrat-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/montserrat-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/inter-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/inter-500.woff2") format("woff2");
+}
+
 @theme {
   /* Márka színek */
   --color-teal: #1a8a8a;
@@ -21,21 +58,38 @@
   --font-body: "Inter", sans-serif;
 }
 
-/* Base stílusok */
-html {
-  scroll-behavior: smooth;
+/* Hero: sötét teal gradiens + finom technikai rács-mintázat (a lapos szürke helyett) */
+.hero-gradient {
+  background: linear-gradient(135deg, #175e5e 0%, #1d8f8f 55%, #27acac 100%);
 }
 
-body {
-  font-family: var(--font-body);
-  color: var(--color-body);
-  line-height: 1.6;
+.hero-pattern {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse at 30% 40%, black 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at 30% 40%, black 0%, transparent 75%);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  color: var(--color-heading);
-  line-height: 1.2;
+/* Base stílusok – @layer base-ben, hogy a Tailwind utility-k (pl. text-white
+   a sötét hátterű hero/CTA címsorokon) felül tudják írni */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-body);
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-heading);
+    line-height: 1.2;
+  }
 }
 
 /* Scroll animációk */

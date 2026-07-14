@@ -1,6 +1,8 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
-import ContactForm from '../components/ContactForm.astro';
+import QuoteBand from '../components/QuoteBand.astro';
+import { Image } from 'astro:assets';
+import serviceMv from '../assets/images/service-munkavedelem.jpg';
 
 // P0-4: Service JSON-LD
 const serviceSchema = {
@@ -39,7 +41,7 @@ const serviceSchema = {
           </div>
         </div>
         <div class="hidden lg:block">
-          <img src="/images/kockazatertekeles.jpg" alt="Kockázatértékelés munkahelyen" class="rounded-2xl shadow-lg" loading="lazy" />
+          <Image src={serviceMv} alt="Kockázatértékelés munkahelyen – szakértő gépátvizsgálás közben" widths={[640, 1024]} sizes="(min-width: 1024px) 50vw, 100vw" class="rounded-2xl shadow-lg" loading="lazy" />
         </div>
       </div>
     </div>
@@ -90,5 +92,5 @@ const serviceSchema = {
     </div>
   </section>
 
-  <ContactForm inline />
+  <QuoteBand formSource="band-kockazatertekeles" services={['munkavedelem']} />
 </PageLayout>
