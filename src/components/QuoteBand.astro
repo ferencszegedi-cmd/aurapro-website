@@ -15,6 +15,8 @@ interface Props {
   title?: string;
   /** Sáv-alcím felülírása. */
   subtitle?: string;
+  /** Opcionális szekció-id (pl. hero CTA #ajanlat horgonyához). */
+  anchorId?: string;
 }
 
 const {
@@ -22,10 +24,11 @@ const {
   services,
   title = 'Kérjen ingyenes felmérést és ajánlatot',
   subtitle = 'Fél perc alatt kitölthető – 24 órán belül visszahívjuk!',
+  anchorId,
 } = Astro.props;
 ---
 
-<section class="py-12 lg:py-16 bg-orange">
+<section id={anchorId} class="py-12 lg:py-16 bg-orange scroll-mt-4">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
     <h2 class="font-heading font-bold text-2xl lg:text-3xl text-white">{title}</h2>
     <p class="mt-2 text-white/80 text-lg">{subtitle}</p>
