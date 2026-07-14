@@ -74,7 +74,7 @@ const faqSchema = {
   <section class="py-12 lg:py-16 bg-white border-b border-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-center font-heading font-bold text-3xl lg:text-4xl text-heading">Akik már minket választottak</h2>
-      <p class="mt-3 mb-12 text-center text-muted text-sm font-medium uppercase tracking-[0.15em]">100+ fős vállalatok megbízható partnere</p>
+      <p class="mt-3 mb-12 text-center text-body text-base lg:text-lg font-semibold uppercase tracking-[0.15em]">100+ fős vállalatok megbízható partnere</p>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8 lg:gap-12 items-center justify-items-center grayscale hover:grayscale-0 transition-all duration-500">
         <a href="/referenciak/#epitoipar-kivitelezes"><img src="/referenciak/audi.jpg" alt="Audi" class="h-24 object-contain" loading="lazy" /></a>
         <a href="/referenciak/#gyartas-ipar"><img src="/referenciak/siemens.jpg" alt="Siemens" class="h-24 object-contain" loading="lazy" /></a>
@@ -90,7 +90,10 @@ const faqSchema = {
         <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/budapest-kozut.jpg" alt="Budapest Közút" class="h-24 object-contain" loading="lazy" /></a>
       </div>
       <div class="mt-10 text-center">
-        <a href="/referenciak/" class="text-teal font-heading text-xl font-semibold hover:text-teal-dark transition-colors">+36 másik cég &rarr;</a>
+        <a href="/referenciak/" class="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-teal text-teal font-heading font-bold text-xl rounded-lg hover:bg-teal hover:text-white transition-colors">
+          +36 másik cég
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
       </div>
     </div>
   </section>
