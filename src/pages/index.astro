@@ -70,30 +70,27 @@ const faqSchema = {
   <!-- Social proof numbers -->
   <StatCounter />
 
-  <!-- Enterprise trust-sáv: a legerősebb referencia-logók közvetlenül a hajtás alatt -->
-  <section class="bg-white py-8 border-b border-border">
+  <!-- Referencia-logófal: a legerősebb bizalmi elem közvetlenül a hajtás után -->
+  <section class="py-12 lg:py-16 bg-white border-b border-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-center text-muted text-xs font-medium uppercase tracking-[0.15em]">
-        100+ fős vállalatok megbízható partnere
-      </p>
-      <div class="mt-5 flex flex-wrap justify-center items-center gap-x-10 gap-y-4">
-        {[
-          { name: 'Audi', img: '/referenciak/audi.jpg' },
-          { name: 'Siemens', img: '/referenciak/siemens.jpg' },
-          { name: 'Richter Gedeon', img: '/referenciak/richter.jpg' },
-          { name: 'Porsche', img: '/referenciak/porsche.jpg' },
-          { name: 'DM', img: '/referenciak/dm.jpg' },
-          { name: 'Primark', img: '/referenciak/primark.jpg' },
-        ].map((logo) => (
-          <img
-            src={logo.img}
-            alt={logo.name}
-            class="h-10 max-w-[120px] object-contain grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
-            loading="lazy"
-            width="120"
-            height="40"
-          />
-        ))}
+      <h2 class="text-center font-heading font-bold text-3xl lg:text-4xl text-heading">Akik már minket választottak</h2>
+      <p class="mt-3 mb-12 text-center text-muted text-sm font-medium uppercase tracking-[0.15em]">100+ fős vállalatok megbízható partnere</p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8 lg:gap-12 items-center justify-items-center grayscale hover:grayscale-0 transition-all duration-500">
+        <a href="/referenciak/#epitoipar-kivitelezes"><img src="/referenciak/audi.jpg" alt="Audi" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#gyartas-ipar"><img src="/referenciak/siemens.jpg" alt="Siemens" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#epitoipar-kivitelezes"><img src="/referenciak/richter.jpg" alt="Richter Gedeon" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/dm.jpg" alt="DM" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/primark.jpg" alt="Primark" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/porsche.jpg" alt="Porsche" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#epitoipar-kivitelezes"><img src="/referenciak/egis.jpg" alt="Egis" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/bnp.jpg" alt="BNP Paribas" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/libri.jpg" alt="Libri" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/adecco.jpg" alt="Adecco" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/pepco.jpg" alt="Pepco" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/budapest-kozut.jpg" alt="Budapest Közút" class="h-24 object-contain" loading="lazy" /></a>
+      </div>
+      <div class="mt-10 text-center">
+        <a href="/referenciak/" class="text-teal font-heading text-xl font-semibold hover:text-teal-dark transition-colors">+36 másik cég &rarr;</a>
       </div>
     </div>
   </section>
@@ -219,30 +216,6 @@ const faqSchema = {
           Kérjen ingyenes ajánlatot
           <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Reference logos -->
-  <section class="pt-4 pb-12 lg:pt-6 lg:pb-16 bg-surface">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-center font-heading font-bold text-3xl lg:text-4xl text-heading mb-12">Akik már minket választottak</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8 lg:gap-12 items-center justify-items-center grayscale hover:grayscale-0 transition-all duration-500">
-        <a href="/referenciak/#epitoipar-kivitelezes"><img src="/referenciak/audi.jpg" alt="Audi" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#gyartas-ipar"><img src="/referenciak/siemens.jpg" alt="Siemens" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#epitoipar-kivitelezes"><img src="/referenciak/richter.jpg" alt="Richter Gedeon" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/dm.jpg" alt="DM" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/primark.jpg" alt="Primark" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/porsche.jpg" alt="Porsche" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#epitoipar-kivitelezes"><img src="/referenciak/egis.jpg" alt="Egis" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/bnp.jpg" alt="BNP Paribas" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/libri.jpg" alt="Libri" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/adecco.jpg" alt="Adecco" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#kereskedelem-szolgaltatas"><img src="/referenciak/pepco.jpg" alt="Pepco" class="h-24 object-contain" loading="lazy" /></a>
-        <a href="/referenciak/#szolgaltatas-kozszfera"><img src="/referenciak/budapest-kozut.jpg" alt="Budapest Közút" class="h-24 object-contain" loading="lazy" /></a>
-      </div>
-      <div class="mt-10 text-center">
-        <a href="/referenciak/" class="text-teal font-heading text-xl font-semibold hover:text-teal-dark transition-colors">+36 másik cég &rarr;</a>
       </div>
     </div>
   </section>
