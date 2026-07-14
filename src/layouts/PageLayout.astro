@@ -3,17 +3,19 @@ import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MobileStickyBar from '../components/MobileStickyBar.astro';
+import ExitIntentPopup from '../components/ExitIntentPopup.astro';
 
 interface Props {
   title: string;
   description: string;
   canonical?: string;
+  noIndex?: boolean;
 }
 
-const { title, description, canonical } = Astro.props;
+const { title, description, canonical, noIndex = false } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} canonical={canonical}>
+<BaseLayout title={title} description={description} canonical={canonical} noIndex={noIndex}>
   <Fragment slot="head"><slot name="head" /></Fragment>
   <Header />
   <main>
@@ -21,4 +23,5 @@ const { title, description, canonical } = Astro.props;
   </main>
   <Footer />
   <MobileStickyBar />
+  <ExitIntentPopup />
 </BaseLayout>
