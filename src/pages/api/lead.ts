@@ -20,7 +20,7 @@ const LeadSchema = z.object({
     .regex(/^[0-9+\-()\s]+$/, 'Telefonszám érvénytelen karaktereket tartalmaz'),
   email: z.string().trim().email('Érvénytelen email').max(255),
   // service mező opcionális – a frontend-en már nincs select, de ha valami más kliens küldené, elfogadjuk
-  service: z.enum(['munkavedelem', 'tuzvedelem', 'kornyezetvedelem', 'komplex', 'egyeb']).optional(),
+  service: z.enum(['munkavedelem', 'tuzvedelem', 'kornyezetvedelem', 'kepzes', 'komplex', 'egyeb']).optional(),
   message: z.string().trim().max(2000).optional().or(z.literal('')),
   gdpr_consent: z.literal('1', { message: 'GDPR hozzájárulás kötelező' }),
   // Honnan jött (analytics) – nem kötelező
@@ -35,6 +35,7 @@ const serviceLabels: Record<string, string> = {
   munkavedelem: 'Munkavédelem',
   tuzvedelem: 'Tűzvédelem',
   kornyezetvedelem: 'Környezetvédelem',
+  kepzes: 'Képzés / oktatás',
   komplex: 'Komplex (MV + TV + KV)',
   egyeb: 'Egyéb / nem tudom',
 };
