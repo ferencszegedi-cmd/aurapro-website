@@ -3,6 +3,7 @@
 // NINCS navigáció, egy cél: wizard-kitöltés vagy telefonhívás.
 // Mobil sorrend: tömör H1 + trust-chipek + WIZARD (above the fold) → bullets → többi.
 import QuoteWizard from './QuoteWizard.astro';
+import type { ServiceValue } from '../lib/lead-types';
 import FaqAccordion from './FaqAccordion.astro';
 
 interface Step {
@@ -30,13 +31,13 @@ interface Props {
   quoteAuthor: string;
   /** Form data-form forrás-azonosító (analytics) */
   formSource: string;
-  /** lead.ts service enum értéke (a wizard 1. lépését átugorja) */
-  service: 'munkavedelem' | 'tuzvedelem' | 'kornyezetvedelem' | 'kepzes' | 'komplex' | 'egyeb';
+  /** Előre bepipált szolgáltatások a wizard 1. lépésén */
+  services: ServiceValue[];
   /** Kifogáskezelő FAQ – ha nincs megadva, az alap enterprise-lista jelenik meg */
   faqItems?: FaqItem[];
 }
 
-const { headline, subhead, bullets, steps, quote, quoteAuthor, formSource, service, faqItems } =
+const { headline, subhead, bullets, steps, quote, quoteAuthor, formSource, services, faqItems } =
   Astro.props;
 
 const PHONE_DISPLAY = '+36 70 409 8764';
@@ -120,7 +121,7 @@ const trustChips = [
 
       <!-- B: ajánlatkérő wizard (mobil: 2. – above the fold; desktop: jobb hasáb) -->
       <div class="lg:col-start-2 lg:row-start-1 lg:row-span-2">
-        <QuoteWizard formSource={formSource} service={service} anchorId="lp-form" compact />
+        <QuoteWizard formSource={formSource} services={services} anchorId="lp-form" compact />
       </div>
 
       <!-- C: bullets + garancia-badge (mobil: a wizard alatt) -->
@@ -266,7 +267,7 @@ const trustChips = [
     </div>
 
     <div class="mt-8 scroll-mt-4">
-      <QuoteWizard formSource={`${formSource}-bottom`} service={service} anchorId="lp-form-bottom" />
+      <QuoteWizard formSource={`${formSource}-bottom`} services={services} anchorId="lp-form-bottom" />
     </div>
   </div>
 </section>

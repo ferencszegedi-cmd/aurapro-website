@@ -19,8 +19,10 @@ const LeadSchema = z.object({
     .max(30)
     .regex(/^[0-9+\-()\s]+$/, 'Telefonszám érvénytelen karaktereket tartalmaz'),
   email: z.string().trim().email('Érvénytelen email').max(255),
-  // service mező opcionális – a frontend-en már nincs select, de ha valami más kliens küldené, elfogadjuk
+  // service mező opcionális – legacy egyértékű mező, ha valami régi kliens küldené
   service: z.enum(['munkavedelem', 'tuzvedelem', 'kornyezetvedelem', 'kepzes', 'komplex', 'egyeb']).optional(),
+  // services: a wizard többes választása, vesszővel fűzött slug-lista
+  services: z.string().trim().max(300).optional().or(z.literal('')),
   message: z.string().trim().max(2000).optional().or(z.literal('')),
   gdpr_consent: z.literal('1', { message: 'GDPR hozzájárulás kötelező' }),
   // Honnan jött (analytics) – nem kötelező
@@ -35,6 +37,10 @@ const serviceLabels: Record<string, string> = {
   munkavedelem: 'Munkavédelem',
   tuzvedelem: 'Tűzvédelem',
   kornyezetvedelem: 'Környezetvédelem',
+  elsosegely: 'Elsősegélynyújtó képzés',
+  'mv-kepviselo': 'Munkavédelmi képviselő képzés',
+  gepvizsgalat: 'Elektromos mérés / gépvizsgálat',
+  // legacy értékek (régi kliensek)
   kepzes: 'Képzés / oktatás',
   komplex: 'Komplex (MV + TV + KV)',
   egyeb: 'Egyéb / nem tudom',
@@ -84,6 +90,11 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     ) {
       const form = await request.formData();
       raw = Object.fromEntries(form.entries());
+      // Többértékű checkbox-mező: az Object.fromEntries csak az utolsót tartaná meg
+      const allServices = form.getAll('services').filter((v) => typeof v === 'string');
+      if (allServices.length > 0) {
+        (raw as Record<string, unknown>).services = allServices.join(',');
+      }
       isNativeFormPost = true;
     } else {
       log('warn', 'unsupported_content_type', { contentType });
@@ -145,7 +156,14 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   const LEAD_FROM =
     import.meta.env.LEAD_FROM_EMAIL || process.env.LEAD_FROM_EMAIL || 'Aurapro Lead <noreply@aurapro.hu>';
 
-  const serviceLabel = data.service ? (serviceLabels[data.service] ?? data.service) : '';
+  // services (többes, vesszős lista) elsőbbséget élvez a legacy service mezővel szemben
+  const servicesLabelList = (data.services ?? '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((s) => serviceLabels[s] ?? s)
+    .join(', ');
+  const serviceLabel = servicesLabelList || (data.service ? (serviceLabels[data.service] ?? data.service) : '');
   const safeMessage = data.message ? escapeHtml(data.message).replace(/\n/g, '<br>') : '';
   const adminBody = `
     <h2>Új lead – ${escapeHtml(data.company)}</h2>

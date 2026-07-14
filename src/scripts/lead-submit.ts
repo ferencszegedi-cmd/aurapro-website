@@ -27,6 +27,12 @@ export async function submitLead(form: HTMLFormElement): Promise<SubmitResult> {
   formData.forEach((value, key) => {
     payload[key] = typeof value === 'string' ? value : '';
   });
+  // Több szolgáltatás-checkbox → vesszővel fűzött lista (a forEach csak az utolsót tartaná meg)
+  const services = formData
+    .getAll('services')
+    .filter((v): v is string => typeof v === 'string' && v.length > 0)
+    .join(',');
+  if (services) payload.services = services;
   payload.source = form.dataset.form ?? 'unknown';
 
   try {
@@ -41,7 +47,7 @@ export async function submitLead(form: HTMLFormElement): Promise<SubmitResult> {
       try {
         sessionStorage.setItem(
           'aurapro_lead',
-          JSON.stringify({ form_id: payload.source, service: payload.service ?? '' }),
+          JSON.stringify({ form_id: payload.source, service: payload.services ?? payload.service ?? '' }),
         );
       } catch {
         /* sessionStorage tiltva – a konverzió attribúció nélkül is elsül */

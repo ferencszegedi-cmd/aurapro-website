@@ -4,12 +4,13 @@
  * Oldal-aljakra való: színes sáv + középre igazított wizard-kártya.
  */
 import QuoteWizard from './QuoteWizard.astro';
+import type { ServiceValue } from '../lib/lead-types';
 
 interface Props {
   /** data-form forrás-azonosító (analytics) – oldalanként egyedi legyen! */
   formSource: string;
-  /** Előre kiválasztott szolgáltatás – a wizard a 2. lépésnél indul. */
-  service?: 'munkavedelem' | 'tuzvedelem' | 'kornyezetvedelem' | 'kepzes' | 'komplex' | 'egyeb';
+  /** Előre bepipált szolgáltatások a wizard 1. lépésén. */
+  services?: ServiceValue[];
   /** Sáv-címsor felülírása. */
   title?: string;
   /** Sáv-alcím felülírása. */
@@ -18,7 +19,7 @@ interface Props {
 
 const {
   formSource,
-  service,
+  services,
   title = 'Kérjen ingyenes felmérést és ajánlatot',
   subtitle = '1 perc alatt kitölthető – 24 órán belül visszahívjuk!',
 } = Astro.props;
@@ -30,7 +31,7 @@ const {
     <p class="mt-2 text-white/80 text-lg">{subtitle}</p>
 
     <div class="mt-8 max-w-2xl mx-auto">
-      <QuoteWizard formSource={formSource} service={service} />
+      <QuoteWizard formSource={formSource} services={services} />
     </div>
 
     <div class="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-white/80 text-sm">
