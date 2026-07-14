@@ -74,13 +74,6 @@ const serviceColumns = [
   ],
 ];
 
-const headcounts = [
-  { value: '1-49', label: '50 alatt' },
-  { value: '50-99', label: '50–99' },
-  { value: '100-249', label: '100–249' },
-  { value: '250-999', label: '250–999' },
-  { value: '1000+', label: '1000+' },
-];
 ---
 
 <form
@@ -153,7 +146,7 @@ const headcounts = [
 
   <!-- 2. lépés: cégadatok -->
   <fieldset data-step="2" class="mt-5 border-0 p-0 m-0">
-    <legend class="font-heading font-semibold text-heading mb-3">Cégadatok – kihez küldhetjük az ajánlatot?</legend>
+    <legend class="sr-only">Cégadatok</legend>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
       <div>
         <label for={`${idBase}-company`} class="block text-sm font-medium text-heading mb-1">Cég neve *</label>
@@ -180,18 +173,6 @@ const headcounts = [
           class="w-full px-4 py-3 rounded-lg border border-border text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:border-teal focus:outline-none" />
         <p data-field-error="email" class="hidden mt-1 text-xs text-red-600"></p>
       </div>
-    </div>
-
-    <p class="block text-sm font-medium text-heading mt-4 mb-1.5">Munkavállalói létszám</p>
-    <div class="flex flex-wrap gap-2">
-      {headcounts.map((h) => (
-        <label class="svc cursor-pointer">
-          <input type="radio" name="headcount" value={h.value} class="sr-only" />
-          <span class="svc-card inline-block rounded-full border-2 border-border px-3.5 py-1.5 text-sm font-semibold text-heading transition-all hover:border-teal/50">
-            {h.label}
-          </span>
-        </label>
-      ))}
     </div>
 
     <label for={`${idBase}-message`} class="block text-sm font-medium text-heading mt-4 mb-1">
