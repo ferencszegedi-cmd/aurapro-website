@@ -16,9 +16,21 @@ const ADS_LEAD_LABEL = import.meta.env.PUBLIC_ADS_LEAD_LABEL ?? '';
   <script slot="head" is:inline define:vars={{ ADS_ID, ADS_LEAD_LABEL }}>
     (function () {
       if (typeof window === 'undefined') return;
+      // A submit-oldali script sessionStorage-ba teszi a form_id/service párost,
+      // így a konverzió LP-nként attribútálható GA4-ben (per-LP CPL).
+      var attribution = {};
+      try {
+        attribution = JSON.parse(sessionStorage.getItem('aurapro_lead') || '{}');
+        sessionStorage.removeItem('aurapro_lead');
+      } catch (e) { /* ignored */ }
       function fireConversion() {
         if (typeof window.gtag !== 'function') return;
-        window.gtag('event', 'generate_lead', { value: 1, currency: 'HUF' });
+        window.gtag('event', 'generate_lead', {
+          value: 1,
+          currency: 'HUF',
+          form_id: attribution.form_id || undefined,
+          service: attribution.service || undefined,
+        });
         // Google Ads conversion (csak ha PUBLIC_ADS_CONVERSION_ID + PUBLIC_ADS_LEAD_LABEL env-ben van)
         if (ADS_ID && ADS_LEAD_LABEL) {
           window.gtag('event', 'conversion', {

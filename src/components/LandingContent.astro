@@ -1,13 +1,18 @@
 ---
-// P1-4: Google Ads landing oldalak közös tartalom-komponense.
-// A 3 LP (munkavedelem / tuzvedelem / komplex) ezt használja, csak a
-// téma-specifikus szövegeket adja át prop-ként. NINCS navigáció, egy cél:
-// form-kitöltés vagy telefonhívás. Minimális JS (a form-script a ContactForm-é).
-import ContactForm from './ContactForm.astro';
+// P1-4 + CRO Fázis 2: Google Ads landing oldalak közös tartalom-komponense.
+// NINCS navigáció, egy cél: wizard-kitöltés vagy telefonhívás.
+// Mobil sorrend: tömör H1 + trust-chipek + WIZARD (above the fold) → bullets → többi.
+import QuoteWizard from './QuoteWizard.astro';
+import FaqAccordion from './FaqAccordion.astro';
 
 interface Step {
   title: string;
   desc: string;
+}
+
+interface FaqItem {
+  question: string;
+  answer: string;
 }
 
 interface Props {
@@ -25,15 +30,48 @@ interface Props {
   quoteAuthor: string;
   /** Form data-form forrás-azonosító (analytics) */
   formSource: string;
-  /** lead.ts service enum értéke (előre kitöltött rejtett mező) */
-  service: 'munkavedelem' | 'tuzvedelem' | 'komplex';
+  /** lead.ts service enum értéke (a wizard 1. lépését átugorja) */
+  service: 'munkavedelem' | 'tuzvedelem' | 'kornyezetvedelem' | 'komplex' | 'egyeb';
+  /** Kifogáskezelő FAQ – ha nincs megadva, az alap enterprise-lista jelenik meg */
+  faqItems?: FaqItem[];
 }
 
-const { headline, subhead, bullets, steps, quote, quoteAuthor, formSource, service } =
+const { headline, subhead, bullets, steps, quote, quoteAuthor, formSource, service, faqItems } =
   Astro.props;
 
 const PHONE_DISPLAY = '+36 70 409 8764';
 const PHONE_TEL = '+36704098764';
+
+// Alap kifogáskezelő FAQ (felülírható a faqItems proppal)
+const defaultFaq: FaqItem[] = [
+  {
+    question: 'Mennyibe kerül a szolgáltatás?',
+    answer:
+      'Minden ajánlatunk személyre szabott: a létszám, a telephelyek száma és a tevékenység kockázati szintje határozza meg. Ingyenes helyszíni felmérés után 24 órán belül konkrét, átlátható ajánlatot adunk – kötelezettségmentesen.',
+  },
+  {
+    question: 'Mennyi idő alatt tudnak kezdeni?',
+    answer:
+      'Szerződéskötés után jellemzően 1–2 héten belül megkezdjük a munkát. Sürgős esetben – például hatósági határidő vagy ellenőrzés előtt – soron kívül is tudunk kapacitást biztosítani, 30 szakértőnk országos lefedettséggel dolgozik.',
+  },
+  {
+    question: 'Mi történik az ajánlatkérés után?',
+    answer:
+      '24 órán belül visszahívjuk. Egyeztetünk egy ingyenes helyszíni felmérést, ahol megismerjük a cég működését, majd személyre szabott ajánlatot készítünk. A felmérés semmilyen kötelezettséggel nem jár.',
+  },
+  {
+    question: 'Mi van, ha mégis bírságot kapunk?',
+    answer:
+      'Az általunk gondozott területen kapott bírságot 40 millió Ft-ig megtérítjük – ez a piacon egyedülálló bírsággarancia. Közel 20 év alatt egyetlen partnerünk sem kapott bírságot, így erre még sosem volt szükség.',
+  },
+  {
+    question: 'Nagyvállalatokkal is dolgoznak?',
+    answer:
+      'Kifejezetten erre specializálódtunk. 48+ partnerünk jelentős része 100 fő feletti vállalat – köztük az Audi, a Siemens, a Richter és a Primark –, több telephelyes működéssel. A modellünk nagy szervezeteknél a leghatékonyabb.',
+  },
+];
+
+const faq = faqItems ?? defaultFaq;
 
 // 12 ismert nagyvállalati logó a grayscale bizalmi sávhoz (a public/referenciak/ alól)
 const trustLogos = [
@@ -50,22 +88,46 @@ const trustLogos = [
   { name: 'BNP Paribas', img: '/referenciak/bnp.jpg' },
   { name: 'Budapest Közút', img: '/referenciak/budapest-kozut.jpg' },
 ];
+
+const trustChips = [
+  '40M Ft bírsággarancia',
+  '0 bírság közel 20 év alatt',
+  '30 szakértő országszerte',
+];
 ---
 
-<!-- (2) HERO – kétoszlopos: bal = headline + bullets, jobb = form above the fold -->
-<section class="bg-gradient-to-br from-teal-light to-white py-10 lg:py-16">
+<!-- (2) HERO – mobil: H1 + chipek + WIZARD a hajtás fölött; desktop: kétoszlopos -->
+<section class="bg-gradient-to-br from-teal-light to-white py-8 lg:py-16">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
-      <!-- Bal: érték-ajánlat -->
+    <div class="grid lg:grid-cols-2 gap-x-14 gap-y-6 lg:gap-y-8 items-start">
+      <!-- A: headline + subhead + trust-chipek (mobil: 1.) -->
       <div>
         <h1 class="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-heading leading-tight">
           {headline}
         </h1>
-        <p class="mt-4 text-lg text-body leading-relaxed">{subhead}</p>
+        <p class="mt-3 lg:mt-4 text-base lg:text-lg text-body leading-relaxed">{subhead}</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          {trustChips.map((chip) => (
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-white/80 border border-teal/20 px-3 py-1.5 text-xs sm:text-sm font-semibold text-teal-dark">
+              <svg class="w-3.5 h-3.5 text-teal shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+              {chip}
+            </span>
+          ))}
+        </div>
+      </div>
 
-        <ul class="mt-8 space-y-3">
+      <!-- B: ajánlatkérő wizard (mobil: 2. – above the fold; desktop: jobb hasáb) -->
+      <div class="lg:col-start-2 lg:row-start-1 lg:row-span-2">
+        <QuoteWizard formSource={formSource} service={service} anchorId="lp-form" compact />
+      </div>
+
+      <!-- C: bullets + garancia-badge (mobil: a wizard alatt) -->
+      <div class="lg:col-start-1">
+        <ul class="space-y-3">
           {bullets.map((b) => (
-            <li class="flex items-start gap-3 text-body text-lg">
+            <li class="flex items-start gap-3 text-body text-base lg:text-lg">
               <svg class="w-6 h-6 text-teal shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
               </svg>
@@ -74,7 +136,7 @@ const trustLogos = [
           ))}
         </ul>
 
-        <div class="mt-8 inline-flex items-center gap-3 rounded-xl bg-teal-dark px-5 py-4 text-white">
+        <div class="mt-6 inline-flex items-center gap-3 rounded-xl bg-teal-dark px-5 py-4 text-white">
           <svg class="w-7 h-7 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
@@ -84,24 +146,15 @@ const trustLogos = [
           </div>
         </div>
       </div>
-
-      <!-- Jobb: ajánlatkérő form (above the fold) -->
-      <div class="bg-white rounded-2xl border border-border shadow-xl p-6 sm:p-8">
-        <h2 class="font-heading font-bold text-2xl text-heading">Kérjen ingyenes ajánlatot</h2>
-        <p class="mt-1 text-muted">24 órán belül visszahívjuk – kötelezettségmentesen.</p>
-        <div class="mt-6">
-          <ContactForm formSource={formSource} service={service} />
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- (3) REFERENCIA-LOGÓK – grayscale bizalmi sáv -->
+<!-- (3) REFERENCIA-LOGÓK – grayscale bizalmi sáv (enterprise-üzenettel) -->
 <section class="bg-white py-10 lg:py-14 border-y border-border">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <p class="text-center text-muted text-sm font-medium uppercase tracking-wide">
-      Több mint 48 cég bízza ránk a megfelelőségét
+      100+ fős vállalatok megbízható partnere – több mint 48 cég bízza ránk a megfelelőségét
     </p>
     <div class="mt-8 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-x-6 gap-y-8 items-center">
       {trustLogos.map((logo) => (
@@ -151,7 +204,45 @@ const trustLogos = [
   </div>
 </section>
 
-<!-- (6) FORM MEGISMÉTELVE + telefon-CTA -->
+<!-- (5b) FELELŐSSÉG-ÁTVÁLLALÁS – "A felelősséget mi visszük" -->
+<section class="bg-heading py-12 lg:py-16">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="font-heading font-bold text-2xl lg:text-3xl text-white">
+      A felelősséget mi visszük
+    </h2>
+    <p class="mt-4 text-white/85 text-lg leading-relaxed">
+      Egy hatósági ellenőrzésnél vagy munkabalesetnél a vezető személyesen felel.
+      Nálunk ez másképp működik: az általunk gondozott területekért
+      <strong class="text-white">40 millió Ft-ig anyagi felelősséget vállalunk</strong> –
+      írásban, biztosítási fedezettel.
+    </p>
+    <details class="mt-6 mx-auto max-w-2xl text-left rounded-xl bg-white/5 border border-white/15 open:bg-white/10 transition-colors">
+      <summary class="cursor-pointer list-none px-5 py-4 font-heading font-semibold text-white flex items-center justify-between">
+        Hogyan működik a bírsággarancia?
+        <svg class="w-5 h-5 shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </summary>
+      <div class="px-5 pb-5 text-white/80 text-sm leading-relaxed space-y-2">
+        <p>1. Szerződésben rögzítjük, mely területek tartoznak a gondozásunkba (munkavédelem, tűzvédelem, környezetvédelem).</p>
+        <p>2. Ha ezeken a területeken a mi mulasztásunk miatt érné bírság a céget, azt 40 millió Ft-ig megtérítjük – a garancia mögött valódi biztosítási kötvény áll.</p>
+        <p>3. Közel 20 év alatt egyetlen partnerünk sem kapott bírságot, így erre még sosem volt szükség.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- (5c) KIFOGÁSKEZELŐ FAQ -->
+<section class="bg-surface py-12 lg:py-16">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="font-heading font-bold text-2xl lg:text-3xl text-heading text-center mb-8">
+      Gyakori kérdések
+    </h2>
+    <FaqAccordion items={faq} />
+  </div>
+</section>
+
+<!-- (6) WIZARD MEGISMÉTELVE + telefon-CTA -->
 <section class="bg-gradient-to-br from-teal-dark to-teal py-14 lg:py-20">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center">
@@ -171,10 +262,11 @@ const trustLogos = [
         </svg>
         Hívás most: {PHONE_DISPLAY}
       </a>
+      <p class="mt-2 text-white/70 text-sm">Hétfő–péntek 8:00–17:00</p>
     </div>
 
-    <div class="mt-8 bg-white rounded-2xl shadow-xl p-6 sm:p-8 scroll-mt-4">
-      <ContactForm formSource={`${formSource}-bottom`} service={service} anchorId="lp-form-bottom" />
+    <div class="mt-8 scroll-mt-4">
+      <QuoteWizard formSource={`${formSource}-bottom`} service={service} anchorId="lp-form-bottom" />
     </div>
   </div>
 </section>
@@ -197,7 +289,7 @@ const trustLogos = [
       <span>Hívás</span>
     </a>
     <a
-      href="#lp-form-bottom"
+      href="#lp-form"
       class="flex items-center justify-center gap-2 bg-orange text-white font-heading font-semibold hover:bg-orange-dark transition-colors"
       data-cta="lp-mobile-quote"
     >
@@ -214,4 +306,6 @@ const trustLogos = [
   @media (max-width: 1023px) {
     body { padding-bottom: 3.5rem; }
   }
+  /* details nyíl forgatása nyitáskor */
+  details[open] summary svg { transform: rotate(180deg); }
 </style>

@@ -1,6 +1,6 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
-import ContactForm from '../components/ContactForm.astro';
+import QuoteBand from '../components/QuoteBand.astro';
 
 // P0-4: Service JSON-LD a bírsággarancia mint Aurapro-USP-re
 const serviceSchema = {
@@ -16,7 +16,7 @@ const serviceSchema = {
 
 <PageLayout
   title="40 millió Ft bírsággarancia – Aurapro | Egyedülálló a piacon"
-  description="Az Aurapro 40 millió Ft-ig megtéríti a bírságot, ha az általunk gondozott területen ér partnerünket szankció. 13 év – 48 ügyfél – 0 bírság."
+  description="Az Aurapro 40 millió Ft-ig megtéríti a bírságot, ha az általunk gondozott területen ér partnerünket szankció. Közel 20 év – 48 ügyfél – 0 bírság."
   canonical="/birsaggarancia/"
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceSchema)} />
@@ -95,7 +95,7 @@ const serviceSchema = {
           <h3 class="mt-4 font-heading font-semibold text-xl text-heading">Bírság esetén kifizetés</h3>
           <p class="mt-2 text-body leading-relaxed">
             Ha bírság érné Önt, és az általunk lefedett területet érinti, a kifizetést azonnal indítjuk.
-            <strong>13 év alatt erre még nem volt szükség.</strong>
+            <strong>Közel 20 év alatt erre még nem volt szükség.</strong>
           </p>
         </div>
       </div>
@@ -170,5 +170,5 @@ const serviceSchema = {
   </section>
 
   <!-- CTA band -->
-  <ContactForm inline />
+  <QuoteBand formSource="band-birsaggarancia" />
 </PageLayout>

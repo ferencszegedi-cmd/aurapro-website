@@ -1,0 +1,433 @@
+---
+/**
+ * Többlépcsős ajánlatkérő wizard (CRO-terv, Fázis 1).
+ * Német Ads-landing blueprint: 1. szolgáltatás → 2. cégméret (kvalifikáló!) →
+ * 3. prioritás ("Majdnem kész!") → 4. kapcsolati adatok (utoljára).
+ *
+ * Progressive enhancement: JS nélkül minden lépés látható, natív POST megy a
+ * /api/lead-re, ami form-encoded kérésre 303-mal a /koszonjuk/-ra irányít.
+ * A beküldés (JS-út) a közös src/scripts/lead-submit.ts modulon megy.
+ */
+interface Props {
+  /** data-form forrás-azonosító (analytics, kötelező az attribúcióhoz). */
+  formSource: string;
+  /** Előre kiválasztott szolgáltatás (LP-ken) – a wizard a 2. lépésnél indul. */
+  service?: 'munkavedelem' | 'tuzvedelem' | 'kornyezetvedelem' | 'komplex' | 'egyeb';
+  /** Opcionális id a form köré (mobil "ugrás a formhoz" anchorhoz). */
+  anchorId?: string;
+  /** Fejléc felülírása. */
+  heading?: string;
+  /** Kompaktabb padding (LP hero-kártyához). */
+  compact?: boolean;
+}
+
+const {
+  formSource,
+  service,
+  anchorId,
+  heading = 'Kérjen ingyenes ajánlatot',
+  compact = false,
+} = Astro.props;
+
+const idBase = (anchorId ?? formSource).replace(/[^a-zA-Z0-9-]/g, '');
+
+const services = [
+  { value: 'munkavedelem', label: 'Munkavédelem', desc: 'Kockázatértékelés, oktatás, szabályzatok' },
+  { value: 'tuzvedelem', label: 'Tűzvédelem', desc: 'TVSZ, tűzriadó terv, felülvizsgálatok' },
+  { value: 'kornyezetvedelem', label: 'Környezetvédelem', desc: 'Hulladék, engedélyek, bevallások' },
+  { value: 'komplex', label: 'Komplex (MV+TV+KV)', desc: 'Minden egy kézből', badge: 'Népszerű' },
+  { value: 'egyeb', label: 'Egyéb / nem tudom', desc: 'Segítünk eldönteni' },
+];
+
+const headcounts = [
+  { value: '1-49', label: '50 fő alatt' },
+  { value: '50-99', label: '50–99 fő' },
+  { value: '100-249', label: '100–249 fő' },
+  { value: '250-999', label: '250–999 fő' },
+  { value: '1000+', label: '1000+ fő' },
+];
+
+const sites = [
+  { value: '1', label: '1 telephely' },
+  { value: '2-5', label: '2–5 telephely' },
+  { value: '6+', label: '6+ telephely' },
+];
+
+const priorities = [
+  { value: 'gyorsasag', label: 'Gyors kezdés', desc: 'Mielőbb induljon a szolgáltatás' },
+  { value: 'szakertelem', label: 'Maximális szakértelem', desc: 'Iparág-specifikus tapasztalat' },
+  { value: 'komplex', label: 'Minden egy kézből', desc: 'MV + TV + KV egy partnertől' },
+];
+---
+
+<form
+  id={anchorId}
+  action="/api/lead"
+  method="POST"
+  data-form={formSource}
+  data-wizard
+  data-preselected={service ? '1' : undefined}
+  class:list={[
+    'bg-white rounded-2xl shadow-xl border border-border text-left',
+    compact ? 'p-5 lg:p-6' : 'p-6 lg:p-8',
+  ]}
+>
+  <div class="text-center">
+    <p class="font-heading font-bold text-xl lg:text-2xl text-heading">{heading}</p>
+    <p class="mt-1 text-sm text-muted">
+      <span class="text-teal font-semibold">1 perc alatt kitölthető</span> · Válasz 24 órán belül
+    </p>
+  </div>
+
+  {service && <input type="hidden" name="service" value={service} data-preselected-service />}
+
+  <!-- Progress (csak JS-sel látszik) -->
+  <div data-progress hidden class="mt-5">
+    <div class="flex items-center justify-between text-xs text-muted mb-1.5">
+      <span data-progress-label>1/4 lépés</span>
+      <span data-progress-hint class="text-teal font-semibold"></span>
+    </div>
+    <div class="flex gap-1.5">
+      {[1, 2, 3, 4].map((n) => (
+        <div data-progress-seg={n} class="h-1.5 flex-1 rounded-full bg-border transition-colors duration-300"></div>
+      ))}
+    </div>
+  </div>
+
+  <!-- 1. lépés: szolgáltatás -->
+  <fieldset data-step="1" class="mt-5 border-0 p-0 m-0">
+    <legend class="font-heading font-semibold text-heading mb-3">Melyik terület érdekli?</legend>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+      {services.map((s) => (
+        <label class="cursor-pointer relative">
+          <input
+            type="radio"
+            name="service"
+            value={s.value}
+            checked={service === s.value}
+            class="peer sr-only"
+            data-autoadvance
+          />
+          <span class="block rounded-xl border-2 border-border px-4 py-3 transition-all hover:border-teal/50 peer-checked:border-teal peer-checked:bg-teal/5 peer-focus-visible:ring-2 peer-focus-visible:ring-teal">
+            <span class="flex items-center justify-between gap-2">
+              <span class="font-semibold text-heading text-sm">{s.label}</span>
+              {s.badge && (
+                <span class="shrink-0 text-[0.65rem] font-bold uppercase tracking-wide bg-orange text-white rounded-full px-2 py-0.5">{s.badge}</span>
+              )}
+            </span>
+            <span class="block text-xs text-muted mt-0.5">{s.desc}</span>
+          </span>
+        </label>
+      ))}
+    </div>
+    <p data-step-error class="hidden mt-2 text-sm text-red-600">Kérjük, válasszon egy területet.</p>
+  </fieldset>
+
+  <!-- 2. lépés: cégméret (kvalifikáló) -->
+  <fieldset data-step="2" class="mt-5 border-0 p-0 m-0">
+    <legend class="font-heading font-semibold text-heading mb-1">Hány munkavállalójuk van?</legend>
+    <p class="text-xs text-muted mb-3">
+      Nagyvállalatokra specializálódtunk – a 100+ fős cégeknél a leghatékonyabb a modellünk.
+    </p>
+    <div class="flex flex-wrap gap-2">
+      {headcounts.map((h) => (
+        <label class="cursor-pointer">
+          <input type="radio" name="headcount" value={h.value} class="peer sr-only" />
+          <span class="inline-block rounded-full border-2 border-border px-4 py-2 text-sm font-semibold text-heading transition-all hover:border-teal/50 peer-checked:border-teal peer-checked:bg-teal peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-teal">
+            {h.label}
+          </span>
+        </label>
+      ))}
+    </div>
+    <p class="font-heading font-semibold text-heading mt-4 mb-2 text-sm">Hány telephelyen?</p>
+    <div class="flex flex-wrap gap-2">
+      {sites.map((s) => (
+        <label class="cursor-pointer">
+          <input type="radio" name="sites" value={s.value} class="peer sr-only" />
+          <span class="inline-block rounded-full border-2 border-border px-4 py-2 text-sm font-semibold text-heading transition-all hover:border-teal/50 peer-checked:border-teal peer-checked:bg-teal peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-teal">
+            {s.label}
+          </span>
+        </label>
+      ))}
+    </div>
+    <p data-step-error class="hidden mt-2 text-sm text-red-600">Kérjük, adja meg a létszámot.</p>
+  </fieldset>
+
+  <!-- 3. lépés: prioritás + üzenet -->
+  <fieldset data-step="3" class="mt-5 border-0 p-0 m-0">
+    <legend class="font-heading font-semibold text-heading mb-3">Mi a legfontosabb Önnek?</legend>
+    <div class="grid grid-cols-1 gap-2.5">
+      {priorities.map((p) => (
+        <label class="cursor-pointer">
+          <input type="radio" name="priority" value={p.value} class="peer sr-only" />
+          <span class="block rounded-xl border-2 border-border px-4 py-3 transition-all hover:border-teal/50 peer-checked:border-teal peer-checked:bg-teal/5 peer-focus-visible:ring-2 peer-focus-visible:ring-teal">
+            <span class="font-semibold text-heading text-sm">{p.label}</span>
+            <span class="block text-xs text-muted mt-0.5">{p.desc}</span>
+          </span>
+        </label>
+      ))}
+    </div>
+    <label for={`${idBase}-message`} class="block text-sm font-medium text-heading mt-4 mb-1">
+      Üzenet (opcionális)
+    </label>
+    <textarea
+      id={`${idBase}-message`}
+      name="message"
+      rows="2"
+      placeholder="Pl. iparág, határidő, speciális igény…"
+      class="w-full px-4 py-3 rounded-lg border border-border text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:border-teal focus:outline-none resize-y"
+    ></textarea>
+  </fieldset>
+
+  <!-- 4. lépés: kapcsolat -->
+  <fieldset data-step="4" class="mt-5 border-0 p-0 m-0">
+    <legend class="font-heading font-semibold text-heading mb-3">Kihez küldhetjük az ajánlatot?</legend>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div>
+        <label for={`${idBase}-name`} class="block text-sm font-medium text-heading mb-1">Név *</label>
+        <input type="text" id={`${idBase}-name`} name="name" required minlength="2" autocomplete="name"
+          class="w-full px-4 py-3 rounded-lg border border-border text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:border-teal focus:outline-none" />
+        <p data-field-error="name" class="hidden mt-1 text-xs text-red-600"></p>
+      </div>
+      <div>
+        <label for={`${idBase}-company`} class="block text-sm font-medium text-heading mb-1">Cég neve *</label>
+        <input type="text" id={`${idBase}-company`} name="company" required minlength="2" autocomplete="organization"
+          class="w-full px-4 py-3 rounded-lg border border-border text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:border-teal focus:outline-none" />
+        <p data-field-error="company" class="hidden mt-1 text-xs text-red-600"></p>
+      </div>
+      <div>
+        <label for={`${idBase}-phone`} class="block text-sm font-medium text-heading mb-1">Telefonszám *</label>
+        <input type="tel" id={`${idBase}-phone`} name="phone" required minlength="6" pattern="[0-9+\-()\s]+"
+          placeholder="+36 …" autocomplete="tel"
+          class="w-full px-4 py-3 rounded-lg border border-border text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:border-teal focus:outline-none" />
+        <p data-field-error="phone" class="hidden mt-1 text-xs text-red-600"></p>
+      </div>
+      <div>
+        <label for={`${idBase}-email`} class="block text-sm font-medium text-heading mb-1">Email *</label>
+        <input type="email" id={`${idBase}-email`} name="email" required autocomplete="email"
+          class="w-full px-4 py-3 rounded-lg border border-border text-heading placeholder:text-muted focus:ring-2 focus:ring-teal focus:border-teal focus:outline-none" />
+        <p data-field-error="email" class="hidden mt-1 text-xs text-red-600"></p>
+      </div>
+    </div>
+
+    <label class="mt-4 flex items-start gap-2 text-sm text-body">
+      <input type="checkbox" name="gdpr_consent" required value="1"
+        class="mt-1 h-4 w-4 rounded border-border text-teal focus:ring-teal" />
+      <span>
+        Elolvastam és elfogadom az
+        <a href="/adatvedelem/" target="_blank" class="underline hover:text-teal-dark">Adatkezelési tájékoztatót</a>. *
+      </span>
+    </label>
+
+    <!-- Honeypot – emberek nem látják, botok kitöltik -->
+    <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"
+      class="hidden" style="display:none !important" />
+
+    <button type="submit"
+      class="mt-4 w-full px-8 py-4 bg-orange text-white font-heading font-bold text-lg rounded-lg hover:bg-orange-dark transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
+      Ingyenes ajánlat kérése
+    </button>
+    <p class="mt-2 text-center text-xs text-muted">
+      &#10003; Válasz 24 órán belül &nbsp; &#10003; Kötelezettségmentes &nbsp; &#10003; 40M Ft bírsággarancia
+    </p>
+  </fieldset>
+
+  <p data-form-error class="hidden mt-3 text-sm text-red-600 bg-red-50 rounded px-3 py-2"></p>
+
+  <!-- Navigáció (csak JS-sel látszik) -->
+  <div data-wizard-nav hidden class="mt-5 flex items-center justify-between gap-3">
+    <button type="button" data-back
+      class="px-4 py-2.5 text-sm font-semibold text-muted hover:text-heading transition-colors invisible">
+      ← Vissza
+    </button>
+    <button type="button" data-next
+      class="px-8 py-2.5 bg-teal text-white font-heading font-semibold rounded-lg hover:bg-teal-dark transition-colors">
+      Tovább →
+    </button>
+  </div>
+</form>
+
+<script>
+  import { submitLead, gtagEvent } from '../scripts/lead-submit';
+
+  function initWizard(form: HTMLFormElement) {
+    if (form.dataset.bound === '1') return;
+    form.dataset.bound = '1';
+
+    const formId = form.dataset.form ?? 'wizard';
+    const steps = Array.from(form.querySelectorAll<HTMLFieldSetElement>('[data-step]'));
+    const nav = form.querySelector<HTMLElement>('[data-wizard-nav]');
+    const backBtn = form.querySelector<HTMLButtonElement>('[data-back]');
+    const nextBtn = form.querySelector<HTMLButtonElement>('[data-next]');
+    const progress = form.querySelector<HTMLElement>('[data-progress]');
+    const progressLabel = form.querySelector<HTMLElement>('[data-progress-label]');
+    const progressHint = form.querySelector<HTMLElement>('[data-progress-hint]');
+    const formError = form.querySelector<HTMLElement>('[data-form-error]');
+    const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const originalBtnText = submitBtn?.textContent ?? 'Küldés';
+
+    // LP-n előre kiválasztott service: az 1. lépést átugorjuk, a hidden input él.
+    // Ha a user mégis az 1. lépésre lépne vissza és választ, a hidden inputot töröljük.
+    const preselected = form.dataset.preselected === '1';
+    const hiddenService = form.querySelector<HTMLInputElement>('[data-preselected-service]');
+    let current = preselected ? 1 : 0; // 0-indexelt lépés
+
+    let started = false;
+    const markStarted = () => {
+      if (started) return;
+      started = true;
+      gtagEvent('form_start', { form_id: formId });
+    };
+    form.addEventListener('input', markStarted, { once: false });
+    form.addEventListener('change', markStarted, { once: false });
+
+    function render() {
+      steps.forEach((s, i) => {
+        s.hidden = i !== current;
+      });
+      if (progressLabel) progressLabel.textContent = `${current + 1}/${steps.length} lépés`;
+      if (progressHint) progressHint.textContent = current === 2 ? 'Majdnem kész!' : current === 3 ? 'Utolsó lépés' : '';
+      form.querySelectorAll<HTMLElement>('[data-progress-seg]').forEach((seg, i) => {
+        seg.classList.toggle('bg-teal', i <= current);
+        seg.classList.toggle('bg-border', i > current);
+      });
+      if (backBtn) backBtn.classList.toggle('invisible', current === 0);
+      if (nextBtn) nextBtn.style.display = current === steps.length - 1 ? 'none' : '';
+    }
+
+    function stepValid(index: number): boolean {
+      const step = steps[index];
+      const err = step.querySelector<HTMLElement>('[data-step-error]');
+      // 1. lépés: service kötelező; 2. lépés: headcount kötelező (kliens-oldalon)
+      let ok = true;
+      if (index === 0) {
+        ok =
+          !!form.querySelector<HTMLInputElement>('input[name="service"]:checked') ||
+          !!(hiddenService && !hiddenService.disabled);
+      } else if (index === 1) {
+        ok = !!form.querySelector<HTMLInputElement>('input[name="headcount"]:checked');
+      }
+      if (err) err.classList.toggle('hidden', ok);
+      return ok;
+    }
+
+    function goTo(index: number) {
+      current = Math.max(0, Math.min(steps.length - 1, index));
+      render();
+      gtagEvent('form_step', { form_id: formId, step: current + 1 });
+      // A kártya tetejére görgetés, ha a lépésváltásnál a form teteje kilóg
+      const rect = form.getBoundingClientRect();
+      if (rect.top < 0) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    nextBtn?.addEventListener('click', () => {
+      if (!stepValid(current)) return;
+      goTo(current + 1);
+    });
+
+    // Enter az utolsó lépés előtt NE süsse el a formot – lépjen tovább helyette
+    form.addEventListener('keydown', (e) => {
+      const target = e.target as HTMLElement;
+      if (e.key === 'Enter' && current < steps.length - 1 && target.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+        if (stepValid(current)) goTo(current + 1);
+      }
+    });
+
+    backBtn?.addEventListener('click', () => {
+      if (current === 0) return;
+      // Preselected LP-n a 0. lépésre visszalépve a hidden service-t elengedjük,
+      // hogy ne legyen dupla service mező a payloadban.
+      if (current === 1 && preselected && hiddenService) {
+        const radio = form.querySelector<HTMLInputElement>(
+          `input[name="service"][value="${hiddenService.value}"]`,
+        );
+        if (radio) radio.checked = true;
+        hiddenService.disabled = true;
+      }
+      goTo(current - 1);
+    });
+
+    // 1. lépés: választásra auto-tovább
+    form.querySelectorAll<HTMLInputElement>('input[name="service"][data-autoadvance]').forEach((r) => {
+      r.addEventListener('change', () => {
+        if (hiddenService) hiddenService.disabled = true;
+        const err = steps[0]?.querySelector<HTMLElement>('[data-step-error]');
+        err?.classList.add('hidden');
+        if (current === 0) goTo(1);
+      });
+    });
+
+    // Inline mező-validáció a 4. lépésen (blur-re hibát ír, inputra törli)
+    const FIELD_MESSAGES: Record<string, string> = {
+      name: 'Kérjük, adja meg a nevét (min. 2 karakter).',
+      company: 'Kérjük, adja meg a cég nevét.',
+      phone: 'Kérjük, érvényes telefonszámot adjon meg.',
+      email: 'Kérjük, érvényes email-címet adjon meg.',
+    };
+    ['name', 'company', 'phone', 'email'].forEach((fieldName) => {
+      const input = form.querySelector<HTMLInputElement>(`input[name="${fieldName}"]`);
+      const errEl = form.querySelector<HTMLElement>(`[data-field-error="${fieldName}"]`);
+      if (!input || !errEl) return;
+      input.addEventListener('blur', () => {
+        const bad = input.value.length > 0 && !input.checkValidity();
+        errEl.textContent = bad ? FIELD_MESSAGES[fieldName] : '';
+        errEl.classList.toggle('hidden', !bad);
+        input.classList.toggle('border-red-400', bad);
+      });
+      input.addEventListener('input', () => {
+        errEl.classList.add('hidden');
+        input.classList.remove('border-red-400');
+      });
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Honeypot – kliens-oldali kiszűrés (a bot UX-e nem érdekes)
+      const honeypot = form.querySelector<HTMLInputElement>('input[name="website"]');
+      if (honeypot && honeypot.value.length > 0) {
+        window.location.assign('/koszonjuk/');
+        return;
+      }
+
+      // Natív validáció az utolsó lépés mezőire
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      if (formError) {
+        formError.classList.add('hidden');
+        formError.textContent = '';
+      }
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Küldés…';
+      }
+
+      const result = await submitLead(form);
+
+      if (result.ok) {
+        window.location.assign('/koszonjuk/');
+        return;
+      }
+
+      if (formError) {
+        formError.textContent = result.message;
+        formError.classList.remove('hidden');
+      }
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+      }
+    });
+
+    // Init: JS-only elemek bekapcsolása, lépések összecsukása
+    if (nav) nav.hidden = false;
+    if (progress) progress.hidden = false;
+    render();
+  }
+
+  document.querySelectorAll<HTMLFormElement>('form[data-wizard]').forEach((f) => initWizard(f));
+</script>

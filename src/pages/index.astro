@@ -4,7 +4,7 @@ import Hero from '../components/Hero.astro';
 import StatCounter from '../components/StatCounter.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
-import ContactForm from '../components/ContactForm.astro';
+import QuoteBand from '../components/QuoteBand.astro';
 
 const faqItems = [
   {
@@ -304,7 +304,7 @@ const faqSchema = {
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <h2 class="font-heading font-bold text-3xl lg:text-4xl text-white mb-6">Minden iparágban otthon vagyunk</h2>
-          <p class="text-white/80 text-lg mb-8">Építőipartól a kereskedelemig, gyártástól az irodákig – 13 év tapasztalat minden szektorban.</p>
+          <p class="text-white/80 text-lg mb-8">Építőipartól a kereskedelemig, gyártástól az irodákig – közel 20 év tapasztalat minden szektorban.</p>
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {[
               { label: 'Építőipar', href: '/referenciak/#epitoipar-kivitelezes', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2 20h20M6 20V10l6-6 6 6v10M9 20v-4a3 3 0 016 0v4"/>' },
@@ -349,6 +349,6 @@ const faqSchema = {
   </section>
 
   <!-- CTA band -->
-  <ContactForm inline />
+  <QuoteBand formSource="home-band" />
 
 </PageLayout>

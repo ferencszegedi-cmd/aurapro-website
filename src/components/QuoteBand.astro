@@ -1,0 +1,43 @@
+---
+/**
+ * CTA-sáv a QuoteWizard-dal – a régi <ContactForm inline /> utódja.
+ * Oldal-aljakra való: színes sáv + középre igazított wizard-kártya.
+ */
+import QuoteWizard from './QuoteWizard.astro';
+
+interface Props {
+  /** data-form forrás-azonosító (analytics) – oldalanként egyedi legyen! */
+  formSource: string;
+  /** Előre kiválasztott szolgáltatás – a wizard a 2. lépésnél indul. */
+  service?: 'munkavedelem' | 'tuzvedelem' | 'kornyezetvedelem' | 'komplex' | 'egyeb';
+  /** Sáv-címsor felülírása. */
+  title?: string;
+  /** Sáv-alcím felülírása. */
+  subtitle?: string;
+}
+
+const {
+  formSource,
+  service,
+  title = 'Kérjen ingyenes felmérést és ajánlatot',
+  subtitle = '1 perc alatt kitölthető – 24 órán belül visszahívjuk!',
+} = Astro.props;
+---
+
+<section class="py-12 lg:py-16 bg-orange">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="font-heading font-bold text-2xl lg:text-3xl text-white">{title}</h2>
+    <p class="mt-2 text-white/80 text-lg">{subtitle}</p>
+
+    <div class="mt-8 max-w-2xl mx-auto">
+      <QuoteWizard formSource={formSource} service={service} />
+    </div>
+
+    <div class="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-white/80 text-sm">
+      <span>&#10003; Ingyenes</span>
+      <span>&#10003; Kötelezettségmentes</span>
+      <span>&#10003; 24 órán belüli válasz</span>
+      <span>&#10003; 40M Ft bírsággarancia</span>
+    </div>
+  </div>
+</section>

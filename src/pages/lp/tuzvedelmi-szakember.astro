@@ -1,0 +1,64 @@
+---
+// CRO Fázis 2: Google Ads landing – "tűzvédelmi szakember / megbízott" kulcsszó-fókusz. noindex.
+import LandingPageLayout from '../../layouts/LandingPageLayout.astro';
+import LandingContent from '../../components/LandingContent.astro';
+
+const bullets = [
+  '<strong>Tűzvédelmi szaktevékenység</strong> a jogszabályban előírt képesítéssel és óraszámban',
+  '<strong>TVSZ, tűzriadó terv, oktatás, felülvizsgálatok</strong> – minden tűzvédelmi feladat egy kézből',
+  '<strong>30 szakértő országszerte</strong> – több telephely, folyamatos helyettesítés',
+  '<strong>40 millió Ft bírsággarancia</strong> – katasztrófavédelmi ellenőrzésen is nyugodt lehet',
+];
+
+const steps = [
+  { title: 'Ingyenes helyszíni felmérés', desc: 'Felmérjük az épületeket, a tevékenységet és a jelenlegi tűzvédelmi dokumentációt.' },
+  { title: 'Személyre szabott ajánlat', desc: '24 órán belül konkrét, átlátható ajánlatot kap – kötelezettség nélkül.' },
+  { title: 'Dokumentáció + oktatás', desc: 'Tűzvédelmi szabályzat, tűzriadó terv, oktatások és gyakorlatok – hatósági bejelentéssel együtt.' },
+  { title: 'Folyamatos üzemeltetés-támogatás', desc: 'Felülvizsgálati határidők követése, éves gyakorlatok, katasztrófavédelmi képviselet.' },
+];
+
+const faqItems = [
+  {
+    question: 'Kötelező tűzvédelmi szakembert foglalkoztatni?',
+    answer:
+      'A jogszabály meghatározott feltételek esetén – például 100 fő feletti munkavállalói létszámnál vagy tűzveszélyes tevékenységnél – írja elő tűzvédelmi szakember foglalkoztatását vagy megbízását. Az ingyenes felmérésen pontosan megmondjuk, mi vonatkozik az Önök cégére.',
+  },
+  {
+    question: 'Mikor kell tűzvédelmi szabályzatot készíteni?',
+    answer:
+      'Többek között akkor, ha a munkavállalók létszáma meghaladja az 5 főt, vagy 50 fő feletti befogadóképességű helyiséget üzemeltetnek. A TVSZ-t a jogszabályváltozásoknál és a működés változásainál felül kell vizsgálni – ezt mi automatikusan követjük.',
+  },
+  {
+    question: 'A tűzriadó gyakorlatot is Önök tartják?',
+    answer:
+      'Igen – az éves tűzriadó gyakorlatok szervezését, lebonyolítását, jegyzőkönyvezését és az előírt hatósági bejelentést is teljes körűen intézzük.',
+  },
+  {
+    question: 'Mennyibe kerül a szolgáltatás?',
+    answer:
+      'A létszám, az épületek és a tevékenység kockázati szintje határozza meg. Ingyenes helyszíni felmérés után 24 órán belül konkrét ajánlatot adunk – kötelezettségmentesen.',
+  },
+  {
+    question: 'Mi van, ha a katasztrófavédelem bírságot szab ki?',
+    answer:
+      'Az általunk gondozott tűzvédelmi területen kapott bírságot 40 millió Ft-ig megtérítjük. Közel 20 év alatt egyetlen partnerünk sem kapott bírságot.',
+  },
+];
+---
+
+<LandingPageLayout
+  title="Külső tűzvédelmi szakember cégeknek – 40M Ft bírsággaranciával | Aurapro"
+  description="Tűzvédelmi szaktevékenység cégeknek: TVSZ, tűzriadó terv, oktatás, felülvizsgálatok egy kézből. 40 millió Ft bírsággarancia, 30 szakértő. Kérjen ingyenes ajánlatot 24 órán belül!"
+>
+  <LandingContent
+    headline="Külső tűzvédelmi szakember – teljes körű tűzvédelem egy kézből"
+    subhead="TVSZ-től a tűzriadó gyakorlatig minden tűzvédelmi feladatot leveszünk a válláról – hogy a katasztrófavédelmi ellenőrzésen ne találjanak semmit."
+    bullets={bullets}
+    steps={steps}
+    quote="A katasztrófavédelmi ellenőrzés előtt vettük fel velük a kapcsolatot. Rekordidő alatt rendbe tették a teljes dokumentációt és megtartották az elmaradt gyakorlatot – az ellenőrzés hiányosság nélkül zárult."
+    quoteAuthor="Kereskedelmi lánc üzemeltetési vezetője"
+    formSource="lp-tv-szakember-hero"
+    service="tuzvedelem"
+    faqItems={faqItems}
+  />
+</LandingPageLayout>
