@@ -6,7 +6,10 @@ import StatCounter from '../components/StatCounter.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
 import QuoteBand from '../components/QuoteBand.astro';
+import LiteYouTube from '../components/LiteYouTube.astro';
 import heroSafety from '../assets/images/hero-safety.jpg';
+import ytOktatas from '../assets/images/yt-oktatas.jpg';
+import ytAdatbazis from '../assets/images/yt-adatbazis.jpg';
 import serviceMv from '../assets/images/service-munkavedelem.jpg';
 import serviceTv from '../assets/images/service-tuzvedelem.jpg';
 import serviceKv from '../assets/images/service-kornyezetvedelem.jpg';
@@ -116,29 +119,11 @@ const faqSchema = {
       <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
         <div>
           <h3 class="font-heading font-semibold text-lg text-heading text-center mb-3">Online oktatási oldal</h3>
-          <a href="https://youtu.be/5_KcdPdQ2gY" target="_blank" rel="noopener noreferrer" class="group block rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-          <div class="relative">
-            <img src="https://img.youtube.com/vi/5_KcdPdQ2gY/maxresdefault.jpg" alt="Online oktatási oldal bemutató" class="w-full aspect-video object-cover" loading="lazy" />
-            <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
-              <div class="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </div>
-            </div>
-          </div>
-        </a>
+          <LiteYouTube videoId="5_KcdPdQ2gY" title="Online oktatási oldal bemutató" thumb={ytOktatas} />
         </div>
         <div>
           <h3 class="font-heading font-semibold text-lg text-heading text-center mb-3">Online adatbázis</h3>
-          <a href="https://youtu.be/uHyexWO8GSc" target="_blank" rel="noopener noreferrer" class="group block rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-          <div class="relative">
-            <img src="https://img.youtube.com/vi/uHyexWO8GSc/maxresdefault.jpg" alt="Online adatbázis bemutató" class="w-full aspect-video object-cover" loading="lazy" />
-            <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
-              <div class="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </div>
-            </div>
-          </div>
-        </a>
+          <LiteYouTube videoId="uHyexWO8GSc" title="Online adatbázis bemutató" thumb={ytAdatbazis} />
         </div>
       </div>
       <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading text-center mt-20 mb-8">Munkavédelmi képviselő képzés és Elsősegélynyújtó tanfolyam</h2>
