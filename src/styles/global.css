@@ -60,7 +60,7 @@
 
 /* Hero: sötét teal gradiens + finom technikai rács-mintázat (a lapos szürke helyett) */
 .hero-gradient {
-  background: linear-gradient(135deg, #124c4c 0%, #187f7f 55%, #21a0a0 100%);
+  background: linear-gradient(135deg, #175e5e 0%, #1d8f8f 55%, #27acac 100%);
 }
 
 .hero-pattern {
@@ -72,21 +72,24 @@
   -webkit-mask-image: radial-gradient(ellipse at 30% 40%, black 0%, transparent 75%);
 }
 
-/* Base stílusok */
-html {
-  scroll-behavior: smooth;
-}
+/* Base stílusok – @layer base-ben, hogy a Tailwind utility-k (pl. text-white
+   a sötét hátterű hero/CTA címsorokon) felül tudják írni */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-body {
-  font-family: var(--font-body);
-  color: var(--color-body);
-  line-height: 1.6;
-}
+  body {
+    font-family: var(--font-body);
+    color: var(--color-body);
+    line-height: 1.6;
+  }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  color: var(--color-heading);
-  line-height: 1.2;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-heading);
+    line-height: 1.2;
+  }
 }
 
 /* Scroll animációk */
