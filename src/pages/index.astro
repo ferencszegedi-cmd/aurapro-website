@@ -315,8 +315,8 @@ const faqSchema = {
               </a>
             ))}
           </div>
-          <a href="/referenciak/" class="mt-8 inline-flex items-center text-orange font-heading font-semibold hover:text-orange-light transition-colors">
-            Összes referencia megtekintése <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          <a href="/referenciak/" class="mt-8 inline-flex items-center gap-2 px-7 py-3.5 bg-orange text-white font-heading font-bold text-lg rounded-lg hover:bg-orange-dark transition-colors shadow-lg">
+            Összes referencia megtekintése <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
         </div>
         <div class="hidden lg:block">
@@ -335,8 +335,9 @@ const faqSchema = {
       <div class="max-w-3xl mx-auto">
         <FaqAccordion items={faqItems} />
         <div class="mt-8 text-center">
-          <a href="/gyik/" class="text-teal font-medium hover:text-teal-dark transition-colors">
-            Összes kérdés megtekintése &rarr;
+          <a href="/gyik/" class="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-teal text-teal font-heading font-bold text-lg rounded-lg hover:bg-teal hover:text-white transition-colors">
+            Összes kérdés megtekintése
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
         </div>
       </div>
