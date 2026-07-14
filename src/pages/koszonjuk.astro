@@ -4,6 +4,9 @@ import PageLayout from '../layouts/PageLayout.astro';
 // Build-időben kiolvasott env vars (define:vars-szal továbbadva az inline scriptnek)
 const ADS_ID = import.meta.env.PUBLIC_ADS_CONVERSION_ID ?? '';
 const ADS_LEAD_LABEL = import.meta.env.PUBLIC_ADS_LEAD_LABEL ?? '';
+// Naptárfoglalás (CRO Fázis 4): ha a PUBLIC_BOOKING_URL env be van állítva
+// (Google appointment schedule / Calendly link), megjelenik a foglalás-blokk.
+const BOOKING_URL = import.meta.env.PUBLIC_BOOKING_URL ?? '';
 ---
 
 <PageLayout
@@ -66,6 +69,27 @@ const ADS_LEAD_LABEL = import.meta.env.PUBLIC_ADS_LEAD_LABEL ?? '';
         Megkaptuk az adatait. Egy Aurapro szakértő <strong>24 órán belül</strong> visszahívja
         a megadott telefonszámon, és személyre szabott ajánlatot küldünk.
       </p>
+
+      {BOOKING_URL && (
+        <div class="mt-10 rounded-xl bg-teal-dark text-white p-6 lg:p-8 shadow-lg">
+          <h2 class="font-heading font-bold text-xl lg:text-2xl">Gyorsítsa fel: foglaljon időpontot most</h2>
+          <p class="mt-2 text-white/85">
+            Válasszon Önnek megfelelő időpontot egy 15 perces bemutatkozó hívásra – így a visszahívást sem kell megvárnia.
+          </p>
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener"
+            class="mt-5 inline-flex items-center gap-2 px-7 py-3 bg-orange text-white font-heading font-bold text-lg rounded-lg hover:bg-orange-dark transition-colors"
+            data-cta="koszonjuk-booking"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            Időpontfoglalás – 15 perc
+          </a>
+        </div>
+      )}
 
       <div class="mt-10 rounded-xl bg-white border border-border p-6 lg:p-8 shadow-sm">
         <h2 class="font-heading font-semibold text-xl text-heading">Sürgős? Hívjon közvetlenül:</h2>

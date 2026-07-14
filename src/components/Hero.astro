@@ -1,4 +1,7 @@
 ---
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
 interface Props {
   title: string;
   titleLine2?: string;
@@ -9,7 +12,8 @@ interface Props {
   secondaryCtaHref?: string;
   secondaryCtaSubtext?: string;
   compact?: boolean;
-  heroImage?: string;
+  /** astro:assets import (src/assets/images/...) – build-kor AVIF/WebP variánsok készülnek */
+  heroImage?: ImageMetadata;
   heroImageAlt?: string;
 }
 
@@ -28,18 +32,20 @@ const {
 } = Astro.props;
 ---
 
-<section class:list={["bg-[#919196] text-white relative overflow-hidden", compact ? "py-16 lg:py-20" : "py-20 lg:py-32"]}>
+<section class:list={["hero-gradient text-white relative overflow-hidden", compact ? "py-16 lg:py-20" : "py-20 lg:py-32"]}>
+  <div class="absolute inset-0 hero-pattern pointer-events-none" aria-hidden="true"></div>
   {heroImage && (
     <div class="hidden lg:block absolute inset-y-0 right-0 w-1/2 pointer-events-none" aria-hidden="true">
-      <img
+      <Picture
         src={heroImage}
         alt={heroImageAlt}
+        formats={['avif', 'webp']}
+        widths={[768, 1280, 1920]}
+        sizes="50vw"
         class="absolute inset-0 w-full h-full object-cover object-[75%_center]"
         loading="eager"
         fetchpriority="high"
         decoding="async"
-        width="960"
-        height="700"
         style="mask-image: linear-gradient(to right, transparent, black 30%); -webkit-mask-image: linear-gradient(to right, transparent, black 30%);"
       />
     </div>
