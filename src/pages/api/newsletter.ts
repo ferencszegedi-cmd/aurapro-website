@@ -3,6 +3,7 @@
 import type { APIRoute } from 'astro';
 import { z } from 'zod';
 import { Resend } from 'resend';
+import { rateLimited } from '../../lib/api-guards';
 
 export const prerender = false;
 
@@ -22,6 +23,15 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   const requestId = crypto.randomUUID();
   const log = (level: 'info' | 'warn' | 'error', msg: string, extra?: object) =>
     console.log(JSON.stringify({ level, requestId, msg, ...extra }));
+
+  // Rate-limit – ugyanarról az IP-ről percenként max. 5 beküldés
+  if (clientAddress && rateLimited(clientAddress)) {
+    log('warn', 'newsletter_rate_limited', { ip: clientAddress });
+    return new Response(JSON.stringify({ ok: false, error: 'rate_limited' }), {
+      status: 429,
+      headers: { 'content-type': 'application/json', 'retry-after': '60' },
+    });
+  }
 
   let raw: unknown;
   let isNativeFormPost = false;

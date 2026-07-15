@@ -3,6 +3,7 @@
 import type { APIRoute } from 'astro';
 import { z } from 'zod';
 import { Resend } from 'resend';
+import { rateLimited, verifyTurnstile } from '../../lib/api-guards';
 
 export const prerender = false;
 
@@ -76,6 +77,15 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   const log = (level: 'info' | 'warn' | 'error', msg: string, extra?: object) =>
     console.log(JSON.stringify({ level, requestId, msg, ...extra }));
 
+  // 0. Rate-limit – ugyanarról az IP-ről percenként max. 5 beküldés
+  if (clientAddress && rateLimited(clientAddress)) {
+    log('warn', 'rate_limited', { ip: clientAddress });
+    return new Response(JSON.stringify({ ok: false, error: 'rate_limited' }), {
+      status: 429,
+      headers: { 'content-type': 'application/json', 'retry-after': '60' },
+    });
+  }
+
   // 1. Body parse – fetch + JSON.stringify, vagy classic form-encoded
   // No-JS fallback: natív form POST-nál (form-encoded) sikerkor 303 redirect jár JSON helyett.
   let raw: unknown;
@@ -129,6 +139,19 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   if (honeypotValue.length > 0) {
     log('info', 'honeypot_triggered', { ip: clientAddress });
     return successResponse({ ok: true });
+  }
+
+  // 2b. Cloudflare Turnstile ellenőrzés (csak ha a TURNSTILE_SECRET_KEY env él)
+  const turnstileToken =
+    raw && typeof raw === 'object' && 'cf-turnstile-response' in raw
+      ? String((raw as Record<string, unknown>)['cf-turnstile-response'] ?? '')
+      : undefined;
+  if (!(await verifyTurnstile(turnstileToken, clientAddress))) {
+    log('warn', 'turnstile_failed', { ip: clientAddress });
+    return new Response(JSON.stringify({ ok: false, error: 'turnstile_failed' }), {
+      status: 400,
+      headers: { 'content-type': 'application/json' },
+    });
   }
 
   // 3. Zod validáció

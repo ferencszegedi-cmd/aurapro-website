@@ -39,6 +39,10 @@ const {
 
 const idBase = (anchorId ?? formSource).replace(/[^a-zA-Z0-9-]/g, '');
 
+// Cloudflare Turnstile (anti-bot): csak akkor aktív, ha a PUBLIC_TURNSTILE_SITE_KEY
+// env be van állítva. Kulcs nélkül semmilyen third-party script nem töltődik.
+const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '';
+
 // Az icon mező SVG path (24x24 viewBox, stroke)
 const serviceColumns = [
   [
@@ -85,6 +89,7 @@ const serviceColumns = [
   method="POST"
   data-form={formSource}
   data-wizard
+  data-turnstile={TURNSTILE_SITE_KEY || undefined}
   class:list={[
     'bg-white rounded-2xl shadow-xl border border-border text-left',
     compact ? 'p-5 lg:p-6' : 'p-6 lg:p-8',
@@ -204,6 +209,8 @@ const serviceColumns = [
     <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"
       class="hidden" style="display:none !important" />
 
+    {TURNSTILE_SITE_KEY && <div data-turnstile-slot class="mt-4 flex justify-center"></div>}
+
     <button type="submit"
       class="mt-4 w-full px-8 py-4 bg-orange text-white font-heading font-bold text-lg rounded-lg hover:bg-orange-dark transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
       Ingyenes ajánlat kérése
@@ -256,6 +263,26 @@ const serviceColumns = [
 <script>
   import { submitLead, gtagEvent } from '../scripts/lead-submit';
 
+  // Cloudflare Turnstile api.js betöltése egyszer, csak ha van site key
+  function ensureTurnstile(cb: () => void) {
+    const w = window as unknown as { turnstile?: unknown };
+    if (w.turnstile) return cb();
+    if (!document.querySelector('script[data-turnstile-api]')) {
+      const s = document.createElement('script');
+      s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      s.async = true;
+      s.setAttribute('data-turnstile-api', '1');
+      document.head.appendChild(s);
+    }
+    const iv = setInterval(() => {
+      if ((window as unknown as { turnstile?: unknown }).turnstile) {
+        clearInterval(iv);
+        cb();
+      }
+    }, 100);
+    setTimeout(() => clearInterval(iv), 15000);
+  }
+
   function initWizard(form: HTMLFormElement) {
     if (form.dataset.bound === '1') return;
     form.dataset.bound = '1';
@@ -273,6 +300,21 @@ const serviceColumns = [
     const originalBtnText = submitBtn?.textContent ?? 'Küldés';
 
     let current = 0;
+
+    // Turnstile widget (láthatatlan, csak gyanús látogatónál kér interakciót)
+    let turnstileWidgetId: string | null = null;
+    const tsKey = form.dataset.turnstile;
+    const tsSlot = form.querySelector<HTMLElement>('[data-turnstile-slot]');
+    if (tsKey && tsSlot) {
+      ensureTurnstile(() => {
+        const ts = (window as any).turnstile;
+        turnstileWidgetId = ts.render(tsSlot, {
+          sitekey: tsKey,
+          appearance: 'interaction-only',
+          language: 'hu',
+        });
+      });
+    }
 
     let started = false;
     const markStarted = () => {
@@ -405,6 +447,10 @@ const serviceColumns = [
       if (submitBtn) {
         submitBtn.disabled = false;
         submitBtn.textContent = originalBtnText;
+      }
+      // Sikertelen beküldés után új Turnstile-token kell (a régi elhasználódott)
+      if (turnstileWidgetId !== null) {
+        (window as any).turnstile?.reset(turnstileWidgetId);
       }
     });
 
