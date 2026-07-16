@@ -259,21 +259,18 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       log('warn', 'confirm_email_failed', { reason: String(confirmResult.reason) });
     }
 
-    // Akkor is success, ha csak az admin notification ment ki (a confirm bónusz).
-    if (adminResult.status === 'fulfilled') {
-      return successResponse({ ok: true, requestId });
-    } else {
-      return new Response(JSON.stringify({ ok: false, error: 'email_send_failed', requestId }), {
-        status: 502,
-        headers: { 'content-type': 'application/json' },
-      });
+    // FAIL-OPEN: a látogató SOSEM kap hibát email-küldési gond miatt.
+    // Ha az admin-email elhasalt (pl. domain-verifikáció gond), a TELJES lead
+    // a logba kerül, hogy visszanyerhető legyen, és a usernek success megy.
+    if (adminResult.status !== 'fulfilled') {
+      log('error', 'admin_email_failed_lead_preserved', { lead: data });
     }
+    return successResponse({ ok: true, requestId });
   } catch (err) {
-    log('error', 'unexpected_send_error', { err: String(err) });
-    return new Response(JSON.stringify({ ok: false, error: 'internal_error', requestId }), {
-      status: 500,
-      headers: { 'content-type': 'application/json' },
-    });
+    // Váratlan hiba: lead a logba, user felé success (a lead nem veszhet el,
+    // és a kitöltőt nem büntetjük a mi infrastruktúra-hibánkért).
+    log('error', 'unexpected_send_error_lead_preserved', { err: String(err), lead: data });
+    return successResponse({ ok: true, requestId });
   }
 };
 
