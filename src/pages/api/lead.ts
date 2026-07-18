@@ -4,6 +4,7 @@ import type { APIRoute } from 'astro';
 import { z } from 'zod';
 import { Resend } from 'resend';
 import { rateLimited, verifyTurnstile } from '../../lib/api-guards';
+import { pushLeadToMiniCrm } from '../../lib/minicrm';
 
 export const prerender = false;
 
@@ -248,12 +249,37 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         })
       : Promise.resolve(null);
 
-    const [adminResult, confirmResult] = await Promise.allSettled([adminEmail, confirmEmail]);
+    // MiniCRM-push párhuzamosan az e-mailekkel (env nélkül no-op, hibánál nem dob)
+    const minicrmPush = pushLeadToMiniCrm({
+      name: data.name,
+      company: data.company,
+      phone: data.phone,
+      email: data.email,
+      serviceLabel,
+      headcountLabel: data.headcount ? headcountLabels[data.headcount] : undefined,
+      message: data.message,
+      source: data.source,
+    });
+
+    const [adminResult, confirmResult, minicrmResult] = await Promise.allSettled([
+      adminEmail,
+      confirmEmail,
+      minicrmPush,
+    ]);
 
     if (adminResult.status === 'rejected') {
       log('error', 'admin_email_failed', { reason: String(adminResult.reason) });
     } else {
       log('info', 'admin_email_sent', { id: adminResult.value?.data?.id });
+    }
+
+    if (minicrmResult.status === 'fulfilled') {
+      const r = minicrmResult.value;
+      if ('ok' in r && r.ok) log('info', 'minicrm_lead_created', { projectId: r.projectId });
+      else if ('error' in r) log('warn', 'minicrm_push_failed', { error: r.error, lead: data });
+      // skipped (nincs env) → csend
+    } else {
+      log('warn', 'minicrm_push_rejected', { reason: String(minicrmResult.reason), lead: data });
     }
     if (confirmResult.status === 'rejected') {
       log('warn', 'confirm_email_failed', { reason: String(confirmResult.reason) });
