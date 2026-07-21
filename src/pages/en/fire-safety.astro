@@ -1,0 +1,115 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import QuoteBand from '../../components/QuoteBand.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+
+const services = [
+  { title: 'Fire safety policy', desc: 'Preparing a legally compliant fire safety policy and keeping it up to date.' },
+  { title: 'Fire alarm plan', desc: 'Preparing an evacuation plan, marking escape routes, and organising fire drills.' },
+  { title: 'Fire safety training', desc: 'General and role-specific fire safety training – annually and documented.' },
+  { title: 'Fire safety inspections', desc: 'Inspection of fire extinguishers, built-in fire alarm and extinguishing systems, and the electrical network.' },
+  { title: 'Design and permitting', desc: 'Fire safety design documentation and official permitting for new buildings and refurbishments.' },
+  { title: 'Official representation', desc: 'Full representation and administration during disaster management inspections.' },
+];
+
+const faqItems = [
+  { question: 'When is a fire safety policy mandatory?', answer: 'If a company employs more than fifty people, operates premises with a capacity of more than 50 persons, or runs commercial accommodation for more than 10 guests (Act XXXI of 1996, Section 19).' },
+  { question: 'How often must fire extinguishers be inspected?', answer: 'Basic inspection is required annually, mid-level inspection every 5 years, and full inspection (replacement/pressure test) every 10 years.' },
+  { question: 'Who may deliver fire safety training?', answer: 'Fire safety training may be delivered by the person designated in the fire safety policy – this can also be a contracted external expert.' },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Fire safety service',
+  provider: { '@type': 'Organization', name: 'Aurapro Kft.', url: 'https://www.aurapro.hu' },
+  areaServed: { '@type': 'Country', name: 'Hungary' },
+  description: 'Fire safety service: policy, fire alarm plan, inspections, training, design, disaster management representation.',
+  url: 'https://www.aurapro.hu/en/fire-safety/',
+};
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+---
+
+<PageLayout
+  lang="en"
+  title="Fire safety for companies – policy, training | Aurapro"
+  description="Fire safety policy, fire alarm plan, inspections and training from a single provider. We prepare you for disaster management inspections. Learn more."
+  canonical="/en/fire-safety/"
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />
+
+  <!-- Page hero -->
+  <section class="py-16 lg:py-24 bg-gradient-to-br from-orange-light to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="font-heading font-bold text-4xl lg:text-5xl text-heading">Fire safety</h1>
+        <p class="mt-4 text-lg text-body leading-relaxed">
+          From the fire safety policy to inspections and official permitting –
+          everything from a single provider, prepared for disaster management inspections.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="/en/contact/" class="inline-flex items-center px-8 py-4 bg-orange text-white font-heading font-bold rounded-lg hover:bg-orange-dark transition-colors">
+            Request a free quote
+          </a>
+          <div class="inline-flex flex-col items-center px-8 py-4 border-2 border-teal text-teal font-heading font-bold rounded-lg">
+            <span>Call now</span>
+            <span class="text-[1.1rem] font-normal text-teal/80 mt-1">+36 70 409 8764</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services grid -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading text-center mb-12">Our fire safety services</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services.map((s) => (
+          <div class="bg-surface rounded-xl p-6 border border-border">
+            <div class="w-10 h-10 rounded-lg bg-orange-light flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 text-orange-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/>
+              </svg>
+            </div>
+            <h3 class="font-heading font-semibold text-heading">{s.title}</h3>
+            <p class="mt-2 text-body text-sm leading-relaxed">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Warning band -->
+  <section class="py-12 lg:py-16 bg-teal-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-heading font-bold text-2xl lg:text-3xl text-white">Disaster management can arrive at any time</h2>
+      <p class="mt-3 text-white/80 text-lg max-w-2xl mx-auto">
+        A fire safety shortcoming can lead to immediate closure and fines of several million forints.
+        Our partners have nothing to fear.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading font-bold text-3xl text-heading text-center mb-10">Common fire safety questions</h2>
+      <div class="max-w-3xl mx-auto">
+        <FaqAccordion items={faqItems} />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <QuoteBand formSource="band-fire-safety-en" services={['tuzvedelem']} lang="en" />
+</PageLayout>

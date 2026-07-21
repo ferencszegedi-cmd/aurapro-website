@@ -1,5 +1,13 @@
 ---
+import { ui, getAlternatePath, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = 'hu' } = Astro.props;
+const t = ui[lang].footer;
 const currentYear = new Date().getFullYear();
+const r = (hu: string) => (lang === 'en' ? getAlternatePath(hu, 'en') : hu);
 ---
 
 <footer class="bg-[#919196] text-white">
@@ -9,36 +17,36 @@ const currentYear = new Date().getFullYear();
       <div>
         <img src="/logo.jpg" alt="Aurapro – safety first" class="h-36 w-auto mb-4 mix-blend-multiply" />
         <p class="text-white/70 text-sm leading-relaxed">
-          Munkavédelem, tűzvédelem és környezetvédelem – egy kézből, 40 millió Ft bírsággaranciával.
+          {t.tagline}
         </p>
       </div>
 
       <!-- Szolgáltatások -->
       <div>
-        <h3 class="font-heading font-semibold text-sm uppercase tracking-wide mb-4">Szolgáltatások</h3>
+        <h3 class="font-heading font-semibold text-sm uppercase tracking-wide mb-4">{t.services}</h3>
         <ul class="space-y-2">
-          <li><a href="/munkavedelem/" class="text-white/70 hover:text-white transition-colors text-sm">Munkavédelem</a></li>
-          <li><a href="/tuzvedelem/" class="text-white/70 hover:text-white transition-colors text-sm">Tűzvédelem</a></li>
-          <li><a href="/kornyezetvedelem/" class="text-white/70 hover:text-white transition-colors text-sm">Környezetvédelem</a></li>
+          <li><a href={r('/munkavedelem/')} class="text-white/70 hover:text-white transition-colors text-sm">{ui[lang].nav.occupationalSafety}</a></li>
+          <li><a href={r('/tuzvedelem/')} class="text-white/70 hover:text-white transition-colors text-sm">{ui[lang].nav.fireSafety}</a></li>
+          <li><a href={r('/kornyezetvedelem/')} class="text-white/70 hover:text-white transition-colors text-sm">{ui[lang].nav.environmental}</a></li>
         </ul>
       </div>
 
       <!-- Cég -->
       <div>
-        <h3 class="font-heading font-semibold text-sm uppercase tracking-wide mb-4">Cég</h3>
+        <h3 class="font-heading font-semibold text-sm uppercase tracking-wide mb-4">{t.company}</h3>
         <ul class="space-y-2">
-          <li><a href="/rolunk/" class="text-white/70 hover:text-white transition-colors text-sm">Rólunk</a></li>
-          <li><a href="/referenciak/" class="text-white/70 hover:text-white transition-colors text-sm">Referenciák</a></li>
-          <li><a href="/munkatarsaink/" class="text-white/70 hover:text-white transition-colors text-sm">Munkatársaink</a></li>
-          <li><a href="/gyik/" class="text-white/70 hover:text-white transition-colors text-sm">GYIK</a></li>
-          <li><a href="/adatvedelem/" class="text-white/70 hover:text-white transition-colors text-sm">Adatvédelem</a></li>
-          <li><a href="/impresszum/" class="text-white/70 hover:text-white transition-colors text-sm">Impresszum</a></li>
+          <li><a href={r('/rolunk/')} class="text-white/70 hover:text-white transition-colors text-sm">{t.about}</a></li>
+          <li><a href={r('/referenciak/')} class="text-white/70 hover:text-white transition-colors text-sm">{t.references}</a></li>
+          <li><a href={r('/munkatarsaink/')} class="text-white/70 hover:text-white transition-colors text-sm">{t.team}</a></li>
+          <li><a href={r('/gyik/')} class="text-white/70 hover:text-white transition-colors text-sm">{t.faq}</a></li>
+          <li><a href="/adatvedelem/" class="text-white/70 hover:text-white transition-colors text-sm">{t.privacy}</a></li>
+          <li><a href="/impresszum/" class="text-white/70 hover:text-white transition-colors text-sm">{t.imprint}</a></li>
         </ul>
       </div>
 
       <!-- Kapcsolat -->
       <div>
-        <h3 class="font-heading font-semibold text-sm uppercase tracking-wide mb-4">Kapcsolat</h3>
+        <h3 class="font-heading font-semibold text-sm uppercase tracking-wide mb-4">{t.contact}</h3>
         <ul class="space-y-2 text-sm text-white/70">
           <li>
             <a href="tel:+36704098764" class="hover:text-white transition-colors">+36 70 409 8764</a>
@@ -54,7 +62,7 @@ const currentYear = new Date().getFullYear();
     <!-- Bottom bar -->
     <div class="mt-12 pt-8 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4">
       <p class="text-sm text-white/50">
-        &copy; {currentYear} Aurapro Kft. Minden jog fenntartva.
+        &copy; {currentYear} Aurapro Kft. {t.rights}
       </p>
     </div>
   </div>

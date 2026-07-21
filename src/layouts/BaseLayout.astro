@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ui, getAlternatePath, hasAlternate, type Lang } from '../i18n/ui';
 
 interface Props {
   title: string;
@@ -7,6 +8,7 @@ interface Props {
   canonical?: string;
   ogImage?: string;
   noIndex?: boolean;
+  lang?: Lang;
 }
 
 const {
@@ -15,10 +17,20 @@ const {
   canonical,
   ogImage = '/og-image.jpg',
   noIndex = false,
+  lang = 'hu',
 } = Astro.props;
+
+const t = ui[lang];
+const ogLocale = lang === 'en' ? 'en_US' : 'hu_HU';
 
 const siteUrl = 'https://www.aurapro.hu';
 const fullCanonical = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
+
+// hreflang: csak azoknál az oldalaknál, amelyeknek van párja a másik nyelven.
+const pathname = Astro.url.pathname;
+const showHreflang = hasAlternate(pathname);
+const huHref = `${siteUrl}${getAlternatePath(pathname, 'hu')}`;
+const enHref = `${siteUrl}${getAlternatePath(pathname, 'en')}`;
 
 // Build-jelölő: a Vercel build-időben beállítja a commit SHA-t (deploy-ellenőrzéshez).
 const buildCommit = process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? 'dev';
@@ -44,7 +56,7 @@ const orgSchema = {
   url: siteUrl,
   logo: `${siteUrl}/logo.svg`,
   image: `${siteUrl}/logo.jpg`,
-  description: 'Munkavédelem, tűzvédelem és környezetvédelem – egy kézből, 40 millió Ft bírsággaranciával.',
+  description: t.footer.tagline,
   telephone: '+36704098764',
   email: 'iroda@aurapro.hu',
   priceRange: '$$',
@@ -69,7 +81,7 @@ const orgSchema = {
 ---
 
 <!DOCTYPE html>
-<html lang="hu">
+<html lang={lang}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -78,6 +90,13 @@ const orgSchema = {
   <meta name="description" content={description} />
   {effectiveNoIndex && <meta name="robots" content="noindex, nofollow" />}
   <link rel="canonical" href={fullCanonical} />
+  {showHreflang && (
+    <Fragment>
+      <link rel="alternate" hreflang="hu" href={huHref} />
+      <link rel="alternate" hreflang="en" href={enHref} />
+      <link rel="alternate" hreflang="x-default" href={huHref} />
+    </Fragment>
+  )}
 
   <!-- Open Graph -->
   <meta property="og:title" content={title} />
@@ -85,7 +104,7 @@ const orgSchema = {
   <meta property="og:image" content={`${siteUrl}${ogImage}`} />
   <meta property="og:url" content={fullCanonical} />
   <meta property="og:type" content="website" />
-  <meta property="og:locale" content="hu_HU" />
+  <meta property="og:locale" content={ogLocale} />
 
   <!-- Fonts: P0-5 KÉSZ – self-hosted woff2 (latin+latin-ext), @font-face a global.css-ben.
        Preload csak az above-the-fold súlyokra (heading 700 + body 400). -->
@@ -132,15 +151,15 @@ const orgSchema = {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-2 lg:pb-4">
       <div class="bg-heading rounded-lg lg:rounded-xl px-4 py-3 sm:px-6 sm:py-4 flex flex-col sm:flex-row items-center gap-3 shadow-2xl">
         <p class="text-white/90 text-sm flex-1">
-          Az oldal sütiket használ a jobb felhasználói élmény érdekében.
-          <a href="/adatvedelem/" class="underline hover:text-white">Részletek</a>
+          {t.cookie.text}
+          <a href="/adatvedelem/" class="underline hover:text-white">{t.cookie.details}</a>
         </p>
         <div class="flex gap-2 shrink-0">
           <button id="cookie-reject" class="px-3 py-1.5 text-sm text-white/70 hover:text-white transition-colors">
-            Elutasítom
+            {t.cookie.reject}
           </button>
           <button id="cookie-accept" class="px-4 py-1.5 bg-teal text-white text-sm font-semibold rounded-md hover:bg-teal-dark transition-colors">
-            Elfogadom
+            {t.cookie.accept}
           </button>
         </div>
       </div>

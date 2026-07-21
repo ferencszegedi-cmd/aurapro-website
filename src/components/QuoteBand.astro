@@ -5,6 +5,7 @@
  */
 import QuoteWizard from './QuoteWizard.astro';
 import type { ServiceValue } from '../lib/lead-types';
+import { ui, type Lang } from '../i18n/ui';
 
 interface Props {
   /** data-form forrás-azonosító (analytics) – oldalanként egyedi legyen! */
@@ -17,15 +18,19 @@ interface Props {
   subtitle?: string;
   /** Opcionális szekció-id (pl. hero CTA #ajanlat horgonyához). */
   anchorId?: string;
+  lang?: Lang;
 }
 
+const { lang = 'hu' } = Astro.props;
+const b = ui[lang].band;
 const {
   formSource,
   services,
-  title = 'Kérjen ingyenes felmérést és ajánlatot',
-  subtitle = 'Fél perc alatt kitölthető – 24 órán belül visszahívjuk!',
+  title = b.title,
+  subtitle = b.subtitle,
   anchorId,
 } = Astro.props;
+const badges = [b.badgeFree, b.badge24h, b.badgeGuarantee];
 ---
 
 <section id={anchorId} class="py-12 lg:py-16 bg-orange scroll-mt-4">
@@ -34,11 +39,11 @@ const {
     <p class="mt-2 text-white/80 text-lg">{subtitle}</p>
 
     <div class="mt-8 max-w-2xl mx-auto">
-      <QuoteWizard formSource={formSource} services={services} showHeader={false} />
+      <QuoteWizard formSource={formSource} services={services} showHeader={false} lang={lang} />
     </div>
 
     <div class="mt-6 flex flex-wrap items-center justify-center gap-2.5">
-      {['Ingyenes', '24 órán belüli válasz', '40M Ft bírsággarancia'].map((item) => (
+      {badges.map((item) => (
         <span class="inline-flex items-center gap-2 rounded-full bg-white/15 border border-white/30 px-4 py-2 text-white font-semibold text-sm lg:text-base">
           <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />

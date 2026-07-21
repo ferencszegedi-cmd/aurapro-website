@@ -1,8 +1,10 @@
 ---
 import { Picture } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import { ui, type Lang } from '../i18n/ui';
 
 interface Props {
+  lang?: Lang;
   /** Kis kapitális felirat a címsor fölött (pl. szolgáltatás-lista) */
   eyebrow?: string;
   title: string;
@@ -24,6 +26,7 @@ interface Props {
   heroImageAlt?: string;
 }
 
+const langProp = (Astro.props.lang ?? 'hu') as Lang;
 const {
   eyebrow,
   title,
@@ -31,8 +34,8 @@ const {
   highlightLine2 = false,
   subtitle,
   chips,
-  ctaText = 'Ingyenes ajánlat 24 órán belül',
-  ctaHref = '/kapcsolat/',
+  ctaText = ui[langProp].hero.defaultCta,
+  ctaHref = langProp === 'en' ? '/en/contact/' : '/kapcsolat/',
   secondaryCtaText,
   secondaryCtaHref,
   secondaryCtaSubtext,

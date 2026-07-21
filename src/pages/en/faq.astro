@@ -1,0 +1,107 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+
+const categories = [
+  {
+    title: 'Occupational safety',
+    items: [
+      { question: 'When is it mandatory to employ an occupational safety professional?', answer: 'Every employer must provide for occupational safety from the very first employee (Occupational Safety Act). Whether a dedicated professional is required, and for how many hours, depends on the risk class of the activity and the headcount (Decree 5/1993) – this can also be handled by an external expert. If you are unsure about your classification, we will tell you after a short assessment.' },
+      { question: 'How often is occupational safety training required?', answer: 'Occupational safety training is mandatory when starting work, then typically repeated annually to keep knowledge current; and additionally whenever a job role changes, a new technology is introduced, or after an accident (Occupational Safety Act, Section 55). It must be documented in a training log – this is the first thing the authority asks for. We provide the syllabus, the log and the online training ready to use.' },
+      { question: 'What happens during an occupational safety inspection?', answer: 'The authority may inspect the documentation (policy, risk assessment, training logs) and the actual working conditions, protective equipment and machinery without prior notice. Shortcomings can lead to a warning, a fine, or in serious cases a shutdown – most penalties stem from missing documentation. We prepare our partners and, on request, represent them on site.' },
+      { question: 'How large a fine can be imposed for a safety shortcoming?', answer: 'The occupational safety fine can range from HUF 100,000 up to as much as HUF 100 million (Gov. Decree 25/2024, from 2024); the upper limit is HUF 25 million for micro and small enterprises and HUF 50 million for medium-sized ones. The amount is influenced by the number of endangered employees, the duration and severity of the breach, and any repeat offence – in the event of serious danger the authority can halt work immediately. In addition to the fine, accident and compensation liability also rest with the employer, which is why it can be minimised with up-to-date documentation and regular supervision.' },
+      { question: 'When must a risk assessment be prepared?', answer: 'A risk assessment must be prepared before an activity begins, for every working condition (job, work equipment, machinery, technology, hazardous substance), and then reviewed when justified but at least every five years (Occupational Safety Act, Section 54, text in force from 2025). It is also needed on an ad-hoc basis if conditions change significantly, or if an accident or occupational illness occurs. As it is a work-safety and occupational-health professional activity, it must be prepared by a suitably qualified expert (Occupational Safety Act, Section 54).' },
+    ],
+  },
+  {
+    title: 'Fire safety',
+    items: [
+      { question: 'When is a fire safety policy mandatory?', answer: 'A fire safety policy is mandatory if a company employs more than fifty people, operates premises with a capacity of more than 50 persons, or runs commercial accommodation for more than 10 guests (Act XXXI of 1996, Section 19). The content requirements are set out in Decree 101/2023 (XII. 29.) BM. We prepare and maintain it for you.' },
+      { question: 'How often must fire extinguishers be inspected?', answer: 'Fire extinguishers may only be serviced by an authorised, registered maintainer (National Fire Protection Code, 54/2014 OTSZ). For powder extinguishers, basic maintenance is typically due annually, mid-level every five years, and full maintenance every ten years – the exact frequency depends on the type. For our clients we track the deadlines so they never slip.' },
+      { question: 'Is a fire drill required?', answer: 'Where a fire alarm plan is mandatory, evacuation must be practised at least once a year with a written evaluation (Decree 101/2023 BM); a planned drill must be reported 15 days in advance. The goal is that everyone knows what to do in an emergency. We handle the organisation, running and documentation.' },
+      { question: 'Who may deliver fire safety training?', answer: 'The employer provides fire safety training when work starts, then typically annually, and delivery must be evidenced in a training log (Decree 101/2023 BM). It is advisable to entrust it to a person with a fire safety qualification – this can be an external contractor. We provide the material and the log, together with the training on request.' },
+    ],
+  },
+  {
+    title: 'Environmental protection',
+    items: [
+      { question: 'When is a waste management plan required?', answer: 'Every waste-producing company must keep up-to-date records of its waste (Act CLXXXV of 2012); the separate written planning obligation depends on the activity and the quantity and type of waste. This area changed significantly in 2024–2025 (EPR, concession), so it is worth having your obligations reviewed against the rules in force. We assess exactly what your company is obliged to do.' },
+      { question: 'What is the HIR data report?', answer: 'HIR is the interface for the annual waste-related data report, submitted via the OKIRkapu portal (Gov. Decree 309/2014); the return must be filed by 1 March of the year following the reference year. In certain cases it is mandatory even if no waste was produced that year. We handle the returns on behalf of our clients, on time.' },
+      { question: 'Is an environmental officer required?', answer: 'An environmental officer is mandatory if the company\'s environmental use is subject to a permit or notification, or if required by law (Gov. Decree 93/1996); an appropriate qualification is required. It can also be fulfilled by an external expert, which is more proportionate for SMEs than a full-time role. We assess whether you are obliged to have one and, if needed, provide the officer.' },
+    ],
+  },
+  {
+    title: 'Pricing and cooperation',
+    items: [
+      { question: 'How much does occupational safety cost?', answer: 'The fee depends on the company\'s size, risk classification, number of sites and headcount, so there is no single list price – most of our partners pay a predictable fixed monthly fee. We always carry out a free assessment before quoting. Request an assessment and we will send a no-obligation quote within 24 hours.' },
+      { question: 'Is there a minimum contract period?', answer: 'We do not impose a mandatory minimum term: a monthly or annual arrangement can be chosen, and it can be cancelled at any time. We believe it is continuous, high-quality work that keeps clients, not a long commitment. Most of our clients stay for years – precisely because they are not tied in.' },
+      { question: 'What is the HUF 40 million penalty guarantee?', answer: 'If a partner receives an occupational or fire safety fine due to our negligence, we reimburse the amount – up to HUF 40 million, covered by liability insurance. This is a unique commitment on the market. Over the past nearly 20 years our clients have not paid a single forint in fines.' },
+      { question: 'How does the cooperation start?', answer: '1. A free assessment (in person or online). 2. A quote within 24 hours, tailored to your actual needs. 3. A contract with transparent, monthly-fee terms. 4. An immediate start with a review of the existing documentation – we take care of the paperwork.' },
+    ],
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: categories.flatMap((cat) =>
+    cat.items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    }))
+  ),
+};
+---
+
+<PageLayout
+  lang="en"
+  title="FAQ – Occupational and fire safety questions | Aurapro"
+  description="Answers to the most common occupational and fire safety questions: when it is mandatory, how large the fine is, how much it costs. Read the FAQ."
+  canonical="/en/faq/"
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />
+
+  <!-- Page hero -->
+  <section class="py-16 lg:py-24 bg-gradient-to-br from-teal-light to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="font-heading font-bold text-4xl lg:text-5xl text-heading">Frequently asked questions</h1>
+        <p class="mt-4 text-lg text-body leading-relaxed">
+          We have collected the most common questions about occupational, fire and environmental safety.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ categories -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto space-y-12">
+        {categories.map((cat) => (
+          <div>
+            <h2 class="font-heading font-bold text-2xl text-heading mb-6">{cat.title}</h2>
+            <FaqAccordion items={cat.items} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 lg:py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-heading font-bold text-3xl text-heading">Didn't find your answer?</h2>
+      <p class="mt-3 text-body text-lg">Call us or request a free consultation!</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/en/contact/" class="inline-flex items-center px-8 py-4 bg-orange text-white font-heading font-bold rounded-lg hover:bg-orange-dark transition-colors">
+          Get in touch
+        </a>
+        <div class="inline-flex flex-col items-center px-8 py-4 border-2 border-teal text-teal font-heading font-bold rounded-lg">
+            <span>Call now</span>
+            <span class="text-[1.1rem] font-normal text-teal/80 mt-1">+36 70 409 8764</span>
+          </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

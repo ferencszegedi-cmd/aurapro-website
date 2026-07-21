@@ -1,0 +1,92 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import QuoteBand from '../../components/QuoteBand.astro';
+---
+
+<PageLayout
+  lang="en"
+  title="Workplace first aid course – Aurapro"
+  description="An intensive, practice-oriented 4-hour first aid course with an AMBU-Man manikin and defibrillator use. HUF 24,900 + VAT/person."
+  canonical="/en/first-aid-course/"
+>
+  <section class="py-16 lg:py-24 bg-gradient-to-br from-teal-light to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="font-heading font-bold text-4xl lg:text-5xl text-heading">Workplace first aid course</h1>
+          <p class="mt-4 text-lg text-body leading-relaxed">
+            Every shift at every workplace needs a trained first aider.
+            Our intensive, 4-hour, practice-oriented course has already been completed successfully by more than 1,000 people.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="/en/contact/" class="inline-flex items-center px-8 py-4 bg-orange text-white font-heading font-bold rounded-lg hover:bg-orange-dark transition-colors">Arrange a course</a>
+            <div class="inline-flex flex-col items-center px-8 py-4 border-2 border-teal text-teal font-heading font-bold rounded-lg">
+            <span>Call now</span>
+            <span class="text-[1.1rem] font-normal text-teal/80 mt-1">+36 70 409 8764</span>
+          </div>
+          </div>
+        </div>
+        <div class="hidden lg:block">
+          <img src="/images/elsosegelynyujto.jpg" alt="First aid course" class="rounded-2xl shadow-lg" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto space-y-8">
+        <div class="grid md:grid-cols-3 gap-6">
+          {[
+            { title: 'Duration', value: '4 hours', desc: 'Intensive, practice-oriented' },
+            { title: 'Price', value: 'HUF 24,900 + VAT', desc: 'Per person' },
+            { title: 'Participants', value: '1,000+', desc: 'Successfully completed so far' },
+          ].map((item) => (
+            <div class="bg-surface rounded-xl p-6 border border-border text-center" data-animate>
+              <div class="font-heading font-bold text-2xl text-teal">{item.value}</div>
+              <h3 class="font-heading font-semibold text-heading mt-2">{item.title}</h3>
+              <p class="mt-1 text-muted text-sm">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <h2 class="font-heading font-bold text-2xl text-heading">What does the course include?</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          {[
+            { title: 'Theory', desc: 'Life-saving interventions, recognising emergencies, and what to do in an accident.' },
+            { title: 'Practice with an AMBU-Man manikin', desc: 'Practising resuscitation on a professional training manikin, simulating real situations.' },
+            { title: 'Defibrillator use', desc: 'Learning to use an AED (automated external defibrillator) in a practical setting.' },
+            { title: 'Legal background', desc: 'An overview of the requirements of Decree 3/2002 (II. 8.) SzCsM-EüM.' },
+          ].map((item) => (
+            <div class="bg-surface rounded-xl p-6 border border-border" data-animate>
+              <h3 class="font-heading font-semibold text-heading">{item.title}</h3>
+              <p class="mt-2 text-body text-sm">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="bg-orange-light rounded-xl p-6 border border-orange/20">
+          <h3 class="font-heading font-semibold text-heading">On-site training, at your company</h3>
+          <p class="mt-2 text-body text-sm">
+            We hold the course at your premises – we provide the equipment.
+            To discuss the minimum number of participants and organisational details, please get in touch.
+          </p>
+        </div>
+
+        <div class="bg-teal-light rounded-xl p-6 border border-teal/20">
+          <h3 class="font-heading font-semibold text-heading">Our next open group course</h3>
+          <p class="mt-2 text-body text-sm">
+            We regularly organise open group first aid courses at our office (2040 Budaörs, Gyár utca 2., Hungary).
+            <strong>Next date: coming soon</strong> – for the current date and to register, please
+            <a href="/en/contact/" class="text-teal font-medium hover:text-teal-dark">get in touch</a>.
+          </p>
+          <p class="mt-3 text-body text-sm">
+            Did you know? You can also complete our occupational and fire safety training <a href="/en/#online-training" class="text-teal font-medium hover:text-teal-dark">online</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <QuoteBand formSource="band-first-aid-en" services={['elsosegely']} lang="en" />
+</PageLayout>

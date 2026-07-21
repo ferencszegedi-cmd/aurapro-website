@@ -1,0 +1,96 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import QuoteBand from '../../components/QuoteBand.astro';
+import { Image } from 'astro:assets';
+import serviceOktatas from '../../assets/images/service-oktatas.jpg';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Occupational safety training',
+  provider: { '@type': 'Organization', name: 'Aurapro Kft.', url: 'https://www.aurapro.hu' },
+  areaServed: { '@type': 'Country', name: 'Hungary' },
+  description: 'Organising and documenting annual and ad-hoc occupational safety training – online too, if needed.',
+  url: 'https://www.aurapro.hu/en/occupational-safety-training/',
+};
+---
+
+<PageLayout
+  lang="en"
+  title="Occupational safety training – Aurapro | Annual and ad-hoc training"
+  description="Occupational safety training with professionals: 30–60 minutes, documented, legally compliant. Missing it can mean a HUF 100,000 per person fine."
+  canonical="/en/occupational-safety-training/"
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceSchema)} />
+
+  <section class="py-16 lg:py-24 bg-gradient-to-br from-teal-light to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="font-heading font-bold text-4xl lg:text-5xl text-heading">Occupational safety training</h1>
+          <p class="mt-4 text-lg text-body leading-relaxed">
+            Occupational safety training is one of the employer's most important obligations. We not only deliver it,
+            but also prepare all the related documents – from the risk assessment to the personal protective equipment allocation rules.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="/en/contact/" class="inline-flex items-center px-8 py-4 bg-orange text-white font-heading font-bold rounded-lg hover:bg-orange-dark transition-colors">Request a free quote</a>
+            <div class="inline-flex flex-col items-center px-8 py-4 border-2 border-teal text-teal font-heading font-bold rounded-lg">
+            <span>Call now</span>
+            <span class="text-[1.1rem] font-normal text-teal/80 mt-1">+36 70 409 8764</span>
+          </div>
+          </div>
+        </div>
+        <div class="hidden lg:block">
+          <Image src={serviceOktatas} alt="Occupational safety training in a training room" widths={[640, 1024]} sizes="(min-width: 1024px) 50vw, 100vw" class="rounded-2xl shadow-lg" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto space-y-8">
+        <h2 class="font-heading font-bold text-3xl text-heading">Training details</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          {[
+            { title: 'Duration', value: '30–60 min', desc: 'Concise, to-the-point training' },
+            { title: 'Frequency', value: 'At least 1×/year', desc: 'Ad-hoc when necessary' },
+            { title: 'Fine if missing', value: 'HUF 100,000/person', desc: 'Can be imposed per employee' },
+          ].map((item) => (
+            <div class="bg-surface rounded-xl p-6 border border-border text-center" data-animate>
+              <div class="font-heading font-bold text-2xl text-teal">{item.value}</div>
+              <h3 class="font-heading font-semibold text-heading mt-2">{item.title}</h3>
+              <p class="mt-1 text-muted text-sm">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <h2 class="font-heading font-bold text-2xl text-heading">When is it mandatory?</h2>
+        <ul class="space-y-3">
+          {[
+            'When starting work (initial training)',
+            'When the job role or workplace changes',
+            'When a new technology or work equipment is introduced',
+            'After a workplace accident (ad-hoc)',
+            'At least once a year (recurring training)',
+          ].map((item) => (
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-teal shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span class="text-body">{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div class="bg-orange-light rounded-xl p-6 border border-orange/20">
+          <h3 class="font-heading font-semibold text-heading">Not just training – complete documentation</h3>
+          <p class="mt-2 text-body text-sm">
+            For legal compliance, beyond the training you also need a risk assessment, personal protective equipment allocation rules,
+            a comprehensive prevention strategy and a training log. We prepare all of this and keep it up to date.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <QuoteBand formSource="band-os-training-en" services={['munkavedelem']} lang="en" />
+</PageLayout>

@@ -1,0 +1,154 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import QuoteBand from '../../components/QuoteBand.astro';
+
+const team = [
+  { name: 'Gaál Zoltán', role: 'General Manager', desc: 'Mechanical engineer, occupational safety technician', phone: '+36203403992', email: 'zoltan.gaal@aurapro.hu', img: '/csapat/gaal-zoltan.jpg' },
+  { name: 'Szegedi Ferenc', role: 'Managing Director', desc: 'Occupational safety engineer, fire safety adviser, architect', phone: '+36306872456', email: 'ferenc.szegedi@aurapro.hu', img: '/csapat/szegedi-ferenc.png' },
+  { name: 'Szűk Katalin', role: 'Head of Professional Services', desc: 'Fire safety engineer, occupational safety officer', phone: '+36704098764', email: 'katalin.szuk@aurapro.hu', img: '/csapat/szuk-katalin.png' },
+  { name: 'Szabó Dóra', role: 'Office Manager / Szekszárd', desc: '', phone: '+36707797655', email: 'dora.szabo@aurapro.hu', img: '/csapat/szabo-dora.jpg' },
+  { name: 'Palotás Andrea', role: 'Office / Budaörs', desc: '', phone: '+36306872456', email: 'andrea.palotas@aurapro.hu', img: '/csapat/palotas-andrea.jpg' },
+  { name: 'Frank-Horváth Kincső', role: 'Office administrator', desc: '', phone: '', email: 'kincso.horvath@aurapro.hu', img: '/csapat/frank-horvath-kincso.png' },
+  { name: 'Szabó Bernadett', role: 'Finance', desc: '', phone: '', email: 'bernadett.szabo@aurapro.hu', img: '/csapat/szabo-bernadett.jpg' },
+  { name: 'Szegedi Lilla', role: 'Occupational safety engineer, fire safety adviser', desc: '', phone: '+36302053041', email: 'lilla.szegedi@aurapro.hu', img: '/csapat/szegedi-lilla.jpg' },
+  { name: 'Dittrich Zoltán', role: 'Occupational safety technician, senior fire safety officer', desc: 'Certified building construction technician', phone: '+36202156321', email: 'zoltan.dittrich@aurapro.hu', img: '/csapat/dittrich-zoltan.jpg' },
+  { name: 'Szilágyi Bence', role: 'Occupational safety engineer, senior fire safety officer', desc: '', phone: '+36305584024', email: 'bence.szilagyi@aurapro.hu', img: '/csapat/szilagyi-bence.jpg' },
+  { name: 'Tóth István', role: 'Senior fire safety officer, occupational safety technician', desc: 'Health & safety coordinator', phone: '+36704578796', email: 'istvan.toth@aurapro.hu', img: '/csapat/toth-istvan.jpg' },
+  { name: 'Módes Péter', role: 'Occupational & fire safety officer', desc: 'Health & safety coordinator', phone: '+36203724479', email: 'peter.modes@aurapro.hu', img: '/csapat/modes-peter.jpg' },
+  { name: 'Martincsekné Divinyi Krisztina', role: 'Environmental engineer, senior fire safety officer', desc: 'Occupational safety engineer', phone: '+36703681461', email: 'krisztina.divinyi@aurapro.hu', img: '/csapat/martincsekne-divinyi-krisztina.jpg' },
+  { name: 'Hegedűs Zoltán', role: 'Occupational & fire safety officer', desc: '', phone: '+36209582120', email: 'zoltan.hegedus@aurapro.hu', img: '/csapat/hegedus-zoltan.jpg' },
+  { name: 'Dr. Pölöskei Ernő', role: 'Occupational safety engineer, fire safety technician', desc: 'Specialist lawyer', phone: '+36205483733', email: 'erno.poloskei@aurapro.hu', img: '/csapat/dr-poloskei-erno.jpg' },
+  { name: 'Zahorán János', role: 'Occupational safety specialist', desc: 'Health & safety coordinator', phone: '+36303280292', email: 'zahoran@aurapro.hu', img: '/csapat/zahoran-janos.jpg' },
+  { name: 'Haba Ferenc', role: 'Lifting equipment expert', desc: '', phone: '+36306067757', email: 'beszerzes@aurapro.hu', img: '/csapat/haba-ferenc.jpg' },
+  { name: 'Barta Ernő', role: 'Occupational & fire safety specialist', desc: 'Health & safety coordinator', phone: '+36308942788', email: 'barta.erno@aurapro.hu', img: '/csapat/barta-erno.jpg' },
+  { name: 'Kanizsai Csaba', role: 'Health & safety coordinator', desc: 'Occupational safety technician', phone: '+36208047942', email: 'kanizsai.csaba@aurapro.hu', img: '/csapat/kanizsai-csaba.jpg' },
+  { name: 'Gerentsér Gábor', role: 'Health & safety coordinator', desc: 'Civil engineering expert', phone: '+36303858823', email: 'gabor.gerenser@aurapro.hu', img: '/csapat/gerentser-gabor.jpg' },
+  { name: 'Dér Ákos Gábor', role: 'Occupational & fire safety officer', desc: '', phone: '+36306672398', email: 'akos.der@aurapro.hu', img: '/csapat/der-akos-gabor.jpg' },
+  { name: 'Bankó Kitti', role: 'Certified environmental engineer', desc: 'Senior fire safety officer, occupational safety engineer', phone: '+36308207416', email: 'kitti.csere@aurapro.hu', img: '/csapat/banko-kitti.jpg' },
+];
+
+const leadership = team.slice(0, 7);
+const specialists = team.slice(7);
+---
+
+<PageLayout
+  lang="en"
+  title="Our team – Aurapro | 30 experts nationwide"
+  description="Meet the Aurapro team: 30 occupational, fire and environmental safety experts, engineers and coordinators."
+  canonical="/en/team/"
+>
+  <!-- Page hero -->
+  <section class="py-16 lg:py-24 bg-gradient-to-br from-teal-light to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="font-heading font-bold text-4xl lg:text-5xl text-heading">Our team</h1>
+        <p class="mt-4 text-lg text-body leading-relaxed">
+          30 experts – engineers, technicians and coordinators – keeping our partners safe across the country.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading font-bold text-3xl text-heading text-center mb-12">Leadership & office</h2>
+      <div class="flex flex-wrap justify-center gap-6 lg:gap-8 max-w-5xl mx-auto">
+        {leadership.map((person) => (
+          <div class="text-center group basis-[42%] sm:basis-[28%] lg:basis-[21%]" data-animate>
+            <div class="relative w-36 h-36 mx-auto mb-4 rounded-full overflow-hidden bg-surface border-2 border-border shadow-md transition-shadow duration-300 group-hover:shadow-lg group-hover:border-teal">
+              <img
+                src={person.img}
+                alt={person.name}
+                class="w-full h-full object-cover object-top grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <h3 class="font-heading font-semibold text-heading">{person.name}</h3>
+            <p class="text-teal text-sm font-medium mt-1">{person.role}</p>
+            {person.desc && <p class="text-muted text-xs mt-1">{person.desc}</p>}
+            <div class="mt-2 space-y-1">
+              {person.phone && (
+                <a href={`tel:${person.phone}`} class="flex items-center justify-center gap-1.5 text-muted hover:text-teal transition-colors text-xs">
+                  <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                  {person.phone}
+                </a>
+              )}
+              {person.email && (
+                <a href={`mailto:${person.email}`} class="flex items-center justify-center gap-1.5 text-muted hover:text-teal transition-colors text-xs">
+                  <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                  {person.email}
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Specialists -->
+  <section class="py-16 lg:py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading font-bold text-3xl text-heading text-center mb-12">Our specialists</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6 lg:gap-8">
+        {specialists.map((person) => (
+          <div class="text-center group" data-animate>
+            <div class="relative w-28 h-28 mx-auto mb-3 rounded-full overflow-hidden bg-white border-2 border-border shadow-md transition-shadow duration-300 group-hover:shadow-lg group-hover:border-teal">
+              <img
+                src={person.img}
+                alt={person.name}
+                class="w-full h-full object-cover object-top grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <h3 class="font-heading font-semibold text-sm text-heading">{person.name}</h3>
+            <p class="text-teal text-xs font-medium mt-1">{person.role}</p>
+            {person.desc && <p class="text-muted text-xs mt-0.5">{person.desc}</p>}
+            <div class="mt-1.5 space-y-0.5">
+              {person.phone && (
+                <a href={`tel:${person.phone}`} class="flex items-center justify-center gap-1 text-muted hover:text-teal transition-colors text-[11px]">
+                  <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                  {person.phone}
+                </a>
+              )}
+              {person.email && (
+                <a href={`mailto:${person.email}`} class="flex items-center justify-center gap-1 text-muted hover:text-teal transition-colors text-[11px]">
+                  <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                  {person.email}
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats band -->
+  <section class="py-12 lg:py-16 bg-teal-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="font-heading font-bold text-4xl text-white">30</div>
+          <div class="mt-1 text-white/70 text-sm">experts</div>
+        </div>
+        <div>
+          <div class="font-heading font-bold text-4xl text-white">~20</div>
+          <div class="mt-1 text-white/70 text-sm">years of experience</div>
+        </div>
+        <div>
+          <div class="font-heading font-bold text-4xl text-white">48+</div>
+          <div class="mt-1 text-white/70 text-sm">enterprise references</div>
+        </div>
+        <div>
+          <div class="font-heading font-bold text-4xl text-white">0</div>
+          <div class="mt-1 text-white/70 text-sm">fines to date</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <QuoteBand formSource="band-team-en" lang="en" />
+</PageLayout>

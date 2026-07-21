@@ -1,0 +1,96 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import QuoteBand from '../../components/QuoteBand.astro';
+import { Image } from 'astro:assets';
+import serviceMv from '../../assets/images/service-munkavedelem.jpg';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Occupational risk assessment',
+  provider: { '@type': 'Organization', name: 'Aurapro Kft.', url: 'https://www.aurapro.hu' },
+  areaServed: { '@type': 'Country', name: 'Hungary' },
+  description: 'Workplace risk assessment prepared job by job, for hazardous substances and work equipment, for legal compliance.',
+  url: 'https://www.aurapro.hu/en/risk-assessment/',
+};
+---
+
+<PageLayout
+  lang="en"
+  title="Occupational risk assessment | Aurapro"
+  description="A legally required risk assessment by an expert, job by job, at a fixed price. Included with a flat-fee contract. Request a quote."
+  canonical="/en/risk-assessment/"
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceSchema)} />
+
+  <section class="py-16 lg:py-24 bg-gradient-to-br from-teal-light to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="font-heading font-bold text-4xl lg:text-5xl text-heading">Risk assessment</h1>
+          <p class="mt-4 text-lg text-body leading-relaxed">
+            A risk assessment examines the extent to which a given workplace meets the legal
+            requirements. We prepare transparent documentation tailored to your specific workplace.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="/en/contact/" class="inline-flex items-center px-8 py-4 bg-orange text-white font-heading font-bold rounded-lg hover:bg-orange-dark transition-colors">Request a free quote</a>
+            <div class="inline-flex flex-col items-center px-8 py-4 border-2 border-teal text-teal font-heading font-bold rounded-lg">
+            <span>Call now</span>
+            <span class="text-[1.1rem] font-normal text-teal/80 mt-1">+36 70 409 8764</span>
+          </div>
+          </div>
+        </div>
+        <div class="hidden lg:block">
+          <Image src={serviceMv} alt="Workplace risk assessment – an expert inspecting machinery" widths={[640, 1024]} sizes="(min-width: 1024px) 50vw, 100vw" class="rounded-2xl shadow-lg" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto space-y-8">
+        <h2 class="font-heading font-bold text-3xl text-heading">What does a risk assessment include?</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          {[
+            { title: 'Job analysis', desc: 'Mapping and evaluating the specific hazards of every job role.' },
+            { title: 'Hazardous substances', desc: 'Identifying chemicals, dusts and vapours and assessing exposure.' },
+            { title: 'Work equipment review', desc: 'Assessing the risks of machinery, tools and equipment.' },
+            { title: 'Action plan', desc: 'Concrete proposals to reduce or eliminate the identified risks.' },
+          ].map((item) => (
+            <div class="bg-surface rounded-xl p-6 border border-border" data-animate>
+              <h3 class="font-heading font-semibold text-heading">{item.title}</h3>
+              <p class="mt-2 text-body text-sm">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="bg-orange-light rounded-xl p-6 border border-orange/20">
+          <h3 class="font-heading font-semibold text-heading">With a flat-fee contract, the risk assessment is not charged separately</h3>
+          <p class="mt-2 text-body text-sm">
+            Unlike many providers on the market, with us the preparation and upkeep of the risk assessment
+            is part of the flat fee – we do not charge extra for it.
+          </p>
+        </div>
+
+        <h2 class="font-heading font-bold text-2xl text-heading">When must it be reviewed?</h2>
+        <ul class="space-y-3">
+          {[
+            'When a new job role is created',
+            'When new work equipment or technology is introduced',
+            'After a workplace accident',
+            'At least every 5 years, as a requirement',
+            'In the event of legislative changes',
+          ].map((item) => (
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-teal shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span class="text-body">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <QuoteBand formSource="band-risk-assessment-en" services={['munkavedelem']} lang="en" />
+</PageLayout>

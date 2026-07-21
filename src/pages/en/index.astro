@@ -1,0 +1,349 @@
+---
+import { Image } from 'astro:assets';
+import PageLayout from '../../layouts/PageLayout.astro';
+import Hero from '../../components/Hero.astro';
+import StatCounter from '../../components/StatCounter.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+import QuoteBand from '../../components/QuoteBand.astro';
+import LiteYouTube from '../../components/LiteYouTube.astro';
+import heroSafety from '../../assets/images/hero-safety.jpg';
+import ytOktatas from '../../assets/images/yt-oktatas.jpg';
+import ytAdatbazis from '../../assets/images/yt-adatbazis.jpg';
+import serviceMv from '../../assets/images/service-munkavedelem.jpg';
+import serviceTv from '../../assets/images/service-tuzvedelem.jpg';
+import serviceKv from '../../assets/images/service-kornyezetvedelem.jpg';
+import serviceOktatas from '../../assets/images/service-oktatas.jpg';
+import iparagak from '../../assets/images/iparagak.jpg';
+
+const faqItems = [
+  {
+    question: 'How much does occupational safety cost?',
+    answer: 'The price depends on the size of your company, its activity and the number of sites. Request a free assessment and we will send a tailored, no-obligation quote within 24 hours.',
+  },
+  {
+    question: 'How often is occupational safety training required?',
+    answer: 'Occupational safety training is typically repeated annually to keep knowledge current, and additionally whenever a job role changes, a new technology is introduced, or after a workplace accident.',
+  },
+  {
+    question: 'How large a fine can be imposed for a safety shortcoming?',
+    answer: 'Occupational safety fines can be substantial – for small and medium-sized companies up to HUF 25–50 million (Gov. Decree 25/2024). That is exactly why we offer a HUF 40 million penalty guarantee – our clients are protected.',
+  },
+  {
+    question: 'When is a fire safety policy mandatory?',
+    answer: 'A fire safety policy must be prepared if a company employs more than fifty people, operates premises with a capacity of more than 50 persons, or runs commercial accommodation for more than 10 guests (Act XXXI of 1996, Section 19).',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+---
+
+<PageLayout
+  lang="en"
+  title="Aurapro – Occupational & Fire Safety with a HUF 40M Penalty Guarantee"
+  description="Occupational safety, fire safety and environmental protection from a single provider. 30 experts, 48+ enterprise references, nearly 20 years of experience. Request a free quote within 24 hours!"
+  canonical="/en/"
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />
+
+  <!-- Hero -->
+  <Hero
+    lang="en"
+    title="Occupational safety, fire safety, environmental protection – from a single provider"
+    subtitle="Full-service solutions for companies with 100+ employees – backed by a HUF 40 million penalty guarantee."
+    ctaText="Free quote within 24 hours"
+    ctaHref="#ajanlat"
+    secondaryCtaText="+36 70 409 8764"
+    secondaryCtaSubtext="Monday–Friday 8:00–17:00"
+    heroImage={heroSafety}
+    heroImageAlt="Occupational safety expert and plant manager in a modern manufacturing hall"
+  />
+
+  <!-- Social proof numbers -->
+  <StatCounter lang="en" />
+
+  <!-- Reference logo wall -->
+  <section class="py-12 lg:py-16 bg-white border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-center font-heading font-bold text-3xl lg:text-4xl text-heading">Companies that already chose us</h2>
+      <p class="mt-3 mb-12 text-center text-body text-base lg:text-lg font-semibold uppercase tracking-[0.15em]">A trusted partner for companies with 100+ employees</p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8 lg:gap-12 items-center justify-items-center grayscale hover:grayscale-0 transition-all duration-500">
+        <a href="/en/references/#construction"><img src="/referenciak/audi.jpg" alt="Audi" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/en/references/#manufacturing"><img src="/referenciak/siemens.jpg" alt="Siemens" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/en/references/#construction"><img src="/referenciak/richter.jpg" alt="Richter Gedeon" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/en/references/#retail"><img src="/referenciak/dm.jpg" alt="DM" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/en/references/#retail"><img src="/referenciak/primark.jpg" alt="Primark" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/en/references/#services"><img src="/referenciak/porsche.jpg" alt="Porsche" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/en/references/#construction"><img src="/referenciak/egis.jpg" alt="Egis" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/en/references/#services"><img src="/referenciak/bnp.jpg" alt="BNP Paribas" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/en/references/#retail"><img src="/referenciak/libri.jpg" alt="Libri" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/en/references/#services"><img src="/referenciak/adecco.jpg" alt="Adecco" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/en/references/#retail"><img src="/referenciak/pepco.jpg" alt="Pepco" class="h-24 object-contain" loading="lazy" /></a>
+        <a href="/en/references/#services"><img src="/referenciak/budapest-kozut.jpg" alt="Budapest Közút" class="h-24 object-contain" loading="lazy" /></a>
+      </div>
+      <div class="mt-10 text-center">
+        <a href="/en/references/" class="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-teal text-teal font-heading font-bold text-xl rounded-lg hover:bg-teal hover:text-white transition-colors">
+          +36 more companies
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="py-16 lg:py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading">Our services</h2>
+        <p class="mt-3 text-muted text-lg">A complete solution – one partner for occupational safety, fire safety and environmental protection</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <a href="/en/occupational-safety/" class="group block bg-white rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-teal/30 transition-all" data-animate>
+          <div class="h-40 overflow-hidden">
+            <Image src={serviceMv} alt="Occupational safety expert inspecting machinery" widths={[480, 800]} sizes="(min-width: 768px) 33vw, 100vw" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-semibold text-xl text-heading group-hover:text-teal transition-colors">Occupational safety</h3>
+            <p class="mt-3 text-body text-sm leading-relaxed">Risk assessment, safety training, coordination, policies and official administration.</p>
+            <span class="mt-4 inline-flex items-center text-teal font-medium text-sm">Details <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+          </div>
+        </a>
+        <a href="/en/fire-safety/" class="group block bg-white rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-teal/30 transition-all" data-animate>
+          <div class="h-40 overflow-hidden">
+            <Image src={serviceTv} alt="Fire safety specialist checking a fire extinguisher" widths={[480, 800]} sizes="(min-width: 768px) 33vw, 100vw" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-semibold text-xl text-heading group-hover:text-teal transition-colors">Fire safety</h3>
+            <p class="mt-3 text-body text-sm leading-relaxed">Fire safety policy, fire alarm plan, inspections, training, design and permitting.</p>
+            <span class="mt-4 inline-flex items-center text-teal font-medium text-sm">Details <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+          </div>
+        </a>
+        <a href="/en/environmental-protection/" class="group block bg-white rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-teal/30 transition-all" data-animate>
+          <div class="h-40 overflow-hidden">
+            <Image src={serviceKv} alt="Environmental engineer taking a sample" widths={[480, 800]} sizes="(min-width: 768px) 33vw, 100vw" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-semibold text-xl text-heading group-hover:text-teal transition-colors">Environmental protection</h3>
+            <p class="mt-3 text-body text-sm leading-relaxed">Waste management, environmental permits, noise measurement and air quality protection.</p>
+            <span class="mt-4 inline-flex items-center text-teal font-medium text-sm">Details <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- In-house developed services - videos -->
+  <section id="online-training" class="pt-4 pb-10 lg:pt-6 lg:pb-12 bg-white scroll-mt-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading text-center mb-8">Our in-house developed services</h2>
+      <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+        <div>
+          <h3 class="font-heading font-semibold text-lg text-heading text-center mb-3">Online training platform</h3>
+          <LiteYouTube videoId="5_KcdPdQ2gY" title="Online training platform demo" thumb={ytOktatas} />
+        </div>
+        <div>
+          <h3 class="font-heading font-semibold text-lg text-heading text-center mb-3">Online database</h3>
+          <LiteYouTube videoId="uHyexWO8GSc" title="Online database demo" thumb={ytAdatbazis} />
+        </div>
+      </div>
+      <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading text-center mt-20 mb-8">Safety representative training and First aid course</h2>
+      <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+        <a href="/en/safety-representative-training/" class="group block bg-white rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-teal/30 transition-all">
+          <div class="h-48 overflow-hidden">
+            <Image src={serviceOktatas} alt="Safety representative training in a training room" widths={[480, 800]} sizes="(min-width: 768px) 50vw, 100vw" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-semibold text-xl text-heading group-hover:text-teal transition-colors">Safety representative training</h3>
+            <p class="mt-3 text-body text-sm leading-relaxed">We help you complete the mandatory basic training quickly and flexibly. Our trainers bring years of teaching and hands-on daily experience to prepare your safety representatives.</p>
+            <span class="mt-4 inline-flex items-center text-teal font-medium text-sm">Learn more <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+          </div>
+        </a>
+        <a href="/en/first-aid-course/" class="group block bg-white rounded-xl border border-border overflow-hidden hover:shadow-lg hover:border-teal/30 transition-all">
+          <div class="h-48 overflow-hidden">
+            <img src="/images/elsosegelynyujto.jpg" alt="Workplace first aid course" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-semibold text-xl text-heading group-hover:text-teal transition-colors">Workplace first aid course</h3>
+            <p class="mt-3 text-body text-sm leading-relaxed">Prepare your company in line with legal requirements – every shift must have a trained first aider. An intensive, practice-oriented 4-hour course.</p>
+            <span class="mt-4 inline-flex items-center text-teal font-medium text-sm">Learn more <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Aurapro -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading">Why clients choose us</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
+        {[
+          { title: 'HUF 40 million penalty guarantee', desc: 'Unique on the market – we take responsibility for our work.', link: '/en/contact/', linkLabel: 'Details' },
+          { title: '48+ enterprise references', desc: 'Audi, Siemens, Richter, DM, Primark – and many more.' },
+          { title: 'Not one of our partners has been fined', desc: 'A proven track record, not just a promise.' },
+          { title: 'Complete service from one provider', desc: 'Occupational + fire + environmental – less coordination, more efficiency.' },
+          { title: '30 experts nationwide', desc: 'Not a one-person business – capacity available whenever you need it.' },
+          { title: 'Nearly 20 years of experience', desc: 'A stable background with proven methodology.' },
+        ].map((item) => (
+          <div class="flex gap-4">
+            <div class="shrink-0 w-10 h-10 rounded-full bg-teal-light flex items-center justify-center">
+              <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-heading font-semibold text-heading">{item.title}</h3>
+              <p class="mt-1 text-body text-sm">{item.desc}</p>
+              {item.link && (
+                <a href={item.link} class="mt-1 inline-flex items-center text-teal text-sm font-medium hover:text-teal-dark transition-colors">
+                  {item.linkLabel ?? 'Details'}
+                  <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="mt-12 text-center">
+        <a href="/en/contact/" class="inline-flex items-center px-8 py-4 bg-orange text-white font-heading font-bold rounded-lg hover:bg-orange-dark transition-colors">
+          Request a free quote
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-16 lg:py-20 bg-[#919196]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-center font-heading font-bold text-3xl lg:text-4xl text-white mb-12">What our clients say</h2>
+      <div class="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+        {[
+          {
+            quote: 'The solutions tailored to our specific needs and their flexible approach made this cooperation truly valuable for us. Our employees welcomed the changes as well.',
+            name: 'Eszter Nagy',
+            title: 'HR Manager',
+          },
+          {
+            quote: 'The measures introduced not only improved safety, but also had a positive effect on the workplace atmosphere and productivity. They created a win-win situation.',
+            name: 'Mária Tóth',
+            title: 'Division Manager',
+          },
+          {
+            quote: 'We were impressed by the speed and precision of the company. When an urgent safety audit became necessary at one of our new stores, they completed the assessment in record time, yet covering every detail. This kind of efficiency was crucial for us in meeting deadlines, while we never had to worry about quality for a moment.',
+            name: 'Gábor Fehér',
+            title: 'Expansion Director',
+          },
+          {
+            quote: 'Based on the feedback from my colleagues, the training sessions were genuinely fresh and remarkably easy to follow. They particularly noted how the trainers managed to bring the traditionally dry safety material to life with real-world examples and interactive exercises. This not only helped people understand and retain the information better, but also positively shaped employees’ attitudes towards the importance of occupational safety.',
+            name: 'Dr. Katalin Németh',
+            title: 'Human Resources Director',
+          },
+        ].map((item) => (
+          <div class="bg-white/10 rounded-xl p-6 lg:p-8">
+            <svg class="w-8 h-8 text-orange mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zm-14.017 0v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H0z"/></svg>
+            <p class="text-white/90 text-sm leading-relaxed italic mb-4">{item.quote}</p>
+            <div>
+              <p class="font-heading font-semibold text-orange">{item.name}</p>
+              <p class="text-white/60 text-sm">{item.title}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Penalty guarantee -->
+  <section class="pt-4 pb-16 lg:pt-6 lg:pb-20 bg-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading">HUF 40 million penalty guarantee</h2>
+          <p class="mt-4 text-body text-lg leading-relaxed">
+            We are so confident in our work that we offer a unique guarantee: if a partner is fined due to our negligence,
+            we reimburse the amount of the fine – <strong>up to HUF 40 million</strong>.
+          </p>
+          <p class="mt-3 text-body leading-relaxed">
+            This is not just a promise – it is covered by our professional liability insurance. Not a single one of our partners has been fined in nearly 20 years.
+          </p>
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a href="/en/contact/" class="inline-flex items-center px-6 py-3 bg-orange text-white font-heading font-semibold rounded-lg hover:bg-orange-dark transition-colors">
+              Ask about the guarantee
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="/biztositasi-garancia.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 py-3 border-2 border-orange text-orange-dark font-heading font-semibold rounded-lg hover:bg-orange-light transition-colors">
+              Policy (PDF)
+            </a>
+          </div>
+        </div>
+        <div class="hidden lg:block">
+          <img src="/images/bgr-orange.png" alt="Penalty guarantee" class="rounded-2xl shadow-lg" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industry segments -->
+  <section class="py-16 lg:py-20 bg-[#919196]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="font-heading font-bold text-3xl lg:text-4xl text-white mb-6">At home in every industry</h2>
+          <p class="text-white/80 text-lg mb-8">From construction to retail, from manufacturing to offices – nearly 20 years of experience across every sector.</p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {[
+              { label: 'Construction', href: '/en/references/#construction', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2 20h20M6 20V10l6-6 6 6v10M9 20v-4a3 3 0 016 0v4"/>' },
+              { label: 'Manufacturing', href: '/en/references/#manufacturing', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>' },
+              { label: 'Retail', href: '/en/references/#retail', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/>' },
+              { label: 'Offices', href: '/en/references/#services', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0H5m14 0h2m-16 0H3m5-12h.01M8 13h.01M12 9h.01M12 13h.01M16 9h.01M16 13h.01"/>' },
+              { label: 'Warehouses', href: '/en/references/#manufacturing', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>' },
+              { label: 'Public sector', href: '/en/references/#services', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>' },
+            ].map((item) => (
+              <a href={item.href} class="bg-white/10 rounded-xl p-4 text-center hover:bg-white/20 transition-colors flex flex-col items-center gap-2">
+                <svg class="w-8 h-8 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><Fragment set:html={item.icon} /></svg>
+                <span class="font-heading font-semibold text-white text-sm">{item.label}</span>
+              </a>
+            ))}
+          </div>
+          <a href="/en/references/" class="mt-8 inline-flex items-center gap-2 px-7 py-3.5 bg-orange text-white font-heading font-bold text-lg rounded-lg hover:bg-orange-dark transition-colors shadow-lg">
+            View all references <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+        <div class="hidden lg:block">
+          <Image src={iparagak} alt="Modern industrial park: manufacturing hall, logistics warehouse, office building and a construction site with a tower crane" widths={[640, 1024, 1600]} sizes="(min-width: 1024px) 50vw, 100vw" class="rounded-2xl shadow-lg" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ preview -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading">Frequently asked questions</h2>
+      </div>
+      <div class="max-w-3xl mx-auto">
+        <FaqAccordion items={faqItems} />
+        <div class="mt-8 text-center">
+          <a href="/en/faq/" class="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-teal text-teal font-heading font-bold text-lg rounded-lg hover:bg-teal hover:text-white transition-colors">
+            View all questions
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA band -->
+  <QuoteBand formSource="home-band-en" anchorId="ajanlat" lang="en" />
+
+</PageLayout>

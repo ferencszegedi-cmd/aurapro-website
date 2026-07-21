@@ -1,0 +1,95 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import QuoteBand from '../../components/QuoteBand.astro';
+import { Image } from 'astro:assets';
+import serviceTv from '../../assets/images/service-tuzvedelem.jpg';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Fire safety training',
+  provider: { '@type': 'Organization', name: 'Aurapro Kft.', url: 'https://www.aurapro.hu' },
+  areaServed: { '@type': 'Country', name: 'Hungary' },
+  description: 'Annual fire safety training, 30–60 minutes, documented, legally compliant. Can be combined with occupational safety training.',
+  url: 'https://www.aurapro.hu/en/fire-safety-training/',
+};
+---
+
+<PageLayout
+  lang="en"
+  title="Fire safety training – Aurapro | Legally compliant, documented"
+  description="Fire safety training annually, combinable with occupational safety training. 30–60 minutes, documented. Missing it can mean a HUF 30,000–1,500,000 fine."
+  canonical="/en/fire-safety-training/"
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(serviceSchema)} />
+
+  <section class="py-16 lg:py-24 bg-gradient-to-br from-orange-light to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="font-heading font-bold text-4xl lg:text-5xl text-heading">Fire safety training</h1>
+          <p class="mt-4 text-lg text-body leading-relaxed">
+            The aim of fire safety training is for employees to know the fire prevention rules,
+            the escape routes and how to use firefighting equipment. With us you get real training – not just a signature collection.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="/en/contact/" class="inline-flex items-center px-8 py-4 bg-orange text-white font-heading font-bold rounded-lg hover:bg-orange-dark transition-colors">Request a free quote</a>
+            <div class="inline-flex flex-col items-center px-8 py-4 border-2 border-teal text-teal font-heading font-bold rounded-lg">
+            <span>Call now</span>
+            <span class="text-[1.1rem] font-normal text-teal/80 mt-1">+36 70 409 8764</span>
+          </div>
+          </div>
+        </div>
+        <div class="hidden lg:block">
+          <Image src={serviceTv} alt="Fire safety training – demonstrating the use of a fire extinguisher" widths={[640, 1024]} sizes="(min-width: 1024px) 50vw, 100vw" class="rounded-2xl shadow-lg" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto space-y-8">
+        <div class="grid md:grid-cols-3 gap-6">
+          {[
+            { title: 'Duration', value: '30–60 min', desc: 'Combinable with occupational safety training' },
+            { title: 'Frequency', value: 'Annually', desc: 'Ad-hoc after a fire or a change' },
+            { title: 'Fine if missing', value: 'HUF 30,000–1,500,000', desc: 'Can be imposed by disaster management' },
+          ].map((item) => (
+            <div class="bg-surface rounded-xl p-6 border border-border text-center" data-animate>
+              <div class="font-heading font-bold text-xl text-teal">{item.value}</div>
+              <h3 class="font-heading font-semibold text-heading mt-2">{item.title}</h3>
+              <p class="mt-1 text-muted text-sm">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <h2 class="font-heading font-bold text-2xl text-heading">When is it mandatory?</h2>
+        <ul class="space-y-3">
+          {[
+            'When starting work',
+            'When a new fire-hazardous technology is introduced',
+            'After a fire',
+            'When the evacuation situation changes',
+            'Regularly, every year',
+          ].map((item) => (
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-orange-dark shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              <span class="text-body">{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div class="bg-teal-light rounded-xl p-6 border border-teal/20">
+          <h3 class="font-heading font-semibold text-heading">A practical solution: combined training</h3>
+          <p class="mt-2 text-body text-sm">
+            Fire safety and occupational safety training can be combined, so both obligations can be met in a single session.
+            This saves you time and money while ensuring legal compliance.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <QuoteBand formSource="band-fs-training-en" services={['tuzvedelem']} lang="en" />
+</PageLayout>
