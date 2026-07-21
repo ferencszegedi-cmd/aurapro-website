@@ -181,12 +181,11 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     import.meta.env.LEAD_FROM_EMAIL || process.env.LEAD_FROM_EMAIL || 'Aurapro Lead <noreply@aurapro.hu>';
 
   // services (többes, vesszős lista) elsőbbséget élvez a legacy service mezővel szemben
-  const servicesLabelList = (data.services ?? '')
+  const serviceSlugs = (data.services ?? '')
     .split(',')
     .map((s) => s.trim())
-    .filter(Boolean)
-    .map((s) => serviceLabels[s] ?? s)
-    .join(', ');
+    .filter(Boolean);
+  const servicesLabelList = serviceSlugs.map((s) => serviceLabels[s] ?? s).join(', ');
   const serviceLabel = servicesLabelList || (data.service ? (serviceLabels[data.service] ?? data.service) : '');
   const safeMessage = data.message ? escapeHtml(data.message).replace(/\n/g, '<br>') : '';
   const adminBody = `
@@ -256,6 +255,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       phone: data.phone,
       email: data.email,
       serviceLabel,
+      serviceSlugs: serviceSlugs.length > 0 ? serviceSlugs : data.service ? [data.service] : [],
       headcountLabel: data.headcount ? headcountLabels[data.headcount] : undefined,
       message: data.message,
       source: data.source,

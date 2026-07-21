@@ -4,11 +4,46 @@
 // a hívó (api/lead.ts) az e-mailt akkor is kiküldje és a leadet ne veszítse el.
 //
 // Auth: HTTP Basic (SystemId : ApiKey). Base: https://r3.minicrm.hu/Api/R3/
-// Pipeline: Értékesítés (CategoryId 70), belépő státusz Kapcsolatfelvétel (3608).
+// Pipeline-routing:
+//   - Értékesítés (CategoryId 70), belépő státusz Kapcsolatfelvétel (3608) – alapértelmezett.
+//   - Képzés     (CategoryId 76), belépő státusz Tervezés (3674) – ha KIZÁRÓLAG
+//     képzés-jellegű szolgáltatást választottak (elsősegély / MV-képviselő / képzés).
+// A kategória/státusz env-ből felülírható (MINICRM_*_CATEGORY_ID / _STATUS_ID).
 
 const BASE = 'https://r3.minicrm.hu/Api/R3';
 const CATEGORY_ERTEKESITES = 70;
 const STATUS_KAPCSOLATFELVETEL = 3608;
+const CATEGORY_KEPZES = 76;
+const STATUS_KEPZES_ENTRY = 3674; // "Tervezés" – a Képzés pipeline első nyitott státusza
+
+/** Képzés-jellegű szolgáltatás-slugok (QuoteWizard + legacy). */
+const TRAINING_SERVICES = new Set(['elsosegely', 'mv-kepviselo', 'kepzes']);
+
+function envNum(name: string): number | undefined {
+  const raw = (import.meta.env as Record<string, string | undefined>)[name] || process.env[name];
+  const n = raw ? Number(raw) : NaN;
+  return Number.isFinite(n) ? n : undefined;
+}
+
+/**
+ * Eldönti, melyik pipeline-ba kerüljön a lead a választott szolgáltatások alapján.
+ * Csak akkor Képzés, ha VAN választott szolgáltatás ÉS mindegyik képzés-jellegű
+ * (a vegyes kérés – pl. munkavédelem + elsősegély – az Értékesítésbe megy).
+ */
+function chooseTarget(serviceSlugs: string[]): { categoryId: number; statusId: number } {
+  const slugs = serviceSlugs.map((s) => s.trim()).filter(Boolean);
+  const trainingOnly = slugs.length > 0 && slugs.every((s) => TRAINING_SERVICES.has(s));
+  if (trainingOnly) {
+    return {
+      categoryId: envNum('MINICRM_KEPZES_CATEGORY_ID') ?? CATEGORY_KEPZES,
+      statusId: envNum('MINICRM_KEPZES_STATUS_ID') ?? STATUS_KEPZES_ENTRY,
+    };
+  }
+  return {
+    categoryId: envNum('MINICRM_ERTEKESITES_CATEGORY_ID') ?? CATEGORY_ERTEKESITES,
+    statusId: envNum('MINICRM_ERTEKESITES_STATUS_ID') ?? STATUS_KAPCSOLATFELVETEL,
+  };
+}
 
 export interface MiniCrmLead {
   name: string;
@@ -17,6 +52,8 @@ export interface MiniCrmLead {
   email: string;
   /** Ember-olvasható szolgáltatás-lista (pl. "Munkavédelem, Tűzvédelem") */
   serviceLabel?: string;
+  /** Nyers szolgáltatás-slugok a pipeline-routinghoz (pl. ["elsosegely","mv-kepviselo"]) */
+  serviceSlugs?: string[];
   headcountLabel?: string;
   message?: string;
   source?: string;
@@ -89,10 +126,11 @@ export async function pushLeadToMiniCrm(lead: MiniCrmLead): Promise<Result> {
       `Forrás: weboldal (${lead.source ?? 'ajanlatkero'})`,
     ].filter(Boolean);
 
+    const target = chooseTarget(lead.serviceSlugs ?? []);
     const project = await put('/Project', systemId, apiKey, {
-      CategoryId: CATEGORY_ERTEKESITES,
+      CategoryId: target.categoryId,
       ContactId: contactId,
-      StatusId: STATUS_KAPCSOLATFELVETEL,
+      StatusId: target.statusId,
       Name: lead.serviceLabel
         ? `${lead.company} – ${lead.serviceLabel} (weboldal)`
         : `${lead.company} – weboldal ajánlatkérés`,
