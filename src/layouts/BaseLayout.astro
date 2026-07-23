@@ -227,6 +227,13 @@ const orgSchema = {
           cta: link.dataset.cta ?? 'unknown',
           page_path: window.location.pathname,
         });
+        // telefon_ga4: a régi oldallal közös GA4 KULCSESEMÉNY neve — ezt importálja
+        // az Ads "Aurapro telefon GAds" konverziós művelete, így a telefonos konverzió
+        // folytonosan mérődik az új oldalon is (A2-csomag, 2026-07-23).
+        (window as any).gtag('event', 'telefon_ga4', {
+          cta: link.dataset.cta ?? 'unknown',
+          page_path: window.location.pathname,
+        });
       }
     });
   </script>
