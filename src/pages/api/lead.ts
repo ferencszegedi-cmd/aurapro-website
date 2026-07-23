@@ -41,6 +41,7 @@ const serviceLabels: Record<string, string> = {
   kornyezetvedelem: 'Környezetvédelem',
   elsosegely: 'Elsősegélynyújtó képzés',
   'mv-kepviselo': 'Munkavédelmi képviselő képzés',
+  'online-oktatas': 'Online oktatás',
   gepvizsgalat: 'Elektromos mérés / gépvizsgálat',
   // legacy értékek (régi kliensek)
   kepzes: 'Képzés / oktatás',

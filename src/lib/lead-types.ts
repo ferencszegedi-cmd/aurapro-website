@@ -6,4 +6,5 @@ export type ServiceValue =
   | 'kornyezetvedelem'
   | 'elsosegely'
   | 'mv-kepviselo'
-  | 'gepvizsgalat';
+  | 'online-oktatas'
+  | 'gepvizsgalat'; // legacy — a wizardból 2026-07-23-án kikerült, régi beküldések miatt marad

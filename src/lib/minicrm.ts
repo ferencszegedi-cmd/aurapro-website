@@ -17,7 +17,7 @@ const CATEGORY_KEPZES = 76;
 const STATUS_KEPZES_ENTRY = 3674; // "Tervezés" – a Képzés pipeline első nyitott státusza
 
 /** Képzés-jellegű szolgáltatás-slugok (QuoteWizard + legacy). */
-const TRAINING_SERVICES = new Set(['elsosegely', 'mv-kepviselo', 'kepzes']);
+const TRAINING_SERVICES = new Set(['elsosegely', 'mv-kepviselo', 'online-oktatas', 'kepzes']);
 
 function envNum(name: string): number | undefined {
   const raw = (import.meta.env as Record<string, string | undefined>)[name] || process.env[name];
