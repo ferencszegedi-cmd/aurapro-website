@@ -84,21 +84,47 @@ const enHref = getAlternatePath(path, 'en');
         </div>
       </div>
 
-      <!-- Mobile menu button -->
-      <button
-        class="lg:hidden p-2 text-body hover:text-teal"
-        aria-label="Open menu"
-        id="mobile-menu-btn"
-      >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
+      <!-- Mobil: nyelv-választó mindig láthatóan a fejlécsorban + menü gomb -->
+      <div class="lg:hidden flex items-center gap-3">
+        <div class="flex items-center gap-1.5">
+          {lang === 'hu' ? (
+            <span aria-label="Magyar nyelv (aktuális)"
+              class="inline-block w-7 h-5 rounded overflow-hidden ring-2 ring-teal shadow-sm">
+              <img src="/images/flags/hu.svg" alt="Magyar" class="w-full h-full block" />
+            </span>
+          ) : (
+            <a href={huHref} aria-label="Váltás magyarra" title="Magyar"
+              class="inline-block w-7 h-5 rounded overflow-hidden ring-1 ring-border shadow-sm hover:ring-teal transition-all">
+              <img src="/images/flags/hu.svg" alt="Magyar" class="w-full h-full block" />
+            </a>
+          )}
+          {lang === 'en' ? (
+            <span aria-label="English (current)"
+              class="inline-block w-7 h-5 rounded overflow-hidden ring-2 ring-teal shadow-sm">
+              <img src="/images/flags/gb.svg" alt="English" class="w-full h-full block" />
+            </span>
+          ) : (
+            <a href={enHref} aria-label="Switch to English" title="English"
+              class="inline-block w-7 h-5 rounded overflow-hidden ring-1 ring-border shadow-sm hover:ring-teal transition-all">
+              <img src="/images/flags/gb.svg" alt="English" class="w-full h-full block" />
+            </a>
+          )}
+        </div>
+        <button
+          class="p-2 text-body hover:text-teal"
+          aria-label="Open menu"
+          id="mobile-menu-btn"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 
-  <!-- Mobile menu -->
-  <div class="lg:hidden hidden" id="mobile-menu">
+  <!-- Mobile menu (görgethető, hogy a hosszú lista alja is elérhető legyen) -->
+  <div class="lg:hidden hidden max-h-[calc(100dvh-9rem)] overflow-y-auto" id="mobile-menu">
     <div class="px-4 py-4 border-t border-border bg-white space-y-1">
       {items.map((item) => (
         item.children ? (
