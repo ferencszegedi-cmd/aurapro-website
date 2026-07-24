@@ -100,7 +100,26 @@ Egy tétel **SZÓLJ NEKEM** jelölést kap, ha:
 
 A 40–69 pont közötti tételek „megfigyelendő" listára kerülnek, rövid sorban.
 
-### 4. Jelentés + értesítés
+### 4. Mentés — Béla mentsen le MINDENT (perzisztencia)
+
+A tulajdonos több gépről dolgozik (pl. hétfőn irodából), ezért semmi nem veszhet el
+a munkamenettel. Minden futás végén Béla:
+
+1. Menti a teljes jelentést: `jelentesek/<ÉÉÉÉ-HH-NN>.md`.
+2. Frissíti a `nyilvantartas.md` ledgert: a meglévő leadeket állapot szerint
+   frissíti (ne duplikáld), az újakat felveszi.
+3. Frissíti az `ALLAPOT.md`-t (utolsó frissítés dátuma, nyitott szálak).
+4. **Commitol és pushol** a `claude/auction-property-agent-t06zxn` ágra, hogy az
+   irodai gépen `git pull`-lal minden elérhető legyen:
+   ```
+   git add .claude/skills/bela/jelentesek .claude/skills/bela/nyilvantartas.md .claude/skills/bela/ALLAPOT.md
+   git commit -m "Béla futás <dátum>: jelentés + nyilvántartás mentése"
+   git push origin claude/auction-property-agent-t06zxn
+   ```
+   Ha a push nem sikerül (jogosultság/hálózat), jelezd a záró üzenetben — az e-mail
+   értesítő így is kimegy.
+
+### 5. Jelentés + értesítés
 
 - Állítsd össze a magyar nyelvű jelentést a lenti formátum szerint.
 - A futás **záró üzenete** legyen a tömör magyar összefoglaló (ez megy ki a Routine
