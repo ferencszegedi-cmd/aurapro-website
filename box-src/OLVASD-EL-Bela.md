@@ -83,3 +83,21 @@ Ez frissíti a `public/box/index.html`-t. (A `standalone.html` a teljesen önál
 3. `stresszbox.hu` és `boxbudaors.hu`: vedd meg, majd a registrarnál állítsd **átirányítás/redirect → `https://budaorsbox.hu`** (vagy Vercelben add hozzá redirect-domainként).
 
 **Megjegyzés:** az elérhetőség-ellenőrzést és a domain-vásárlást a mostani munkamenetből nem tudtam elvégezni (a Vercel-műveletek jóváhagyást kérnek, ami itt nem megy át; a `.hu` amúgy is magyar registraron keresztül megy). Ezért a fenti manuális lépésekkel.
+
+---
+
+## CARLOS ÚJ PROFI FOTÓI — a Gmailben várnak (hétfőn letölteni)
+
+Carlos elküldte a ~10 profi fotót (köztük a fekete Nike pólós portré a ring előtt), te pedig továbbküldted a **saját Gmailedre** (ferenc.szegedi@gmail.com).
+
+**Hol vannak pontosan:**
+- Gmail, **3 e-mail**, feladó = címzett = `ferenc.szegedi@gmail.com`
+- Dátum: **2026-07-24**, kb. **18:51 / 18:52 / 18:53**, tárgy nélkül, csatolt képekkel
+- Gmail-kereső: **`from:me to:me has:attachment`** → nyisd meg a mai (18:51–18:53) leveleket
+
+**Hétfői teendő (irodai gép):**
+1. Töltsd le a képeket a Gmailből a gépre.
+2. Tedd a fájlokat a `public/box/` mappába (pl. `carlos-pro.jpg`, `edzes-1.jpg`, …).
+3. Jelezd → becserélem Carlos fotóját a **profi portréra** (Carlos-szekció + galéria), és a többi jó képet is beteszem a galériába, majd újraépítés.
+
+**Megjegyzés:** a képfájlokat a mostani munkamenetből nem tudtam közvetlenül a projektbe menteni (a nagy csatolmány-bájtokat a környezet nem mozgatja fájlként), de a Gmailben biztonságban vannak, onnan hétfőn letölthetők.
