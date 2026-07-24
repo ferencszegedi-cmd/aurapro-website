@@ -12,3 +12,6 @@ tmp-fonts/
 # Local dev tooling
 .claude/
 .env*
+
+# Box klub build scratch (screenshots, embed build, fonts)
+scratch-box/
