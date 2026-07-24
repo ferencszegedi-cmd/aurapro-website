@@ -86,14 +86,15 @@ section{padding-block:clamp(60px,8vw,116px);position:relative}
 .emblem .sub{fill:var(--ink-dim);font-family:'Barlow',sans-serif;font-weight:700;font-size:6px;letter-spacing:.22em}
 .emblem .star{fill:var(--gold)}
 
-/* announce bar */
-.announce{position:fixed;top:0;left:0;right:0;z-index:49;background:var(--gold);color:#1a1200;text-align:center;font-weight:700;font-size:.82rem;letter-spacing:.04em;padding:9px 16px;text-transform:uppercase;transition:transform .35s ease}
+/* top bar (announce + header stacked in one fixed container — cannot overlap) */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:50}
+.announce{background:var(--gold);color:#1a1200;text-align:center;font-weight:700;font-size:.82rem;line-height:1.35;letter-spacing:.04em;padding:9px 16px;text-transform:uppercase;overflow:hidden;transition:max-height .35s ease,padding .35s ease;max-height:96px}
 .announce a{text-decoration:underline;text-underline-offset:2px}
-.announce.hide{transform:translateY(-100%)}
+.topbar.scrolled .announce{max-height:0;padding-top:0;padding-bottom:0}
 
 /* header */
-header.site{position:fixed;top:var(--ah,42px);left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px var(--pad);transition:top .35s ease,background .3s ease,border-color .3s,padding .3s;border-bottom:1px solid transparent}
-header.site.scrolled{top:0;background:rgba(11,11,12,.9);backdrop-filter:blur(12px);border-bottom-color:var(--line);padding-block:8px}
+header.site{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px var(--pad);transition:background .3s ease,border-color .3s,padding .3s;border-bottom:1px solid transparent;background:transparent}
+.topbar.scrolled header.site{background:rgba(11,11,12,.92);backdrop-filter:blur(12px);border-bottom-color:var(--line);padding-block:8px}
 .brand{display:flex;align-items:center;gap:12px}
 .brand .emblem{width:44px;height:44px;flex:none}
 .brand .wm{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.02em;font-size:1.02rem;line-height:1}
@@ -112,7 +113,7 @@ nav.main a.navlink:hover{color:var(--ink)}
 }
 
 /* hero */
-.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding-top:120px;overflow:hidden}
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding-top:clamp(140px,20vw,170px);overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:-1}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 42%;filter:contrast(1.04) saturate(.9) brightness(.82)}
 .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,12,.72),rgba(11,11,12,.4) 34%,rgba(11,11,12,.82) 86%,var(--bg)),radial-gradient(80% 60% at 20% 30%,rgba(231,178,48,.12),transparent 60%)}
@@ -276,6 +277,7 @@ footer .sm{color:var(--muted);font-size:.82rem}
   <path id="arcB" d="M20 50 A30 30 0 0 0 80 50" fill="none"/>
 </defs></svg>
 
+<div class="topbar" id="topbar">
 <div class="announce">🥊 Az első edzés <b>INGYENES</b> — <a href="#regisztracio">jelentkezz online</a> · Budaörs, TerraPark</div>
 
 <header class="site" id="top">
@@ -295,6 +297,7 @@ footer .sm{color:var(--muted);font-size:.82rem}
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
   </button>
 </header>
+</div>
 
 <main id="fo">
 <!-- HERO -->
@@ -561,16 +564,10 @@ footer .sm{color:var(--muted);font-size:.82rem}
 
 <script>
 (function(){
-  var h=document.querySelector('header.site'), ann=document.querySelector('.announce');
-  function setAH(){ if(ann){document.documentElement.style.setProperty('--ah', ann.offsetHeight+'px');} }
-  function onScroll(){
-    var past = ann ? window.scrollY > (ann.offsetHeight - 2) : window.scrollY > 24;
-    h.classList.toggle('scrolled', past);
-    if(ann) ann.classList.toggle('hide', past);
-  }
-  setAH(); onScroll();
+  var bar=document.getElementById('topbar');
+  function onScroll(){ bar.classList.toggle('scrolled', window.scrollY>28); }
+  onScroll();
   window.addEventListener('scroll',onScroll,{passive:true});
-  window.addEventListener('resize',function(){setAH();onScroll();},{passive:true});
   var burger=document.getElementById('burger'),nav=document.getElementById('nav');
   function closeNav(){nav.classList.remove('open');burger.setAttribute('aria-expanded','false')}
   burger.addEventListener('click',function(){var o=nav.classList.toggle('open');burger.setAttribute('aria-expanded',o?'true':'false')});
