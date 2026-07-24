@@ -289,7 +289,7 @@ footer .sm{color:var(--muted);font-size:.82rem}
   <div class="hdr-right">
     <div class="langsw" role="group" aria-label="Nyelv / Language">
       <button type="button" data-lang="hu" class="on" aria-pressed="true">Magyar</button>
-      <button type="button" data-lang="rom" aria-pressed="false">Roma</button>
+      <button type="button" data-lang="en" aria-pressed="false">English</button>
       <button type="button" data-lang="zh" aria-pressed="false">中文</button>
     </div>
     <button class="burger" id="burger" aria-label="Menü" aria-expanded="false" aria-controls="nav">
@@ -569,57 +569,57 @@ footer .sm{color:var(--muted);font-size:.82rem}
 (function(){
   /* ---------- i18n ---------- */
   var T={
-   rom:{
-    announce:'🥊 O anglúno óra <b>IVJA</b> — naj lunako pochin, 5000 Ft jekh data · Budaörs, TerraPark',
-    nav_acad:"I akademíja", nav_carlos:"Carlos", nav_sched:"Vrámako", nav_gallery:"Kípé", nav_contact:"Kontákto", nav_cta:"Ivja óra",
-    hero_eyebrow:"Bokso-óra šerutnenge & menedzserenge · Budaörs",
-    hero_h1:'Mukh tele o pharipe.<br><span class="gold">Le o kesztyűvo.</span>',
-    hero_sub:'Pala jekh phare vorbako dyes, av tele, le o kesztyűvo, thaj de avri o pharipe. Va, maren tumen jekhavres — numa kontrolálime, tela o dikhipe le edzévosko. O cílo naj te phagen jekhavres, hanem te érzin tut mishto, te sportozin, thaj uzhe sheresa te zhas khere. Tela kontrolálime körülmények, le Carlososa. <b>Naj lunako pochin: jekh data 5000 Ft, o anglúno óra ivja.</b>',
-    hero_btn1:"Rézervalin jekh levezetíbaski óra", hero_btn2:"Akhar: 06 70 365 9393",
-    hero_meta1:"Budaörs, TerraPark · Edison uca 3", hero_meta2:"Naj lunako pochin · 5000 Ft/data · anglúno óra ivja",
-    val_eyebrow:"Sostar o menedzser-boxo", val_h2:'Chi aves te<br><span class="gold">maren tut.</span>',
-    val_p:"O menedzser bokso-óra pala tyiro dyes si gindime: naj uljicako maripe, naj bunyó. Kontrolálime sporto — les tele i nyakkendő, les o kesztyűvo, thaj de avri o sa-dyveseski feszültségo. Va, maren tumen jekhavres, numa o cílo si o mishto-érzipe thaj o levezetíba, na o phagipe. O Carlos sa o vrama dikhel, te ashel biztonságo.",
-    c1h:"Kontrolálime, na phagipe", c1p:"Va, maren tumen jekhavres — numa ande kesztyűvo, tela o dikhipe le edzévosko, pe tyiri szinta. O cílo naj te phagen jekhavres, hanem te érzin tut mishto thaj te des avri o pharipe. Sparring numa akor, kana gáta san.",
-    c2h:"Les tele o stresso", c2p:"Jekh óra bokso majbut levezetil sar jekh lungo meetingo. O pulzus opre, o shero uzho, o feszültségo pe gono ashel.",
-    c3h:"Naj lunako pochin", c3p:"Chi phandas tut khanchesa. Jekh data 5000 Ft, aves kana tyiro naptáro mukhel. O anglúno óra ivja.",
-    c4h:"Pala tyiro dyes", c4p:"Popaladyeseske thaj ratyaka vrámi, diszkréto, baro-manushengo than. Pala butji 60 minuti, so čačes tyire si.",
-    belt1:"jekh data", belt2:"lunako pochin", belt3:"óra ivja", belt4:"minuti kikapcsolás",
-    car_role:"Šeralo edzévo · alapítóvo", car_eyebrow:"Tyiro edzévo", car_h2:'O Carlos<br>dikhel pe tute.',
-    car_lead:"Pe menedzser óra chi san mukhlo korkoro. O Carlos — o šeralo edzévo le Budaörs Box Academyko — čačes zhanel sar te levezetil jekh irodako dyes kadja, ke bi jekhe karcoláso zhas khere.",
-    car_p1:"O Carlos pe tyiro tempo ígazínel sa: kaditi phárol, sode mishto si, sikavel i tehnika, thaj dikhel ke biztonságo, numa mishto khinjardo zhas khere. Leske o lényego si te érzin tut feder, sar kana dijan andre.",
-    car_p2:"Chi trubul tapasztalása, chi trubul te aves ande kondícia, thaj chi trubul kasa te zhas ando ringo. Dosta jekh phare dyes thaj cerra kedvo, te des avri o gőzo.",
-    car_p3:"Paša leste jekh zoralo bánda kerel butji tusa:",
-    role_head:"šeralo edzévo", role_coach:"edzévo",
-    tr_eyebrow:"Sar zhal jekh óra", tr_h2:"Kadja levezetis o dyes",
-    tr_p:"Sako óra le melegipesko kezdil thaj le nyújtipesko phandel. Ando máškaripe tu mares — pe gono thaj pe lapát-kesztyűvo. Zéro maripe, zéro kényszero.",
-    ti1h:"Melegipe & kilazínipe", ti1p:"I irodaki merevságo kimishtisaras: ugroshelo, punreski butji, átmishtipe. Kathe kezdil te perel o stresso.",
-    ti2h:"Alap-tehnika", ti2p:"Alap-beshipe, orta shundimata, vasteski butji. Cerra mishtimata, so andej vast tuke mishto ashel.",
-    ti3h:"Gono — o stressz-levezetíba", ti3p:"O máškar le óraki: des pe gono, thaj sa o feszültségo odoj ashel. Ritmo, zor, khinjaripe.",
-    ti4h:"Kontrolálime sparring", ti4p:"Kana gáta san: ande kesztyűvo, tela o dikhipe le edzévosko gyakorlin jekhavresa. Na phagipe — sporto, ritmo, thaj o ratyako feszültségo-levezetíba.",
-    sch_h:"Kana & kasa", sch_sub:"Popaladyeseske thaj ratyaka vrámi — pala butji vi loke reslel. Le čače vrámi pala o klubosko vrámako.",
-    d_mon:"Luja", d_tue:"Marci", d_wed:"Tetradji", d_thu:"Zhoja", d_fri:"Parashtuj",
-    vid_eyebrow:"Dikh andre kaj amende", vid_h2:'Kado si o terema. Kado si i<br><span class="gold">hangulat.</span>',
-    vid_cap1:"O ringo & le legendе", vid_cap2:"Dikhipe rundom",
-    gal_eyebrow:"O terema", gal_h2:'Kado azhukarel tut<br>ande Budaörs',
-    gal_p:"Amaro ringo, bajnoke cintura, but gone, reflekso-esközura — thaj jekh plafono pherdo le bokso-legendenca, katar o Tyson zhi kaj o Canelo. De klikko pe le kípе te dikhes len baro.",
-    fig1:"O terema & o ringo", fig2:"Gono-šoro", fig_carlos:"Carlos · o šéfo", fig3:"Bajnoke cintura", fig4:"Funkcionálno", fig5:"Le legendе", fig6:"O edző-terema", fig7:"O ringo pashe", fig8:"Le fali",
-    reg_eyebrow:"Rézervalin · anglúno óra ivja", reg_h2:'De avri<br><span class="gold">o gőzo.</span>',
-    reg_lead:"Rézervalin jekh levezetíbaski óra. Phen kana shaj aves — o Carlos del tut anglal. O anglúno data ivja, pala kodo naj lunako pochin: jekh data 5000 Ft.",
-    b1:"Anglúno óra ivja, bi kötelezettságo", b2:"Naj lunako pochin — jekh data 5000 Ft", b3:"Kontrolálime körülmények — o cílo si o levezetíba, na o phagipe",
-    f_name:"Tyiro anav", ph_name:"Pl. Kovács Anna", f_tel:"Telefono", f_email:"E-mail (na kötelezo)", f_sess:"Savi vrama mishto tuke?",
-    opt0:"Alosar vrama…", opt1:"Luja 17:30 — Carlos", opt2:"Marci 17:00 — Bertók Róbert", opt3:"Tetradji 08:00 — Carlos", opt4:"Tetradji 16:00 — Tibi bá'", opt5:"Tetradji 17:30 — Carlos", opt6:"Zhoja 17:00 — Bertók Róbert", opt7:"Parashtuj 08:00 — Carlos", opt8:"Parashtuj 17:00 — Totka Pali bácsi", opt9:"Inke chi zhanav — akharen ma palpale",
-    f_beg:"Egészen kezdévo sim", f_msg:"Vorba (na kötelezo)", ph_msg:"Sa so trubul te zhanas…", f_submit:"Bishav o anav-dipe",
-    f_note:'O „Bishav o anav-dipe" gombo phravel tyiro levéltúro le Carlososke gáta-kerdo vorbasa (terra.budai@gmail.com). Vaj akhar direkt: <a href="tel:+36703659393" style="color:var(--gold-soft)">06 70 365 9393</a>.',
-    faq_eyebrow:"Angla te aves andre", faq_h2:"Butvar phучimata",
-    q1:"Malaven ma?", a1:"Kontrolálime, va — ande kesztyűvo, tela o dikhipe le edzévosko, pe tyiri szinta. O cílo šoha naj o phagipe, hanem o sporto thaj o feszültségo-levezetíba. Zhi kaj chi érzin tut gáta pe sparring, pe gono keres butji.",
-    q2:"Trubul te avav ande kondícia vaj tapasztalása?", a2:"Na. Katar godi shaj kezdis — o Carlos pe tyiri szinta ígazínel o pharipe. O cílo naj o teljesítményo, hanem te érzin tut feder.",
-    q3:"Si lunako pochin vaj szerződíba?", a3:"Naj. Jekh data 5000 Ft, aves kana shaj. O anglúno óra ivja, te probálin bi kötelezettságo.",
-    q4:"Trubul piri felšerelísa?", a4:"Ando kezdipe na. Aves ande kényelmo sporto-gada thaj papucha, an paji — o kesztyűvo vorbisaras.",
-    q5:"Kaj san čačes?", a5:"Ande Budaörs, ando TerraPark (Edison uca 3.). Loke te reses, si parkolása pashe.",
-    con_eyebrow:"Kontákto", con_h2:'Av andre pe jekh<br>óra', con_k1:"Telefono · Carlos", con_k2:"E-mail", con_k3:"Than", con_v3:"Budaörs, TerraPark · Edison uca 3",
-    foot_sub:"Menedzser box · Budaörs",
-    js_valid:"Rúgin, pherdyar tyiro anav, telefono thaj alosar treningo.",
-    js_ok:"Nais tuke, {name}! Phravdilo tyiro levéltúro le gáta-kerdo vorbasa — bishav les, thaj o Carlos sigo lel kontákto. Te chi phravdilo, akhar o 06 70 365 9393."
+   en:{
+    announce:'🥊 First session <b>FREE</b> — no monthly fee, 5000 Ft per session · Budaörs, TerraPark',
+    nav_acad:"The gym", nav_carlos:"Carlos", nav_sched:"Schedule", nav_gallery:"Gallery", nav_contact:"Contact", nav_cta:"Free session",
+    hero_eyebrow:"Boxing for executives & managers · Budaörs",
+    hero_h1:'Put down the weight.<br><span class="gold">Put on the gloves.</span>',
+    hero_sub:'After a hard day of meetings, come down, put on the gloves and work off the tension. Yes, you spar — but under control, with a coach watching. The goal is not to beat each other up; it is to feel good, move, and go home with a clearer head. In a controlled setting, with Carlos. <b>No monthly fee: 5000 Ft per session, the first one is free.</b>',
+    hero_btn1:"Book a wind-down session", hero_btn2:"Call: 06 70 365 9393",
+    hero_meta1:"Budaörs, TerraPark · Edison u. 3", hero_meta2:"No monthly fee · 5000 Ft/session · first one free",
+    val_eyebrow:"Why manager boxing", val_h2:'You come to unwind,<br><span class="gold">not to get beaten up.</span>',
+    val_p:"Manager boxing is designed for after your day: not a street fight, not a competition. Controlled sport — take off the tie, put on the gloves, and release a whole day of tension. Yes, you spar, but the goal is feeling good and letting off steam, not beating anyone up. Carlos watches the whole time to keep it safe.",
+    c1h:"Controlled, not a beat-down", c1p:"Yes, you spar — but in gloves, with a coach watching, at your level. The goal is not to beat each other up; it's to feel good and let off steam. Sparring only when you're ready for it.",
+    c2h:"Let off the stress", c2p:"An hour of boxing clears more than a long meeting. Heart rate up, head clear, tension left on the bag.",
+    c3h:"No monthly fee", c3p:"No commitments. 5000 Ft per session, come whenever your calendar allows. The first session is free.",
+    c4h:"After your day", c4p:"Afternoon and evening slots, a discreet, grown-up setting. 60 minutes after work that are truly yours.",
+    belt1:"per session", belt2:"monthly fee", belt3:"session free", belt4:"minutes to unwind",
+    car_role:"Head coach · founder", car_eyebrow:"Your coach", car_h2:'Carlos<br>looks after you.',
+    car_lead:"On the manager session you're not left on your own. Carlos — head coach of Budaörs Box Academy — knows exactly how to work off an office day while you come away without a scratch.",
+    car_p1:"Carlos tailors everything to your pace: as much load as feels right, shows you the technique, and makes sure you go home safe but properly sweaty. For him the point is that you feel better than when you walked in.",
+    car_p2:"You don't need experience, you don't need to be fit, and you don't have to get in the ring with anyone. A tough day and a bit of willingness is enough to let off steam.",
+    car_p3:"A strong team works alongside him:",
+    role_head:"head coach", role_coach:"coach",
+    tr_eyebrow:"How a session goes", tr_h2:"This is how you wind down",
+    tr_p:"Every session starts with a warm-up and ends with a stretch. In the middle, you throw the punches — on the bag and on the pads. Zero fighting, zero pressure.",
+    ti1h:"Warm-up & loosen up", ti1p:"We shake off the office stiffness: skipping rope, footwork, mobility. This is where the stress starts to drop.",
+    ti2h:"Basic technique", ti2p:"Stance, straight punches, hand work. A few moves that make your hands look right straight away.",
+    ti3h:"The bag — stress release", ti3p:"The heart of the session: you get on the bag and all the tension stays there. Rhythm, power, sweat.",
+    ti4h:"Controlled sparring", ti4p:"When you're ready: in gloves, under the coach's eye, you practise with each other. Not a beat-down — sport, rhythm, and end-of-day stress release.",
+    sch_h:"When & with whom", sch_sub:"Afternoon and evening slots — they fit comfortably after work too. Exact times follow the club's schedule.",
+    d_mon:"Monday", d_tue:"Tuesday", d_wed:"Wednesday", d_thu:"Thursday", d_fri:"Friday",
+    vid_eyebrow:"Take a look inside", vid_h2:'This is the gym. This is the<br><span class="gold">vibe.</span>',
+    vid_cap1:"The ring & the legends", vid_cap2:"Look around",
+    gal_eyebrow:"The gym", gal_h2:'This is what awaits you<br>in Budaörs',
+    gal_p:"Our own ring, championship belts, a whole row of bags, reflex gear — and a ceiling covered in boxing legends, from Tyson to Canelo. Tap the photos to enlarge.",
+    fig1:"The gym & the ring", fig2:"Bag row", fig_carlos:"Carlos · the boss", fig3:"Championship belts", fig4:"Functional", fig5:"The legends", fig6:"The training room", fig7:"The ring up close", fig8:"The walls",
+    reg_eyebrow:"Booking · first session free", reg_h2:'Let off<br><span class="gold">steam.</span>',
+    reg_lead:"Book a wind-down session. Tell us when you can come — Carlos will get back to you. The first time is free, after that no monthly fee: 5000 Ft per session.",
+    b1:"First session free, no obligation", b2:"No monthly fee — 5000 Ft per session", b3:"Controlled setting — the goal is release, not a beat-down",
+    f_name:"Your name", ph_name:"e.g. John Smith", f_tel:"Phone", f_email:"Email (optional)", f_sess:"Which time works for you?",
+    opt0:"Choose a time…", opt1:"Monday 17:30 — Carlos", opt2:"Tuesday 17:00 — Bertók Róbert", opt3:"Wednesday 08:00 — Carlos", opt4:"Wednesday 16:00 — Tibi bá'", opt5:"Wednesday 17:30 — Carlos", opt6:"Thursday 17:00 — Bertók Róbert", opt7:"Friday 08:00 — Carlos", opt8:"Friday 17:00 — Totka Pali bácsi", opt9:"Not sure yet — call me back",
+    f_beg:"I'm a complete beginner", f_msg:"Message (optional)", ph_msg:"Anything worth knowing…", f_submit:"Send booking",
+    f_note:'The “Send booking” button opens your email with a pre-filled message to Carlos (terra.budai@gmail.com). Or just call: <a href="tel:+36703659393" style="color:var(--gold-soft)">06 70 365 9393</a>.',
+    faq_eyebrow:"Before you come in", faq_h2:"Frequently asked",
+    q1:"Will I get hit?", a1:"In a controlled way, yes — in gloves, under the coach's eye, at your level. The goal is never a beat-down, but sport and stress release. Until you feel ready to spar, you work the bag.",
+    q2:"Do I need to be fit or have experience?", a2:"No. You can start from anywhere — Carlos adjusts the load to your level. The goal isn't performance, it's feeling better.",
+    q3:"Is there a monthly fee or contract?", a3:"No. 5000 Ft per session, come when you can. The first session is free so you can try it with no obligation.",
+    q4:"Do I need my own gear?", a4:"Not at the start. Come in comfortable sportswear and shoes, bring water — we'll sort out gloves together.",
+    q5:"Where exactly are you?", a5:"In Budaörs, in TerraPark (Edison utca 3). Easy to reach, parking nearby.",
+    con_eyebrow:"Contact", con_h2:'Come in for a<br>session', con_k1:"Phone · Carlos", con_k2:"Email", con_k3:"Location", con_v3:"Budaörs, TerraPark · Edison u. 3",
+    foot_sub:"Manager boxing · Budaörs",
+    js_valid:"Please fill in your name and phone, and choose a time.",
+    js_ok:"Thank you, {name}! Your email has opened with the message pre-filled — send it and Carlos will be in touch soon. If it didn't open, call 06 70 365 9393."
    },
    zh:{
     announce:'🥊 首节课 <b>免费</b> — 无月费，每次 5000 Ft · 布达厄尔什 TerraPark',
@@ -688,13 +688,13 @@ footer .sm{color:var(--muted);font-size:.82rem}
     CUR=lang;
     nodes.forEach(function(el){ var v=pick(lang,el.getAttribute('data-i18n')); if(v!=null)el.innerHTML=v; });
     phNodes.forEach(function(el){ var v=pickPh(lang,el.getAttribute('data-i18n-ph')); if(v!=null)el.setAttribute('placeholder',v); });
-    document.documentElement.lang=(lang==='zh'?'zh':(lang==='rom'?'rom':'hu'));
+    document.documentElement.lang=(lang==='zh'?'zh':(lang==='en'?'en':'hu'));
     document.querySelectorAll('.langsw button').forEach(function(b){var on=b.getAttribute('data-lang')===lang;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on?'true':'false');});
     try{localStorage.setItem('bba_lang',lang);}catch(e){}
   }
   document.querySelectorAll('.langsw button').forEach(function(b){ b.addEventListener('click',function(){ setLang(b.getAttribute('data-lang')); }); });
   var saved; try{saved=localStorage.getItem('bba_lang');}catch(e){}
-  if(saved==='rom'||saved==='zh') setLang(saved); else setLang('hu');
+  if(saved==='en'||saved==='zh') setLang(saved); else setLang('hu');
 
   /* ---------- header / menu ---------- */
   var bar=document.getElementById('topbar');
