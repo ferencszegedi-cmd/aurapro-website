@@ -26,7 +26,7 @@
   --bg-3:     #1a1916;
   --line:     rgba(244,238,224,.12);
   --line-strong: rgba(244,238,224,.22);
-  --gold:     #e7b230;   /* BBA gold */
+  --gold:     #e7b230;
   --gold-soft:#f4cf6b;
   --gold-deep:#a9791b;
   --maxw: 1200px;
@@ -34,7 +34,7 @@
   --r: 4px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:92px}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 body{
   margin:0;background:var(--bg);color:var(--ink);
@@ -46,21 +46,12 @@ img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 h1,h2,h3{margin:0;text-wrap:balance}
 p{margin:0}
-body::before{
-  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
-  background:
-    radial-gradient(120% 80% at 80% -10%, rgba(231,178,48,.15), transparent 55%),
-    radial-gradient(90% 70% at 6% 108%, rgba(231,178,48,.06), transparent 60%),
-    var(--bg);
-}
-body::after{
-  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
-  background-image:radial-gradient(rgba(255,255,255,.03) 1px, transparent 1.4px);
-  background-size:4px 4px;
-}
-.display{font-family:'Anton','Barlow',sans-serif;font-weight:400;text-transform:uppercase;line-height:.92;letter-spacing:.005em}
+body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(120% 80% at 80% -10%, rgba(231,178,48,.15), transparent 55%),radial-gradient(90% 70% at 6% 108%, rgba(231,178,48,.06), transparent 60%),var(--bg)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;background-image:radial-gradient(rgba(255,255,255,.03) 1px, transparent 1.4px);background-size:4px 4px}
+/* accent-safe display line-height (Hungarian ő/ű double-acute) */
+.display{font-family:'Anton','Barlow',sans-serif;font-weight:400;text-transform:uppercase;line-height:1.04;letter-spacing:.005em}
 .eyebrow{font-family:'Barlow',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.26em;font-size:.72rem;color:var(--gold-soft);display:inline-flex;align-items:center;gap:.7em}
-.eyebrow::before{content:"";width:26px;height:2px;background:var(--gold);display:inline-block}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--gold);display:inline-block;flex:none}
 .gold{color:var(--gold)}
 .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
 section{padding-block:clamp(60px,8vw,116px);position:relative}
@@ -68,66 +59,61 @@ section{padding-block:clamp(60px,8vw,116px);position:relative}
 .section-head h2{font-size:clamp(2.1rem,6vw,4rem);margin-top:.35em}
 .section-head p{color:var(--ink-dim);margin-top:1.05em;font-size:1.05rem}
 
-/* buttons */
-.btn{--bg-btn:var(--gold);--fg-btn:#1a1200;display:inline-flex;align-items:center;gap:.6em;
-  font-family:'Barlow',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.07em;font-size:.9rem;line-height:1;
-  padding:1.05em 1.6em;background:var(--bg-btn);color:var(--fg-btn);border:1px solid transparent;border-radius:var(--r);cursor:pointer;
-  transition:transform .18s ease, box-shadow .25s ease, background .2s ease;box-shadow:0 8px 24px -12px rgba(231,178,48,.9)}
+.btn{--bg-btn:var(--gold);--fg-btn:#1a1200;display:inline-flex;align-items:center;gap:.6em;font-family:'Barlow',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.07em;font-size:.9rem;line-height:1;padding:1.05em 1.6em;background:var(--bg-btn);color:var(--fg-btn);border:1px solid transparent;border-radius:var(--r);cursor:pointer;transition:transform .18s ease, box-shadow .25s ease, background .2s ease;box-shadow:0 8px 24px -12px rgba(231,178,48,.9)}
 .btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(231,178,48,.95)}
 .btn:focus-visible{outline:3px solid var(--gold-soft);outline-offset:3px}
 .btn--ghost{background:transparent;color:var(--ink);border-color:var(--line-strong);box-shadow:none}
 .btn--ghost:hover{border-color:var(--gold);color:var(--gold-soft);box-shadow:none}
 .btn svg{width:1.05em;height:1.05em;flex:none}
 
-/* emblem */
 .emblem{display:block}
-.emblem circle{fill:none;stroke:var(--gold)}
-.emblem .arc{fill:var(--gold-soft);font-family:'Barlow',sans-serif;font-weight:700;font-size:7.4px;letter-spacing:.12em;text-transform:uppercase}
-.emblem .bba{fill:var(--gold);font-family:'Anton',sans-serif;font-size:30px;letter-spacing:.02em}
-.emblem .sub{fill:var(--ink-dim);font-family:'Barlow',sans-serif;font-weight:700;font-size:6px;letter-spacing:.22em}
-.emblem .star{fill:var(--gold)}
 
-/* top bar (announce + header stacked in one fixed container — cannot overlap) */
+/* top bar */
 .topbar{position:fixed;top:0;left:0;right:0;z-index:50}
 .announce{background:var(--gold);color:#1a1200;text-align:center;font-weight:700;font-size:.82rem;line-height:1.35;letter-spacing:.04em;padding:9px 16px;text-transform:uppercase;overflow:hidden;transition:max-height .35s ease,padding .35s ease;max-height:96px}
 .announce a{text-decoration:underline;text-underline-offset:2px}
 .topbar.scrolled .announce{max-height:0;padding-top:0;padding-bottom:0}
-
-/* header */
-header.site{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px var(--pad);transition:background .3s ease,border-color .3s,padding .3s;border-bottom:1px solid transparent;background:transparent}
+header.site{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px var(--pad);transition:background .3s ease,border-color .3s,padding .3s;border-bottom:1px solid transparent;background:transparent}
 .topbar.scrolled header.site{background:rgba(11,11,12,.92);backdrop-filter:blur(12px);border-bottom-color:var(--line);padding-block:8px}
-.brand{display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
 .brand .emblem{width:44px;height:44px;flex:none}
 .brand .wm{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.02em;font-size:1.02rem;line-height:1}
 .brand .wm small{display:block;font-family:'Barlow',sans-serif;font-weight:600;font-size:.54rem;letter-spacing:.3em;color:var(--muted);margin-top:3px}
-nav.main{display:flex;align-items:center;gap:26px}
+.hdr-right{display:flex;align-items:center;gap:12px;flex:none}
+nav.main{display:flex;align-items:center;gap:24px}
 nav.main a.navlink{font-weight:600;text-transform:uppercase;letter-spacing:.09em;font-size:.78rem;color:var(--ink-dim);transition:color .2s}
 nav.main a.navlink:hover{color:var(--ink)}
+/* language switcher */
+.langsw{display:inline-flex;gap:2px;border:1px solid var(--line-strong);border-radius:100px;padding:3px;background:rgba(11,11,12,.4)}
+.langsw button{background:none;border:0;color:var(--ink-dim);font-family:'Barlow',sans-serif;font-weight:700;font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;padding:5px 9px;border-radius:100px;cursor:pointer;transition:.2s;line-height:1}
+.langsw button.on{background:var(--gold);color:#1a1200}
+.langsw button:hover:not(.on){color:var(--ink)}
 .burger{display:none;background:none;border:0;color:var(--ink);cursor:pointer;padding:8px}
 .burger svg{width:26px;height:26px}
 @media (max-width:1000px){
-  nav.main{position:fixed;inset:0 0 0 auto;width:min(320px,84vw);flex-direction:column;align-items:flex-start;justify-content:center;gap:20px;background:#0a0a0b;padding:40px var(--pad);transform:translateX(105%);transition:transform .32s cubic-bezier(.4,0,.2,1);border-left:1px solid var(--line);overflow-y:auto}
+  nav.main{position:fixed;inset:0 0 0 auto;width:min(320px,84vw);flex-direction:column;align-items:flex-start;justify-content:center;gap:20px;background:#0a0a0b;padding:40px var(--pad);transform:translateX(105%);transition:transform .32s cubic-bezier(.4,0,.2,1);border-left:1px solid var(--line);overflow-y:auto;z-index:55}
   nav.main.open{transform:translateX(0)}
   nav.main a.navlink{font-size:1.05rem}
   .burger{display:inline-flex;z-index:60}
   .nav-cta{display:none !important}
 }
+@media (max-width:520px){ .brand .wm{display:none} .langsw button{padding:5px 8px;font-size:.62rem} }
 
 /* hero */
-.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding-top:clamp(140px,20vw,170px);overflow:hidden}
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding-top:clamp(150px,22vw,180px);overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:-1}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 42%;filter:contrast(1.04) saturate(.9) brightness(.82)}
 .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,12,.72),rgba(11,11,12,.4) 34%,rgba(11,11,12,.82) 86%,var(--bg)),radial-gradient(80% 60% at 20% 30%,rgba(231,178,48,.12),transparent 60%)}
 .hero-inner{padding-bottom:clamp(40px,7vw,84px);max-width:900px}
 .hero .emblem{width:76px;height:76px;margin-bottom:22px;filter:drop-shadow(0 4px 14px rgba(0,0,0,.6))}
-.hero h1{font-size:clamp(3rem,10vw,7.6rem);margin:.12em 0 .3em}
+.hero h1{font-size:clamp(3rem,10vw,7.6rem);margin:.12em 0 .34em;line-height:1.06}
 .hero h1 .gold{color:var(--gold)}
 .hero-sub{max-width:52ch;color:var(--ink);font-size:1.16rem}
 .hero-sub b{color:var(--gold-soft)}
 .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:1.9em}
 .hero-meta{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:2em;color:var(--ink-dim);font-size:.86rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
 .hero-meta span{display:inline-flex;align-items:center;gap:8px}
-.hero-meta svg{width:15px;height:15px;color:var(--gold)}
+.hero-meta svg{width:15px;height:15px;color:var(--gold);flex:none}
 @media (max-width:640px){.hero h1{font-size:clamp(2.8rem,14vw,4.6rem)}}
 
 /* marquee */
@@ -155,11 +141,11 @@ nav.main a.navlink:hover{color:var(--ink)}
 .belt .lab{display:block;margin-top:.55em;font-weight:600;text-transform:uppercase;letter-spacing:.14em;font-size:.64rem;color:var(--muted)}
 @media (max-width:720px){.belt{grid-template-columns:repeat(2,1fr)}}
 
-/* coach (Carlos) */
+/* coach */
 .coach{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,5vw,64px);align-items:center}
-.coach-figure{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#000}
-.coach-figure img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;filter:contrast(1.05) saturate(.96)}
-.coach-figure::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,11,12,.7),transparent 42%),radial-gradient(70% 50% at 30% 100%,rgba(231,178,48,.16),transparent 70%)}
+.coach-figure{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#000;cursor:zoom-in}
+.coach-figure img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 28%;filter:contrast(1.05) saturate(.96)}
+.coach-figure::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,11,12,.7),transparent 42%),radial-gradient(70% 50% at 30% 100%,rgba(231,178,48,.16),transparent 70%);pointer-events:none}
 .coach-figure .tag{position:absolute;left:0;bottom:0;z-index:2;background:var(--gold);color:#1a1200;font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.03em;font-size:1.25rem;padding:.32em .7em}
 .coach-figure .role{position:absolute;left:14px;top:14px;z-index:2;font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:.62rem;color:var(--ink);background:rgba(11,11,12,.6);border:1px solid var(--line-strong);padding:6px 10px;border-radius:2px;backdrop-filter:blur(4px)}
 .coach-body h2{font-size:clamp(2rem,5vw,3.4rem)}
@@ -189,7 +175,7 @@ nav.main a.navlink:hover{color:var(--ink)}
 .sched .tm{font-variant-numeric:tabular-nums;color:var(--gold-soft);font-weight:600}
 .sched .co{color:var(--ink-dim);font-size:.9rem}
 
-/* video reels */
+/* reels */
 .reels{display:grid;grid-template-columns:repeat(2,minmax(0,380px));gap:20px;justify-content:center}
 .reel{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#000;aspect-ratio:9/16}
 .reel video{width:100%;height:100%;object-fit:cover;display:block}
@@ -198,14 +184,30 @@ nav.main a.navlink:hover{color:var(--ink)}
 
 /* gallery */
 .gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:190px;gap:12px}
-.gallery figure{margin:0;position:relative;overflow:hidden;border-radius:var(--r);border:1px solid var(--line)}
+.gallery figure{margin:0;position:relative;overflow:hidden;border-radius:var(--r);border:1px solid var(--line);cursor:zoom-in}
 .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;filter:saturate(.96) contrast(1.03)}
 .gallery figure:hover img{transform:scale(1.06)}
-.gallery figure::after{content:"";position:absolute;inset:0;box-shadow:inset 0 -60px 50px -40px rgba(11,11,12,.9)}
+.gallery figure::after{content:"";position:absolute;inset:0;box-shadow:inset 0 -60px 50px -40px rgba(11,11,12,.9);pointer-events:none}
 .gallery figcaption{position:absolute;left:12px;bottom:10px;z-index:2;font-weight:700;text-transform:uppercase;letter-spacing:.13em;font-size:.6rem;color:var(--ink)}
+.gallery .zoom{position:absolute;right:10px;top:10px;z-index:2;width:30px;height:30px;border-radius:50%;background:rgba(11,11,12,.55);border:1px solid var(--line-strong);display:grid;place-items:center;color:var(--ink);opacity:0;transition:opacity .25s}
+.gallery figure:hover .zoom{opacity:1}
+.gallery .zoom svg{width:15px;height:15px}
 .g-a{grid-column:span 2;grid-row:span 2}
 .g-b{grid-column:span 2}
 @media (max-width:860px){.gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}.g-a{grid-column:span 2;grid-row:span 2}.g-b{grid-column:span 2;grid-row:span 1}}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:200;background:rgba(6,6,7,.94);display:none;align-items:center;justify-content:center;padding:24px}
+.lb.open{display:flex}
+.lb img{max-width:92vw;max-height:82vh;border-radius:6px;box-shadow:0 20px 60px -20px #000;object-fit:contain}
+.lb-cap{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:var(--ink);font-weight:600;text-transform:uppercase;letter-spacing:.12em;font-size:.72rem}
+.lb-btn{position:absolute;background:rgba(20,19,17,.7);border:1px solid var(--line-strong);color:var(--ink);width:52px;height:52px;border-radius:50%;display:grid;place-items:center;cursor:pointer;transition:.2s}
+.lb-btn:hover{background:var(--gold);color:#1a1200;border-color:var(--gold)}
+.lb-btn svg{width:24px;height:24px}
+.lb-close{top:18px;right:18px}
+.lb-prev{left:14px;top:50%;transform:translateY(-50%)}
+.lb-next{right:14px;top:50%;transform:translateY(-50%)}
+@media (max-width:640px){.lb-btn{width:44px;height:44px}.lb-prev{left:6px}.lb-next{right:6px}}
 
 /* registration */
 .reg{border-top:1px solid var(--line);background:linear-gradient(180deg,var(--bg-2),transparent)}
@@ -219,9 +221,7 @@ nav.main a.navlink:hover{color:var(--ink)}
 form.card-form{background:var(--bg-2);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:var(--r);padding:clamp(22px,3vw,32px);display:flex;flex-direction:column;gap:16px}
 .field{display:flex;flex-direction:column;gap:6px}
 .field label{font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:.66rem;color:var(--muted)}
-.field input,.field select,.field textarea{
-  background:#0d0d0e;border:1px solid var(--line-strong);border-radius:4px;color:var(--ink);
-  font-family:inherit;font-size:1rem;padding:12px 13px;transition:border-color .2s}
+.field input,.field select,.field textarea{background:#0d0d0e;border:1px solid var(--line-strong);border-radius:4px;color:var(--ink);font-family:inherit;font-size:1rem;padding:12px 13px;transition:border-color .2s}
 .field textarea{resize:vertical;min-height:70px}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold)}
 .field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--gold) 50%),linear-gradient(135deg,var(--gold) 50%,transparent 50%);background-position:calc(100% - 20px) center,calc(100% - 14px) center;background-size:6px 6px,6px 6px;background-repeat:no-repeat}
@@ -244,14 +244,14 @@ form.card-form{background:var(--bg-2);border:1px solid var(--line);border-top:3p
 .faq summary:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
 .faq p{color:var(--ink-dim);padding:0 0 22px}
 
-/* contact strip */
+/* contact */
 .contact{border-top:1px solid var(--line)}
 .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
 .crow{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r);padding:22px 22px;display:flex;gap:14px;align-items:flex-start}
 .crow .ico{width:40px;height:40px;flex:none;border:1px solid var(--line-strong);border-radius:50%;display:grid;place-items:center;color:var(--gold-soft)}
 .crow .ico svg{width:18px;height:18px}
 .crow .k{font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:.64rem;color:var(--muted)}
-.crow .v{font-size:1.02rem;color:var(--ink);margin-top:3px}
+.crow .v{font-size:1.02rem;color:var(--ink);margin-top:3px;word-break:break-word}
 .crow a.v:hover{color:var(--gold-soft)}
 
 /* footer */
@@ -272,56 +272,60 @@ footer .sm{color:var(--muted);font-size:.82rem}
 
 <a href="#fo" class="skip">Ugrás a tartalomra</a>
 
-<!-- shared arc geometry for the emblem textPaths -->
 <svg style="display:none" aria-hidden="true"><defs>
   <path id="arcT" d="M16 50 A34 34 0 0 1 84 50" fill="none"/>
   <path id="arcB" d="M20 50 A30 30 0 0 0 80 50" fill="none"/>
+  <g id="emb"><circle cx="50" cy="50" r="47.5" fill="none" stroke="#e7b230" stroke-width="2"/><circle cx="50" cy="50" r="39.5" fill="none" stroke="#e7b230" stroke-width="1"/><text fill="#f4cf6b" font-family="Barlow, sans-serif" font-weight="700" font-size="7.1" letter-spacing="0.7"><textPath href="#arcT" startOffset="50%" text-anchor="middle">BUDAÖRS BOX ACADEMY</textPath></text><text fill="#8f8778" font-family="Barlow, sans-serif" font-weight="700" font-size="5.7" letter-spacing="0.8"><textPath href="#arcB" startOffset="50%" text-anchor="middle">BUDAÖRS · TERRAPARK</textPath></text><text x="50" y="60" text-anchor="middle" fill="#e7b230" font-family="Anton, sans-serif" font-size="30">BBA</text><path d="M11 50l1.2-3 1.2 3 3 .3-2.3 2 .7 2.9-2.6-1.6-2.6 1.6.7-2.9-2.3-2z" fill="#e7b230"/><path d="M86 50l1.2-3 1.2 3 3 .3-2.3 2 .7 2.9-2.6-1.6-2.6 1.6.7-2.9-2.3-2z" fill="#e7b230"/></g>
 </defs></svg>
 
 <div class="topbar" id="topbar">
-<div class="announce">🥊 Az első edzés <b>INGYENES</b> — <a href="#regisztracio">jelentkezz online</a> · Budaörs, TerraPark</div>
-
+<div class="announce" data-i18n="announce">🥊 Az első edzés <b>INGYENES</b> — <a href="#regisztracio">jelentkezz online</a> · Budaörs, TerraPark</div>
 <header class="site" id="top">
   <a class="brand" href="#top" aria-label="Budaörs Box Academy — főoldal">
-    <svg class="emblem" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="47.5" fill="none" stroke="#e7b230" stroke-width="2"/><circle cx="50" cy="50" r="39.5" fill="none" stroke="#e7b230" stroke-width="1"/><text fill="#f4cf6b" font-family="Barlow, sans-serif" font-weight="700" font-size="7.1" letter-spacing="0.7"><textPath href="#arcT" startOffset="50%" text-anchor="middle">BUDAÖRS BOX ACADEMY</textPath></text><text fill="#8f8778" font-family="Barlow, sans-serif" font-weight="700" font-size="5.7" letter-spacing="0.8"><textPath href="#arcB" startOffset="50%" text-anchor="middle">BUDAÖRS · TERRAPARK</textPath></text><text x="50" y="60" text-anchor="middle" fill="#e7b230" font-family="Anton, sans-serif" font-size="30">BBA</text><path d="M11 50l1.2-3 1.2 3 3 .3-2.3 2 .7 2.9-2.6-1.6-2.6 1.6.7-2.9-2.3-2z" fill="#e7b230"/><path d="M86 50l1.2-3 1.2 3 3 .3-2.3 2 .7 2.9-2.6-1.6-2.6 1.6.7-2.9-2.3-2z" fill="#e7b230"/></svg>
+    <svg class="emblem" viewBox="0 0 100 100" aria-hidden="true"><use href="#emb"/></svg>
     <span class="wm">Budaörs Box Academy<small>Carlos · Budaörs</small></span>
   </a>
   <nav class="main" id="nav">
-    <a class="navlink" href="#miert">Az akadémia</a>
-    <a class="navlink" href="#carlos">Carlos</a>
-    <a class="navlink" href="#edzesek">Órarend</a>
-    <a class="navlink" href="#galeria">Galéria</a>
-    <a class="navlink" href="#kapcsolat">Kapcsolat</a>
-    <a class="btn nav-cta" href="#regisztracio">Ingyenes edzés</a>
+    <a class="navlink" href="#miert" data-i18n="nav_acad">Az akadémia</a>
+    <a class="navlink" href="#carlos" data-i18n="nav_carlos">Carlos</a>
+    <a class="navlink" href="#edzesek" data-i18n="nav_sched">Órarend</a>
+    <a class="navlink" href="#galeria" data-i18n="nav_gallery">Galéria</a>
+    <a class="navlink" href="#kapcsolat" data-i18n="nav_contact">Kapcsolat</a>
+    <a class="btn nav-cta" href="#regisztracio" data-i18n="nav_cta">Ingyenes edzés</a>
   </nav>
-  <button class="burger" id="burger" aria-label="Menü" aria-expanded="false" aria-controls="nav">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-  </button>
+  <div class="hdr-right">
+    <div class="langsw" role="group" aria-label="Nyelv / Language">
+      <button type="button" data-lang="hu" class="on" aria-pressed="true">HU</button>
+      <button type="button" data-lang="rom" aria-pressed="false">Roma</button>
+      <button type="button" data-lang="zh" aria-pressed="false">中文</button>
+    </div>
+    <button class="burger" id="burger" aria-label="Menü" aria-expanded="false" aria-controls="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
 </header>
 </div>
 
 <main id="fo">
-<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Fp94RAYyjWP7VlzYnHK4RZqUae/hf_20260724_141212_b5bfbe37-e366-41b4-b76a-96f4474b0c4a.png" alt="Budaörs Box Academy — fekete párduc, a klub kabalája" fetchpriority="high" style="object-position:70% 45%" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/ring-wide.jpg';this.style.objectPosition='50% 42%'" /></div>
   <div class="wrap hero-inner">
-    <svg class="emblem" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="47.5" fill="none" stroke="#e7b230" stroke-width="2"/><circle cx="50" cy="50" r="39.5" fill="none" stroke="#e7b230" stroke-width="1"/><text fill="#f4cf6b" font-family="Barlow, sans-serif" font-weight="700" font-size="7.1" letter-spacing="0.7"><textPath href="#arcT" startOffset="50%" text-anchor="middle">BUDAÖRS BOX ACADEMY</textPath></text><text fill="#8f8778" font-family="Barlow, sans-serif" font-weight="700" font-size="5.7" letter-spacing="0.8"><textPath href="#arcB" startOffset="50%" text-anchor="middle">BUDAÖRS · TERRAPARK</textPath></text><text x="50" y="60" text-anchor="middle" fill="#e7b230" font-family="Anton, sans-serif" font-size="30">BBA</text><path d="M11 50l1.2-3 1.2 3 3 .3-2.3 2 .7 2.9-2.6-1.6-2.6 1.6.7-2.9-2.3-2z" fill="#e7b230"/><path d="M86 50l1.2-3 1.2 3 3 .3-2.3 2 .7 2.9-2.6-1.6-2.6 1.6.7-2.9-2.3-2z" fill="#e7b230"/></svg>
-    <span class="eyebrow">Amatőr &amp; hobbi bokszakadémia · Budaörs</span>
-    <h1 class="display">A bajnokok<br><span class="gold">itt kezdődnek.</span></h1>
-    <p class="hero-sub">Lépj ki a határaidból, légy a legjobb önmagad. Kezdőktől a versenyzőkig — Carlos és a BBA csapata mindenkit ott vesz fel, ahol éppen tart. <b>Az első edzés ingyenes.</b></p>
+    <svg class="emblem" viewBox="0 0 100 100" aria-hidden="true"><use href="#emb"/></svg>
+    <span class="eyebrow" data-i18n="hero_eyebrow">Amatőr &amp; hobbi bokszakadémia · Budaörs</span>
+    <h1 class="display" data-i18n="hero_h1">A bajnokok<br><span class="gold">itt kezdődnek.</span></h1>
+    <p class="hero-sub" data-i18n="hero_sub">Lépj ki a határaidból, légy a legjobb önmagad. Kezdőktől a versenyzőkig — Carlos és a BBA csapata mindenkit ott vesz fel, ahol éppen tart. <b>Az első edzés ingyenes.</b></p>
     <div class="hero-actions">
-      <a class="btn" href="#regisztracio">Jelentkezz ingyenes edzésre
+      <a class="btn" href="#regisztracio"><span data-i18n="hero_btn1">Jelentkezz ingyenes edzésre</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="btn btn--ghost" href="tel:+36703659393">Hívj: 06 70 365 9393</a>
+      <a class="btn btn--ghost" href="tel:+36703659393" data-i18n="hero_btn2">Hívj: 06 70 365 9393</a>
     </div>
     <div class="hero-meta">
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>Budaörs, TerraPark · Edison u. 3</span>
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Kezdő &amp; haladó · minden korosztály</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="hero_meta1">Budaörs, TerraPark · Edison u. 3</span></span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-i18n="hero_meta2">Kezdő &amp; haladó · minden korosztály</span></span>
     </div>
   </div>
 </section>
 
-<!-- MARQUEE -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
     <span class="s">★</span><span>Budaörs Box Academy</span><span class="o">BBA</span><span class="s">★</span><span>Carlos</span><span class="o">A bajnokok itt kezdődnek</span><span class="s">★</span><span>Budaörs Box Academy</span><span class="o">BBA</span><span class="s">★</span><span>Carlos</span><span class="o">A bajnokok itt kezdődnek</span>
@@ -329,96 +333,93 @@ footer .sm{color:var(--muted);font-size:.82rem}
   </div>
 </div>
 
-<!-- VALUES -->
 <section id="miert" class="wrap">
   <div class="section-head reveal">
-    <span class="eyebrow">Miért a BBA</span>
-    <h2 class="display">Testben és lélekben<br><span class="gold">erősebb</span> leszel.</h2>
-    <p>A Budaörs Box Academy nem egy steril fitneszterem. Saját ring, bajnoki övek a falon, egy egész sereg zsák és egy csapat edző, akiknek fontos, hogy fejlődj. Ahonnan indulsz, az tökéletes kiindulópont.</p>
+    <span class="eyebrow" data-i18n="val_eyebrow">Miért a BBA</span>
+    <h2 class="display" data-i18n="val_h2">Testben és lélekben<br><span class="gold">erősebb</span> leszel.</h2>
+    <p data-i18n="val_p">A Budaörs Box Academy nem egy steril fitneszterem. Saját ring, bajnoki övek a falon, egy egész sereg zsák és egy csapat edző, akiknek fontos, hogy fejlődj. Ahonnan indulsz, az tökéletes kiindulópont.</p>
   </div>
   <div class="grid-cards">
     <div class="card reveal">
       <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg></div>
-      <h3>Profi edzők</h3>
-      <p>Tapasztalt, elhivatott csapat vár — Carlos vezetésével. Nálunk minden edzőnek fontos, hogy jó technikát és valódi tudást vigyél haza.</p>
+      <h3 data-i18n="c1h">Profi edzők</h3>
+      <p data-i18n="c1p">Tapasztalt, elhivatott csapat vár — Carlos vezetésével. Nálunk minden edzőnek fontos, hogy jó technikát és valódi tudást vigyél haza.</p>
     </div>
     <div class="card reveal">
       <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3v6a6 6 0 0 0 12 0V3"/><path d="M4 21h16"/><path d="M9 21v-4h6v4"/></svg></div>
-      <h3>Kiváló környezet</h3>
-      <p>Modern terem, minőségi felszerelés: ring, zsákok, reflexlabda, medicinlabdák, bábu. Minden megvan, amivel igazán meg lehet dolgozni.</p>
+      <h3 data-i18n="c2h">Kiváló környezet</h3>
+      <p data-i18n="c2p">Modern terem, minőségi felszerelés: ring, zsákok, reflexlabda, medicinlabdák, bábu. Minden megvan, amivel igazán meg lehet dolgozni.</p>
     </div>
     <div class="card reveal">
       <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h4l2 5 4-13 2 8h6"/></svg></div>
-      <h3>Erő · kitartás · önbizalom</h3>
-      <p>A boksz nem csak edzés — életforma. Leveszed a stresszt, feszesebb leszel, és minden alkalommal magabiztosabban jössz ki, mint ahogy bementél.</p>
+      <h3 data-i18n="c3h">Erő · kitartás · önbizalom</h3>
+      <p data-i18n="c3p">A boksz nem csak edzés — életforma. Leveszed a stresszt, feszesebb leszel, és minden alkalommal magabiztosabban jössz ki, mint ahogy bementél.</p>
     </div>
     <div class="card reveal">
       <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5M15.5 20c0-2 1-3.5 3-3.8"/></svg></div>
-      <h3>Mindenkinek</h3>
-      <p>Kezdőknek és haladóknak egyaránt. Nőknek, férfiaknak, fiataloknak és felnőtteknek — a terhelés mindig a te szintedhez igazodik.</p>
+      <h3 data-i18n="c4h">Mindenkinek</h3>
+      <p data-i18n="c4p">Kezdőknek és haladóknak egyaránt. Nőknek, férfiaknak, fiataloknak és felnőtteknek — a terhelés mindig a te szintedhez igazodik.</p>
     </div>
   </div>
   <div class="belt reveal" role="list" aria-label="A klub röviden">
-    <div role="listitem"><span class="big">1.</span><span class="lab">edzés ingyen</span></div>
-    <div role="listitem"><span class="big">4</span><span class="lab">edző csapat</span></div>
-    <div role="listitem"><span class="big">8</span><span class="lab">edzés / hét</span></div>
-    <div role="listitem"><span class="big">★</span><span class="lab">kezdő &amp; haladó</span></div>
+    <div role="listitem"><span class="big">1.</span><span class="lab" data-i18n="belt1">edzés ingyen</span></div>
+    <div role="listitem"><span class="big">4</span><span class="lab" data-i18n="belt2">edző csapat</span></div>
+    <div role="listitem"><span class="big">8</span><span class="lab" data-i18n="belt3">edzés / hét</span></div>
+    <div role="listitem"><span class="big">★</span><span class="lab" data-i18n="belt4">kezdő &amp; haladó</span></div>
   </div>
 </section>
 
-<!-- CARLOS -->
 <section id="carlos" class="wrap">
   <div class="coach">
-    <figure class="coach-figure reveal">
-      <span class="role">Vezetőedző · alapító</span>
+    <figure class="coach-figure reveal" data-full="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/carlos-wide.jpg" data-cap="Carlos — vezetőedző">
+      <span class="role" data-i18n="car_role">Vezetőedző · alapító</span>
       <img src="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/carlos.jpg" alt="Carlos, a Budaörs Box Academy vezetőedzője és alapítója" />
       <figcaption class="tag">Carlos</figcaption>
     </figure>
     <div class="coach-body reveal">
-      <span class="eyebrow">A főnök</span>
-      <h2 class="display">Az egészet<br>Carlos viszi.</h2>
-      <p class="lead">Egy akadémiát nem a felszerelés tesz akadémiává, hanem az ember, aki a kötelek mögött áll. A Budaörs Box Academynél ez az ember Carlos — vezetőedző, alapító, főnök.</p>
-      <p>Carlos nem csak edzéseket tart, hanem közösséget épít. Az a fajta edző, aki elmagyarázza, miért mozdul úgy a kezed, ahogy, aki észreveszi, ha rossz napod van, és aki pontosan tudja, mikor kell noszogatni és mikor hátralépni. Nála a technika és a fejlődés a lényeg — a nagyzolás nem.</p>
-      <p>Ha még soha nem álltál zsák elé, ő az a hang, ami végigvezet az első lépéseken. Ha komolyabban belejössz, ugyanő készít fel a versenyzésre is.</p>
-      <p style="color:var(--ink)">Mellette egy erős csapat dolgozik veled:</p>
+      <span class="eyebrow" data-i18n="car_eyebrow">A főnök</span>
+      <h2 class="display" data-i18n="car_h2">Az egészet<br>Carlos viszi.</h2>
+      <p class="lead" data-i18n="car_lead">Egy akadémiát nem a felszerelés tesz akadémiává, hanem az ember, aki a kötelek mögött áll. A Budaörs Box Academynél ez az ember Carlos — vezetőedző, alapító, főnök.</p>
+      <p data-i18n="car_p1">Carlos nem csak edzéseket tart, hanem közösséget épít. Az a fajta edző, aki elmagyarázza, miért mozdul úgy a kezed, ahogy, aki észreveszi, ha rossz napod van, és aki pontosan tudja, mikor kell noszogatni és mikor hátralépni. Nála a technika és a fejlődés a lényeg — a nagyzolás nem.</p>
+      <p data-i18n="car_p2">Ha még soha nem álltál zsák elé, ő az a hang, ami végigvezet az első lépéseken. Ha komolyabban belejössz, ugyanő készít fel a versenyzésre is.</p>
+      <p style="color:var(--ink)" data-i18n="car_p3">Mellette egy erős csapat dolgozik veled:</p>
       <div class="coach-team">
-        <span class="chip"><b>Carlos</b> · vezetőedző</span>
-        <span class="chip"><b>Bertók Róbert</b> · edző</span>
-        <span class="chip"><b>Tibi bá'</b> · edző</span>
-        <span class="chip"><b>Totka Pali bácsi</b> · edző</span>
+        <span class="chip"><b>Carlos</b> · <span data-i18n="role_head">vezetőedző</span></span>
+        <span class="chip"><b>Bertók Róbert</b> · <span data-i18n="role_coach">edző</span></span>
+        <span class="chip"><b>Tibi bá'</b> · <span data-i18n="role_coach">edző</span></span>
+        <span class="chip"><b>Totka Pali bácsi</b> · <span data-i18n="role_coach">edző</span></span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TRAINING + SCHEDULE -->
 <section id="edzesek" class="wrap" style="background:linear-gradient(180deg,transparent,rgba(19,19,17,.6),transparent)">
   <div class="section-head reveal">
-    <span class="eyebrow">Az edzések</span>
-    <h2 class="display">Heti edzésrend</h2>
-    <p>Minden edzés bemelegítéssel indul és nyújtással zárul. A közepe rajtad múlik: aki most kezd, az alapokat csiszolja, aki gyakorlott, az élesít. Ugyanabban a teremben, mindenki a maga szintjén.</p>
+    <span class="eyebrow" data-i18n="tr_eyebrow">Az edzések</span>
+    <h2 class="display" data-i18n="tr_h2">Heti edzésrend</h2>
+    <p data-i18n="tr_p">Minden edzés bemelegítéssel indul és nyújtással zárul. A közepe rajtad múlik: aki most kezd, az alapokat csiszolja, aki gyakorlott, az élesít. Ugyanabban a teremben, mindenki a maga szintjén.</p>
   </div>
   <div class="train-grid">
     <div class="train-list reveal">
-      <div class="train-item"><span class="ti-n">01</span><div><h3>Alapozó &amp; technika</h3><p>Alapállás, gárda, lábmunka, egyenes ütések — a váz, amire minden épül. Kezdőknek ez a belépő.</p></div></div>
-      <div class="train-item"><span class="ti-n">02</span><div><h3>Zsák &amp; kombinációk</h3><p>Ütéssorozatok a zsákon, ritmus, erő, állóképesség. Itt ég el a stressz és a kalória.</p></div></div>
-      <div class="train-item"><span class="ti-n">03</span><div><h3>Lábmunka &amp; partnergyakorlat</h3><p>Mozgás, távolságtartás, védekezés lapátkesztyűvel vagy párban — kontrolláltan.</p></div></div>
-      <div class="train-item"><span class="ti-n">04</span><div><h3>Sparring — haladóknak</h3><p>Csak amikor készen állsz rá, és mindig önként. Kontrollált gyakorlás, nem verekedés.</p></div></div>
+      <div class="train-item"><span class="ti-n">01</span><div><h3 data-i18n="ti1h">Alapozó &amp; technika</h3><p data-i18n="ti1p">Alapállás, gárda, lábmunka, egyenes ütések — a váz, amire minden épül. Kezdőknek ez a belépő.</p></div></div>
+      <div class="train-item"><span class="ti-n">02</span><div><h3 data-i18n="ti2h">Zsák &amp; kombinációk</h3><p data-i18n="ti2p">Ütéssorozatok a zsákon, ritmus, erő, állóképesség. Itt ég el a stressz és a kalória.</p></div></div>
+      <div class="train-item"><span class="ti-n">03</span><div><h3 data-i18n="ti3h">Lábmunka &amp; partnergyakorlat</h3><p data-i18n="ti3p">Mozgás, távolságtartás, védekezés lapátkesztyűvel vagy párban — kontrolláltan.</p></div></div>
+      <div class="train-item"><span class="ti-n">04</span><div><h3 data-i18n="ti4h">Sparring — haladóknak</h3><p data-i18n="ti4p">Csak amikor készen állsz rá, és mindig önként. Kontrollált gyakorlás, nem verekedés.</p></div></div>
     </div>
     <div class="sched reveal">
-      <h3>Mikor &amp; kivel</h3>
-      <p class="sh">A pontos időpontok és az edzők a klub hivatalos edzésrendje szerint.</p>
+      <h3 data-i18n="sch_h">Mikor &amp; kivel</h3>
+      <p class="sh" data-i18n="sch_sub">A pontos időpontok és az edzők a klub hivatalos edzésrendje szerint.</p>
       <table>
         <tbody>
-          <tr><td>Hétfő</td><td><div class="slot"><span class="tm">17:30</span><span class="co">Carlos</span></div></td></tr>
-          <tr><td>Kedd</td><td><div class="slot"><span class="tm">17:00</span><span class="co">Bertók Róbert</span></div></td></tr>
-          <tr><td>Szerda</td><td>
+          <tr><td data-i18n="d_mon">Hétfő</td><td><div class="slot"><span class="tm">17:30</span><span class="co">Carlos</span></div></td></tr>
+          <tr><td data-i18n="d_tue">Kedd</td><td><div class="slot"><span class="tm">17:00</span><span class="co">Bertók Róbert</span></div></td></tr>
+          <tr><td data-i18n="d_wed">Szerda</td><td>
             <div class="slot"><span class="tm">08:00</span><span class="co">Carlos</span></div>
             <div class="slot"><span class="tm">16:00</span><span class="co">Tibi bá'</span></div>
             <div class="slot"><span class="tm">17:30</span><span class="co">Carlos</span></div>
           </td></tr>
-          <tr><td>Csütörtök</td><td><div class="slot"><span class="tm">17:00</span><span class="co">Bertók Róbert</span></div></td></tr>
-          <tr><td>Péntek</td><td>
+          <tr><td data-i18n="d_thu">Csütörtök</td><td><div class="slot"><span class="tm">17:00</span><span class="co">Bertók Róbert</span></div></td></tr>
+          <tr><td data-i18n="d_fri">Péntek</td><td>
             <div class="slot"><span class="tm">08:00</span><span class="co">Carlos</span></div>
             <div class="slot"><span class="tm">17:00</span><span class="co">Totka Pali bácsi</span></div>
           </td></tr>
@@ -428,126 +429,124 @@ footer .sm{color:var(--muted);font-size:.82rem}
   </div>
 </section>
 
-<!-- VIDEO REELS -->
 <section id="video" class="wrap">
   <div class="section-head reveal" style="text-align:center;margin-inline:auto">
-    <span class="eyebrow" style="justify-content:center">Nézz be hozzánk</span>
-    <h2 class="display">Ez a terem. Ez a<br><span class="gold">hangulat.</span></h2>
+    <span class="eyebrow" style="justify-content:center" data-i18n="vid_eyebrow">Nézz be hozzánk</span>
+    <h2 class="display" data-i18n="vid_h2">Ez a terem. Ez a<br><span class="gold">hangulat.</span></h2>
   </div>
   <div class="reels reveal">
-    <div class="reel"><video src="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/vid/ring-pan.mp4" poster="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/vid/ring-pan.jpg" autoplay muted loop playsinline preload="metadata"></video><span class="cap">A ring &amp; a legendák</span></div>
-    <div class="reel"><video src="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/vid/gym-tour.mp4" poster="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/vid/gym-tour.jpg" autoplay muted loop playsinline preload="metadata"></video><span class="cap">Körbenézés</span></div>
+    <div class="reel"><video src="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/vid/ring-pan.mp4" poster="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/vid/ring-pan.jpg" autoplay muted loop playsinline preload="metadata"></video><span class="cap" data-i18n="vid_cap1">A ring &amp; a legendák</span></div>
+    <div class="reel"><video src="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/vid/gym-tour.mp4" poster="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/vid/gym-tour.jpg" autoplay muted loop playsinline preload="metadata"></video><span class="cap" data-i18n="vid_cap2">Körbenézés</span></div>
   </div>
 </section>
 
-<!-- GALLERY -->
 <section id="galeria" class="wrap" style="background:linear-gradient(180deg,transparent,rgba(19,19,17,.6),transparent)">
   <div class="section-head reveal">
-    <span class="eyebrow">A terem</span>
-    <h2 class="display">Ez vár rád<br>Budaörsön</h2>
-    <p>Saját ring, bajnoki övek, egy sereg zsák, reflexeszközök — és egy plafon, ami tele van a boksz legendáival, Tysontól Caneloig.</p>
+    <span class="eyebrow" data-i18n="gal_eyebrow">A terem</span>
+    <h2 class="display" data-i18n="gal_h2">Ez vár rád<br>Budaörsön</h2>
+    <p data-i18n="gal_p">Saját ring, bajnoki övek, egy sereg zsák, reflexeszközök — és egy plafon, ami tele van a boksz legendáival, Tysontól Caneloig. Kattints a képekre a nagyításhoz.</p>
   </div>
   <div class="gallery reveal">
-    <figure class="g-a"><img src="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/gym-ring.jpg" alt="Zsákok és a ring a Budaörs Box Academyben" loading="lazy"><figcaption>A terem &amp; a ring</figcaption></figure>
-    <figure class="g-b"><img src="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/bags.jpg" alt="Zsáksor az edzőteremben" loading="lazy"><figcaption>Zsáksor</figcaption></figure>
-    <figure><img src="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/ring-belts.jpg" alt="A ring bajnoki övekkel" loading="lazy"><figcaption>Bajnoki övek</figcaption></figure>
-    <figure><img src="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/functional.jpg" alt="Funkcionális sarok bábuval és medicinlabdákkal" loading="lazy"><figcaption>Funkcionális</figcaption></figure>
-    <figure><img src="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/posters-ceiling.jpg" alt="A plafon tele bokszposzterekkel" loading="lazy"><figcaption>A legendák</figcaption></figure>
+    <figure class="g-a"><img src="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/gym-ring.jpg" alt="Zsákok és a ring a Budaörs Box Academyben" loading="lazy"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4M11 8v6M8 11h6"/></svg></span><figcaption data-i18n="fig1">A terem &amp; a ring</figcaption></figure>
+    <figure class="g-b"><img src="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/bags.jpg" alt="Zsáksor az edzőteremben" loading="lazy"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4M11 8v6M8 11h6"/></svg></span><figcaption data-i18n="fig2">Zsáksor</figcaption></figure>
+    <figure><img src="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/ring-belts.jpg" alt="A ring bajnoki övekkel" loading="lazy"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4M11 8v6M8 11h6"/></svg></span><figcaption data-i18n="fig3">Bajnoki övek</figcaption></figure>
+    <figure><img src="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/functional.jpg" alt="Funkcionális sarok bábuval és medicinlabdákkal" loading="lazy"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4M11 8v6M8 11h6"/></svg></span><figcaption data-i18n="fig4">Funkcionális</figcaption></figure>
+    <figure><img src="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/gym.jpg" alt="Az edzőterem gépekkel és szabadsúlyokkal" loading="lazy"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4M11 8v6M8 11h6"/></svg></span><figcaption data-i18n="fig6">Az edzőterem</figcaption></figure>
+    <figure><img src="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/ring.jpg" alt="A ring közelről, bajnoki övekkel" loading="lazy"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4M11 8v6M8 11h6"/></svg></span><figcaption data-i18n="fig7">A ring közelről</figcaption></figure>
+    <figure><img src="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/posters-ceiling.jpg" alt="A plafon tele bokszposzterekkel" loading="lazy"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4M11 8v6M8 11h6"/></svg></span><figcaption data-i18n="fig5">A legendák</figcaption></figure>
+    <figure><img src="https://cdn.jsdelivr.net/gh/ferencszegedi-cmd/aurapro-website@ec7d8b9529844e053567b101d795f730dbad5661/public/box/legends.jpg" alt="Bokszlegendák a falon" loading="lazy"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4M11 8v6M8 11h6"/></svg></span><figcaption data-i18n="fig8">A falak</figcaption></figure>
   </div>
 </section>
 
-<!-- REGISTRATION -->
 <section id="regisztracio" class="reg">
   <div class="wrap reg-grid">
     <div class="reveal">
-      <span class="eyebrow">Jelentkezés · ingyenes első edzés</span>
-      <h2 class="display">Foglald le a<br><span class="gold">helyed.</span></h2>
-      <p class="lead">Töltsd ki az űrlapot, és jelezd, melyik edzésre jönnél. Carlos felveszi veled a kapcsolatot, és megbeszélitek a részleteket. Az első alkalom ingyenes, kötelezettség nélkül.</p>
+      <span class="eyebrow" data-i18n="reg_eyebrow">Jelentkezés · ingyenes első edzés</span>
+      <h2 class="display" data-i18n="reg_h2">Foglald le a<br><span class="gold">helyed.</span></h2>
+      <p class="lead" data-i18n="reg_lead">Töltsd ki az űrlapot, és jelezd, melyik edzésre jönnél. Carlos felveszi veled a kapcsolatot, és megbeszélitek a részleteket. Az első alkalom ingyenes, kötelezettség nélkül.</p>
       <ul class="reg-benefits">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Az első edzés teljesen ingyenes</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Nem kell hozzá tapasztalat vagy saját felszerelés</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Kezdőknek és haladóknak, minden korosztálynak</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="b1">Az első edzés teljesen ingyenes</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="b2">Nem kell hozzá tapasztalat vagy saját felszerelés</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="b3">Kezdőknek és haladóknak, minden korosztálynak</span></li>
       </ul>
     </div>
     <form class="card-form reveal" id="regform" novalidate>
       <div class="field">
-        <label for="nev">Neved</label>
-        <input id="nev" name="nev" type="text" autocomplete="name" placeholder="Pl. Kovács Anna" required />
+        <label for="nev" data-i18n="f_name">Neved</label>
+        <input id="nev" name="nev" type="text" autocomplete="name" placeholder="Pl. Kovács Anna" data-i18n-ph="ph_name" required />
       </div>
       <div class="row2">
         <div class="field">
-          <label for="tel">Telefon</label>
+          <label for="tel" data-i18n="f_tel">Telefon</label>
           <input id="tel" name="tel" type="tel" autocomplete="tel" placeholder="06 30 123 4567" required />
         </div>
         <div class="field">
-          <label for="email">E-mail (nem kötelező)</label>
+          <label for="email" data-i18n="f_email">E-mail (nem kötelező)</label>
           <input id="email" name="email" type="email" autocomplete="email" placeholder="te@email.hu" />
         </div>
       </div>
       <div class="field">
-        <label for="edzes">Melyik edzésre jönnél?</label>
+        <label for="edzes" data-i18n="f_sess">Melyik edzésre jönnél?</label>
         <select id="edzes" name="edzes" required>
-          <option value="" selected disabled>Válassz időpontot…</option>
-          <option>Hétfő 17:30 — Carlos</option>
-          <option>Kedd 17:00 — Bertók Róbert</option>
-          <option>Szerda 08:00 — Carlos</option>
-          <option>Szerda 16:00 — Tibi bá'</option>
-          <option>Szerda 17:30 — Carlos</option>
-          <option>Csütörtök 17:00 — Bertók Róbert</option>
-          <option>Péntek 08:00 — Carlos</option>
-          <option>Péntek 17:00 — Totka Pali bácsi</option>
-          <option>Még nem tudom — hívjatok vissza</option>
+          <option value="" selected disabled data-i18n="opt0">Válassz időpontot…</option>
+          <option value="Hétfő 17:30 — Carlos" data-i18n="opt1">Hétfő 17:30 — Carlos</option>
+          <option value="Kedd 17:00 — Bertók Róbert" data-i18n="opt2">Kedd 17:00 — Bertók Róbert</option>
+          <option value="Szerda 08:00 — Carlos" data-i18n="opt3">Szerda 08:00 — Carlos</option>
+          <option value="Szerda 16:00 — Tibi bá'" data-i18n="opt4">Szerda 16:00 — Tibi bá'</option>
+          <option value="Szerda 17:30 — Carlos" data-i18n="opt5">Szerda 17:30 — Carlos</option>
+          <option value="Csütörtök 17:00 — Bertók Róbert" data-i18n="opt6">Csütörtök 17:00 — Bertók Róbert</option>
+          <option value="Péntek 08:00 — Carlos" data-i18n="opt7">Péntek 08:00 — Carlos</option>
+          <option value="Péntek 17:00 — Totka Pali bácsi" data-i18n="opt8">Péntek 17:00 — Totka Pali bácsi</option>
+          <option value="Még nem tudom" data-i18n="opt9">Még nem tudom — hívjatok vissza</option>
         </select>
       </div>
       <div class="field check">
         <input id="kezdo" name="kezdo" type="checkbox" />
-        <label for="kezdo">Teljesen kezdő vagyok</label>
+        <label for="kezdo" data-i18n="f_beg">Teljesen kezdő vagyok</label>
       </div>
       <div class="field">
-        <label for="uzenet">Üzenet (nem kötelező)</label>
-        <textarea id="uzenet" name="uzenet" placeholder="Bármit, amit tudnunk érdemes…"></textarea>
+        <label for="uzenet" data-i18n="f_msg">Üzenet (nem kötelező)</label>
+        <textarea id="uzenet" name="uzenet" placeholder="Bármit, amit tudnunk érdemes…" data-i18n-ph="ph_msg"></textarea>
       </div>
-      <button class="btn" type="submit" style="justify-content:center">Jelentkezés elküldése
+      <button class="btn" type="submit" style="justify-content:center"><span data-i18n="f_submit">Jelentkezés elküldése</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-      <p class="form-note">A „Jelentkezés elküldése" gomb megnyitja a leveleződ a Carlosnak szóló, előre kitöltött üzenettel (terra.budai@gmail.com). Vagy hívd egyből: <a href="tel:+36703659393" style="color:var(--gold-soft)">06 70 365 9393</a>.</p>
+      <p class="form-note" data-i18n="f_note">A „Jelentkezés elküldése" gomb megnyitja a leveleződ a Carlosnak szóló, előre kitöltött üzenettel (terra.budai@gmail.com). Vagy hívd egyből: <a href="tel:+36703659393" style="color:var(--gold-soft)">06 70 365 9393</a>.</p>
       <div class="form-ok" id="formok"></div>
     </form>
   </div>
 </section>
 
-<!-- FAQ -->
 <section id="gyik" class="wrap">
   <div class="section-head reveal" style="text-align:center;margin-inline:auto">
-    <span class="eyebrow" style="justify-content:center">Mielőtt bejössz</span>
-    <h2 class="display">Gyakori kérdések</h2>
+    <span class="eyebrow" style="justify-content:center" data-i18n="faq_eyebrow">Mielőtt bejössz</span>
+    <h2 class="display" data-i18n="faq_h2">Gyakori kérdések</h2>
   </div>
   <div class="faq reveal">
-    <details open><summary>Soha nem bokszoltam. Járhatok?</summary><p>Igen — a legtöbben pontosan így kezdik. Az első edzésen az alapokkal indulunk, semmi olyat nem várunk el, amit ne mutatnánk meg előtte.</p></details>
-    <details><summary>Kell hozzá saját felszerelés?</summary><p>Az elején nem. Gyere kényelmes sportruhában és cipőben, hozz vizet. Ha rendszeresen jársz, segítünk, milyen kesztyűt és bandázst érdemes beszerezned.</p></details>
-    <details><summary>Meg fognak ütni az első napon?</summary><p>Nem. Először a technikát és az alapokat gyakoroljuk. Sparring csak jóval később jön, és mindig önként.</p></details>
-    <details><summary>Mennyibe kerül?</summary><p>Az első edzés ingyenes, hogy kipróbálhasd kötelezettség nélkül. A bérletekről és árakról szívesen mesélünk személyesen — hívd Carlost a 06 70 365 9393 számon.</p></details>
-    <details><summary>Hol vagytok pontosan?</summary><p>Budaörsön, a TerraParkban (Edison utca 3.). Könnyen megközelíthető, van a közelben parkolás.</p></details>
+    <details open><summary data-i18n="q1">Soha nem bokszoltam. Járhatok?</summary><p data-i18n="a1">Igen — a legtöbben pontosan így kezdik. Az első edzésen az alapokkal indulunk, semmi olyat nem várunk el, amit ne mutatnánk meg előtte.</p></details>
+    <details><summary data-i18n="q2">Kell hozzá saját felszerelés?</summary><p data-i18n="a2">Az elején nem. Gyere kényelmes sportruhában és cipőben, hozz vizet. Ha rendszeresen jársz, segítünk, milyen kesztyűt és bandázst érdemes beszerezned.</p></details>
+    <details><summary data-i18n="q3">Meg fognak ütni az első napon?</summary><p data-i18n="a3">Nem. Először a technikát és az alapokat gyakoroljuk. Sparring csak jóval később jön, és mindig önként.</p></details>
+    <details><summary data-i18n="q4">Mennyibe kerül?</summary><p data-i18n="a4">Az első edzés ingyenes, hogy kipróbálhasd kötelezettség nélkül. A bérletekről és árakról szívesen mesélünk személyesen — hívd Carlost a 06 70 365 9393 számon.</p></details>
+    <details><summary data-i18n="q5">Hol vagytok pontosan?</summary><p data-i18n="a5">Budaörsön, a TerraParkban (Edison utca 3.). Könnyen megközelíthető, van a közelben parkolás.</p></details>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="kapcsolat" class="contact wrap">
   <div class="section-head reveal">
-    <span class="eyebrow">Kapcsolat</span>
-    <h2 class="display">Gyere be egy<br>edzésre</h2>
+    <span class="eyebrow" data-i18n="con_eyebrow">Kapcsolat</span>
+    <h2 class="display" data-i18n="con_h2">Gyere be egy<br>edzésre</h2>
   </div>
   <div class="contact-grid reveal">
     <div class="crow">
       <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg></span>
-      <div><div class="k">Telefon · Carlos</div><a class="v" href="tel:+36703659393">06 70 365 9393</a></div>
+      <div><div class="k" data-i18n="con_k1">Telefon · Carlos</div><a class="v" href="tel:+36703659393">06 70 365 9393</a></div>
     </div>
     <div class="crow">
       <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7L22 6"/></svg></span>
-      <div><div class="k">E-mail</div><a class="v" href="mailto:terra.budai@gmail.com">terra.budai@gmail.com</a></div>
+      <div><div class="k" data-i18n="con_k2">E-mail</div><a class="v" href="mailto:terra.budai@gmail.com">terra.budai@gmail.com</a></div>
     </div>
     <div class="crow">
       <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
-      <div><div class="k">Helyszín</div><a class="v" href="https://maps.google.com/?q=Budaörs+TerraPark+Edison+utca+3" target="_blank" rel="noopener">Budaörs, TerraPark · Edison u. 3</a></div>
+      <div><div class="k" data-i18n="con_k3">Helyszín</div><a class="v" href="https://maps.google.com/?q=Budaörs+TerraPark+Edison+utca+3" target="_blank" rel="noopener" data-i18n="con_v3">Budaörs, TerraPark · Edison u. 3</a></div>
     </div>
   </div>
 </section>
@@ -556,48 +555,196 @@ footer .sm{color:var(--muted);font-size:.82rem}
 <footer class="site">
   <div class="wrap foot-grid">
     <div class="foot-brand">
-      <svg class="emblem" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="47.5" fill="none" stroke="#e7b230" stroke-width="2"/><circle cx="50" cy="50" r="39.5" fill="none" stroke="#e7b230" stroke-width="1"/><text fill="#f4cf6b" font-family="Barlow, sans-serif" font-weight="700" font-size="7.1" letter-spacing="0.7"><textPath href="#arcT" startOffset="50%" text-anchor="middle">BUDAÖRS BOX ACADEMY</textPath></text><text fill="#8f8778" font-family="Barlow, sans-serif" font-weight="700" font-size="5.7" letter-spacing="0.8"><textPath href="#arcB" startOffset="50%" text-anchor="middle">BUDAÖRS · TERRAPARK</textPath></text><text x="50" y="60" text-anchor="middle" fill="#e7b230" font-family="Anton, sans-serif" font-size="30">BBA</text><path d="M11 50l1.2-3 1.2 3 3 .3-2.3 2 .7 2.9-2.6-1.6-2.6 1.6.7-2.9-2.3-2z" fill="#e7b230"/><path d="M86 50l1.2-3 1.2 3 3 .3-2.3 2 .7 2.9-2.6-1.6-2.6 1.6.7-2.9-2.3-2z" fill="#e7b230"/></svg>
-      <div class="wm">Budaörs Box Academy<small>A bajnokok itt kezdődnek</small></div>
+      <svg class="emblem" viewBox="0 0 100 100" aria-hidden="true"><use href="#emb"/></svg>
+      <div class="wm">Budaörs Box Academy<small data-i18n="foot_sub">A bajnokok itt kezdődnek</small></div>
     </div>
     <p class="sm">Carlos · 06 70 365 9393 · Budaörs, TerraPark<br>© <span id="yr">2026</span> Budaörs Box Academy</p>
   </div>
 </footer>
 
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Kép nagyban">
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Bezárás"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Előző"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <img id="lbImg" alt="" />
+  <div class="lb-cap" id="lbCap"></div>
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Következő"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+</div>
+
 <script>
 (function(){
+  /* ---------- i18n ---------- */
+  var T={
+   rom:{
+    announce:'🥊 O anglúno treningo <b>IVJA</b> — <a href="#regisztracio">de tut anav online</a> · Budaörs, TerraPark',
+    nav_acad:"I akademíja", nav_carlos:"Carlos", nav_sched:"Vrámako", nav_gallery:"Kípé", nav_contact:"Kontákto", nav_cta:"Ivja treningo",
+    hero_eyebrow:"Amatőro & hobbi bokso-akademíja · Budaörs",
+    hero_h1:'Le champiónura<br><span class="gold">kathe kezdinen.</span>',
+    hero_sub:'Inkljá avri andar tyire vatáji, av o májfeder tu korkoro. Kathar le kezdévura zhi kaj le versenyzévura — o Carlos thaj i BBA bánda len sakones odoj kaj si. <b>O anglúno treningo ivja si.</b>',
+    hero_btn1:"De tut anav pe ivja treningo", hero_btn2:"Akhar: 06 70 365 9393",
+    hero_meta1:"Budaörs, TerraPark · Edison uca 3", hero_meta2:"Kezdévo & angleutno · sa le bersha",
+    val_eyebrow:"Sostar i BBA", val_h2:'Ando trupo thaj ando gi<br><span class="gold">zoraleder</span> aveha.',
+    val_p:"I Budaörs Box Academy naj jekh sterilo fitnes-terema. Amaro ringo, bajnoke cintura pe fala, but gone thaj jekh bánda edzévongi kaske fontoso si te barjos. Katar kezdis, kodo si o perfékto than te kezdis.",
+    c1h:"Profi edzévura", c1p:"Tapaslo, prigyisardo bánda azhukarel — le Carlososa. Kaj amende sako edzévoske fontoso si te legere feder tehnika thaj čači zhanglipe khere.",
+    c2h:"Šukar than", c2p:"Moderno terema, laši felšerelísa: ringo, gone, reflekso-lopta, medicina-lopti, bábu. Sa si so trubul te keres čači butji.",
+    c3h:"Zor · rhabdipe · pačape", c3p:"O bokso naj numa treningo — trajoski forma. Lesa tele o stresso, aveha zoraleder, thaj sako data majpaťivalo inkljes avri sar dijan andre.",
+    c4h:"Sakoneske", c4p:"Kezdévonge thaj angleutnonge jekhfjal. Zhuvljange, murshange, terne thaj bare manushenge — o pharipe sagda ki tyiri szinta ígazínel.",
+    belt1:"treningo ivja", belt2:"edzévongi bánda", belt3:"treningo / kurko", belt4:"kezdévo & angleutno",
+    car_role:"Šeralo edzévo · alapítóvo", car_eyebrow:"O šéfo", car_h2:'Sa kado<br>o Carlos ingerel.',
+    car_lead:"Jekh akademíja na le felšerelísa kerel akademíja, hanem o manush kaj palal le shele beshel. Kaj i Budaörs Box Academy kado manush si o Carlos — šeralo edzévo, alapítóvo, šéfo.",
+    car_p1:"O Carlos na numa treningura del, hanem jekh közösségo vazdel. Kado edzévo si kaj phenel sostar tyiro vast kadja mishtil, kaj dikhel te si tut nasul dyes, thaj kaj zhanel kana te phenel angle thaj kana te crdel pes palpale. Leske i tehnika thaj o barjipe si o lényego — o baripe na.",
+    car_p2:"Te šoha chi ande angla gono, vov si o hango kaj ingerel tut pe le anglune pasura. Te komolyeder zhas andre, sa vov kerel tut gáta pe versenyipe.",
+    car_p3:"Paša leste jekh zoralo bánda kerel butji tusa:",
+    role_head:"šeralo edzévo", role_coach:"edzévo",
+    tr_eyebrow:"Le treningura", tr_h2:"Kurkesko vrámako",
+    tr_p:"Sako treningo le melegipesko kezdil thaj le nyújtipesko phandel. O máškaripe pe tute si: kon akana kezdil, le alapura sikavel; kon zhanel, líveder kerel. Ande jekhutno terema, sako pe piri szinta.",
+    ti1h:"Alapo & tehnika", ti1p:"Alap-beshipe, gárda, punreski butji, orta shundipe — o kokalo pe savo sa vazdel pes. Kezdévonge kado si o angluno pasho.",
+    ti2h:"Gono & kombinácie", ti2p:"Shundipesko serie pe gono, ritmo, zor, állóképesség. Kathe phabol o stresso thaj le kalórie.",
+    ti3h:"Punreski butji & partneripe", ti3p:"Mishtipe, dúripeski réndelipe, arakhajipe le lapát-kesztyűvasa vaj ande dujzhene — kontrolálime.",
+    ti4h:"Sparring — angleutnonge", ti4p:"Numa kana gáta san, thaj sagda korkoro-kamipe. Kontrolálime gyakorlipe, na maripe.",
+    sch_h:"Kana & kasa", sch_sub:"Le čače vrámi thaj le edzévura pala o hivatalno vrámako le klubosko.",
+    d_mon:"Luja", d_tue:"Marci", d_wed:"Tetradji", d_thu:"Zhoja", d_fri:"Parashtuj",
+    vid_eyebrow:"Dikh andre kaj amende", vid_h2:'Kado si o terema. Kado si i<br><span class="gold">hangulat.</span>',
+    vid_cap1:"O ringo & le legendе", vid_cap2:"Dikhipe rundom",
+    gal_eyebrow:"O terema", gal_h2:'Kado azhukarel tut<br>ande Budaörs',
+    gal_p:"Amaro ringo, bajnoke cintura, but gone, reflekso-esközura — thaj jekh plafono pherdo le bokso-legendenca, katar o Tyson zhi kaj o Canelo. De klikko pe le kípе te dikhes len baro.",
+    fig1:"O terema & o ringo", fig2:"Gono-šoro", fig3:"Bajnoke cintura", fig4:"Funkcionálno", fig5:"Le legendе", fig6:"O edző-terema", fig7:"O ringo pashe", fig8:"Le fali",
+    reg_eyebrow:"Anav-dipe · ivja anglúno treningo", reg_h2:'Rézervalin tyiro<br><span class="gold">than.</span>',
+    reg_lead:"Pherdyar o formo, thaj phen pe savo treningo aveha. O Carlos lel kontákto tusa, thaj vorbin le detalura. O anglúno drom ivja si, bi khanchesko kötelezettségo.",
+    b1:"O anglúno treningo egészen ivja si", b2:"Chi trubul tapasztalása vaj piri felšerelísa", b3:"Kezdévonge thaj angleutnonge, sa le bershenge",
+    f_name:"Tyiro anav", ph_name:"Pl. Kovács Anna", f_tel:"Telefono", f_email:"E-mail (na kötelezo)", f_sess:"Pe savo treningo aveha?",
+    opt0:"Alosar vrama…", opt1:"Luja 17:30 — Carlos", opt2:"Marci 17:00 — Bertók Róbert", opt3:"Tetradji 08:00 — Carlos", opt4:"Tetradji 16:00 — Tibi bá'", opt5:"Tetradji 17:30 — Carlos", opt6:"Zhoja 17:00 — Bertók Róbert", opt7:"Parashtuj 08:00 — Carlos", opt8:"Parashtuj 17:00 — Totka Pali bácsi", opt9:"Inke chi zhanav — akharen ma palpale",
+    f_beg:"Egészen kezdévo sim", f_msg:"Vorba (na kötelezo)", ph_msg:"Sa so trubul te zhanas…", f_submit:"Bishav o anav-dipe",
+    f_note:'O „Bishav o anav-dipe" gombo phravel tyiro levéltúro le Carlososke gáta-kerdo vorbasa (terra.budai@gmail.com). Vaj akhar direkt: <a href="tel:+36703659393" style="color:var(--gold-soft)">06 70 365 9393</a>.',
+    faq_eyebrow:"Angla te aves andre", faq_h2:"Butvar phучimata",
+    q1:"Šoha chi boxoltem. Shaj zhav?", a1:"Va — le majbut manush kadja kezdinen. Pe anglúno treningo le alaponca kezdas, khanchi chi azhukaras so angle chi sikavas tuke.",
+    q2:"Trubul piri felšerelísa?", a2:"Ando kezdipe na. Aves ande kényelmo sporto-gada thaj papucha, an paji. Te rendsheresen aves, zhutisaras savo kesztyűvo thaj bandázso te cines.",
+    q3:"Malaven ma po anglúno dyes?", a3:"Na. Anglal le tehnika thaj le alapura gyakorlisaras. O sparring but majpalal avel, thaj sagda korkoro-kamipe.",
+    q4:"Sode mol?", a4:"O anglúno treningo ivja si, te probálin bi kötelezettségo. Pala le bérletura thaj le árи vorbisaras kamlyipesa — akhar le Carlos: 06 70 365 9393.",
+    q5:"Kaj san čačes?", a5:"Ande Budaörs, ando TerraPark (Edison uca 3.). Loke te reses, si parkolása pashe.",
+    con_eyebrow:"Kontákto", con_h2:'Av andre pe jekh<br>treningo', con_k1:"Telefono · Carlos", con_k2:"E-mail", con_k3:"Than", con_v3:"Budaörs, TerraPark · Edison uca 3",
+    foot_sub:"Le champiónura kathe kezdinen",
+    js_valid:"Rúgin, pherdyar tyiro anav, telefono thaj alosar treningo.",
+    js_ok:"Nais tuke, {name}! Phravdilo tyiro levéltúro le gáta-kerdo vorbasa — bishav les, thaj o Carlos sigo lel kontákto. Te chi phravdilo, akhar o 06 70 365 9393."
+   },
+   zh:{
+    announce:'🥊 首次训练 <b>免费</b> — <a href="#regisztracio">在线报名</a> · 布达厄尔什 TerraPark',
+    nav_acad:"拳馆", nav_carlos:"卡洛斯", nav_sched:"课程表", nav_gallery:"相册", nav_contact:"联系", nav_cta:"免费训练",
+    hero_eyebrow:"业余与爱好拳击学院 · 布达厄尔什",
+    hero_h1:'冠军<br><span class="gold">从这里诞生。</span>',
+    hero_sub:'突破你的极限，成为最好的自己。从初学者到参赛选手——卡洛斯和 BBA 团队会根据你的水平因材施教。<b>首次训练免费。</b>',
+    hero_btn1:"报名免费训练", hero_btn2:"致电：06 70 365 9393",
+    hero_meta1:"布达厄尔什 TerraPark · Edison 街 3 号", hero_meta2:"初学者与进阶 · 各年龄段",
+    val_eyebrow:"为什么选择 BBA", val_h2:'让你身心<br><span class="gold">更强大</span>。',
+    val_p:"布达厄尔什拳击学院不是冷冰冰的健身房。我们有自己的擂台、墙上的冠军腰带、一整排沙袋，还有一支真正在乎你进步的教练团队。无论你从哪里起步，都是完美的起点。",
+    c1h:"专业教练", c1p:"经验丰富、充满热忱的团队在等你——由卡洛斯带领。在这里，每位教练都重视让你带走扎实的技术和真本领。",
+    c2h:"优越的环境", c2p:"现代化的场馆，高品质的器材：擂台、沙袋、反应球、药球、假人。真正训练所需的一切，一应俱全。",
+    c3h:"力量 · 毅力 · 自信", c3p:"拳击不只是训练——更是一种生活方式。释放压力、变得更结实，每次离开时都比进来时更自信。",
+    c4h:"适合每个人", c4p:"无论初学者还是进阶者，无论男女老少——训练强度始终按你的水平调整。",
+    belt1:"免费训练", belt2:"教练团队", belt3:"每周训练", belt4:"初学与进阶",
+    car_role:"主教练 · 创始人", car_eyebrow:"掌门人", car_h2:'一切都由<br>卡洛斯掌舵。',
+    car_lead:"成就一间拳馆的不是器材，而是站在擂台绳后的那个人。在布达厄尔什拳击学院，这个人就是卡洛斯——主教练、创始人、掌门人。",
+    car_p1:"卡洛斯不只是上课，更在打造一个团体。他会解释你的手为什么要这样动，会察觉你今天状态不好，也清楚何时该推你一把、何时该退一步。对他来说，技术和进步才是关键——炫耀不是。",
+    car_p2:"如果你从未站在沙袋前，他就是带你走完最初几步的那个声音。如果你想更认真，也是他帮你备战比赛。",
+    car_p3:"此外，还有一支强大的团队与你并肩：",
+    role_head:"主教练", role_coach:"教练",
+    tr_eyebrow:"训练课程", tr_h2:"每周课程表",
+    tr_p:"每节课都以热身开始，以拉伸结束。中间取决于你：新手打磨基础，老手精进技艺。同一个场馆，各按自己的水平。",
+    ti1h:"基础与技术", ti1p:"基本站姿、防守架势、步法、直拳——一切的根基。新手从这里入门。",
+    ti2h:"沙袋与组合拳", ti2p:"沙袋上的连续组合、节奏、力量、耐力。压力和卡路里在这里燃烧。",
+    ti3h:"步法与对练", ti3p:"移动、控距、用手靶或双人防守——都在可控中进行。",
+    ti4h:"实战对练——进阶者", ti4p:"只在你准备好时，且始终自愿。是可控的练习，不是打架。",
+    sch_h:"时间与教练", sch_sub:"准确时间和教练以拳馆官方课程表为准。",
+    d_mon:"周一", d_tue:"周二", d_wed:"周三", d_thu:"周四", d_fri:"周五",
+    vid_eyebrow:"来看看我们", vid_h2:'这就是场馆。这就是<br><span class="gold">氛围。</span>',
+    vid_cap1:"擂台与传奇", vid_cap2:"环顾四周",
+    gal_eyebrow:"场馆", gal_h2:'在布达厄尔什<br>等你来',
+    gal_p:"自有擂台、冠军腰带、成排沙袋、反应训练器材——还有一整片贴满拳击传奇的天花板，从泰森到卡内洛。点击图片可放大查看。",
+    fig1:"场馆与擂台", fig2:"沙袋区", fig3:"冠军腰带", fig4:"功能训练", fig5:"传奇天花板", fig6:"健身区", fig7:"近看擂台", fig8:"拳击墙",
+    reg_eyebrow:"报名 · 免费首训", reg_h2:'预订你的<br><span class="gold">名额。</span>',
+    reg_lead:"填写表单，告诉我们你想来哪节课。卡洛斯会与你联系，商定细节。首次免费，没有任何义务。",
+    b1:"首次训练完全免费", b2:"无需经验或自备装备", b3:"适合初学者和进阶者，各年龄段",
+    f_name:"你的名字", ph_name:"例如：张伟", f_tel:"电话", f_email:"电子邮箱（选填）", f_sess:"你想来哪节课？",
+    opt0:"选择时间…", opt1:"周一 17:30 — Carlos", opt2:"周二 17:00 — Bertók Róbert", opt3:"周三 08:00 — Carlos", opt4:"周三 16:00 — Tibi bá'", opt5:"周三 17:30 — Carlos", opt6:"周四 17:00 — Bertók Róbert", opt7:"周五 08:00 — Carlos", opt8:"周五 17:00 — Totka Pali bácsi", opt9:"还不确定——请回电",
+    f_beg:"我是完全的新手", f_msg:"留言（选填）", ph_msg:"任何你想让我们知道的…", f_submit:"提交报名",
+    f_note:'点击“提交报名”会打开你的邮箱，里面是给卡洛斯的、已填好的邮件（terra.budai@gmail.com）。或直接致电：<a href="tel:+36703659393" style="color:var(--gold-soft)">06 70 365 9393</a>。',
+    faq_eyebrow:"来之前", faq_h2:"常见问题",
+    q1:"我从没打过拳，可以来吗？", a1:"当然可以——大多数人正是这样开始的。第一节课我们从基础开始，不会要求任何没教过你的东西。",
+    q2:"需要自备装备吗？", a2:"一开始不需要。穿舒适的运动服和运动鞋，带上水就行。如果你固定来，我们会帮你挑选合适的拳套和绷带。",
+    q3:"第一天就会挨打吗？", a3:"不会。我们先练技术和基础。对练要晚得多才会开始，而且始终自愿。",
+    q4:"费用是多少？", a4:"首次训练免费，让你无义务地试一试。会员和价格我们乐意当面细说——拨打卡洛斯：06 70 365 9393。",
+    q5:"你们具体在哪里？", a5:"在布达厄尔什的 TerraPark（Edison 街 3 号）。交通便利，附近有停车位。",
+    con_eyebrow:"联系我们", con_h2:'来上一节<br>训练课', con_k1:"电话 · 卡洛斯", con_k2:"电子邮箱", con_k3:"地址", con_v3:"布达厄尔什 TerraPark · Edison 街 3 号",
+    foot_sub:"冠军从这里开始",
+    js_valid:"请填写你的姓名、电话，并选择一节课。",
+    js_ok:"谢谢你，{name}！你的邮箱已打开并填好邮件——发送即可，卡洛斯会尽快联系你。如果没有打开，请拨打 06 70 365 9393。"
+   }
+  };
+  var HU={}, HUph={};
+  var nodes=document.querySelectorAll('[data-i18n]');
+  nodes.forEach(function(el){ HU[el.getAttribute('data-i18n')]=el.innerHTML; });
+  var phNodes=document.querySelectorAll('[data-i18n-ph]');
+  phNodes.forEach(function(el){ HUph[el.getAttribute('data-i18n-ph')]=el.getAttribute('placeholder')||''; });
+  var MSG={hu:{js_valid:"Kérlek töltsd ki a neved, telefonszámod és válassz edzést.", js_ok:"Köszönjük, {name}! Megnyílt a leveleződ az előre kitöltött üzenettel — küldd el, és Carlos hamarosan jelentkezik. Ha nem nyílt meg, hívd a 06 70 365 9393 számot."}};
+  var CUR='hu';
+  function pick(lang,key){ if(lang==='hu')return HU[key]; return (T[lang]&&T[lang][key]!=null)?T[lang][key]:HU[key]; }
+  function pickPh(lang,key){ if(lang==='hu')return HUph[key]; return (T[lang]&&T[lang][key]!=null)?T[lang][key]:HUph[key]; }
+  function msg(key){ if(CUR==='hu')return MSG.hu[key]; return (T[CUR]&&T[CUR][key]!=null)?T[CUR][key]:MSG.hu[key]; }
+  function setLang(lang){
+    CUR=lang;
+    nodes.forEach(function(el){ var v=pick(lang,el.getAttribute('data-i18n')); if(v!=null)el.innerHTML=v; });
+    phNodes.forEach(function(el){ var v=pickPh(lang,el.getAttribute('data-i18n-ph')); if(v!=null)el.setAttribute('placeholder',v); });
+    document.documentElement.lang=(lang==='zh'?'zh':(lang==='rom'?'rom':'hu'));
+    document.querySelectorAll('.langsw button').forEach(function(b){var on=b.getAttribute('data-lang')===lang;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on?'true':'false');});
+    try{localStorage.setItem('bba_lang',lang);}catch(e){}
+  }
+  document.querySelectorAll('.langsw button').forEach(function(b){ b.addEventListener('click',function(){ setLang(b.getAttribute('data-lang')); }); });
+  var saved; try{saved=localStorage.getItem('bba_lang');}catch(e){}
+  if(saved==='rom'||saved==='zh') setLang(saved); else setLang('hu');
+
+  /* ---------- header / menu ---------- */
   var bar=document.getElementById('topbar');
   function onScroll(){ bar.classList.toggle('scrolled', window.scrollY>28); }
-  onScroll();
-  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
   var burger=document.getElementById('burger'),nav=document.getElementById('nav');
   function closeNav(){nav.classList.remove('open');burger.setAttribute('aria-expanded','false')}
   burger.addEventListener('click',function(){var o=nav.classList.toggle('open');burger.setAttribute('aria-expanded',o?'true':'false')});
   nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeNav)});
 
-  // registration -> prefilled mailto + confirmation
+  /* ---------- lightbox ---------- */
+  var figs=[].slice.call(document.querySelectorAll('.gallery figure, .coach-figure'));
+  var items=figs.map(function(f){var img=f.querySelector('img');var cap=f.querySelector('figcaption');return{src:f.getAttribute('data-full')||img.getAttribute('src'),alt:img.getAttribute('alt')||'',cap:f.getAttribute('data-cap')||(cap?cap.textContent:'')};});
+  var lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCap'),idx=0;
+  function show(i){idx=(i+items.length)%items.length;lbImg.setAttribute('src',items[idx].src);lbImg.setAttribute('alt',items[idx].alt);lbCap.textContent=items[idx].cap;}
+  function open(i){show(i);lb.classList.add('open');lb.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+  function close(){lb.classList.remove('open');lb.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+  figs.forEach(function(f,i){f.addEventListener('click',function(e){ if(e.target.closest('a'))return; open(i); });});
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',function(){show(idx-1);});
+  document.getElementById('lbNext').addEventListener('click',function(){show(idx+1);});
+  lb.addEventListener('click',function(e){if(e.target===lb)close();});
+  document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')show(idx-1);else if(e.key==='ArrowRight')show(idx+1);});
+
+  /* ---------- registration ---------- */
   var f=document.getElementById('regform'), ok=document.getElementById('formok');
   f.addEventListener('submit',function(e){
     e.preventDefault();
     if(!f.nev.value.trim()||!f.tel.value.trim()||!f.edzes.value){
-      ok.textContent='Kérlek töltsd ki a neved, telefonszámod és válassz edzést.';
-      ok.classList.add('show');ok.style.borderColor='#c9603a';ok.style.color='#f0a878';return;
+      ok.textContent=msg('js_valid');ok.classList.add('show');ok.style.borderColor='#c9603a';ok.style.color='#f0a878';return;
     }
-    var body=
-      'Szia Carlos!%0D%0A%0D%0AJelentkezni szeretnék egy ingyenes edzésre a Budaörs Box Academynél.%0D%0A%0D%0A'+
+    var body='Szia Carlos!%0D%0A%0D%0AJelentkezni szeretnék egy ingyenes edzésre a Budaörs Box Academynél.%0D%0A%0D%0A'+
       'Név: '+encodeURIComponent(f.nev.value)+'%0D%0A'+
       'Telefon: '+encodeURIComponent(f.tel.value)+'%0D%0A'+
       (f.email.value?'E-mail: '+encodeURIComponent(f.email.value)+'%0D%0A':'')+
       'Edzés: '+encodeURIComponent(f.edzes.value)+'%0D%0A'+
       'Kezdő: '+(f.kezdo.checked?'igen':'nem')+'%0D%0A'+
-      (f.uzenet.value?'Üzenet: '+encodeURIComponent(f.uzenet.value)+'%0D%0A':'')+
-      '%0D%0AKöszönöm!';
+      (f.uzenet.value?'Üzenet: '+encodeURIComponent(f.uzenet.value)+'%0D%0A':'')+'%0D%0AKöszönöm!';
     window.location.href='mailto:terra.budai@gmail.com?subject='+encodeURIComponent('Jelentkezés edzésre – '+f.nev.value)+'&body='+body;
-    ok.textContent='Köszönjük, '+f.nev.value.trim().split(' ')[0]+'! Megnyílt a leveleződ az előre kitöltött üzenettel — küldd el, és Carlos hamarosan jelentkezik. Ha nem nyílt meg, hívd a 06 70 365 9393 számot.';
+    ok.textContent=msg('js_ok').replace('{name}',f.nev.value.trim().split(' ')[0]);
     ok.classList.add('show');ok.style.borderColor='';ok.style.color='';
   });
 
   var yr=document.getElementById('yr');if(yr){var y=(document.lastModified||'').slice(-4);if(/^\d{4}$/.test(y))yr.textContent=y;}
-
   var els=document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
