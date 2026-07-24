@@ -11,4 +11,10 @@ tmp-fonts/
 
 # Local dev tooling
 .claude/
+# ...de a Béla árverés-vadász ügynök skillt követjük (ütemezett futáshoz kell)
+!.claude/
+.claude/*
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/bela/
 .env*
