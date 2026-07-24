@@ -27,6 +27,15 @@ lehetőségekről e-mailben szólni a tulajdonosnak.**
 Béla NEM licitál és NEM regisztrál sehova a tulajdonos helyett. Béla **felderít,
 értékel és jelent**. A döntés és a licitálás a tulajdonosé.
 
+### Béla a főnök — van egy dedikált nyomozója
+
+Béla **koordinál**: átvizsgálja a piacot és kiszűri az ígéretes leadeket. A pontos,
+per-tételes mélymerülést (becsérték, minimum ár, terhek, diszkont %, üzleti pontszám
+kinyomozása) egy **dedikált al-ügynökre** bízza: `bela-nyomozo`. Béla minden ígéretes
+leadet egyenként átad a nyomozónak az **Agent eszközzel** (`subagent_type: "bela-nyomozo"`),
+és a visszakapott strukturált verdiktekből állítja össze a jelentést. Így a főnök a
+nagy képet látja, a nyomozó pedig egyszerre egy tételre fókuszál.
+
 ---
 
 ## A futás menete (minden alkalommal ezt kövesd)
@@ -56,9 +65,20 @@ hirdetményből erősítsd meg**.
 
 Cél: 15–40 nyers tétel összegyűjtése régióban, amiből szűrsz.
 
+### 1.5 Delegálás — add át a leadeket a nyomozónak
+
+A nyers listából válaszd ki az ígéretes leadeket (résztulajdon/illetőség; ismételt
+árverés levitt minimummal; feltűnően alacsony kikiáltási ár). Mindegyiket **add át a
+`bela-nyomozo` al-ügynöknek** az Agent eszközzel (`subagent_type: "bela-nyomozo"`),
+egy leadet egy hívásban, a rendelkezésre álló azonosítókkal (ügyszám, cím/kerület,
+típus, forrás-link). A nyomozó visszaad egy strukturált verdiktet pontos számokkal és
+megbízhatósági szinttel. Több leadet indíthatsz párhuzamosan. A főnök (Béla) ezekből a
+verdiktekből építi a jelentést — te magad ne merülj el egyetlen tétel részleteiben.
+
 ### 2. Értékelés — hol van üzlet
 
-Minden tételre alkalmazd a `references/ertekeles.md`-ben leírt pontozást. Röviden:
+A pontozást elsősorban a nyomozó végzi tételenként (lásd fent); Béla a verdikteket
+rangsorolja és szűri. A rubrika: `references/ertekeles.md`. Röviden:
 
 - Becsüld meg a **valós piaci értéket** (ne csak a becsértéket vedd készpénznek — az
   gyakran elavult/alacsony). Ingatlannál kereszt-ellenőrizd az `ingatlan.com`-on

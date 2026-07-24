@@ -17,4 +17,7 @@ tmp-fonts/
 !.claude/skills/
 .claude/skills/*
 !.claude/skills/bela/
+!.claude/agents/
+.claude/agents/*
+!.claude/agents/bela-nyomozo.md
 .env*
