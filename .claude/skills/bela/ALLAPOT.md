@@ -23,11 +23,15 @@
 - Értesítés: **e-mail**
 
 ## Nyitott szálak (hétfőre)
-1. **Résztulajdon-leadek mélymerülése** — Zugló `500.V.1636/2024/100` és
-   `038.V.0879/2025/33` (lásd `nyilvantartas.md`). Add át a nyomozónak pontos
-   számokért (böngésző-automatizálással a bot-védett oldalakon).
-2. **Böngésző-automatizálás bekötése** a nyomozó mögé (Alfred skill), hogy a
-   per-tételes becsérték/minimumár/terhek automatikusan is meglegyen — jóváhagyásra vár.
+1. **KIEMELT LEHETŐSÉG — Bp. XIV. Egressy út 167/A-B** (ügyszám `038.V.0879/2025/33`,
+   határidő **2026-08-06**, kikiáltási 60 M, előleg 6 M). Nagy zuglói telek (1070 m²),
+   piaci ~120–170 M → **feltételes ~50–65% diszkont**. Részletes verdikt:
+   `jelentesek/2026-07-24-egressy-lead.md`.
+   **SÜRGŐS DD (13 nap):** TAKARNET tulajdoni lap — egész 1/1 vagy 1/2 illetőség? +
+   terhek (haszonélvezet?). Ez dönti el, valódi-e az üzlet.
+2. `500.V.1636/2024/100` (Kramberger) **ELVETVE** — Tállya (Borsod), haszonélvezet, lakott.
+3. **Böngésző-automatizálás bekötése** a nyomozó mögé (Alfred skill), hogy a
+   per-tételes terhek/becsérték automatikusan is meglegyen — jóváhagyásra vár.
 
 ## Legutóbbi jelentés
-`jelentesek/2026-07-24-beavato.md`
+`jelentesek/2026-07-24-egressy-lead.md` (kiemelt lehetőség) · `jelentesek/2026-07-24-beavato.md`
