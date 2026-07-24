@@ -52,6 +52,33 @@ Budapest + Pest megye a fókusz.
   állapot m²-ára → ebből becsüld a valós piaci értéket.
 - Ingóság (autó): hasonló évjárat/futás piaci hirdetései (pl. hasznaltauto.hu).
 
+## Adathozzáférés a gyakorlatban (FONTOS)
+
+Ebben a futtatókörnyezetben tapasztalt korlátok:
+
+- A **`WebSearch` MŰKÖDIK** — a Google-alapú keresés valós listákat, aggregált
+  számokat (átlag kikiáltási ár, tételszám) és konkrét hirdetményeket (ügyszám,
+  kerület, hányad) hoz vissza a találati snippetekben. **Ez Béla elsődleges
+  adatforrása.**
+- A **`WebFetch` az árverési portálokra jellemzően 403-at ad** (licit.info, NAV
+  `arveres.nav.gov.hu`, MNV `e-arveres.mnv.hu`, EÉR `eer.sztfh.hu`) — ezek
+  bot-védelme utasítja el az automata lekérést, nem a proxy.
+- A **`kormanyhivatalok.hu`** (ahol a végrehajtói PDF-hirdetmények vannak) a
+  **szervezeti egress-szabály** miatt blokkolt — ezt NE kerüld meg.
+
+Ebből fakadó munkamódszer:
+1. Dolgozz **WebSearch-alapon**: célzott keresésekkel gyűjts tételeket és a
+   snippetből kinyerhető számokat.
+2. Amit a snippetből nem tudsz megerősíteni (pontos becsérték, minimum ár, terhek),
+   azt **jelöld „nem megerősített"-ként** — SOHA ne találj ki számot.
+3. A jelentésben mindig add meg a hirdetmény linkjét, hogy a tulajdonos egy
+   kattintással megnyithassa a hivatalos oldalt (böngészőben az elérhető).
+
+Ha a tulajdonos teljes, per-tétel adatot akar automatikusan, két járható út:
+- Beállítani egy **e-mail értesítőt** (pl. arveresertesito.hu) inputként.
+- Élő (interaktív) munkamenetben **böngésző-automatizálással** (pl. az `alfred`
+  skill) megnyitni a bot-védett oldalakat mélymerüléshez.
+
 ## Hasznos keresőkifejezések
 
 - `végrehajtói árverés ingatlan Budapest ismételt 70%`
