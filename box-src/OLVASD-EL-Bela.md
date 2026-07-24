@@ -32,7 +32,7 @@ Ez frissíti a `public/box/index.html`-t. (A `standalone.html` a teljesen önál
 
 ## Mi van kész a weboldalon
 - Fekete-arany BBA márka + BBA embléma (SVG)
-- **Nyelvváltó fent: Magyar · Roma · 中文** (teljes fordítás; a roma/lovári fordítást érdemes anyanyelvivel átnézetni)
+- **Nyelvváltó fent: Magyar · English · 中文** (teljes fordítás)
 - Hero: Higgsfield-generált fekete párduc (a klub kabalája) — CDN-hotlink, ha nem tölt be, a valódi ring-fotóra vált
 - Valódi **órarend** és edzők: Carlos, Bertók Róbert, Tibi bá', Totka Pali bácsi
 - **Online jelentkezés** (edzésválasztóval) → e-mailt nyit Carlosnak: **terra.budai@gmail.com**
