@@ -65,10 +65,12 @@ Ez frissíti a `public/box/index.html`-t. (A `standalone.html` a teljesen önál
 
 ## DOMAIN — döntés és lépések (hétfőre)
 
+> ✅ **ELÉRHETŐSÉG ELLENŐRIZVE (2026-07): mind a 3 domain SZABAD, foglalható** — `budaorsbox.hu`, `stresszbox.hu`, `boxbudaors.hu`. Hétfőn ezeket kell megvenni magyar registrarnál (rackhost.hu / domain.hu). Érdemes gyorsan lefoglalni, mielőtt más elviszi.
+
 **Választott terv (Béla ajánlása):**
-- **Fő domain: `budaorsbox.hu`** — márka + hely (Budaörs Box), jó a helyi Google-kereséshez, könnyen bediktálható.
-- **Marketing-átirányítás: `stresszbox.hu`** — a menedzser/cégvezető célcsoporthoz fülbemászó („stresszlevezetés bokszban”), átirányítva a főre; ezt jó kampányban/Instán kommunikálni.
-- **Elgépelés-védelem: `boxbudaors.hu`** — átirányítva a főre.
+- **Fő domain: `budaorsbox.hu`** — márka + hely (Budaörs Box), jó a helyi Google-kereséshez, könnyen bediktálható. **(SZABAD ✔)**
+- **Marketing-átirányítás: `stresszbox.hu`** — a menedzser/cégvezető célcsoporthoz fülbemászó („stresszlevezetés bokszban”), átirányítva a főre; ezt jó kampányban/Instán kommunikálni. **(SZABAD ✔)**
+- **Elgépelés-védelem: `boxbudaors.hu`** — átirányítva a főre. **(SZABAD ✔)**
 - Kerülendő: hosszú `budaorsboxacademy.hu` (nehéz bediktálni); a „boksz” írásmód (a márka „**box**”, maradj annál).
 
 **.hu regisztráció** (NEM megy automatikusan Vercelen át — magyar registrar kell):
