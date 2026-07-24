@@ -15,3 +15,4 @@ tmp-fonts/
 
 # Box klub build scratch (screenshots, embed build, fonts)
 scratch-box/
+box-src/standalone.html
