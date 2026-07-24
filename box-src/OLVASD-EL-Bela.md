@@ -60,3 +60,24 @@ Ez frissíti a `public/box/index.html`-t. (A `standalone.html` a teljesen önál
 3. Opcionális: saját domain (pl. budaorsboxacademy.hu) rákötése a Vercel-projektre.
 
 — Ha bármi kell, folytasd nyugodtan; a forrás és a kész oldal is itt van a repóban.
+
+---
+
+## DOMAIN — döntés és lépések (hétfőre)
+
+**Választott terv (Béla ajánlása):**
+- **Fő domain: `budaorsbox.hu`** — márka + hely (Budaörs Box), jó a helyi Google-kereséshez, könnyen bediktálható.
+- **Marketing-átirányítás: `stresszbox.hu`** — a menedzser/cégvezető célcsoporthoz fülbemászó („stresszlevezetés bokszban”), átirányítva a főre; ezt jó kampányban/Instán kommunikálni.
+- **Elgépelés-védelem: `boxbudaors.hu`** — átirányítva a főre.
+- Kerülendő: hosszú `budaorsboxacademy.hu` (nehéz bediktálni); a „boksz” írásmód (a márka „**box**”, maradj annál).
+
+**.hu regisztráció** (NEM megy automatikusan Vercelen át — magyar registrar kell):
+1. Elérhetőség + vásárlás: **rackhost.hu** / **domain.hu** / **3-in-1.hu** — írd be a nevet; ha szabad, vedd meg (kb. 2000–4000 Ft/év). A `.hu`-hoz általában magyar személy/cég adatok kellenek.
+2. **Vercelhez kötés** (miután megvan a domain ÉS az oldal fent van Vercelen):
+   - Vercel projekt → **Settings → Domains → Add** → `budaorsbox.hu`
+   - A Vercel ad egy DNS-beállítást: **A-rekord `76.76.21.21`** VAGY **CNAME `cname.vercel-dns.com`**
+   - A registrar DNS-kezelőjében állítsd be ezt; a `www`-t is: **CNAME → `cname.vercel-dns.com`**
+   - Pár perc–óra múlva él, a Vercel automatikusan HTTPS/SSL-t is ad.
+3. `stresszbox.hu` és `boxbudaors.hu`: vedd meg, majd a registrarnál állítsd **átirányítás/redirect → `https://budaorsbox.hu`** (vagy Vercelben add hozzá redirect-domainként).
+
+**Megjegyzés:** az elérhetőség-ellenőrzést és a domain-vásárlást a mostani munkamenetből nem tudtam elvégezni (a Vercel-műveletek jóváhagyást kérnek, ami itt nem megy át; a `.hu` amúgy is magyar registraron keresztül megy). Ezért a fenti manuális lépésekkel.
