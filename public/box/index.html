@@ -96,7 +96,8 @@ nav.main a.navlink:hover{color:var(--ink)}
   .burger{display:inline-flex;z-index:60}
   .nav-cta{display:none !important}
 }
-@media (max-width:520px){ .brand .wm{display:none} .langsw button{padding:5px 8px;font-size:.62rem} }
+@media (max-width:560px){ .brand .wm{display:none} }
+@media (max-width:400px){ .langsw{padding:2px} .langsw button{padding:5px 7px;font-size:.6rem;letter-spacing:.02em} .hdr-right{gap:8px} }
 
 /* hero */
 .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding-top:clamp(150px,22vw,180px);overflow:hidden}
@@ -294,7 +295,7 @@ footer .sm{color:var(--muted);font-size:.82rem}
   </nav>
   <div class="hdr-right">
     <div class="langsw" role="group" aria-label="Nyelv / Language">
-      <button type="button" data-lang="hu" class="on" aria-pressed="true">HU</button>
+      <button type="button" data-lang="hu" class="on" aria-pressed="true">Magyar</button>
       <button type="button" data-lang="rom" aria-pressed="false">Roma</button>
       <button type="button" data-lang="zh" aria-pressed="false">中文</button>
     </div>
