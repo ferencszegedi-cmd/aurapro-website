@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- FELÚT – EU Roma Felzárkóztatási Program logó -->
+  <defs>
+    <clipPath id="badge">
+      <circle cx="512" cy="380" r="290"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1024" height="1024" fill="#ffffff"/>
+
+  <!-- Embléma: kör alakú jelvény -->
+  <g clip-path="url(#badge)">
+    <!-- ég (roma zászló kék) -->
+    <rect x="222" y="90" width="580" height="440" fill="#1B6CA8"/>
+    <!-- hangjegyek az égen: a zene mint közös nyelv -->
+    <g fill="#ffffff" opacity="0.85">
+      <g transform="translate(367,225) scale(0.62)">
+        <ellipse cx="0" cy="46" rx="26" ry="19" transform="rotate(-20 0 46)"/>
+        <rect x="18" y="-38" width="9" height="88" rx="4"/>
+        <path d="M18 -38 q 40 6 44 40 q -6 -18 -44 -18 Z"/>
+      </g>
+      <g transform="translate(662,185) scale(0.5)">
+        <ellipse cx="0" cy="46" rx="26" ry="19" transform="rotate(-20 0 46)"/>
+        <rect x="18" y="-38" width="9" height="88" rx="4"/>
+        <path d="M18 -38 q 40 6 44 40 q -6 -18 -44 -18 Z"/>
+      </g>
+    </g>
+    <!-- nap: felkelő roma kerék -->
+    <g transform="translate(512,420)">
+      <g stroke="#D93025" stroke-width="16" stroke-linecap="round">
+        <line x1="0" y1="-128" x2="0" y2="-196"/>
+        <line x1="49" y1="-118" x2="75" y2="-181"/>
+        <line x1="91" y1="-91" x2="139" y2="-139"/>
+        <line x1="118" y1="-49" x2="181" y2="-75"/>
+        <line x1="128" y1="0" x2="196" y2="0"/>
+        <line x1="-49" y1="-118" x2="-75" y2="-181"/>
+        <line x1="-91" y1="-91" x2="-139" y2="-139"/>
+        <line x1="-118" y1="-49" x2="-181" y2="-75"/>
+        <line x1="-128" y1="0" x2="-196" y2="0"/>
+      </g>
+      <circle cx="0" cy="0" r="104" fill="#D93025"/>
+      <circle cx="0" cy="0" r="104" fill="none" stroke="#B7231B" stroke-width="6"/>
+    </g>
+    <!-- föld (roma zászló zöld) – dombok -->
+    <path d="M222 470 Q 380 400 512 452 Q 660 505 802 430 L802 670 L222 670 Z" fill="#2E8B57"/>
+    <path d="M222 500 Q 400 445 560 492 Q 700 530 802 480 L802 670 L222 670 Z" fill="#237547"/>
+    <!-- felút: emelkedő út a nap felé -->
+    <path d="M430 670 L578 670 C 545 590 528 520 517 452 L 507 452 C 490 520 462 590 430 670 Z" fill="#31383F"/>
+    <path d="M511 460 C 508 520 498 590 483 662" stroke="#F5C518" stroke-width="10" stroke-dasharray="34 26" fill="none" stroke-linecap="round"/>
+  </g>
+  <!-- jelvény keret -->
+  <circle cx="512" cy="380" r="290" fill="none" stroke="#1E3A5F" stroke-width="18"/>
+
+  <!-- szöveg -->
+  <text x="512" y="826" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-weight="bold" font-size="150" letter-spacing="6" fill="#1E3A5F">FELÚT</text>
+  <text x="512" y="900" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="42" fill="#237547">Van kiút. Van felút.</text>
+  <text x="512" y="956" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="27" letter-spacing="3" fill="#8A94A0">EU ROMA FELZÁRKÓZTATÁSI PROGRAM</text>
+</svg>
