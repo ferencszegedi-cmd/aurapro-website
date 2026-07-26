@@ -19,25 +19,29 @@ Verzió: 1.0 · Dátum: 2026. július 26. · Devizaárfolyam a számításokhoz:
 | 2 | Technika (hang, fény, színpad) | 400 000 | 12 | 4 800 000 |
 | 3 | Helyszínbérlet + helyi szervezés | 250 000 | 12 | 3 000 000 |
 | 4 | Szakértői díjak (2 fő/alkalom: addiktológus, pénzügyi/oktatási szakértő) | 150 000 | 12 | 1 800 000 |
-| 5 | Utazás, szállás (stáb + nagykövet) | 200 000 | 12 | 2 400 000 |
+| 5 | Utazás, szállás (stáb + nagykövet; 6 határon túli alkalommal) | 300 000 | 12 | 3 600 000 |
 | 6 | Kommunikáció: videódokumentáció, social media, sajtó | — | 6 hónap | 6 000 000 |
 | 7 | Arculat, kreatív anyagok (logó, kiadványok, molinók) | — | egyszeri | 1 500 000 |
 | 8 | Projektmenedzsment (PM + pénzügyi asszisztens, 6 hó) | 750 000/hó | 6 | 4 500 000 |
 | 9 | Monitoring, hatásmérés (elő-/utómérés, tanulmány) | — | egyszeri | 2 000 000 |
-| | **Részösszeg** | | | **68 000 000** |
-| 10 | Tartalék (5%) | | | 3 400 000 |
-| | **VÉGÖSSZEG** | | | **71 400 000 Ft ≈ 178 500 EUR** |
+| | **Részösszeg** | | | **69 200 000** |
+| 10 | Tartalék (5%) | | | 3 460 000 |
+| | **VÉGÖSSZEG** | | | **72 660 000 Ft ≈ 181 650 EUR** |
 
-**Egy alkalomra vetített teljes költség:** ~5,95 M Ft
-**Egy elért főre vetített költség** (3 000 fő közvetlen elérésnél): ~23 800 Ft/fő
-— az online eléréssel (1 M+ megtekintés) együtt a fajlagos költség ~70 Ft/elérés.
+**Egy alkalomra vetített teljes költség:** ~6,06 M Ft
+**Egy elért főre vetített költség** (3 000 fő közvetlen elérésnél): ~24 200 Ft/fő
+— az online eléréssel (1 M+ megtekintés) együtt a fajlagos költség ~72 Ft/elérés.
+
+*A megemelt utazási sor a 6 határon túli alkalom (Szlovákia, Románia,
+Szerbia, Ukrajna) többlet-útiköltségét fedezi.*
 
 ## 3. Finanszírozási terv
 
 | Forrás | Összeg | Arány | Megjegyzés |
 |---|---:|---:|---|
-| EU-s pályázati támogatás (ESF+ / CERV) | 64 260 000 Ft (~160 650 EUR) | 90% | ld. [eu-palyazatok.md](eu-palyazatok.md) |
-| Önerő / vállalati szponzoráció | 7 140 000 Ft (~17 850 EUR) | 10% | CSR-partnerek: bank (pénzügyi tudatosság), telekom, energiacég |
+| EU-s + hazai pályázati támogatás (ESF+ / EFOP+ Tanoda / BM roma nemzetiségi) | 65 400 000 Ft (~163 500 EUR) | 90% | ld. [eu-palyazatok.md](eu-palyazatok.md) |
+| Önerő / vállalati szponzoráció | 7 260 000 Ft (~18 150 EUR) | 10% | CSR-partnerek: bank (pénzügyi tudatosság), telekom, energiacég |
+| Határon túli alkalmak helyi költségei | BGA-pályázatok (helyi társrendezők) | kiegészítő | Bethlen Gábor Alap, 500e–2M Ft/szervezet |
 
 Kiegészítő források:
 - **ROVA – Roma for Change** kisprojekt-támogatás (max. 25 000 EUR) — a

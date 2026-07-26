@@ -8,10 +8,16 @@
 
 ## 1. Vezetői összefoglaló
 
-A **FELÚT program** az EU-ban élő magyar, hátrányos helyzetű roma közösségek
-felzárkóztatását célzó, 6 hónapos, 12 alkalmas közösségi prevenciós és
-önbizalom-erősítő programsorozat, amelynek arca és nagykövete **L.L. Junior**
-(Lesi László), az egyik legismertebb roma származású magyar előadó.
+A **FELÚT program** a hátrányos helyzetű magyar **roma gyerekek** és
+családjaik felzárkóztatását célzó, 6 hónapos, 12 alkalmas közösségi
+prevenciós és önbizalom-erősítő programsorozat, amelynek arca és nagykövete
+**L.L. Junior** (Lesi László), az egyik legismertebb roma származású magyar
+előadó. A 12 helyszín fele magyarországi, fele **határon túli magyar roma
+közösség** (Felvidék, Partium, Vajdaság, Kárpátalja).
+
+*A név magyarázata: a FELÚT a „felzárkózás" és az „út" szavakból képzett
+márkanév — a lefelé vivő utakkal (drog, uzsora, iskolaelhagyás) szemben a
+felfelé vezető utat állítja: „Van kiút. Van felút."*
 
 A program három, a roma közösségeket leginkább veszélyeztető kockázatra ad
 gyakorlati választ:
@@ -91,11 +97,14 @@ illetve EU-szintű üzenetté válik.
 
 ## 6. Célcsoport
 
-- Elsődleges: hátrányos helyzetű roma fiatalok (12–25 év) és családjaik
-- Másodlagos: helyi közösségek, pedagógusok, szociális szakemberek
-- Területi fókusz: magas roma népességarányú magyarországi városok és
-  térségek (Észak-Magyarország, Észak-Alföld, Dél-Dunántúl, Budapest VIII.
-  kerület), valamint az EU-ban élő magyar roma diaszpóra online elérése
+- Elsődleges: hátrányos helyzetű **roma gyerekek (6–18 év)** és családjaik
+- Másodlagos: roma fiatalok (18–25 év), helyi közösségek, pedagógusok,
+  szociális szakemberek
+- Területi fókusz: **6 magyarországi helyszín** (Észak-Magyarország,
+  Észak-Alföld, Dél-Dunántúl, Budapest VIII. kerület) + **6 határon túli
+  helyszín** magyar ajkú roma közösségekben (Felvidék–Gömör: Fülek,
+  Rimaszombat; Partium: Nagyvárad, Szatmárnémeti; Vajdaság: Szabadka;
+  Kárpátalja: Beregszász)
 
 ## 7. Szervezet és partnerek
 
