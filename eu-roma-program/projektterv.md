@@ -58,10 +58,8 @@ saját példáján mutatja meg, **honnan hová lehet eljutni romaként**.
 - Roma származású magyar rapper, énekes; a **Fekete Vonat** egykori tagja,
   több mint 25 éve a magyar zenei élet élvonalában.
 - Hivatalos YouTube-csatornája (**@lljuniorofficial**) kb. **500 000
-  feliratkozóval** rendelkezik; már egy 2011-es felmérés szerint is az ő
-  csatornáján volt a legtöbb milliós nézettségű videó a magyar előadók közül,
-  a róla feltöltött videók összesített nézettsége már akkor meghaladta a
-  **60 millió megtekintést** — ez mára többszörösére nőtt.
+  feliratkozóval** rendelkezik, videóinak összesített nézettsége meghaladja a
+  **600 millió megtekintést**.
 - Saját története — a hátrányos indulástól az országos ismertségig — maga a
   program üzenete: *honnan hová lehet eljutni romaként*.
 - Szerepe: minden alkalmon személyes jelenlét, motivációs beszélgetés, zenei

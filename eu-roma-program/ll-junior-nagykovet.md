@@ -17,8 +17,7 @@ A 2026. júliusi nyilvános források alapján:
 |---|---|---|
 | YouTube-csatorna | @lljuniorofficial | [YouTube](https://www.youtube.com/lljuniorofficial) |
 | Feliratkozók | **~500 000** | [Famous Birthdays](https://www.famousbirthdays.com/people/l-l-junior.html) |
-| Milliós nézettségű videók | már a 2011-es felmérés szerint is nála volt a legtöbb milliós nézettségű videó a magyar előadók közül | [Wikipédia – L.L. Junior](https://hu.wikipedia.org/wiki/L.L._Junior) |
-| Összesített nézettség | a róla feltöltött videók már 2011-ben 60 M+ megtekintésnél jártak — mára ennek többszöröse | [Wikipédia – L.L. Junior](https://hu.wikipedia.org/wiki/L.L._Junior) |
+| Összesített nézettség | **600 M+ megtekintés** a csatornáin | a nagykövet adatközlése — beadás előtt csatorna-statisztikával dokumentálandó |
 
 *Megjegyzés: a feliratkozó- és nézettségi adatok napi szinten változnak; a
 pályázat beadása előtt a csatorna aktuális, képernyőképpel dokumentált
