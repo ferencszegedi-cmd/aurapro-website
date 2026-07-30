@@ -179,10 +179,39 @@ minőségbiztosítás, kockázatkezelés.
 **Finanszírozás:**
 - EU-támogatás (max. 80%): **1 600 000 EUR** ≈ 640 M Ft
 - Önerő / társfinanszírozás (min. 20%): **400 000 EUR** ≈ 160 M Ft
-  - partnerek saját hozzájárulása (munkaidő, infrastruktúra)
-  - vállalati CSR-szponzoráció
-  - **Bethlen Gábor Alap** a magyar vonatkozású elemekre
-  - hazai kiegészítő pályázatok (BM roma nemzetiségi keret)
+
+### Az önerő viselése — tárgyalási pozíciónk
+
+**A teljes 400 000 EUR önerőt a koordinátor viseli.** Ezt nyíltan és a
+tárgyalás legelején kell kimondani, nem a beadás előtti héten.
+
+Az indoklás, ami ezt védhetővé teszi:
+
+| Amit az Aurapro hoz | Amit a koordinátortól kérünk |
+|---|---|
+| A teljes koncepció és módszertan (kész) | A 20% önerő biztosítása |
+| A nagykövet elköteleződése és határon átnyúló elérése | A pályázat megírása és beadása |
+| Rendezvényprodukció, videókapacitás | A konzorcium pénzügyi kerete |
+| Feltérképezett helyszínhálózat helyi társrendezőkkel | |
+
+Az Aurapro Kft. kisvállalkozás, amelynek mérlege nem bírja el egy ekkora
+projekt társfinanszírozását. A hozzájárulásunk **érdemi, nem pénzügyi** —
+ezt kell a tárgyalóasztalra tenni.
+
+**A koordinátor oldaláról ez reálisan miből fedezhető:**
+- természetbeni hozzájárulás: a saját, fizetett stábjuk projektre fordított
+  munkaideje (a leggyakoribb és legkönnyebben teljesíthető forma)
+- meglévő működési támogatásaik (operating grant) beszámítható része
+- egyéb futó programjaikkal való szinergia
+
+**Ha nem vállalják:** a nyitott alternatíva a projekt méretének csökkentése
+olyan szintre, ahol az önerő kezelhető (a felhívás alsó határa 800 000 EUR
+támogatás — ott az önerő 200 000 EUR). Ezt az utat érdemes felajánlani, mert
+így a tárgyalás nem szakad meg, csak átméreteződik.
+
+**Kiegészítő források, amelyek az önerőt csökkenthetik** (nem helyettesítik,
+de a koordinátor terhét mérséklik): vállalati CSR-szponzoráció, a **Bethlen
+Gábor Alap** a magyar vonatkozású elemekre, hazai kiegészítő pályázatok.
 
 ### A védhetőség két kulcsszáma
 

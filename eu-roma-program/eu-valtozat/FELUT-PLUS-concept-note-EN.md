@@ -84,6 +84,16 @@ FELÚT+ turns this reach into an activation instrument:
 Total project cost **EUR 2,000,000** · EU grant requested (80%)
 **EUR 1,600,000** · Co-funding (20%) **EUR 400,000**
 
+> **On the co-financing.** We are transparent about this from the outset:
+> Aurapro Kft. is a small company without the balance sheet to carry
+> co-financing on a project of this size. Our contribution to the consortium
+> is substantive rather than financial — the concept and methodology, the
+> ambassador's engagement and cross-border reach, event production and video
+> capacity, and the venue network with its local co-hosts. **We are therefore
+> looking for a coordinator able to carry the 20% co-financing requirement**,
+> whether through in-kind staff contributions, existing operating grants, or
+> other sources.
+
 | Work package | EUR | % |
 |---|---:|---:|
 | WP1 Management and coordination | 160,000 | 8.0% |
@@ -144,9 +154,16 @@ public employment service or authority.
 
 ## What we are looking for
 
-A **coordinator** eligible under the call conditions, and national partners in
-Slovakia and Romania. We are open to adapting the design to the coordinator's
-priorities — the model, not the ownership, is what matters to us.
+A **coordinator** eligible under the call conditions and able to carry the 20%
+co-financing, plus national partners in Slovakia and Romania. We are open to
+adapting the design to the coordinator's priorities — the model, not the
+ownership, is what matters to us.
+
+If carrying the full co-financing is not feasible at this project volume, we
+would rather know at the outset than at the drafting stage. The design scales
+down: the call's lower grant threshold is EUR 800,000, where the co-financing
+requirement falls to EUR 200,000. We are willing to discuss a smaller first
+edition on that basis.
 
 ---
 
