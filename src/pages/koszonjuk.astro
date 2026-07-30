@@ -21,10 +21,17 @@ const BOOKING_URL = import.meta.env.PUBLIC_BOOKING_URL ?? '';
       if (typeof window === 'undefined') return;
       // A submit-oldali script sessionStorage-ba teszi a form_id/service párost,
       // így a konverzió LP-nként attribútálható GA4-ben (per-LP CPL).
+      // A flag hiánya = nem beküldés után értünk ide (közvetlen link, bookmark, vissza-gomb),
+      // ilyenkor NEM tüzelünk, különben a Smart Bidding fals konverziókra optimalizál.
+      var stored = null;
+      try {
+        stored = sessionStorage.getItem('aurapro_lead');
+        sessionStorage.removeItem('aurapro_lead');
+      } catch (e) { /* ignored */ }
+      if (!stored) return;
       var attribution = {};
       try {
-        attribution = JSON.parse(sessionStorage.getItem('aurapro_lead') || '{}');
-        sessionStorage.removeItem('aurapro_lead');
+        attribution = JSON.parse(stored);
       } catch (e) { /* ignored */ }
       function fireConversion() {
         if (typeof window.gtag !== 'function') return;
