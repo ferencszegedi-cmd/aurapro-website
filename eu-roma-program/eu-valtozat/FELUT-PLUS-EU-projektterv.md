@@ -187,14 +187,14 @@ tárgyalás legelején kell kimondani, nem a beadás előtti héten.
 
 Az indoklás, ami ezt védhetővé teszi:
 
-| Amit az Aurapro hoz | Amit a koordinátortól kérünk |
+| Amit az On My Way hoz | Amit a koordinátortól kérünk |
 |---|---|
 | A teljes koncepció és módszertan (kész) | A 20% önerő biztosítása |
 | A nagykövet elköteleződése és határon átnyúló elérése | A pályázat megírása és beadása |
 | Rendezvényprodukció, videókapacitás | A konzorcium pénzügyi kerete |
 | Feltérképezett helyszínhálózat helyi társrendezőkkel | |
 
-Az Aurapro Kft. kisvállalkozás, amelynek mérlege nem bírja el egy ekkora
+Az On My Way Kft. kisvállalkozás, amelynek mérlege nem bírja el egy ekkora
 projekt társfinanszírozását. A hozzájárulásunk **érdemi, nem pénzügyi** —
 ezt kell a tárgyalóasztalra tenni.
 

@@ -85,7 +85,7 @@ Total project cost **EUR 2,000,000** · EU grant requested (80%)
 **EUR 1,600,000** · Co-funding (20%) **EUR 400,000**
 
 > **On the co-financing.** We are transparent about this from the outset:
-> Aurapro Kft. is a small company without the balance sheet to carry
+> On My Way Kft. is a small company without the balance sheet to carry
 > co-financing on a project of this size. Our contribution to the consortium
 > is substantive rather than financial — the concept and methodology, the
 > ambassador's engagement and cross-border reach, event production and video
@@ -139,7 +139,7 @@ public employment service or authority.
 | National implementation partner | SK | to be confirmed |
 | National implementation partner | RO | to be confirmed |
 | Public employment service | HU / SK / RO | to be confirmed |
-| Events, production, communication | HU | Aurapro Kft. (project originator) |
+| Events, production, communication | HU | On My Way Kft. (project originator) |
 | Ambassador | HU | L.L. Junior (contracted service provider) |
 
 ## What we bring to the table

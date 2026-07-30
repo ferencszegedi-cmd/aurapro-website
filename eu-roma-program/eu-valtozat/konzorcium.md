@@ -15,7 +15,7 @@ nem megkerülhetők** — ez dönti el, hogy a pályázat egyáltalán eljut-e a
 | Egyéb jogosult partnerek | képzőintézmények, szociális vállalkozások, kkv-k, önkormányzatok, civil szervezetek, finanszírozók |
 | Korlátozás | egy szervezet **csak egy konzorciumban** lehet koordinátor |
 
-> **A legfontosabb következmény:** az Aurapro Kft. mint profitorientált
+> **A legfontosabb következmény:** az On My Way Kft. mint profitorientált
 > cég **nem lehet koordinátor**. A projekt gazdája így vagy társpályázóként,
 > vagy alvállalkozóként (rendezvényszervezés, kommunikáció) vesz részt —
 > a szakmai vezetés viszont maradhat a kezünkben a munkacsomag-felelősségen
@@ -55,8 +55,70 @@ nem megkerülhetők** — ez dönti el, hogy a pályázat egyáltalán eljut-e a
 | Szlovák partner (WP2–WP5) | SK | ERGO szlovák tagszervezete — a tagsági listáról egyeztetendő; a gömöri régióban (Fülek, Rimaszombat) aktív roma szervezet a cél |
 | Román partner (WP2–WP5) | RO | **Nevo Parudimos** (ERGO-tagszervezet, Románia) — roma ifjúsági és közösségfejlesztő szervezet |
 | **Foglalkoztatási szolgálat** (kötelező) | HU / SK / RO | A nemzeti foglalkoztatási szolgálat területi szerve, vagy a roma NEET-programokban érintett hatóság. Elég **egy** ilyen partner, de kettő erősebb pályázat |
-| Rendezvény, kommunikáció, arculat | HU | **Aurapro Kft.** — a roadshow megvalósítása, videóprodukció, arculat |
-| Nagykövet | HU | **L.L. Junior** — nem konzorciumi tag, hanem szerződött közreműködő (a WP2 költségsorán) |
+| Rendezvény, kommunikáció, arculat | HU | **On My Way Kft.** — a roadshow megvalósítása, videóprodukció, arculat |
+| Nagykövet | HU | **L.L. Junior** — nem konzorciumi tag, hanem szerződött közreműködő |
+
+---
+
+## 2/a. Cégszerkezet: miért az On My Way és nem az Aurapro
+
+A projekt magyar konzorciumi partnere az **On My Way Kft.** Ez tudatos döntés,
+és három okból is helyes:
+
+1. **Profil-illeszkedés.** Az Aurapro Kft. munkavédelmi–tűzvédelmi profilja
+   idegen egy roma befogadási projektben; az értékelő jogosan kérdezné meg,
+   miért ez a cég csinálja. Egy rendezvény- és kommunikációs profilú cég
+   magyarázat nélkül is a helyén van.
+2. **Kockázat-elhatárolás.** A fő cég mérlegét és működését nem terheli meg egy
+   többéves EU-s projekt adminisztrációja, előfinanszírozási igénye és
+   auditkötelezettsége.
+3. **Összeférhetetlenség elkerülése.** Erről lásd alább — ez a legfontosabb.
+
+### Az összeférhetetlenségi kérdés
+
+Ha **ugyanaz a cég** a konzorciumi partner *és* ő kapja a 290 000 eurós
+nagyköveti tételt, miközben a cég vezetője egyben a nagykövet menedzsere,
+akkor az kapcsolt ügylet. Az EU-s projektekben ezt vizsgálják: piaci áron
+történt-e, volt-e versenyeztetés, ki döntött róla.
+
+**A javasolt, tiszta felállás:**
+
+| Szereplő | Szerep | Pénzáramlás |
+|---|---|---|
+| **On My Way Kft.** | konzorciumi partner: rendezvényprodukció, videó, arculat (WP2, 130 000 EUR) | konzorciumi támogatás |
+| **L.L. Junior gazdasági társasága** | szerződött szolgáltató: nagyköveti csomag (290 000 EUR) | **a koordinátortól, közvetlen szerződéssel** |
+
+Vagyis: **a nagyköveti tétel ne az On My Way soraiban üljön, hanem a
+koordinátornál**, aki közvetlenül szerződik Junior cégével. Ennek négy előnye
+van egyszerre:
+
+- megszűnik az összeférhetetlenségi optika
+- az On My Way költségvetési részaránya 420 000 EUR-ról **130 000 EUR-ra**
+  csökken — egy kisvállalkozásnál ez lényeges, mert a nagy részarányú
+  partnereknél pénzügyi kapacitásvizsgálat lehet
+- arányosan kisebb az On My Way-re eső előfinanszírozási teher
+- Junior szerződéses pozíciója erősebb: közvetlenül a koordinátorral áll
+  kapcsolatban, nem alvállalkozói láncon keresztül
+
+**Amit ehhez tisztázni kell a tárgyaláson:** a koordinátor vállalja-e a
+közvetlen szerződést a nagykövettel. Ha nem, a tétel visszakerülhet az
+On My Way-hez, de akkor előre készülni kell a piaci ár igazolására
+(médiaérték-becslés, összehasonlító ajánlatok).
+
+### Amit az On My Way-ről be kell tudni mutatni
+
+| Feltétel | Teendő |
+|---|---|
+| Tevékenységi kör (TEÁOR) | Fedje le a rendezvényszervezést, kommunikációt, médiaprodukciót — ha nem, bővíteni kell **a beadás előtt** |
+| Referenciák | Korábbi rendezvények, produkciók dokumentálva |
+| Kizáró okok hiánya | Nincs adó- vagy járuléktartozás, nem áll csőd- vagy felszámolási eljárás alatt — erről nyilatkozni kell |
+| Pénzügyi adatok | Utolsó lezárt üzleti év beszámolója |
+
+Ha az On My Way frissen alapított vagy kevés referenciával rendelkezik, azt
+nem elrejteni kell, hanem **ellensúlyozni**: a konzorciumban a szakmai súlyt a
+koordinátor és a roma partnerszervezetek adják, az On My Way szerepe a
+produkció — ehhez elég a szakmai stáb és a nagykövet melletti bizonyított
+együttműködés.
 
 ---
 
