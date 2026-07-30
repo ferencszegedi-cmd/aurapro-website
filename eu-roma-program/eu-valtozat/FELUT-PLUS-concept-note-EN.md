@@ -32,12 +32,12 @@ Hungarian music scene, ~500,000 YouTube subscribers and 600M+ cumulative views.
 He grew up in the same circumstances as the target group and speaks their
 language — literally and culturally. Crucially, **his audience extends across
 the borders**: Hungarian-speaking Roma communities in southern Slovakia
-(Gemer), Romanian Partium, and beyond share the same language and the same
+(Gemer), the Romanian Partium and beyond share the same language and the same
 cultural references.
 
 FELÚT+ turns this reach into an activation instrument:
 
-1. **36 roadshow events** across three countries (HU 18, SK 9, RO 9) —
+1. **20 roadshow events** across three countries (HU 10, SK 5, RO 5) —
    music, plus the ambassador telling his own story: where he started, where he
    got to, and what nearly stopped him (drugs, usury, dropping out of school).
 2. **The FELÚT desk on site.** A Roma case manager, a public employment
@@ -68,31 +68,52 @@ FELÚT+ turns this reach into an activation instrument:
 
 | Indicator | Target |
 |---|---|
-| Outreach events | 36 (HU 18, SK 9, RO 9) |
-| Young people reached directly | 9,000 |
+| Outreach events | 20 (HU 10, SK 5, RO 5) |
+| Young people reached directly | 8,000 |
 | Online reach via ambassador channels | 5M+ views |
-| NEETs (18–29) entering individual pathways | 900 |
-| Completing skills development | 450 |
-| **Entering employment, education or training** | **270 (30% of entrants)** |
-| Still employed after 6 months | 190 |
-| Pupils reached in prevention track (14–18) | 600 |
-| Employers engaged | 60 |
+| NEETs (18–29) entering individual pathways | 1,000 |
+| Completing skills development | 500 |
+| **Entering employment, education or training** | **300 (30% of entrants)** |
+| Still employed after 6 months | 210 |
+| Pupils reached in prevention track (14–18) | 700 |
+| Employers engaged | 70 |
 | Transferable model toolkit | 1, in 4 languages |
 
 ## Indicative budget
 
-Total project cost **EUR 1,500,000** · EU grant requested (80%)
-**EUR 1,200,000** · Co-funding (20%) **EUR 300,000**
+Total project cost **EUR 2,000,000** · EU grant requested (80%)
+**EUR 1,600,000** · Co-funding (20%) **EUR 400,000**
 
-| Work package | EUR |
-|---|---:|
-| WP1 Management and coordination | 120,000 |
-| WP2 Outreach roadshow (incl. ambassador engagement, 180,000) | 330,000 |
-| WP3 Mentoring and case management (6 FTE Roma case managers) | 360,000 |
-| WP4 Skills development and mobility support | 270,000 |
-| WP5 Employment and placement | 165,000 |
-| WP6 Prevention track (school retention) | 105,000 |
-| WP7 Monitoring, evaluation and dissemination | 150,000 |
+| Work package | EUR | % |
+|---|---:|---:|
+| WP1 Management and coordination | 160,000 | 8.0% |
+| WP2 Outreach events (production, venues, travel) | 130,000 | 6.5% |
+| WP2 Ambassador services package | 290,000 | 14.5% |
+| WP3 Mentoring and case management (8 FTE Roma case managers) | 480,000 | 24.0% |
+| WP4 Skills development and mobility support | 360,000 | 18.0% |
+| WP5 Employment and placement | 230,000 | 11.5% |
+| WP6 Prevention track (school retention) | 150,000 | 7.5% |
+| WP7 Monitoring, evaluation and dissemination | 200,000 | 10.0% |
+
+**61% of the budget goes to direct service delivery** to the target group
+(WP3–WP6): mentors, training, job placement and school retention.
+
+### The ambassador services package
+
+The ambassador line is a **contracted service package with defined
+deliverables**, not an appearance fee:
+
+| Deliverable | Volume |
+|---|---|
+| Live appearances (music block + motivational session) | 20 |
+| Professionally produced video summaries of the events | 20 |
+| Distribution on the ambassador's own channels (~500,000 subscribers) | 20 releases |
+| Campaign face: image and name rights across all project communication | 24 months |
+| Press and broadcast appearances as project spokesperson | min. 8 |
+| Participation in opening and closing conferences | 2 |
+
+Valued at advertising rates, the projected 5M+ views alone approach the value
+of this budget line.
 
 ## Consortium we are building
 
@@ -109,7 +130,7 @@ public employment service or authority.
 | National implementation partner | RO | to be confirmed |
 | Public employment service | HU / SK / RO | to be confirmed |
 | Events, production, communication | HU | Aurapro Kft. (project originator) |
-| Ambassador | HU | L.L. Junior (contracted contributor) |
+| Ambassador | HU | L.L. Junior (contracted service provider) |
 
 ## What we bring to the table
 

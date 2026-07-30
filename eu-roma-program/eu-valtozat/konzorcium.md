@@ -44,7 +44,7 @@ nem megkerülhetők** — ez dönti el, hogy a pályázat egyáltalán eljut-e a
 - ERGO-tagszervezet, a ROVA-program magyar partnere
 - Megfelel az „országos szintű roma szervezet" kritériumnak
 - Előny: magyar koordináció, közelebb a projektgazdához
-- Kockázat: kisebb szervezet, egy 1,5 M EUR-os transznacionális projekt
+- Kockázat: kisebb szervezet, egy 2 M EUR-os transznacionális projekt
   koordinálása komoly adminisztratív terhet jelent
 
 ### Társpályázók
@@ -77,8 +77,9 @@ országos láthatóság, és egy olyan program, amire a közösségük valóban 
 csatornáikon évek óta nem tudnak megszólítani — mérhető aktivációs számokkal,
 saját költségvetési teher nélkül.
 
-**A nagykövetnek:** két év alatt ~72 M Ft (180 000 EUR) nagyköveti díj a
-korábbi 42 M Ft helyett, EU-s projektben, nemzetközi láthatósággal.
+**A nagykövetnek:** két év alatt **116 M Ft** (290 000 EUR) szolgáltatási
+szerződés — 20 alkalom, alkalmanként 5,8 M Ft — a hazai változat 42 M Ft-ja
+helyett, EU-s projektben, nemzetközi láthatósággal.
 
 ### Ajánlott sorrend
 

@@ -3,7 +3,8 @@
 **Célfelhívás:** ESF+ Social Innovation+ — `ESF-SI-2026-ROMA NEETs-01`
 (Strand II: „Supporting access to the labour market for Roma NEETs")
 **Beadási határidő:** 2026. szeptember 30., 17:00 CEST
-**Verzió:** 1.0 · 2026. július
+**Verzió:** 2.0 · 2026. július — *frissítve: 2 M EUR keret, 20 alkalom,
+nagyköveti szolgáltatási csomag*
 
 > Ez a dokumentum a 6 hónapos, 12 alkalmas hazai programból (`../projektterv.md`)
 > kidolgozott, **24 hónapos, transznacionális, EU-pályázatképes** változat.
@@ -26,9 +27,10 @@ konzorcium). De nem csak méretben kell nőni — **a projekt logikáját is át
 |---|---|
 | A fellépés **maga a program** | A fellépés a **belépési kapu** (outreach) |
 | A hatás az élményben van | Az élmény után **egyéni útvonal** indul: mentor → képzés → munka |
-| Nagyköveti díj: a keret 58%-a | Nagyköveti díj: a keret **12%-a** — miközben abszolút összegben **több** |
-| 12 alkalom, 1 ország | **36 alkalom, 3 ország** (HU, SK, RO) |
+| Nagyköveti díj: a keret 58%-a | Nagyköveti csomag: a keret **14,5%-a** — miközben abszolút összegben **közel háromszoros** |
+| 12 alkalom, 1 ország | **20 alkalom, 3 ország** (HU, SK, RO) |
 | 6 hónap | **24 hónap** |
+| 72,7 M Ft | **2 000 000 EUR** (~800 M Ft) |
 
 A felhívás szó szerint „outreach, skills development and employment support"
 kombinációját várja. **Pontosan ez a FELÚT+ szerkezete** — és az outreach
@@ -36,25 +38,54 @@ elemben van a valódi innováció: egy hiteles roma előadó jelenléte olyan
 fiatalokat hoz be, akiket a hivatalos csatornák (munkaügyi központ, iskola,
 szórólap) évek óta nem érnek el.
 
-### Amit a nagykövetnek érdemes tudni
+---
 
-A nagyköveti díj **aránya csökken, az összege nő**:
+## 2. A nagyköveti konstrukció
 
-| | Hazai változat | FELÚT+ |
-|---|---|---|
-| Alkalmak száma | 12 | 36 |
-| Díj / alkalom | 3,5 M Ft | ~2,0 M Ft (5 000 EUR) |
-| **Összes nagyköveti díj** | **42 M Ft** | **~72 M Ft** (180 000 EUR) |
-| Arány a költségvetésben | 58% | **12%** |
-| Időtáv | 6 hónap | 24 hónap |
+Két dolgot oldunk meg egyszerre: a nagykövet megkapja a piaci árát, a
+költségvetés mégis kiállja a pályázati értékelést.
 
-Vagyis a nagykövet **több mint másfélszer annyi bevételhez jut**, két év alatt
-elosztva — miközben a költségvetés szerkezete pályázati szempontból védhetővé
-válik. Ez mindkét fél érdeke.
+### 2.1 Kevesebb, de nagyobb alkalom
+
+| | Hazai változat | FELÚT+ v1 (elvetve) | **FELÚT+ v2** |
+|---|---:|---:|---:|
+| Alkalmak száma | 12 | 36 | **20** |
+| Díj / alkalom | 3,5 M Ft | 2,0 M Ft | **5,8 M Ft** |
+| **Összes nagyköveti bevétel** | 42 M Ft | 72 M Ft | **116 M Ft** |
+| Teljes keret | 72,7 M Ft | 1,5 M EUR | **2,0 M EUR** |
+| **Arány a keretben** | 58% ❌ | 12% | **14,5%** ✅ |
+| Időtáv | 6 hónap | 24 hónap | 24 hónap |
+
+20 alkalom 24 hónap alatt nagyjából havi jelenlétet jelent — a program nem
+hígul fel, sőt: kevesebb, de nagyobb és jobban előkészített eseményt tudunk
+csinálni, több helyi partnerrel és erősebb kommunikációval.
+
+### 2.2 Szolgáltatási csomag, nem fellépési díj
+
+Ez a második kulcselem. A tétel **nem** „fellépési díj 20 alkalomra", hanem
+egy szerződött szolgáltatási csomag, konkrét, mérhető teljesítésekkel:
+
+| Teljesítés | Mennyiség |
+|---|---|
+| Élő megjelenés (zenei blokk + motivációs beszélgetés) | 20 alkalom |
+| Professzionális videó-összefoglaló az eseményekről | 20 db |
+| Terjesztés a nagykövet saját csatornáin (~500 000 feliratkozó) | 20 közzététel |
+| Kampányarc-jogok: képmás- és névhasználat a projekt teljes kommunikációjában | 24 hónap |
+| Sajtószereplés a projekt szóvivőjeként (TV, rádió, print) | min. 8 alkalom |
+| Részvétel a nyitó- és zárókonferencián | 2 alkalom |
+
+**Miért fontos ez a különbség:** egy fellépési díjnál az értékelő azt kérdezi,
+„miért ennyi egy este?". Egy szolgáltatási csomagnál azt látja, hogy 20
+esemény, 20 videó, 5 millió+ elérés és 24 hónapnyi arcadás áll mögötte —
+ez már összemérhető egy kommunikációs ügynökségi szerződéssel, és az EU-s
+projektekben teljesen bevett tétel.
+
+**Szerződéses forma:** a nagykövet gazdasági társaságával kötött
+szolgáltatási szerződés, teljesítésigazolással alkalmanként.
 
 ---
 
-## 2. Célcsoport (a felhívásnak megfelelően)
+## 3. Célcsoport
 
 A felhívás a **Roma NEET fiatalokra** (nem tanuló, nem dolgozó) irányul, ezért
 a célcsoport kettéválik — így a gyerekfókusz sem vész el:
@@ -63,7 +94,7 @@ a célcsoport kettéválik — így a gyerekfókusz sem vész el:
 A projekt fő célcsoportja. Számukra teljes útvonal épül:
 outreach → egyéni felmérés → mentor → készségfejlesztés → munkába állás.
 
-### B) Megelőzési sáv — 14–18 éves, lemorzsolódás által veszélyeztetett roma fiatalok
+### B) Megelőzési sáv — 14–18 éves, lemorzsolódás által veszélyeztetett fiatalok
 Ők még iskolában vannak, de a NEET-státusz felé sodródnak. Náluk a cél a
 bennmaradás és a továbbtanulás — a hazai változat gyerekprogramja itt él tovább,
 tanodákkal és iskolákkal együttműködve.
@@ -76,111 +107,118 @@ szervezet csak társpályázó lehet. Ezt az irányt a hazai EFOP+ Tanoda-forrá
 
 ---
 
-## 3. Munkacsomagok (Work Packages)
-
-Az EU-s pályázatok standard szerkezete. Minden WP-nek van felelős partnere,
-mérföldköve és mérhető eredménye.
+## 4. Munkacsomagok (Work Packages)
 
 ### WP1 · Projektmenedzsment és koordináció
-**Felelős:** koordinátor · **Időtáv:** M1–M24
+**Felelős:** koordinátor · **M1–M24**
 Pénzügyi és szakmai irányítás, konzorciumi ülések (6 alkalom), jelentések,
 minőségbiztosítás, kockázatkezelés.
 
 ### WP2 · Outreach — a FELÚT Roadshow
-**Felelős:** magyar partner (rendezvényszervezés) · **Időtáv:** M4–M21
-**36 alkalom** három országban (HU 18, SK 9, RO 9), kb. kéthetente.
-- L.L. Junior nagyköveti jelenléte minden alkalmon: zenei blokk + a saját
-  történetén alapuló motivációs beszélgetés („honnan hová")
+**Felelős:** magyar partner (rendezvényszervezés) · **M4–M21**
+**20 alkalom** három országban (HU 10, SK 5, RO 5), kb. havonta.
+- Nagyköveti jelenlét: zenei blokk + a saját történetén alapuló motivációs
+  beszélgetés („honnan hová")
 - **A helyszínen működő „FELÚT-pult":** a helyi mentor, a munkaügyi
   szolgálat munkatársa és a tanoda képviselője *ott, azonnal* regisztrálja
   az érdeklődőket — ez a kulcs, itt fordul át az élmény útvonallá
 - Helyi roma szervezetek és nemzetiségi önkormányzatok társrendezőként
 - Minden alkalomról videó-összefoglaló a nagykövet csatornáin
-  (~500 000 feliratkozó, 600 M+ összesített megtekintés)
 
 ### WP3 · Egyéni útvonalak — mentorálás és esetkezelés
-**Felelős:** minden országpartner · **Időtáv:** M5–M23
-- **6 fő roma esetkezelő/mentor** (országonként 2), teljes munkaidőben
+**Felelős:** minden országpartner · **M5–M23**
+- **8 fő roma esetkezelő/mentor** (HU 4, SK 2, RO 2), teljes munkaidőben
 - Egyéni kompetencia- és élethelyzet-felmérés minden belépőnél
 - Személyre szabott fejlesztési terv, havi rendszerességű követés
 - Roma mentorok alkalmazása — a bizalmi kapcsolat feltétele
 
 ### WP4 · Készségfejlesztés
-**Felelős:** képzési partner · **Időtáv:** M6–M22
+**Felelős:** képzési partner · **M6–M22**
 - Alapkompetenciák és digitális készségek
-- Szakmai képzésekbe irányítás (a helyi munkaerőpiaci kereslethez igazítva)
-- **Pénzügyi tudatosság / uzsora-önvédelem modul** — az eredeti program
-  egyik pillére, itt strukturált képzésként
-- Munkavállalói készségek: önéletrajz, állásinterjú, munkahelyi beilleszkedés
+- Szakmai képzésekbe irányítás a helyi munkaerőpiaci kereslethez igazítva
+- **Pénzügyi tudatosság / uzsora-önvédelem modul**
+- Munkavállalói készségek: önéletrajz, állásinterjú, beilleszkedés
 - Jogosítvány- és mobilitási támogatás (gyakori tényleges akadály)
 
 ### WP5 · Munkaerőpiaci elhelyezkedés
-**Felelős:** foglalkoztatási szolgálat partner + munkáltatói partnerek
-**Időtáv:** M8–M24
-- Együttműködés az állami foglalkoztatási szolgálatokkal (kötelező partner
-  a felhívás szerint)
+**Felelős:** foglalkoztatási szolgálat + munkáltatói partnerek · **M8–M24**
+- Együttműködés az állami foglalkoztatási szolgálatokkal (kötelező partner)
 - Munkáltatói kör építése, gyakorlati helyek, támogatott foglalkoztatás
 - Utókövetés az elhelyezkedés után 6 hónapig
 
 ### WP6 · Megelőzési sáv — iskolai bennmaradás
-**Felelős:** oktatási partner (pl. Roma Education Fund típusú szervezet)
-**Időtáv:** M5–M22
+**Felelős:** oktatási partner · **M5–M22**
 - 14–18 évesek elérése a roadshow-alkalmakon
 - Tanodákkal és iskolákkal közös bennmaradási program
 - Ösztöndíj-információ, pályaorientáció, roma példaképek bevonása
 
 ### WP7 · Monitoring, értékelés és szakpolitikai hasznosítás
-**Felelős:** koordinátor + kutatópartner · **Időtáv:** M1–M24
+**Felelős:** koordinátor + kutatópartner · **M1–M24**
 - Elő- és utómérés, kontrollcsoportos hatásvizsgálat
-- **Átadható modell-leírás („toolkit")** más országok számára — a
-  felhívás kifejezetten a transzferálhatóságot díjazza
+- **Átadható modell-leírás („toolkit")** — a felhívás díjazza a
+  transzferálhatóságot
 - Szakpolitikai ajánlások, záró konferencia Brüsszelben
 - Nyílt hozzáférésű anyagok, hogy a modell EU-szerte átvehető legyen
 
 ---
 
-## 4. Költségvetés (24 hónap, 3 ország)
+## 5. Költségvetés (24 hónap, 3 ország)
 
 | WP | Költségsor | EUR | Arány |
 |---|---|---:|---:|
-| WP1 | Projektmenedzsment, koordináció | 120 000 | 8% |
-| WP2 | Outreach: 36 alkalom (technika, helyszín, utazás, kommunikáció) | 150 000 | 10% |
-| WP2 | **Nagyköveti díj** (36 × 5 000 EUR) | **180 000** | **12%** |
-| WP3 | Mentorálás, esetkezelés (6 fő × 24 hónap) | 360 000 | 24% |
-| WP4 | Készségfejlesztés, képzések, mobilitás | 270 000 | 18% |
-| WP5 | Munkaerőpiaci elhelyezés, munkáltatói program | 165 000 | 11% |
-| WP6 | Megelőzési sáv (iskolai bennmaradás) | 105 000 | 7% |
-| WP7 | Monitoring, értékelés, disszemináció | 150 000 | 10% |
-| | **ÖSSZESEN** | **1 500 000** | **100%** |
+| WP1 | Projektmenedzsment, koordináció | 160 000 | 8,0% |
+| WP2 | Rendezvények (technika, helyszín, utazás, produkció) | 130 000 | 6,5% |
+| WP2 | **Nagyköveti szolgáltatási csomag** (20 × 5,8 M Ft) | **290 000** | **14,5%** |
+| WP3 | Mentorálás, esetkezelés (8 fő × 24 hónap) | 480 000 | 24,0% |
+| WP4 | Készségfejlesztés, képzések, mobilitás | 360 000 | 18,0% |
+| WP5 | Munkaerőpiaci elhelyezés, munkáltatói program | 230 000 | 11,5% |
+| WP6 | Megelőzési sáv (iskolai bennmaradás) | 150 000 | 7,5% |
+| WP7 | Monitoring, értékelés, disszemináció | 200 000 | 10,0% |
+| | **ÖSSZESEN** | **2 000 000** | **100%** |
 
 **Finanszírozás:**
-- EU-támogatás (max. 80%): **1 200 000 EUR** ≈ 480 M Ft
-- Önerő / társfinanszírozás (min. 20%): **300 000 EUR** ≈ 120 M Ft
+- EU-támogatás (max. 80%): **1 600 000 EUR** ≈ 640 M Ft
+- Önerő / társfinanszírozás (min. 20%): **400 000 EUR** ≈ 160 M Ft
   - partnerek saját hozzájárulása (munkaidő, infrastruktúra)
   - vállalati CSR-szponzoráció
   - **Bethlen Gábor Alap** a magyar vonatkozású elemekre
   - hazai kiegészítő pályázatok (BM roma nemzetiségi keret)
 
-> A támogatás **lump sum** (egyösszegű) formában jár — ez azt jelenti, hogy nem
-> tételes elszámolás, hanem a vállalt eredmények teljesítése alapján fizetnek.
-> Ezért a mérföldkövek és mutatók megfogalmazása kritikus fontosságú.
+### A védhetőség két kulcsszáma
+
+- **A közvetlen szolgáltatásnyújtás (WP3–WP6) a keret 61%-a** — vagyis a pénz
+  túlnyomó része mentorokra, képzésre, elhelyezkedésre és iskolai megelőzésre
+  megy. Ez az első szám, amit egy értékelő keres.
+- **A nagyköveti csomag 14,5%** — összemérhető egy kommunikációs-marketing
+  tétellel, konkrét teljesítésekkel alátámasztva.
+
+> **Kockázat, amit nyíltan kell kezelni:** egyetlen közreműködőre eső 14,5%
+> még így is kiváltja az értékelő figyelmét. A védekezés a részletes
+> teljesítéslista (2.2 pont) és a piaci ár alátámasztása — érdemes két
+> összehasonlító árajánlatot vagy médiaérték-becslést csatolni a
+> pályázathoz. A várható elérés (5 M+ megtekintés) reklámértéken számolva
+> önmagában közelíti a tétel összegét.
+
+> **Támogatási forma:** lump sum (egyösszegű) — nem tételes elszámolás, hanem
+> a vállalt eredmények teljesítése alapján fizetnek. Ezért a mérföldkövek és
+> mutatók megfogalmazása kritikus.
 
 ---
 
-## 5. Célértékek (24 hónap)
+## 6. Célértékek (24 hónap)
 
 | Mutató | Célérték |
 |---|---|
-| Outreach-alkalmak | **36** (HU 18, SK 9, RO 9) |
-| Alkalmakon közvetlenül elért fiatalok | **9 000 fő** |
+| Outreach-alkalmak | **20** (HU 10, SK 5, RO 5) |
+| Alkalmakon közvetlenül elért fiatalok | **8 000 fő** |
 | Online elérés a nagykövet csatornáin | **5 M+ megtekintés** |
-| Egyéni útvonalba belépők (NEET, 18–29) | **900 fő** |
-| Készségfejlesztést befejezők | **450 fő** |
-| **Munkába / képzésbe / oktatásba lépők** | **270 fő (a belépők 30%-a)** |
-| 6 hónap után is állásban maradók | **190 fő** |
-| Megelőzési sávban elért diákok (14–18) | **600 fő** |
+| Egyéni útvonalba belépők (NEET, 18–29) | **1 000 fő** |
+| Készségfejlesztést befejezők | **500 fő** |
+| **Munkába / képzésbe / oktatásba lépők** | **300 fő (a belépők 30%-a)** |
+| 6 hónap után is állásban maradók | **210 fő** |
+| Megelőzési sávban elért diákok (14–18) | **700 fő** |
 | Iskolai bennmaradási arány a megelőzési sávban | **85%** |
-| Bevont munkáltatók | **60** |
+| Bevont munkáltatók | **70** |
 | Átadható modell-leírás (toolkit) | 1, 4 nyelven |
 
 *A 30%-os elhelyezkedési arány a NEET-aktivációs programok nemzetközi
@@ -188,10 +226,7 @@ gyakorlatában jó eredménynek számít — reális, de nem túlígért vállal
 
 ---
 
-## 6. Miért innovatív? (az értékelés kulcskérdése)
-
-A felhívás **társadalmi innovációt** finanszíroz, nem szolgáltatásbővítést.
-A FELÚT+ három ponton kínál újat:
+## 7. Miért innovatív? (az értékelés kulcskérdése)
 
 1. **Hiteles hang mint outreach-technológia.** A roma NEET fiatalok
    elérésének legnagyobb akadálya nem az információhiány, hanem a bizalomhiány
@@ -202,24 +237,22 @@ A FELÚT+ három ponton kínál újat:
 2. **Az élmény azonnali szolgáltatásba fordítása.** A „FELÚT-pult" azt a
    szakadékot hidalja át, ami minden kampány gyengéje: a felkeltett érdeklődés
    és a tényleges belépés között eltelt idő. Itt nincs idő — a regisztráció a
-   helyszínen, a koncert hevében történik.
+   helyszínen történik.
 
 3. **Transznacionális roma közösségi híd.** A magyar ajkú roma közösségek a
    határon átnyúlva ugyanazt a nyelvet és kultúrát osztják, de három külön
-   ellátórendszerben élnek. A projekt ezt a nyelvi-kulturális egységet
-   használja fel arra, hogy összehasonlítsa: **ugyanaz a módszer hogyan
-   teljesít három eltérő szakpolitikai környezetben.** Ez önmagában értékes
-   szakpolitikai tudás — és pontosan az, amit a transznacionális felhívás keres.
+   ellátórendszerben élnek. A projekt összehasonlítja: **ugyanaz a módszer
+   hogyan teljesít három eltérő szakpolitikai környezetben.**
 
 ---
 
-## 7. Helyszínek (36 alkalom)
+## 8. Helyszínek (20 alkalom)
 
 | Ország | Alkalmak | Helyszínek |
 |---|---:|---|
-| Magyarország | 18 | Budapest VIII., Miskolc, Ózd, Salgótarján, Nyíregyháza, Pécs (+ 3 további, egyenként 2 alkalommal) |
-| Szlovákia | 9 | Fülek, Rimaszombat, Kassa környéke, Nagykürtös térsége |
-| Románia | 9 | Nagyvárad, Szatmárnémeti, Nagykároly, Érmihályfalva térsége |
+| Magyarország | 10 | Budapest VIII., Miskolc, Ózd, Salgótarján, Nyíregyháza, Pécs (kiemelt helyszínek 2 alkalommal) |
+| Szlovákia | 5 | Fülek, Rimaszombat, Kassa és Nagykürtös térsége |
+| Románia | 5 | Nagyvárad, Szatmárnémeti, Nagykároly, Érmihályfalva térsége |
 
 *Szerbia (Szabadka) és Ukrajna (Beregszász) EU-forrásból közvetlenül nem
 finanszírozható. Ezeket a helyszíneket a **Bethlen Gábor Alap** támogatásából
@@ -228,35 +261,35 @@ lefedettség nem vész el, de a pályázati jogosultság sem sérül.*
 
 ---
 
-## 8. Ütemterv
+## 9. Ütemterv
 
 | Szakasz | Hónap | Tartalom |
 |---|---|---|
-| Előkészítés | M1–M3 | Konzorciumi indítás, mentorok felvétele, protokollok, helyszín-egyeztetés |
-| 1. roadshow-ciklus | M4–M9 | 12 alkalom, az első 300 belépő útvonala indul |
+| Előkészítés | M1–M3 | Konzorciumi indítás, mentorok felvétele, protokollok, helyszín-egyeztetés, nagyköveti szerződés |
+| 1. roadshow-ciklus | M4–M9 | 7 alkalom, az első 300 belépő útvonala indul |
 | Félidei értékelés | M10–M11 | Közbenső mérés, módszertani korrekció |
-| 2. roadshow-ciklus | M12–M17 | 12 alkalom, a modell finomított változatával |
-| 3. roadshow-ciklus | M18–M21 | 12 alkalom, párhuzamosan az elhelyezkedési szakasz csúcsa |
+| 2. roadshow-ciklus | M12–M17 | 7 alkalom a finomított modellel |
+| 3. roadshow-ciklus | M18–M21 | 6 alkalom, párhuzamosan az elhelyezkedési szakasz csúcsa |
 | Lezárás | M22–M24 | Hatásvizsgálat, toolkit, brüsszeli zárókonferencia, szakpolitikai ajánlások |
 
 ---
 
-## 9. Következő lépések a beadásig
+## 10. Következő lépések a beadásig
 
 | Lépés | Határidő | Felelős |
 |---|---|---|
 | Koordinátor megkeresése (ERGO Network / Autonómia) | **azonnal** | projektgazda |
+| **Nagyköveti szándéknyilatkozat a 20 alkalomra és a csomagra** | 2026. augusztus | projektgazda |
 | Szlovák és román partner véglegesítése | 2026. augusztus | koordinátor |
 | Foglalkoztatási szolgálat partner megnyerése | 2026. augusztus | országpartnerek |
-| Nagyköveti szándéknyilatkozat (LOI) | 2026. augusztus | projektgazda |
+| Médiaérték-becslés a nagyköveti tétel alátámasztására | 2026. szeptember | projektgazda |
 | Pályázati űrlap és mellékletek | 2026. szeptember 15. | koordinátor |
 | **Beadás** | **2026. szeptember 30., 17:00 CEST** | koordinátor |
 
 > **Realitás:** a beadásig két hónap van, és a konzorciumépítés a leghosszabb
 > tétel. Ha a koordinátor augusztus közepéig nem áll össze, érdemesebb a
-> **2027-es fordulóra** célozni, és addig a hazai forrásokból (EFOP+ Tanoda,
-> BM, BGA) lefuttatni a pilotot — ami a következő pályázatban komoly
-> referenciaelőnyt jelent.
+> **2027-es fordulóra** célozni, és addig a hazai forrásokból lefuttatni a
+> pilotot — ami a következő pályázatban komoly referenciaelőnyt jelent.
 
 ---
 
