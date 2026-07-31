@@ -743,26 +743,37 @@ footer .sm{color:var(--muted);font-size:.82rem}
       ok.textContent=msg('js_valid');ok.classList.add('show');ok.style.borderColor='#c9603a';ok.style.color='#f0a878';return;
     }
     ok.textContent=msg('js_sending');ok.classList.add('show');ok.style.borderColor='';ok.style.color='';
-    fetch('https://formsubmit.co/ajax/terra.budai@gmail.com',{
+    function sent(){
+      ok.textContent=msg('js_sent').replace('{name}',f.nev.value.trim().split(' ')[0]);
+      ok.classList.add('show');ok.style.borderColor='';ok.style.color='';
+      f.reset();
+    }
+    function viaFormSubmit(){
+      return fetch('https://formsubmit.co/ajax/terra.budai@gmail.com',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({
+          _subject:'Jelentkezes edzesre - '+f.nev.value,
+          _template:'table',
+          'Nev':f.nev.value,
+          'Telefon':f.tel.value,
+          'Email':f.email.value||'-',
+          'Edzes':f.edzes.value,
+          'Kezdo':f.kezdo.checked?'igen':'nem',
+          'Uzenet':f.uzenet.value||'-'
+        })
+      }).then(function(r){ if(!r.ok) throw new Error('http'); return r.json(); });
+    }
+    fetch('/api/contact',{
       method:'POST',
-      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        _subject:'Jelentkezes edzesre - '+f.nev.value,
-        _template:'table',
-        'Nev':f.nev.value,
-        'Telefon':f.tel.value,
-        'Email':f.email.value||'-',
-        'Edzes':f.edzes.value,
-        'Kezdo':f.kezdo.checked?'igen':'nem',
-        'Uzenet':f.uzenet.value||'-'
+        nev:f.nev.value, tel:f.tel.value, email:f.email.value||'',
+        edzes:f.edzes.value, kezdo:f.kezdo.checked, uzenet:f.uzenet.value||''
       })
     }).then(function(r){ if(!r.ok) throw new Error('http'); return r.json(); })
-      .then(function(){
-        ok.textContent=msg('js_sent').replace('{name}',f.nev.value.trim().split(' ')[0]);
-        ok.classList.add('show');ok.style.borderColor='';ok.style.color='';
-        f.reset();
-      })
-      .catch(function(){ mailtoFallback(); });
+      .then(function(d){ if(!d.ok) throw new Error('api'); sent(); })
+      .catch(function(){ viaFormSubmit().then(sent).catch(function(){ mailtoFallback(); }); });
   });
 
   var yr=document.getElementById('yr');if(yr){var y=(document.lastModified||'').slice(-4);if(/^\d{4}$/.test(y))yr.textContent=y;}

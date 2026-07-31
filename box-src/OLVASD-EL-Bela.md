@@ -35,7 +35,13 @@ Ez frissíti a `public/box/index.html`-t. (A `standalone.html` a teljesen önál
 - **Nyelvváltó fent: Magyar · English · 中文** (teljes fordítás)
 - Hero: Higgsfield-generált fekete párduc (a klub kabalája) — CDN-hotlink, ha nem tölt be, a valódi ring-fotóra vált
 - Valódi **órarend** és edzők: Carlos, Bertók Róbert, Tibi bá', Totka Pali bácsi
-- **Online jelentkezés** (edzésválasztóval) → e-mailt nyit Carlosnak: **terra.budai@gmail.com**
+- **Online jelentkezés** (edzésválasztóval) → háromlépcsős küldés Carlosnak (**terra.budai@gmail.com**):
+  1. `/api/contact` Vercel Function (Resend, feladó: noreply@aurapro.hu) — ehhez a `budaors-box-academy`
+     Vercel-projekten kell egy `RESEND_API_KEY` env (ugyanaz a kulcs, mint az aurapro-website projekten);
+     amíg nincs kulcs, a függvény 503-at ad és a lead a runtime-logba kerül
+  2. tartalék: FormSubmit AJAX (aktiválást igényel a terra.budai@gmail.com-ból)
+  3. végső tartalék: mailto (a látogató saját levelezője)
+  A függvény forrása: `box-src/vercel/api/contact.js`
 - Carlos-szekció (vezetőedző) + Carlos a galériában
 - Galéria **kép-nagyítással (lightbox)**, 2 videó, GYIK, kapcsolat
 - Reszponzív: telefon (Android/iPhone), álló és fekvő is rendben
