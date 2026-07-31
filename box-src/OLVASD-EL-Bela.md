@@ -4,10 +4,10 @@ Ez a Budaörs Box Academy (BBA) amatőr/hobbi bokszklub weboldala. Carlos vezet�
 Cél: minél több bokszoló jöjjön a klubba. Az első edzés ingyenes.
 
 ## Élő linkek
-- **Előnézet (mindig a legfrissebb, de belépés kell hozzá):**
-  https://claude.ai/code/artifact/5f2f01d5-7840-44ea-9915-46c0dc8e2ea0
-- **Publikus, megosztható (Vercel, kicsit régebbi verzió):**
-  https://budaors-box-academy.vercel.app
+- **🥊 HIVATALOS ÉLŐ CÍM: https://www.budaorsbox.hu** — 2026-07-31-én rákötve!
+  (Rackhost DNS: A @ → 76.76.21.21, CNAME www → cname.vercel-dns.com; Vercel projekt: budaors-box-academy; a budaorsbox.hu 308-cal a www-ra irányít)
+- Vercel-cím (ugyanaz az oldal): https://budaors-box-academy.vercel.app
+- Előnézet (belépéssel): https://claude.ai/code/artifact/5f2f01d5-7840-44ea-9915-46c0dc8e2ea0
 
 ## Hol van mi a repóban
 Repo: `ferencszegedi-cmd/aurapro-website` · branch: `claude/budaors-box-klub-website-6fegy4`
