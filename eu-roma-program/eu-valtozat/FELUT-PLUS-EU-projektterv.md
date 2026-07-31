@@ -115,7 +115,7 @@ Pénzügyi és szakmai irányítás, konzorciumi ülések (6 alkalom), jelentés
 minőségbiztosítás, kockázatkezelés.
 
 ### WP2 · Outreach — a FELÚT Roadshow
-**Felelős:** magyar partner (rendezvényszervezés) · **M4–M21**
+**Felelős:** On My Way Kft. (produkciós iroda) · **M4–M21**
 **20 alkalom** három országban (HU 10, SK 5, RO 5), kb. havonta.
 - Nagyköveti jelenlét: zenei blokk + a saját történetén alapuló motivációs
   beszélgetés („honnan hová")

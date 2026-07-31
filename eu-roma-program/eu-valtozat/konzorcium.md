@@ -55,15 +55,24 @@ nem megkerülhetők** — ez dönti el, hogy a pályázat egyáltalán eljut-e a
 | Szlovák partner (WP2–WP5) | SK | ERGO szlovák tagszervezete — a tagsági listáról egyeztetendő; a gömöri régióban (Fülek, Rimaszombat) aktív roma szervezet a cél |
 | Román partner (WP2–WP5) | RO | **Nevo Parudimos** (ERGO-tagszervezet, Románia) — roma ifjúsági és közösségfejlesztő szervezet |
 | **Foglalkoztatási szolgálat** (kötelező) | HU / SK / RO | A nemzeti foglalkoztatási szolgálat területi szerve, vagy a roma NEET-programokban érintett hatóság. Elég **egy** ilyen partner, de kettő erősebb pályázat |
-| Rendezvény, kommunikáció, arculat | HU | **On My Way Kft.** — a roadshow megvalósítása, videóprodukció, arculat |
+| **Produkciós iroda** (WP2) | HU | **On My Way Kft.** — a roadshow megvalósítása, videóprodukció, arculat, kommunikáció |
 | Nagykövet | HU | **L.L. Junior** — nem konzorciumi tag, hanem szerződött közreműködő |
 
 ---
 
-## 2/a. Cégszerkezet: miért az On My Way és nem az Aurapro
+## 2/a. Cégszerkezet: az On My Way Kft. mint produkciós iroda
 
-A projekt magyar konzorciumi partnere az **On My Way Kft.** Ez tudatos döntés,
-és három okból is helyes:
+A projekt magyar konzorciumi partnere az **On My Way Kft.**, amely a
+konzorciumban **produkciós irodaként** vesz részt: a roadshow-alkalmak
+megvalósítása, a videóprodukció, az arculat és a kommunikáció a feladata
+(WP2, 130 000 EUR).
+
+Ez a szerepdefiníció szándékosan szűk és pontos — nem projektgazda, nem
+szakmai vezető, hanem **produkciós szolgáltató**. Így a cég mérete és
+referenciakészlete arányban áll a vállalt feladattal, és nincs olyan
+elvárás vele szemben, amit egy kisvállalkozás nem tud teljesíteni.
+
+A választás három okból helyes:
 
 1. **Profil-illeszkedés.** Az Aurapro Kft. munkavédelmi–tűzvédelmi profilja
    idegen egy roma befogadási projektben; az értékelő jogosan kérdezné meg,
@@ -85,7 +94,7 @@ történt-e, volt-e versenyeztetés, ki döntött róla.
 
 | Szereplő | Szerep | Pénzáramlás |
 |---|---|---|
-| **On My Way Kft.** | konzorciumi partner: rendezvényprodukció, videó, arculat (WP2, 130 000 EUR) | konzorciumi támogatás |
+| **On My Way Kft.** | konzorciumi partner — **produkciós iroda**: rendezvény, videó, arculat (WP2, 130 000 EUR) | konzorciumi támogatás |
 | **L.L. Junior gazdasági társasága** | szerződött szolgáltató: nagyköveti csomag (290 000 EUR) | **a koordinátortól, közvetlen szerződéssel** |
 
 Vagyis: **a nagyköveti tétel ne az On My Way soraiban üljön, hanem a
