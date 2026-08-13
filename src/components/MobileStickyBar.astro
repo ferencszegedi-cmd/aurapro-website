@@ -22,10 +22,12 @@ const hidden = hideOnPaths.some((p) => path === p || path === p + '/' || path.st
     role="region"
     aria-label={lang === 'en' ? 'Quick contact' : 'Gyors kapcsolat'}
   >
+    <!-- Hangsúlycsere (2026-08-13): a telefon-kattintás 3-4× gyakoribb a form-leadnél,
+         ezért a HÍVÁS a teli narancs (primary), az ajánlatkérés a másodlagos. -->
     <div class="grid grid-cols-2 h-14">
       <a
         href="tel:+36704098764"
-        class="flex items-center justify-center gap-2 font-heading font-semibold text-teal hover:bg-teal-light transition-colors"
+        class="flex items-center justify-center gap-2 bg-orange text-white font-heading font-semibold hover:bg-orange-dark transition-colors"
         data-cta="mobile-sticky-call"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -35,7 +37,7 @@ const hidden = hideOnPaths.some((p) => path === p || path === p + '/' || path.st
       </a>
       <a
         href={contactHref}
-        class="flex items-center justify-center gap-2 bg-orange text-white font-heading font-semibold hover:bg-orange-dark transition-colors"
+        class="flex items-center justify-center gap-2 font-heading font-semibold text-teal hover:bg-teal-light transition-colors"
         data-cta="mobile-sticky-quote"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

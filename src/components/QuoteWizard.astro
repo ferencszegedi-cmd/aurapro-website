@@ -1,10 +1,10 @@
 ---
 /**
  * Kétlépéses ajánlatkérő wizard (Ferenc 2026-07-15-i specifikációja szerint).
- * 1. lépés: 6 szolgáltatás két oszlopban, TÖBB IS VÁLASZTHATÓ (checkbox):
+ * 1. lépés: 7 szolgáltatás-opció két oszlopban, TÖBB IS VÁLASZTHATÓ (checkbox):
  *    bal oszlop: Munkavédelem / Tűzvédelem / Környezetvédelem
  *    jobb oszlop: Elsősegélynyújtó képzés / Munkavédelmi képviselő képzés /
- *                 Online oktatás
+ *                 Online oktatás / Nem tudom pontosan (segítséget kér)
  * 2. lépés: cégadatok (cégnév, név, telefon, email, létszám, üzenet) + GDPR.
  *
  * Progressive enhancement: JS nélkül mindkét lépés látható, natív POST megy a
@@ -83,6 +83,11 @@ const serviceColumns = [
       label: w.svcOnline,
       icon: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z',
     },
+    {
+      value: 'nem-tudom',
+      label: w.svcUnknown,
+      icon: 'M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+    },
   ],
 ];
 
@@ -157,6 +162,10 @@ const serviceColumns = [
       ))}
     </div>
     <p data-step-error class="hidden mt-2 text-sm text-red-600">{w.errNoService}</p>
+    <!-- Trust-sor az 1. lépésen is (a 2. lépésen a submit gomb alatt már megvan) -->
+    <p class="mt-3 text-center text-xs text-muted">
+      {w.trust}
+    </p>
   </fieldset>
 
   <!-- 2. lépés: cégadatok -->
@@ -351,6 +360,25 @@ const serviceColumns = [
     form.addEventListener('input', markStarted);
     form.addEventListener('change', markStarted);
 
+    // form_view: EGYSZER mérjük, amikor a form legalább 50%-ban láthatóvá válik
+    // (a form_start-hoz viszonyítva megmutatja, hányan látják el a formot kitöltés nélkül)
+    if ('IntersectionObserver' in window) {
+      const viewObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            // A threshold: 0.5 garantálja az ~50%-os láthatóságot; a ratio-t nem
+            // ellenőrizzük külön, mert a küszöb-átlépéskor kerekítési okból 0.5 alá is eshet.
+            if (entry.isIntersecting) {
+              gtagEvent('form_view', { form_id: formId });
+              viewObserver.disconnect();
+            }
+          });
+        },
+        { threshold: 0.5 },
+      );
+      viewObserver.observe(form);
+    }
+
     function render() {
       steps.forEach((s, i) => {
         s.hidden = i !== current;
@@ -397,6 +425,12 @@ const serviceColumns = [
     form.querySelectorAll<HTMLInputElement>('input[name="services"]').forEach((cb) => {
       cb.addEventListener('change', () => {
         steps[0]?.querySelector<HTMLElement>('[data-step-error]')?.classList.add('hidden');
+        // Az ELSŐ pipálásnál a Tovább gombot görgetjük látótérbe (főleg mobilon van
+        // a hajtás alatt), hogy a látogató lássa a következő lépést.
+        const checkedCount = form.querySelectorAll('input[name="services"]:checked').length;
+        if (cb.checked && current === 0 && checkedCount === 1) {
+          nextBtn?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
       });
     });
 

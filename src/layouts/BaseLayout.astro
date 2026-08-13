@@ -133,6 +133,20 @@ const orgSchema = {
           ad_user_data: 'denied',
           ad_personalization: 'denied',
         });
+        // Consent-sorrend fix: a korábban tárolt döntést MÉG a gtag('config') előtt
+        // töltjük vissza, különben a hozzájáruló visszatérő látogató első
+        // oldalmegtekintése consent nélkül (denied) mérődne. A body-végi cookie-script
+        // module-ként csak a config UTÁN futna le, ezért kell itt, inline.
+        try {
+          if (localStorage.getItem('cookie-consent') === 'accepted') {
+            gtag('consent', 'update', {
+              ad_storage: 'granted',
+              analytics_storage: 'granted',
+              ad_user_data: 'granted',
+              ad_personalization: 'granted',
+            });
+          }
+        } catch (e) { /* localStorage tiltva (pl. privát mód) – marad a denied default */ }
         gtag('js', new Date());
         gtag('config', GA4_ID, { anonymize_ip: true });
         if (ADS_ID) gtag('config', ADS_ID);
@@ -207,6 +221,10 @@ const orgSchema = {
       localStorage.setItem('cookie-consent', 'accepted');
       banner?.classList.add('hidden');
       (window as any).aurapro_applyConsent?.(true);
+      // consent_accept esemény – a consent-update UTÁN, hogy már granted állapotban mérődjön
+      if (typeof (window as any).gtag === 'function') {
+        (window as any).gtag('event', 'consent_accept');
+      }
     });
 
     document.getElementById('cookie-reject')?.addEventListener('click', () => {
@@ -216,23 +234,33 @@ const orgSchema = {
     });
   </script>
 
-  <!-- Telefon-kattintás telemetria (másodlagos konverzió az Ads-hez) -->
+  <!-- Telefon-/email-kattintás telemetria (másodlagos konverzió az Ads-hez) -->
   <script>
     document.addEventListener('click', (e) => {
       const target = e.target as Element | null;
-      const link = target?.closest?.('a[href^="tel:"]') as HTMLElement | null;
+      const link = target?.closest?.('a[href^="tel:"], a[href^="mailto:"]') as HTMLElement | null;
       if (!link) return;
+      const href = link.getAttribute('href') ?? '';
+      const isTel = href.startsWith('tel:');
       if (typeof (window as any).gtag === 'function') {
-        (window as any).gtag('event', 'phone_click', {
-          cta: link.dataset.cta ?? 'unknown',
-          page_path: window.location.pathname,
-        });
-        // telefon_ga4: a régi oldallal közös GA4 KULCSESEMÉNY neve — ezt importálja
-        // az Ads "Aurapro telefon GAds" konverziós művelete, így a telefonos konverzió
-        // folytonosan mérődik az új oldalon is (A2-csomag, 2026-07-23).
-        (window as any).gtag('event', 'telefon_ga4', {
-          cta: link.dataset.cta ?? 'unknown',
-          page_path: window.location.pathname,
+        if (isTel) {
+          (window as any).gtag('event', 'phone_click', {
+            cta: link.dataset.cta ?? 'unknown',
+            page_path: window.location.pathname,
+          });
+          // telefon_ga4: a régi oldallal közös GA4 KULCSESEMÉNY neve — ezt importálja
+          // az Ads "Aurapro telefon GAds" konverziós művelete, így a telefonos konverzió
+          // folytonosan mérődik az új oldalon is (A2-csomag, 2026-07-23).
+          (window as any).gtag('event', 'telefon_ga4', {
+            cta: link.dataset.cta ?? 'unknown',
+            page_path: window.location.pathname,
+          });
+        }
+        // contact_click: egységes site-szintű kapcsolat-kattintás esemény (tel + mailto),
+        // a meglévő phone_click/telefon_ga4 MELLÉ, nem helyette.
+        (window as any).gtag('event', 'contact_click', {
+          link_type: isTel ? 'tel' : 'mailto',
+          link_url: href,
         });
       }
     });
