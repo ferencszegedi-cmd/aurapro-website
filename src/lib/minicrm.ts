@@ -6,8 +6,10 @@
 // Auth: HTTP Basic (SystemId : ApiKey). Base: https://r3.minicrm.hu/Api/R3/
 // Pipeline-routing:
 //   - Értékesítés (CategoryId 70), belépő státusz Kapcsolatfelvétel (3608) – alapértelmezett.
-//   - Képzés     (CategoryId 76), belépő státusz Tervezés (3674) – ha KIZÁRÓLAG
-//     képzés-jellegű szolgáltatást választottak (elsősegély / MV-képviselő / képzés).
+//   - Képzés     (CategoryId 76), belépő státusz Tervezés (3674) – ha BÁRMELYIK
+//     választott szolgáltatás képzés-jellegű (elsősegély / MV-képviselő / képzés).
+//     (2026-08-25, Szűk Kata kérése: a vegyes, képzést is tartalmazó kérés is a
+//     Képzés modulba menjen – korábban csak a tisztán képzés-jellegű ment oda.)
 // A kategória/státusz env-ből felülírható (MINICRM_*_CATEGORY_ID / _STATUS_ID).
 
 const BASE = 'https://r3.minicrm.hu/Api/R3';
@@ -27,13 +29,13 @@ function envNum(name: string): number | undefined {
 
 /**
  * Eldönti, melyik pipeline-ba kerüljön a lead a választott szolgáltatások alapján.
- * Csak akkor Képzés, ha VAN választott szolgáltatás ÉS mindegyik képzés-jellegű
- * (a vegyes kérés – pl. munkavédelem + elsősegély – az Értékesítésbe megy).
+ * Képzés, ha BÁRMELYIK választott szolgáltatás képzés-jellegű – a vegyes kérés
+ * (pl. munkavédelem + MV-képviselő képzés) is a Képzés modulba megy.
  */
 function chooseTarget(serviceSlugs: string[]): { categoryId: number; statusId: number } {
   const slugs = serviceSlugs.map((s) => s.trim()).filter(Boolean);
-  const trainingOnly = slugs.length > 0 && slugs.every((s) => TRAINING_SERVICES.has(s));
-  if (trainingOnly) {
+  const hasTraining = slugs.some((s) => TRAINING_SERVICES.has(s));
+  if (hasTraining) {
     return {
       categoryId: envNum('MINICRM_KEPZES_CATEGORY_ID') ?? CATEGORY_KEPZES,
       statusId: envNum('MINICRM_KEPZES_STATUS_ID') ?? STATUS_KEPZES_ENTRY,
