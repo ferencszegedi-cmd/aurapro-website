@@ -10,6 +10,9 @@
 //     választott szolgáltatás képzés-jellegű (elsősegély / MV-képviselő / képzés).
 //     (2026-08-25, Szűk Kata kérése: a vegyes, képzést is tartalmazó kérés is a
 //     Képzés modulba menjen – korábban csak a tisztán képzés-jellegű ment oda.)
+//     (2026-08-28, Helukabel-eset: ha a látogató nem pipál képzést, csak az
+//     üzenetbe írja – „elsősegély tanfolyam" –, az üzenet kulcsszavai alapján
+//     is a Képzés modulba routolunk.)
 // A kategória/státusz env-ből felülírható (MINICRM_*_CATEGORY_ID / _STATUS_ID).
 
 const BASE = 'https://r3.minicrm.hu/Api/R3';
@@ -21,6 +24,34 @@ const STATUS_KEPZES_ENTRY = 3674; // "Tervezés" – a Képzés pipeline első n
 /** Képzés-jellegű szolgáltatás-slugok (QuoteWizard + legacy). */
 const TRAINING_SERVICES = new Set(['elsosegely', 'mv-kepviselo', 'online-oktatas', 'kepzes']);
 
+/**
+ * Képzés-jellegű kulcsszavak a szabadszöveges üzenethez (ékezet-mentesítve).
+ * Szándékosan szűk lista: a puszta „oktatás" szó NEM szerepel, mert az a sima
+ * MV/TV szolgáltatás-kérésekben is gyakori (dokumentáció + oktatás).
+ */
+const TRAINING_MESSAGE_PATTERNS = [
+  'elsosegely', // elsősegély(nyújtó) bármely alakja
+  'tanfolyam',
+  'kepzes', // képzés, továbbképzés
+  'munkavedelmi kepviselo',
+  'online oktatas',
+];
+
+/** Ékezet-mentesített kisbetűs alak a kulcsszó-kereséshez. */
+function normalizeText(s: string): string {
+  return s
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+}
+
+/** Igaz, ha a szabadszöveges üzenet képzés-jellegű érdeklődésre utal. */
+function messageSuggestsTraining(message: string | undefined): boolean {
+  if (!message) return false;
+  const norm = normalizeText(message);
+  return TRAINING_MESSAGE_PATTERNS.some((p) => norm.includes(p));
+}
+
 function envNum(name: string): number | undefined {
   const raw = (import.meta.env as Record<string, string | undefined>)[name] || process.env[name];
   const n = raw ? Number(raw) : NaN;
@@ -31,10 +62,17 @@ function envNum(name: string): number | undefined {
  * Eldönti, melyik pipeline-ba kerüljön a lead a választott szolgáltatások alapján.
  * Képzés, ha BÁRMELYIK választott szolgáltatás képzés-jellegű – a vegyes kérés
  * (pl. munkavédelem + MV-képviselő képzés) is a Képzés modulba megy.
+ * Tartalék: ha a látogató nem pipált képzést, de az üzenetében egyértelműen
+ * arról ír (pl. „elsősegély tanfolyam"), akkor is a Képzés modulba megy
+ * (Helukabel-eset, 2026-08-28).
  */
-function chooseTarget(serviceSlugs: string[]): { categoryId: number; statusId: number } {
+function chooseTarget(
+  serviceSlugs: string[],
+  message?: string,
+): { categoryId: number; statusId: number } {
   const slugs = serviceSlugs.map((s) => s.trim()).filter(Boolean);
-  const hasTraining = slugs.some((s) => TRAINING_SERVICES.has(s));
+  const hasTraining =
+    slugs.some((s) => TRAINING_SERVICES.has(s)) || messageSuggestsTraining(message);
   if (hasTraining) {
     return {
       categoryId: envNum('MINICRM_KEPZES_CATEGORY_ID') ?? CATEGORY_KEPZES,
@@ -128,7 +166,7 @@ export async function pushLeadToMiniCrm(lead: MiniCrmLead): Promise<Result> {
       `Forrás: weboldal (${lead.source ?? 'ajanlatkero'})`,
     ].filter(Boolean);
 
-    const target = chooseTarget(lead.serviceSlugs ?? []);
+    const target = chooseTarget(lead.serviceSlugs ?? [], lead.message);
     const project = await put('/Project', systemId, apiKey, {
       CategoryId: target.categoryId,
       ContactId: contactId,
