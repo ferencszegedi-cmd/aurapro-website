@@ -55,7 +55,7 @@ export async function submitLead(form: HTMLFormElement): Promise<SubmitResult> {
       return { ok: true };
     }
 
-    let message = 'Hiba történt a küldéskor. Próbálja újra, vagy hívjon: +36 70 409 8764';
+    let message = 'Hiba történt a küldéskor. Próbálja újra, vagy hívjon: +36 23 880 788';
     try {
       const data = await res.json();
       if (data?.error === 'validation_failed' && Array.isArray(data.fields)) {
@@ -66,6 +66,6 @@ export async function submitLead(form: HTMLFormElement): Promise<SubmitResult> {
     }
     return { ok: false, message };
   } catch {
-    return { ok: false, message: 'Hálózati hiba. Kérjük, hívjon közvetlenül: +36 70 409 8764' };
+    return { ok: false, message: 'Hálózati hiba. Kérjük, hívjon közvetlenül: +36 23 880 788' };
   }
 }

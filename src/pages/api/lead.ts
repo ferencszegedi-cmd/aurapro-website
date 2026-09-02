@@ -241,7 +241,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
             Egy Aurapro szakértő <strong>24 órán belül</strong> visszahívja Önt a megadott telefonszámon
             (${escapeHtml(data.phone)}).</p>
             ${serviceLabel ? `<p>Érdeklődés tárgya: <strong>${escapeHtml(serviceLabel)}</strong></p>` : ''}
-            <p>Ha sürgős, hívjon: <a href="tel:+36704098764">+36 70 409 8764</a></p>
+            <p>Ha sürgős, hívjon: <a href="tel:+3623880788">+36 23 880 788</a> vagy <a href="tel:+36704098764">+36 70 409 8764</a> (mobil)</p>
             <p>Üdvözlettel,<br>Aurapro csapata</p>
             <hr>
             <p style="color:#888;font-size:12px">Ezt az e-mailt automatikusan generáltuk az

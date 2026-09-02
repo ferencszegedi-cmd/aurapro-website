@@ -1,74 +1,293 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
+
+const H2 = 'font-heading font-bold text-2xl text-heading mt-10';
+const H3 = 'font-heading font-semibold text-xl text-heading mt-6';
+const TD = 'align-top px-3 py-2 border-b border-border';
+const TH = 'text-left px-3 py-2 border-b-2 border-border font-heading font-semibold text-heading';
 ---
 
 <PageLayout
-  title="Adatvédelmi tájékoztató – Aurapro Kft."
-  description="Az Aurapro Kft. adatvédelmi tájékoztatója a személyes adatok kezeléséről, az érintettek jogairól és a GDPR megfelelésről."
+  title="Adatkezelési tájékoztató – Aurapro Kft."
+  description="Az Aurapro Kft. adatkezelési tájékoztatója: milyen személyes adatokat kezelünk a weboldalon, milyen célból és jogalapon, kik az adatfeldolgozók, és milyen jogok illetik meg Önt."
   canonical="/adatvedelem/"
 >
   <section class="py-16 lg:py-24 bg-gradient-to-br from-teal-light to-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="font-heading font-bold text-4xl lg:text-5xl text-heading">Adatvédelmi tájékoztató</h1>
-      <p class="mt-4 text-muted">Hatályos: 2026. május 16-tól</p>
+      <h1 class="font-heading font-bold text-4xl lg:text-5xl text-heading">Adatkezelési tájékoztató</h1>
+      <p class="mt-4 text-muted">Hatályos: 2026. augusztus 25-től. Korábbi változat: 2026. május 16.</p>
     </div>
   </section>
 
   <section class="py-16 lg:py-20 bg-white">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-lg text-body">
-      <h2 class="font-heading font-bold text-2xl text-heading">1. Az adatkezelő</h2>
+
+      <p>
+        Jelen tájékoztató azt mutatja be, hogy az Aurapro Kft. mint adatkezelő a www.aurapro.hu
+        weboldal működtetése során milyen személyes adatokat kezel, milyen célból, milyen jogalapon
+        és meddig, kinek továbbítja azokat, valamint milyen jogok illetik meg Önt. Az adatkezelés az
+        Európai Parlament és a Tanács (EU) 2016/679 rendelete (GDPR) és az információs
+        önrendelkezési jogról és az információszabadságról szóló 2011. évi CXII. törvény (Infotv.)
+        rendelkezései szerint történik.
+      </p>
+
+      <h2 class={H2}>1. Az adatkezelő</h2>
       <p>
         <strong>Név:</strong> Aurapro Kft.<br />
         <strong>Székhely:</strong> 2040 Budaörs, Gyár utca 2. (BITEP Ipari Park)<br />
-        <strong>Email:</strong> iroda@aurapro.hu<br />
-        <strong>Telefon:</strong> +36 70 409 8764
+        <strong>Cégjegyzékszám:</strong> 13 09 124542 (Budapest Környéki Törvényszék Cégbírósága)<br />
+        <strong>Adószám:</strong> 14541919-2-13<br />
+        <strong>E-mail:</strong> iroda@aurapro.hu<br />
+        <strong>Telefon:</strong> +36 23 880 788 · +36 70 409 8764 (mobil)
       </p>
-
-      <h2 class="font-heading font-bold text-2xl text-heading mt-10">2. A kezelt adatok köre és célja</h2>
-      <h3 class="font-heading font-semibold text-xl text-heading">2.1 Kapcsolatfelvételi űrlap</h3>
       <p>
-        <strong>Kezelt adatok:</strong> név, telefonszám, email cím, üzenet szövege.<br />
-        <strong>Cél:</strong> ajánlatkérés megválaszolása, kapcsolatfelvétel.<br />
-        <strong>Jogalap:</strong> az érintett hozzájárulása (GDPR 6. cikk (1) bek. a) pont).<br />
-        <strong>Megőrzési idő:</strong> a cél megvalósulásától számított 2 év, vagy az érintett törlési kérelméig.
+        Adatvédelmi tisztviselő kinevezésére az Aurapro Kft. a GDPR 37. cikke alapján nem köteles,
+        ezért adatvédelmi tisztviselőt nem nevezett ki. Adatvédelmi kérdéseivel a fenti
+        elérhetőségeken fordulhat hozzánk.
       </p>
 
-      <h3 class="font-heading font-semibold text-xl text-heading">2.2 Sütik (cookie-k)</h3>
+      <h2 class={H2}>2. A kezelt adatok köre, célja, jogalapja és megőrzési ideje</h2>
+
+      <h3 class={H3}>2.1 Ajánlatkérés és kapcsolatfelvételi űrlap</h3>
       <p>
-        A weboldal kizárólag a működéshez szükséges sütiket, valamint a cookie-hozzájárulási beállítás tárolását végzi (localStorage).
-        Harmadik féltől származó sütiket nem használunk, kivéve ha analitikai eszközt (pl. Google Analytics) telepítünk – erről külön tájékoztatjuk.
+        <strong>Kezelt adatok:</strong> név, cégnév, telefonszám, e-mail cím, az üzenet szövege,
+        továbbá – amennyiben megadja – a vállalkozás létszám-sávja, a telephelyek száma, az igényelt
+        szolgáltatások köre és a megkeresés prioritása.<br />
+        <strong>Cél:</strong> az ajánlatkérés megválaszolása, árajánlat készítése, kapcsolatfelvétel,
+        a megkeresés nyomon követése az ügyfélkapcsolati rendszerünkben.<br />
+        <strong>Jogalap:</strong> az Ön hozzájárulása (GDPR 6. cikk (1) bekezdés a) pont), amelyet az
+        űrlap elküldése előtti jelölőnégyzet bejelölésével ad meg. Amennyiben a megkeresés nyomán
+        szerződéskötés előkészítése indul, az adatkezelés jogalapja a szerződés megkötését megelőzően
+        az Ön kérésére történő lépések megtétele (GDPR 6. cikk (1) bekezdés b) pont).<br />
+        <strong>Megőrzési idő:</strong> ha szerződés nem jön létre, a megkereséstől számított 2 év,
+        illetve az Ön törlési kérelméig. Szerződéskötés esetén a szerződéses jogviszony megszűnésétől
+        számított 5 év (a Ptk. 6:22. § szerinti általános elévülési idő), a számviteli bizonylatokon
+        szereplő adatok esetében a számvitelről szóló 2000. évi C. törvény 169. § (2) bekezdése
+        alapján 8 év.
       </p>
 
-      <h2 class="font-heading font-bold text-2xl text-heading mt-10">3. Az érintettek jogai</h2>
-      <p>Az érintett jogosult:</p>
+      <h3 class={H3}>2.2 Hírlevél és jogszabály-változás értesítő</h3>
+      <p>
+        <strong>Kezelt adatok:</strong> név, e-mail cím, a feliratkozás forrása és időpontja.<br />
+        <strong>Cél:</strong> tájékoztatás a munkavédelmi, tűzvédelmi és környezetvédelmi jogszabályok
+        változásairól, valamint az Aurapro Kft. szolgáltatásairól.<br />
+        <strong>Jogalap:</strong> az Ön hozzájárulása (GDPR 6. cikk (1) bekezdés a) pont, valamint a
+        gazdasági reklámtevékenységről szóló 2008. évi XLVIII. törvény 6. §-a).<br />
+        <strong>Megőrzési idő:</strong> a hozzájárulás visszavonásáig. A leiratkozást bármikor,
+        indokolás nélkül és díjmentesen kérheti az iroda@aurapro.hu címen, illetve a küldött
+        levelekben található leiratkozó hivatkozással. A visszavonás nem érinti a visszavonás előtt
+        végzett adatkezelés jogszerűségét.
+      </p>
+
+      <h3 class={H3}>2.3 Közvetlen e-mailes és telefonos megkeresés</h3>
+      <p>
+        <strong>Kezelt adatok:</strong> a megkeresés során Ön által megadott adatok (jellemzően név,
+        elérhetőség, a megkeresés tartalma).<br />
+        <strong>Cél:</strong> a megkeresés megválaszolása, kapcsolattartás.<br />
+        <strong>Jogalap:</strong> az Ön hozzájárulása, illetve fennálló szerződéses kapcsolat esetén a
+        szerződés teljesítése (GDPR 6. cikk (1) bekezdés a) és b) pont).<br />
+        <strong>Megőrzési idő:</strong> a 2.1 pontban írtakkal azonos. Telefonbeszélgetést nem
+        rögzítünk.
+      </p>
+
+      <h3 class={H3}>2.4 Szerver-naplók és visszaélés-megelőzés</h3>
+      <p>
+        <strong>Kezelt adatok:</strong> IP-cím, a lekérés időpontja, a meglátogatott oldal címe,
+        böngésző- és eszköz-azonosító adatok (user agent).<br />
+        <strong>Cél:</strong> a weboldal biztonságos működtetése, üzemzavarok elhárítása, valamint az
+        űrlapokkal való visszaélés (automatizált tömeges beküldés) megakadályozása. Ehhez IP-alapú
+        beküldés-korlátozást és a Cloudflare Turnstile botvédelmi megoldását alkalmazzuk.<br />
+        <strong>Jogalap:</strong> az adatkezelő jogos érdeke (GDPR 6. cikk (1) bekezdés f) pont) a
+        szolgáltatás rendelkezésre állásához és a visszaélések megelőzéséhez.<br />
+        <strong>Megőrzési idő:</strong> a beküldés-korlátozáshoz használt IP-cím kizárólag a
+        memóriában, 60 másodpercig kerül feldolgozásra; a tárhelyszolgáltató szerver-naplói
+        legfeljebb 30 napig érhetők el.
+      </p>
+
+      <h3 class={H3}>2.5 Sütik és hasonló technológiák</h3>
+      <p>
+        A weboldal a működéshez feltétlenül szükséges sütiket az Ön hozzájárulása nélkül is
+        alkalmazza. Analitikai és marketing célú sütiket – köztük a Google Analytics 4 és a Google
+        Ads sütijeit – kizárólag akkor helyezünk el, ha ehhez a süti-sávon kifejezetten hozzájárul.
+        Hozzájárulás hiányában a Google Consent Mode v2 alapján a mérési és hirdetési tárolás
+        letiltott állapotban marad.<br />
+        <strong>Jogalap:</strong> a működéshez szükséges sütik esetében az adatkezelő jogos érdeke,
+        minden más esetben az Ön hozzájárulása (GDPR 6. cikk (1) bekezdés a) pont).
+      </p>
+      <p>
+        Hozzájárulását bármikor, ugyanolyan egyszerű módon visszavonhatja, ahogyan megadta: a lábléc
+        <strong>Süti-beállítások</strong> hivatkozására kattintva a süti-sáv újra megjeleníthető, és
+        döntése módosítható. A már elhelyezett sütiket böngészője beállításaiban is törölheti.
+      </p>
+
+      <h2 class={H2}>3. A weboldalon használt sütik</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm my-4">
+          <thead>
+            <tr>
+              <th class={TH}>Név</th>
+              <th class={TH}>Kezelő</th>
+              <th class={TH}>Cél</th>
+              <th class={TH}>Élettartam</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class={TD}>cookie-consent</td>
+              <td class={TD}>Aurapro Kft.</td>
+              <td class={TD}>A süti-hozzájárulásra vonatkozó döntés tárolása a böngésző helyi tárolójában (localStorage). Működéshez szükséges.</td>
+              <td class={TD}>Törlésig</td>
+            </tr>
+            <tr>
+              <td class={TD}>__cf_bm, cf_*</td>
+              <td class={TD}>Cloudflare, Inc.</td>
+              <td class={TD}>Botvédelem az űrlapokon (Turnstile). Működéshez szükséges.</td>
+              <td class={TD}>Legfeljebb 30 perc</td>
+            </tr>
+            <tr>
+              <td class={TD}>_ga, _ga_0JX42WYF8Z</td>
+              <td class={TD}>Google</td>
+              <td class={TD}>Google Analytics 4 – látogatottsági statisztika, a látogatók megkülönböztetése. Hozzájáruláshoz kötött.</td>
+              <td class={TD}>2 év</td>
+            </tr>
+            <tr>
+              <td class={TD}>_gcl_au</td>
+              <td class={TD}>Google</td>
+              <td class={TD}>Google Ads – a hirdetésekből érkező érdeklődések mérése (konverziókövetés). Hozzájáruláshoz kötött.</td>
+              <td class={TD}>90 nap</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-muted">
+        A Google adatkezeléséről a policies.google.com/privacy oldalon tájékozódhat. A Google
+        Analytics méréseiből a böngészőjéhez telepíthető kiegészítővel is kiiratkozhat
+        (tools.google.com/dlpage/gaoptout).
+      </p>
+
+      <h2 class={H2}>4. Adatfeldolgozók és címzettek</h2>
+      <p>
+        Személyes adatait harmadik félnek nem adjuk el és nem hozzuk nyilvánosságra. A szolgáltatás
+        nyújtásához az alábbi adatfeldolgozókat vesszük igénybe, akikkel a GDPR 28. cikke szerinti
+        adatfeldolgozói szerződést kötöttünk:
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm my-4">
+          <thead>
+            <tr>
+              <th class={TH}>Adatfeldolgozó</th>
+              <th class={TH}>Tevékenység</th>
+              <th class={TH}>Érintett adatok</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class={TD}>Vercel Inc. (440 N Barranca Ave #4133, Covina, CA 91723, USA)</td>
+              <td class={TD}>Tárhelyszolgáltatás, a weboldal kiszolgálása</td>
+              <td class={TD}>A weboldalon keresztül továbbított összes adat, szerver-napló, IP-cím</td>
+            </tr>
+            <tr>
+              <td class={TD}>Resend (Plus Five Five, Inc., San Francisco, CA, USA)</td>
+              <td class={TD}>Az űrlap-értesítő és visszaigazoló e-mailek kézbesítése</td>
+              <td class={TD}>Név, cégnév, e-mail cím, telefonszám, üzenet</td>
+            </tr>
+            <tr>
+              <td class={TD}>MiniCRM Zrt. (Magyarország)</td>
+              <td class={TD}>Ügyfélkapcsolati (CRM) rendszer – az ajánlatkérések nyilvántartása és feldolgozása</td>
+              <td class={TD}>Név, cégnév, e-mail cím, telefonszám, üzenet, létszám-sáv, telephelyszám, igényelt szolgáltatás</td>
+            </tr>
+            <tr>
+              <td class={TD}>Cloudflare, Inc. (101 Townsend St, San Francisco, CA 94107, USA)</td>
+              <td class={TD}>Botvédelem az űrlapokon (Turnstile)</td>
+              <td class={TD}>IP-cím, böngésző-adatok</td>
+            </tr>
+            <tr>
+              <td class={TD}>Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Írország)</td>
+              <td class={TD}>Google Analytics 4 és Google Ads – látogatottsági statisztika és hirdetés-mérés, kizárólag hozzájárulás esetén</td>
+              <td class={TD}>Süti-azonosító, IP-cím (anonimizálva), eszköz- és böngésző-adatok, a weboldalon végzett tevékenység</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Ezen felül személyes adat megismerésére jogosult lehet könyvelőnk és jogi képviselőnk a
+        megbízásuk teljesítéséhez szükséges mértékben, valamint jogszabályi kötelezettség esetén a
+        hatáskörrel rendelkező hatóság vagy bíróság.
+      </p>
+
+      <h2 class={H2}>5. Adattovábbítás harmadik országba</h2>
+      <p>
+        A 4. pontban megjelölt adatfeldolgozók egy része az Amerikai Egyesült Államokban működik,
+        ezért adatai az Európai Gazdasági Térségen kívülre is továbbításra kerülhetnek. Az
+        adattovábbítás jogszerűségét az Európai Bizottság EU–U.S. Data Privacy Framework szerinti
+        megfelelőségi határozata, illetve – ahol ez nem alkalmazható – az Európai Bizottság által
+        elfogadott általános szerződési feltételek (SCC) és az azokat kiegészítő garanciák
+        biztosítják.
+      </p>
+
+      <h2 class={H2}>6. Adatbiztonság</h2>
+      <p>
+        Az Aurapro Kft. megteszi a szükséges technikai és szervezési intézkedéseket az adatok védelme
+        érdekében. A weboldal teljes forgalma HTTPS titkosítással zajlik, az űrlapok szerveroldali
+        validáción, beküldés-korlátozáson és botvédelmen keresztül működnek, a rendszerekhez való
+        hozzáférés jogosultsághoz kötött. Adatvédelmi incidens esetén a GDPR 33–34. cikke szerint
+        járunk el.
+      </p>
+
+      <h2 class={H2}>7. Az Ön jogai</h2>
+      <p>Az adatkezeléssel összefüggésben Önt az alábbi jogok illetik meg:</p>
       <ul class="space-y-1">
-        <li>tájékoztatást kérni a kezelt adatairól,</li>
-        <li>kérni adatai helyesbítését vagy törlését,</li>
-        <li>az adatkezelés korlátozását kérni,</li>
-        <li>tiltakozni az adatkezelés ellen,</li>
-        <li>adathordozhatóságot kérni,</li>
-        <li>panaszt tenni a Nemzeti Adatvédelmi és Információszabadság Hatóságnál (NAIH).</li>
+        <li><strong>Tájékoztatáshoz és hozzáféréshez való jog</strong> – tájékoztatást kérhet arról, hogy kezelünk-e Önre vonatkozó adatot, és másolatot kérhet ezekről (GDPR 15. cikk).</li>
+        <li><strong>Helyesbítéshez való jog</strong> – kérheti pontatlan adatai javítását, hiányos adatai kiegészítését (16. cikk).</li>
+        <li><strong>Törléshez való jog</strong> – kérheti adatai törlését, ha az adatkezelés célja megszűnt, hozzájárulását visszavonta, vagy az adatkezelés jogellenes (17. cikk).</li>
+        <li><strong>Az adatkezelés korlátozásához való jog</strong> – kérheti az adatkezelés felfüggesztését például a vitatott adat pontosságának tisztázásáig (18. cikk).</li>
+        <li><strong>Adathordozhatósághoz való jog</strong> – kérheti a hozzájárulás vagy szerződés alapján kezelt adatait tagolt, széles körben használt, géppel olvasható formátumban (20. cikk).</li>
+        <li><strong>Tiltakozáshoz való jog</strong> – tiltakozhat a jogos érdeken alapuló adatkezelés ellen (21. cikk).</li>
+        <li><strong>A hozzájárulás visszavonásához való jog</strong> – hozzájárulását bármikor, ugyanolyan egyszerű módon visszavonhatja, ahogyan megadta. A visszavonás nem érinti a visszavonás előtt végzett adatkezelés jogszerűségét (7. cikk (3) bekezdés).</li>
       </ul>
-
-      <h2 class="font-heading font-bold text-2xl text-heading mt-10">4. NAIH elérhetőség</h2>
       <p>
-        Nemzeti Adatvédelmi és Információszabadság Hatóság<br />
+        Kérelmét az iroda@aurapro.hu címen vagy a székhelyünkre küldött levélben terjesztheti elő.
+        Kérelmére indokolatlan késedelem nélkül, de legkésőbb <strong>1 hónapon belül</strong>
+        tájékoztatjuk a megtett intézkedésről; ez a határidő a kérelem összetettségére tekintettel
+        további két hónappal meghosszabbítható, amiről a kérelem beérkezésétől számított egy hónapon
+        belül értesítjük.
+      </p>
+
+      <h2 class={H2}>8. Jogorvoslati lehetőségek</h2>
+      <p>
+        Ha úgy ítéli meg, hogy az adatkezelés sérti a jogait, elsőként kérjük, forduljon hozzánk
+        közvetlenül – törekszünk a panasz gyors rendezésére. Ezen túlmenően panasszal fordulhat a
+        felügyeleti hatósághoz, illetve bírósághoz.
+      </p>
+      <p>
+        <strong>Nemzeti Adatvédelmi és Információszabadság Hatóság (NAIH)</strong><br />
         Cím: 1055 Budapest, Falk Miksa utca 9-11.<br />
+        Postacím: 1363 Budapest, Pf. 9.<br />
         Telefon: +36 1 391 1400<br />
-        Email: ugyfelszolgalat@naih.hu<br />
+        E-mail: ugyfelszolgalat@naih.hu<br />
         Weboldal: www.naih.hu
       </p>
-
-      <h2 class="font-heading font-bold text-2xl text-heading mt-10">5. Adatbiztonság</h2>
       <p>
-        Az Aurapro Kft. megteszi a szükséges technikai és szervezési intézkedéseket az adatok védelme érdekében.
-        A weboldal HTTPS titkosítást használ, az adatokat harmadik félnek nem adjuk ki, kivéve jogszabályi kötelezettség esetén.
+        <strong>Bírósági jogorvoslat:</strong> a GDPR 79. cikke és az Infotv. 23. §-a alapján
+        bírósághoz fordulhat. A pert – választása szerint – a lakóhelye vagy tartózkodási helye
+        szerint illetékes törvényszék előtt is megindíthatja.
       </p>
 
-      <h2 class="font-heading font-bold text-2xl text-heading mt-10">6. Módosítás</h2>
+      <h2 class={H2}>9. Automatizált döntéshozatal</h2>
       <p>
-        Az Aurapro Kft. fenntartja a jogot, hogy jelen tájékoztatót módosítsa. A módosítás a weboldalon történő közzététellel lép hatályba.
+        A weboldalon keresztül gyűjtött adatok alapján automatizált döntéshozatalt – ideértve a
+        profilalkotást is – nem végzünk. A beérkező ajánlatkéréseket minden esetben munkatársunk
+        dolgozza fel.
       </p>
+
+      <h2 class={H2}>10. A tájékoztató módosítása</h2>
+      <p>
+        Az Aurapro Kft. fenntartja a jogot, hogy jelen tájékoztatót egyoldalúan módosítsa. A módosítás
+        a weboldalon történő közzététellel lép hatályba. A mindenkori hatályos szöveg a
+        www.aurapro.hu/adatvedelem/ címen érhető el; a hatálybalépés dátumát a tájékoztató elején
+        tüntetjük fel.
+      </p>
+
     </div>
   </section>
 </PageLayout>
