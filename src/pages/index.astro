@@ -6,7 +6,7 @@ import StatCounter from '../components/StatCounter.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
 import QuoteBand from '../components/QuoteBand.astro';
-import LiteYouTube from '../components/LiteYouTube.astro';
+import LiteVideo from '../components/LiteVideo.astro';
 import heroSafety from '../assets/images/hero-safety.jpg';
 import ytOktatas from '../assets/images/yt-oktatas.jpg';
 import ytAdatbazis from '../assets/images/yt-adatbazis.jpg';
@@ -147,7 +147,7 @@ const faqSchema = {
       <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
         <div>
           <h3 class="font-heading font-semibold text-lg text-heading text-center mb-3">Online oktatási oldal</h3>
-          <LiteYouTube videoId="5_KcdPdQ2gY" title="Online oktatási oldal bemutató" thumb={ytOktatas} />
+          <LiteVideo src="/videos/auraoktatas-bemutato.mp4" title="Online oktatási oldal bemutató" thumb={ytOktatas} />
           <p class="mt-3 text-center">
             <a href="https://www.auraoktatas.hu/" target="_blank" rel="noopener" class="inline-flex items-center text-teal font-medium text-sm hover:text-teal-dark transition-colors">
               auraoktatas.hu megnyitása
@@ -157,7 +157,7 @@ const faqSchema = {
         </div>
         <div>
           <h3 class="font-heading font-semibold text-lg text-heading text-center mb-3">Online adatbázis</h3>
-          <LiteYouTube videoId="uHyexWO8GSc" title="Online adatbázis bemutató" thumb={ytAdatbazis} />
+          <LiteVideo src="/videos/aura-portal-bemutato.mp4" title="Online adatbázis bemutató" thumb={ytAdatbazis} />
         </div>
       </div>
       <h2 class="font-heading font-bold text-3xl lg:text-4xl text-heading text-center mt-20 mb-8">Munkavédelmi képviselő képzés és Elsősegélynyújtó tanfolyam</h2>

@@ -1,0 +1,77 @@
+---
+/**
+ * Lite saját videó – a LiteYouTube mintájára, de saját hosztolt MP4-hez:
+ * - kezdetben csak egy lokálisan optimalizált borítókép (0 videó-letöltés)
+ * - kattintásra a kép helyére autoplay <video> kerül (helyi /videos/*.mp4)
+ * Így a videó bájtjai csak akkor töltődnek, ha a látogató tényleg lejátssza.
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  src: string; // pl. /videos/aura-portal-bemutato.mp4
+  title: string;
+  thumb: ImageMetadata;
+}
+
+const { src, title, thumb } = Astro.props;
+---
+
+<div
+  class="lite-video group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer"
+  data-lite-video={src}
+  data-video-title={title}
+  role="button"
+  tabindex="0"
+  aria-label={`Videó lejátszása: ${title}`}
+>
+  <Image
+    src={thumb}
+    alt={title}
+    widths={[480, 800, 1280]}
+    sizes="(min-width: 768px) 50vw, 100vw"
+    class="w-full aspect-video object-cover"
+    loading="lazy"
+  />
+  <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+    <div class="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+      <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    </div>
+  </div>
+</div>
+
+<script>
+  function activate(el: HTMLElement) {
+    const src = el.dataset.liteVideo;
+    const title = el.dataset.videoTitle ?? 'Videó';
+    if (!src || el.dataset.activated === '1') return;
+    el.dataset.activated = '1';
+
+    const video = document.createElement('video');
+    video.className = 'absolute inset-0 w-full h-full bg-black';
+    video.src = src;
+    video.controls = true;
+    video.autoplay = true;
+    video.playsInline = true;
+    video.setAttribute('title', title);
+
+    el.classList.remove('cursor-pointer');
+    el.style.aspectRatio = '16 / 9';
+    el.replaceChildren(video);
+
+    const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+    if (typeof w.gtag === 'function') w.gtag('event', 'video_play', { video_id: src });
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-lite-video]').forEach((el) => {
+    if (el.dataset.bound === '1') return;
+    el.dataset.bound = '1';
+    el.addEventListener('click', () => activate(el));
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        activate(el);
+      }
+    });
+  });
+</script>
