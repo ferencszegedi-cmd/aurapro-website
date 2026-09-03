@@ -53,6 +53,7 @@ const { src, title, thumb } = Astro.props;
     video.controls = true;
     video.autoplay = true;
     video.playsInline = true;
+    video.muted = true; // a videóknak nincs hangsávjuk – így az autoplay-t semmi nem blokkolja
     video.setAttribute('title', title);
 
     el.classList.remove('cursor-pointer');
