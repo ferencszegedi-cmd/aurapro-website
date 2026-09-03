@@ -7,5 +7,5 @@ export type ServiceValue =
   | 'elsosegely'
   | 'mv-kepviselo'
   | 'online-oktatas'
-  | 'nem-tudom' // „Nem tudom pontosan — mondják meg Önök" opció (2026-08-13)
+  | 'folyamatos-mvtv' // „Folyamatos munka- és tűzvédelmi szolgáltatás" → Értékesítés (2026-09-02)
   | 'gepvizsgalat'; // legacy — a wizardból 2026-07-23-án kikerült, régi beküldések miatt marad

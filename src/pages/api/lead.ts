@@ -42,7 +42,7 @@ const serviceLabels: Record<string, string> = {
   elsosegely: 'Elsősegélynyújtó képzés',
   'mv-kepviselo': 'Munkavédelmi képviselő képzés',
   'online-oktatas': 'Online oktatás',
-  'nem-tudom': 'Nem tudja pontosan — tanácsot kér',
+  'folyamatos-mvtv': 'Folyamatos munka- és tűzvédelmi szolgáltatás',
   gepvizsgalat: 'Elektromos mérés / gépvizsgálat',
   // legacy értékek (régi kliensek)
   kepzes: 'Képzés / oktatás',
